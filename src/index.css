@@ -66,6 +66,31 @@ code {
   perspective: 2000px;
 }
 
+#new-card-form {
+  font-size: large;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: silver;
+  color: rgb(53, 80, 80);
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 15%;
+  right: 15%;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: visibility 0.2s, opacity 0.2s linear;
+  perspective: 2000px;
+}
+
+label {
+  padding: 0 10px;
+}
+
 #opened-card > .card {
   background-color: transparent;
   position: relative;
@@ -84,6 +109,9 @@ code {
   backface-visibility: hidden;
   text-align: center;
 }
+.container .front {
+  padding: 50px;
+}
 
 #opened-card .front,
 #opened-card .back {
@@ -99,4 +127,18 @@ code {
 /* #opened-card .back { */
 .back {
   transform: rotateY(180deg);
+}
+
+#dark-backgr {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgb(0, 0, 0);
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: visibility 0.2s, opacity 0.2s linear;
 }
