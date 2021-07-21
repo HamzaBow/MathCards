@@ -75,8 +75,8 @@ code {
   width: auto;
   height: auto;
   position: fixed;
-  top: 10%;
-  bottom: 10%;
+  top: 13%;
+  bottom: 13%;
   left: 15%;
   right: 15%;
 
@@ -89,6 +89,9 @@ code {
 
 label {
   padding: 0 10px;
+}
+fieldset {
+  border-color: black;
 }
 
 #opened-card > .card {
