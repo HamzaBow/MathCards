@@ -10,7 +10,11 @@ const NewCardButton = ({ setShowAll }) => {
   return (
     <div style={newCardContainerStyle}>
       <div>
-        <button style={newCardButtonStyle} onClick={() => openNewCardForm()}>
+        <button
+          className="btn-new-card-form"
+          // style={newCardButtonStyle}
+          onClick={() => openNewCardForm()}
+        >
           Add a New Card
         </button>
       </div>
@@ -25,16 +29,16 @@ const newCardContainerStyle = {
   paddingBottom: "20px",
 };
 
-const newCardButtonStyle = {
-  cursor: "pointer",
-  fontSize: "1.5em",
-  backgroundColor: "lightblue",
-  borderColor: "lightblue",
-  borderRadius: "15px",
-  PaddingLeft: "15px",
-  PaddingRight: "15px",
-  height: "100px",
-  width: "300px",
-};
+// const newCardButtonStyle = {
+//   cursor: "pointer",
+//   fontSize: "1.5em",
+//   backgroundColor: "lightblue",
+//   borderColor: "lightblue",
+//   borderRadius: "15px",
+//   PaddingLeft: "15px",
+//   PaddingRight: "15px",
+//   height: "100px",
+//   width: "300px",
+// };
 
 export default NewCardButton;
