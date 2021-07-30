@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import CardsList from "./components/main/CardsList"
@@ -11,31 +11,24 @@ import NewCardButton from "./components/NewCardButton"
 function App() {
   const [showAll, setShowAll] = useState(true);
   const [frontIsShown, setFrontIsShown] = useState(true);
-  const [chosenCardId, setChosenCardId] = useState(1);
-  const [cards, setCards] = useState([
-    {
-      id: 1,
-      front: {
-        question: "What is the solution to the quadratic Equation?",
-        formula: "ax^2+bx+c=0",
-      },
-      back: {
-        formula: "x=\\frac{-b\\pm \\sqrt{b^2-4ac}}{2a}",
-        comment: ""
-      },
-    },
-    {
-      id: 2,
-      front: {
-        question: "Solve this DE",
-        formula: "\\frac{d^2y}{dt} = -\\omega^2 y",
-      },
-      back: {
-        formula: "y = C_1 \\cos(\\omega t + \\phi) + C_2  \\sin(\\omega t + \\phi)",
-        comment: ""
-      },
-    },
-  ])
+  const [chosenCardId, setChosenCardId] = useState("1");
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const getCards = async () => {
+      const cardsFromServer = await fetchCards();
+      setCards(cardsFromServer);
+    }
+
+    getCards();
+
+  }, [])
+
+  const fetchCards = async () => {
+    const res = await fetch('http://localhost:5000/cards');
+    const data = await res.json();
+    return data;
+  }
 
 
   const flipMainCard = () => {
@@ -82,7 +75,7 @@ function App() {
       <Footer />
 
       <DarkBackGr showAllCards={showAllCards} />
-      <Maincard flipMainCard={flipMainCard} chosenCardId={chosenCardId} cards={cards} />
+      <Maincard cards={cards} chosenCardId={chosenCardId} flipMainCard={flipMainCard} />
       <NewCardForm />
     </div>
   );

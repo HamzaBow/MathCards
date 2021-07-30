@@ -2,8 +2,25 @@ import { addStyles, StaticMathField } from "react-mathquill";
 
 addStyles();
 
-const Maincard = ({ flipMainCard, chosenCardId, cards }) => {
-  const chosenCard = cards.filter((card) => card.id == chosenCardId)[0];
+const Maincard = ({ cards, chosenCardId, flipMainCard }) => {
+  let chosenCard = cards.filter((card) => card.id == chosenCardId)[0];
+
+  // it would be equal to undefined if data was not yet fetched
+  // TODO: should figure how to make the component not render until useEffect has finished.
+
+  if (typeof chosenCard == "undefined") {
+    // initialize chosenCard to a dummy object
+    chosenCard = {
+      front: {
+        question: "",
+        formula: "",
+      },
+      back: {
+        formula: "",
+        comment: "",
+      },
+    };
+  }
   return (
     <div
       id="opened-card"
@@ -13,14 +30,12 @@ const Maincard = ({ flipMainCard, chosenCardId, cards }) => {
       <div className="card">
         <div className="front">
           <h2>{chosenCard.front.question}</h2>
-          {/* <h2>{card.front.formula}</h2> */}
           <StaticMathField style={{ fontSize: "2em" }}>
             {chosenCard.front.formula}
           </StaticMathField>
         </div>
 
         <div className="back">
-          {/* <h2>{card.back.formula}</h2> */}
           <StaticMathField style={{ fontSize: "2em" }}>
             {chosenCard.back.formula}
           </StaticMathField>
