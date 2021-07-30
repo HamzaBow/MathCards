@@ -11,15 +11,16 @@ import NewCardButton from "./components/NewCardButton"
 function App() {
   const [showAll, setShowAll] = useState(true);
   const [frontIsShown, setFrontIsShown] = useState(true);
+  const [chosenCardId, setChosenCardId] = useState(1);
   const [cards, setCards] = useState([
     {
       id: 1,
       front: {
         question: "What is the solution to the quadratic Equation?",
-        formula: "ax²+bx+c=-1",
+        formula: "ax^2+bx+c=0",
       },
       back: {
-        formula: "x = (-b±sqrt(b²-5ac)/2a",
+        formula: "x=\\frac{-b\\pm \\sqrt{b^2-4ac}}{2a}",
         comment: ""
       },
     },
@@ -30,7 +31,7 @@ function App() {
         formula: "\\frac{d^2y}{dt} = -\\omega^2 y",
       },
       back: {
-        formula: "y = C1 * cos(wt + phi) + C2 * sin(wt + phi)",
+        formula: "y = C_1 \\cos(\\omega t + \\phi) + C_2  \\sin(\\omega t + \\phi)",
         comment: ""
       },
     },
@@ -76,12 +77,12 @@ function App() {
       <Header />
       <Navbar />
       <NewCardButton setShowAll={setShowAll} />
-      <CardsList cards={cards} setShowAll={setShowAll} setFrontIsShown={setFrontIsShown} />
+      <CardsList cards={cards} setShowAll={setShowAll} setFrontIsShown={setFrontIsShown} setChosenCardId={setChosenCardId} />
       <NewCardButton setShowAll={setShowAll} />
       <Footer />
 
       <DarkBackGr showAllCards={showAllCards} />
-      <Maincard flipMainCard={flipMainCard} />
+      <Maincard flipMainCard={flipMainCard} chosenCardId={chosenCardId} cards={cards} />
       <NewCardForm />
     </div>
   );

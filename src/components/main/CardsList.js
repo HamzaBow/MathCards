@@ -1,6 +1,6 @@
 import Card from "./Card";
 
-const CardsList = ({ cards, setShowAll, setFrontIsShown }) => {
+const CardsList = ({ cards, setShowAll, setFrontIsShown, setChosenCardId }) => {
   return (
     <div className="container">
       {cards.map((card) => (
@@ -9,6 +9,7 @@ const CardsList = ({ cards, setShowAll, setFrontIsShown }) => {
           card={card}
           setShowAll={setShowAll}
           setFrontIsShown={setFrontIsShown}
+          setChosenCardId={setChosenCardId}
           cards={cards}
         />
       ))}

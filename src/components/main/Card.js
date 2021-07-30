@@ -1,35 +1,30 @@
-import CustomMathField from "../CustomMathField";
 import { addStyles, StaticMathField } from "react-mathquill"
 
 addStyles();
 
-const Card = ({ card, setShowAll, setFrontIsShown, cards }) => {
+const Card = ({ card, setShowAll, setFrontIsShown, cards, setChosenCardId }) => {
 
     const showOpenedCard = (key) => {
         setShowAll(false);
         setFrontIsShown(true);
+        setChosenCardId(key)
         const mainCard = document.getElementById("opened-card");
-        // const mainCardFrontQuestion = document.getElementById("main-card-front-question");
-        // const mainCardFrontFormula = document.getElementById("main-card-front-formula");
-
-        // const mainCardBackFormula = document.getElementById("main-card-back-formula");
-        // const mainCardBackQuestion = document.getElementById("main-card-back-comment");
-
         const backGr = document.getElementById("dark-backgr");
 
-        const myCard = cards.filter((card) => card.id == key)[0];
 
-        mainCard.innerHTML = `<div class="card">
-                              <div class="front">
-                                  <h2>${myCard.front.question}</h2>
-                                  <h2>${myCard.front.formula}</h2>
-                              </div>
+        // const myCard = cards.filter((card) => card.id == key)[0];
 
-                              <div class="back">
-                                  <h2>${myCard.back.formula}</h2>
-                                  <h2>${myCard.back.comment}</h2>
-                              </div>
-                          </div>`
+        // mainCard.innerHTML = `<div class="card">
+        //                       <div class="front">
+        //                           <h2>${myCard.front.question}</h2>
+        //                           <h2>${myCard.front.formula}</h2>
+        //                       </div>
+
+        //                       <div class="back">
+        //                           <h2>${myCard.back.formula}</h2>
+        //                           <h2>${myCard.back.comment}</h2>
+        //                       </div>
+        //                   </div>`
 
         mainCard.style = "visibility: visible; opacity: 1;"
         backGr.style = "visibility: visible; opacity: 0.5;"
