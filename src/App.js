@@ -27,7 +27,7 @@ function App() {
       id: 2,
       front: {
         question: "Solve this DE",
-        formula: "d²y/dt = -w²y",
+        formula: "\\frac{d^2y}{dt} = -\\omega^2 y",
       },
       back: {
         formula: "y = C1 * cos(wt + phi) + C2 * sin(wt + phi)",
@@ -37,19 +37,51 @@ function App() {
   ])
 
 
+  const flipMainCard = () => {
+    if (frontIsShown == true) {
+      document.getElementById("opened-card").childNodes[0].style =
+        "transform: rotateY(180deg);";
+      setFrontIsShown(false);
+    } else {
+      document.getElementById("opened-card").childNodes[0].style =
+        "transform: rotateY(0deg);";
+      setFrontIsShown(true);
+    }
+  };
+
+
+  const showAllCards = () => {
+    setShowAll(true);
+    document.getElementById("new-card-form").style =
+      "visibility: hidden; opacity: 0;";
+    document.getElementById("opened-card").style =
+      "visibility: hidden; opacity: 0;";
+    document.getElementById("dark-backgr").style =
+      "visibility: hidden; opacity: 0;";
+  };
+
+  const handleKeyPress = (event) => {
+
+    if (event.key == " ") {
+      if (showAll == false) {
+        flipMainCard();
+      }
+    }
+
+  }
 
 
   return (
-    <div className="App">
+    <div className="App" onKeyPress={handleKeyPress} tabIndex={0} >
       <Header />
       <Navbar />
-      <NewCardButton />
+      <NewCardButton setShowAll={setShowAll} />
       <CardsList cards={cards} setShowAll={setShowAll} setFrontIsShown={setFrontIsShown} />
-      <NewCardButton />
+      <NewCardButton setShowAll={setShowAll} />
       <Footer />
 
-      <DarkBackGr setShowAll={setShowAll} />
-      <Maincard frontIsShown={frontIsShown} setFrontIsShown={setFrontIsShown} />
+      <DarkBackGr showAllCards={showAllCards} />
+      <Maincard flipMainCard={flipMainCard} />
       <NewCardForm />
     </div>
   );

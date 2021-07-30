@@ -24,12 +24,12 @@ const NewCardForm = () => {
         <legend>Front</legend>
         <br />
 
-        <label for="question">Question</label>
+        <label htmlFor="question">Question</label>
         <input type="text" id="front-text"></input>
         <br />
         <br />
 
-        <label for="front-formula">Question Formula</label>
+        <label htmlFor="front-formula">Question Formula</label>
         <CustomMathField field={"front-formula"} latexFormula={"front-formula-latex"} />
 
       </fieldset>
@@ -40,12 +40,12 @@ const NewCardForm = () => {
       <br />
       <fieldset>
         <legend>Back</legend>
-        <label for="back-formula-latex">Answer Formula</label>
+        <label htmlFor="back-formula-latex">Answer Formula</label>
         <CustomMathField field={"back-formula"} latexFormula={"back-formula-latex"} />
         <br />
         <br />
 
-        <label for="answer-comment">Comment</label>
+        <label htmlFor="answer-comment">Comment</label>
         <input type="text" id="back-text" placeholder="comment..."></input>
         <br />
         <br />

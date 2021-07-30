@@ -1,5 +1,6 @@
-const NewCardButton = () => {
+const NewCardButton = ({ setShowAll }) => {
   const openNewCardForm = () => {
+    setShowAll(false);
     document.getElementById("new-card-form").style =
       "visibility: visible; opacity: 1;";
     document.getElementById("dark-backgr").style =
@@ -25,6 +26,7 @@ const newCardContainerStyle = {
 };
 
 const newCardButtonStyle = {
+  cursor: "pointer",
   fontSize: "1.5em",
   backgroundColor: "lightblue",
   borderColor: "lightblue",
