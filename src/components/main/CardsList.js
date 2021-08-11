@@ -6,6 +6,7 @@ const CardsList = ({
   setFrontIsShown,
   setChosenCardId,
   setDarkBgActive,
+  setMainCardActive,
 }) => {
   return (
     <div className="container">
@@ -17,6 +18,7 @@ const CardsList = ({
           setFrontIsShown={setFrontIsShown}
           setChosenCardId={setChosenCardId}
           setDarkBgActive={setDarkBgActive}
+          setMainCardActive={setMainCardActive}
           cards={cards}
         />
       ))}

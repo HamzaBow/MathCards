@@ -1,24 +1,21 @@
 import React from "react";
-import { EditableMathField } from "react-mathquill";
+import { addStyles } from "react-mathquill";
 import CustomMathField from "../CustomMathField";
 
-const NewCardForm = () => {
+addStyles();
+
+const NewCardForm = ({ cardFormActive }) => {
 
   const addButtonClick = () => {
-    const frontText = document.getElementById("front-text").value
-    console.log('frontText:', frontText)
-    const frontFormulaLatex = document.getElementById("front-formula-latex").textContent
-    console.log('frontFormulaLatex:', frontFormulaLatex)
+  }
 
-    const backFormulaLatex = document.getElementById("back-formula-latex").textContent
-    console.log('backFormulaLatex:', backFormulaLatex)
-    const backText = document.getElementById("back-text").value
-    console.log('backText:', backText)
-
+  const cardFormStyle = {
+    visibility: cardFormActive ? "visible" : "hidden",
+    opacity: cardFormActive ? "1" : "0",
   }
 
   return (
-    <div id="new-card-form">
+    <div id="new-card-form" style={cardFormStyle}>
       <center><h2>Add a new Card</h2></center>
       <fieldset>
         <legend>Front</legend>

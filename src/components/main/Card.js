@@ -2,17 +2,14 @@ import { addStyles, StaticMathField } from "react-mathquill"
 
 addStyles();
 
-const Card = ({ card, setShowAll, setFrontIsShown, cards, setChosenCardId, setDarkBgActive }) => {
+const Card = ({ card, setShowAll, setFrontIsShown, cards, setChosenCardId, setDarkBgActive, setMainCardActive }) => {
 
     const showOpenedCard = (key) => {
         setShowAll(false);
         setFrontIsShown(true);
         setChosenCardId(key)
-        const mainCard = document.getElementById("opened-card");
-        mainCard.style = "visibility: visible; opacity: 1;"
+        setMainCardActive(true);
         setDarkBgActive(true);
-
-
     }
     return (
         <div className="container-item" style={{ boxShadow: "3px 5px 20px gray" }} onClick={() => showOpenedCard(card.id)}>

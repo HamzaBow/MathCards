@@ -2,13 +2,12 @@ import { addStyles, StaticMathField } from "react-mathquill";
 
 addStyles();
 
-const Maincard = ({ cards, chosenCardId, flipMainCard }) => {
-  let chosenCard = cards.filter((card) => card.id == chosenCardId)[0];
-
+const Maincard = ({ cards, chosenCardId, flipMainCard, mainCardActive }) => {
+  let chosenCard = cards.filter((card) => card.id === chosenCardId)[0];
   // it would be equal to undefined if data was not yet fetched
   // TODO: should figure how to make the component not render until useEffect has finished.
 
-  if (typeof chosenCard == "undefined") {
+  if (typeof chosenCard === "undefined") {
     // initialize chosenCard to a dummy object
     chosenCard = {
       front: {
@@ -28,10 +27,17 @@ const Maincard = ({ cards, chosenCardId, flipMainCard }) => {
   //    * change the visibility of this component using a state.
   //    * Remove ALL expressions "document.getElementById(..)" from this
   //      project and use 'states' instead.
+
+  const mainCardStyle = {
+    visibility: mainCardActive ? "visible" : "hidden",
+    opacity: mainCardActive ? "1" : "0",
+  };
+
   return (
     <div
       id="opened-card"
       className="container-item"
+      style={mainCardStyle}
       onClick={() => flipMainCard()}
     >
       <div className="card">
