@@ -57,6 +57,7 @@ function App() {
   const handleKeyPress = (event) => {
 
     if (event.key == " ") {
+      event.preventDefault(); // prevent scroll after pressing space, and flip the card instead.
       if (showAll == false) {
         flipMainCard();
       }
