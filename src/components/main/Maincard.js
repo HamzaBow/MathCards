@@ -21,6 +21,13 @@ const Maincard = ({ cards, chosenCardId, flipMainCard }) => {
       },
     };
   }
+  // TODO:
+  //    * remove id="opened-card"
+  //    * remove 'className' and use local 'style={..}' instead
+  //        - bring the styles from index.css
+  //    * change the visibility of this component using a state.
+  //    * Remove ALL expressions "document.getElementById(..)" from this
+  //      project and use 'states' instead.
   return (
     <div
       id="opened-card"
