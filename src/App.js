@@ -13,6 +13,7 @@ function App() {
   const [frontIsShown, setFrontIsShown] = useState(true);
   const [chosenCardId, setChosenCardId] = useState("1");
   const [cards, setCards] = useState([]);
+  const [darkBgActive, setDarkBgActive] = useState(false)
 
   useEffect(() => {
     const getCards = async () => {
@@ -50,8 +51,7 @@ function App() {
       "visibility: hidden; opacity: 0;";
     document.getElementById("opened-card").style =
       "visibility: hidden; opacity: 0;";
-    document.getElementById("dark-backgr").style =
-      "visibility: hidden; opacity: 0;";
+    setDarkBgActive(false);
   };
 
   const handleKeyPress = (event) => {
@@ -69,12 +69,12 @@ function App() {
     <div className="App" onKeyPress={handleKeyPress} tabIndex={0} >
       <Header />
       <Navbar />
-      <NewCardButton setShowAll={setShowAll} />
-      <CardsList cards={cards} setShowAll={setShowAll} setFrontIsShown={setFrontIsShown} setChosenCardId={setChosenCardId} />
-      <NewCardButton setShowAll={setShowAll} />
+      <NewCardButton setShowAll={setShowAll} setDarkBgActive={setDarkBgActive} />
+      <CardsList cards={cards} setShowAll={setShowAll} setFrontIsShown={setFrontIsShown} setChosenCardId={setChosenCardId} setDarkBgActive={setDarkBgActive} />
+      <NewCardButton setShowAll={setShowAll} setDarkBgActive={setDarkBgActive} />
       <Footer />
 
-      <DarkBackGr showAllCards={showAllCards} />
+      <DarkBackGr darkBgActive={darkBgActive} showAllCards={showAllCards} />
       <Maincard cards={cards} chosenCardId={chosenCardId} flipMainCard={flipMainCard} />
       <NewCardForm />
     </div>

@@ -137,20 +137,6 @@ fieldset {
   transform: rotateY(180deg);
 }
 
-#dark-backgr {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background-color: rgb(0, 0, 0);
-  /* color: rgb(206, 225, 231); */
-
-  visibility: hidden;
-  opacity: 0;
-
-  transition: visibility 0.2s, opacity 0.2s linear;
-}
 .btn-new-card-form {
   cursor: pointer;
   font-size: 1.5em;

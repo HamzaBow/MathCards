@@ -1,10 +1,9 @@
-const NewCardButton = ({ setShowAll }) => {
+const NewCardButton = ({ setShowAll, setDarkBgActive }) => {
   const openNewCardForm = () => {
     setShowAll(false);
     document.getElementById("new-card-form").style =
       "visibility: visible; opacity: 1;";
-    document.getElementById("dark-backgr").style =
-      "visibility: visible; opacity: 0.5;";
+    setDarkBgActive(true);
   };
 
   return (
