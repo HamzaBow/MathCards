@@ -24,8 +24,8 @@ const NewCardButton = ({ setShowAll, setDarkBgActive }) => {
 const newCardContainerStyle = {
   display: "flex",
   justifyContent: "center",
-  paddingTop: "20px",
-  paddingBottom: "20px",
+  paddingTop: "1.5rem",
+  paddingBottom: "1.5rem",
 };
 
 // const newCardButtonStyle = {

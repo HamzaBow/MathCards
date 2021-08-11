@@ -37,13 +37,13 @@ const Maincard = ({ cards, chosenCardId, flipMainCard }) => {
       <div className="card">
         <div className="front">
           <h2>{chosenCard.front.question}</h2>
-          <StaticMathField style={{ fontSize: "2em" }}>
+          <StaticMathField style={{ fontSize: "2rem" }}>
             {chosenCard.front.formula}
           </StaticMathField>
         </div>
 
         <div className="back">
-          <StaticMathField style={{ fontSize: "2em" }}>
+          <StaticMathField style={{ fontSize: "2rem" }}>
             {chosenCard.back.formula}
           </StaticMathField>
           <h2>{chosenCard.back.comment}</h2>
