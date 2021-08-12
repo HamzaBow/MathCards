@@ -159,16 +159,3 @@ fieldset {
     font-size: 1.1rem;
   }
 }
-
-/* 
-@media (min-width: 800px) {
-  :root {
-    font-size: 0.7rem;
-  }
-}
-
-@media (min-width: 1080px) {
-  :root {
-    font-size: 0.5rem;
-  }
-} */

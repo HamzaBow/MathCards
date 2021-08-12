@@ -1,9 +1,17 @@
 import { addStyles, StaticMathField } from "react-mathquill";
+import { useEffect, useRef } from "react";
 
 addStyles();
 
-const Maincard = ({ cards, chosenCardId, flipMainCard, mainCardActive }) => {
+const Maincard = ({
+  cards,
+  chosenCardId,
+  mainCardActive,
+  frontIsShown,
+  setFrontIsShown,
+}) => {
   let chosenCard = cards.filter((card) => card.id === chosenCardId)[0];
+  const cardToRotateRef = useRef();
   // it would be equal to undefined if data was not yet fetched
   // TODO: should figure how to make the component not render until useEffect has finished.
 
@@ -20,13 +28,14 @@ const Maincard = ({ cards, chosenCardId, flipMainCard, mainCardActive }) => {
       },
     };
   }
-  // TODO:
-  //    * remove id="opened-card"
-  //    * remove 'className' and use local 'style={..}' instead
-  //        - bring the styles from index.css
-  //    * change the visibility of this component using a state.
-  //    * Remove ALL expressions "document.getElementById(..)" from this
-  //      project and use 'states' instead.
+
+  useEffect(() => {
+    if (frontIsShown) {
+      cardToRotateRef.current.style.transform = "rotateY(0deg)";
+    } else {
+      cardToRotateRef.current.style.transform = "rotateY(180deg)";
+    }
+  }, [frontIsShown]);
 
   const mainCardStyle = {
     visibility: mainCardActive ? "visible" : "hidden",
@@ -38,9 +47,11 @@ const Maincard = ({ cards, chosenCardId, flipMainCard, mainCardActive }) => {
       id="opened-card"
       className="container-item"
       style={mainCardStyle}
-      onClick={() => flipMainCard()}
+      onClick={() => {
+        setFrontIsShown((shown) => !shown);
+      }}
     >
-      <div className="card">
+      <div ref={cardToRotateRef} className="card">
         <div className="front">
           <h2>{chosenCard.front.question}</h2>
           <StaticMathField style={{ fontSize: "2rem" }}>

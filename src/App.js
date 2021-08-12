@@ -7,7 +7,6 @@ import Maincard from "./components/main/Maincard"
 import NewCardForm from "./components/main/NewCardForm"
 import Navbar from "./components/Navbar"
 import NewCardButton from "./components/NewCardButton"
-// import { cardToRotate } from "./components/main/Maincard"
 
 function App() {
   const [showAll, setShowAll] = useState(true);
@@ -23,9 +22,7 @@ function App() {
       const cardsFromServer = await fetchCards();
       setCards(cardsFromServer);
     }
-
     getCards();
-
   }, [])
 
   const fetchCards = async () => {
@@ -34,38 +31,24 @@ function App() {
     return data;
   }
 
-
-  const flipMainCard = () => {
-    if (frontIsShown) {
-      document.querySelector("#opened-card .card").style.transform = "rotateY(180deg)";
-      setFrontIsShown(false);
-    } else {
-
-      document.querySelector("#opened-card .card").style.transform = "rotateY(0deg)";
-
-      setFrontIsShown(true);
-    }
-  };
-
-
   const showAllCards = () => {
     setShowAll(true);
-    setCardFormActive(false)
+    setCardFormActive(false);
+    setFrontIsShown(true);
     setMainCardActive(false);
     setDarkBgActive(false);
+
   };
 
   const handleKeyPress = (event) => {
-
     if (event.key === " ") {
-      event.preventDefault(); // prevent scroll after pressing space, and flip the card instead.
+      event.preventDefault(); // to prevent scroll after pressing space, and flip the card instead.
       if (!showAll) {
-        flipMainCard();
+        setFrontIsShown((shown) => !shown);
       }
     }
 
   }
-
 
   return (
     <div className="App" onKeyPress={handleKeyPress} tabIndex={0} >
@@ -77,11 +60,10 @@ function App() {
       <Footer />
 
       <DarkBackGr darkBgActive={darkBgActive} showAllCards={showAllCards} />
-      <Maincard cards={cards} chosenCardId={chosenCardId} flipMainCard={flipMainCard} mainCardActive={mainCardActive} />
+      <Maincard cards={cards} chosenCardId={chosenCardId} mainCardActive={mainCardActive} frontIsShown={frontIsShown} setFrontIsShown={setFrontIsShown} />
       <NewCardForm cardFormActive={cardFormActive} />
     </div>
   );
 }
 
 export default App;
-
