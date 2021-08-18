@@ -1,10 +1,10 @@
-import { useState, useEffect, useReducer, useContext } from "react";
+import { useState, useEffect, useReducer } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import CardsList from "./components/main/CardsList";
-import DarkBackGr from "./components/main/DarkBackGr";
+import DarkUnderlay from "./components/main/DarkUnderlay";
 import Maincard from "./components/main/Maincard";
-import NewCardForm from "./components/main/NewCardForm";
+import CardForm from "./components/main/CardForm";
 import Navbar from "./components/Navbar";
 import NewCardButton from "./components/NewCardButton";
 
@@ -14,7 +14,7 @@ import NewCardButton from "./components/NewCardButton";
 // TODO: make cards scrollable (horizontally and vertically) if overflown
 // TODO: or just make text and math fields schrollable
 
-// TODO: Put components "DarkBackGr", "NewCardForm" and "Maincard" inside an if statement within JSX
+// TODO: Put components "DarkUnderlay", "NewCardForm" and "Maincard" inside an if statement within JSX
 // TODO: and when showAllCards=true (e.g. clicking on darkBackGr), Remove components from the DOM, not just hide them (unless it effects performance.)
 // the above TODO probably shouldn't be implemented, because it would likely effect performance.
 // TODO: Add a CHANGELOG.md file
@@ -60,9 +60,6 @@ function App() {
 
   const [cards, dispatch] = useReducer(reducer, [])
 
-  // TODO: DarkBackGr.js      --rename it to-->      DarkUnderlay.js 
-  // * should be done in its own commit;
-
   useEffect(() => {
     const getCards = async () => {
       const cardsFromServer = await fetchCards();
@@ -96,7 +93,7 @@ function App() {
           else {
             return (
               <>
-                <DarkBackGr display={display} setDisplay={setDisplay} />
+                <DarkUnderlay display={display} setDisplay={setDisplay} />
                 <Maincard chosenCard={chosenCard} />
               </>
             )
@@ -107,8 +104,8 @@ function App() {
             return (
               <>
                 {/* TODO: rename newCardForm to CardForm */}
-                <DarkBackGr display={display} setDisplay={setDisplay} />
-                <NewCardForm />
+                <DarkUnderlay display={display} setDisplay={setDisplay} />
+                <CardForm />
               </>
             )
           }

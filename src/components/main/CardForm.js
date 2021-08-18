@@ -3,15 +3,13 @@ import CustomMathField from "../CustomMathField";
 
 addStyles();
 
-const NewCardForm = () => {
-
-  const addButtonClick = () => {
-  }
+const CardForm = () => {
+  const addButtonClick = () => {};
 
   const cardFormStyle = {
     visibility: "visible",
     opacity: "1",
-  }
+  };
 
   return (
     <div id="new-card-form" style={cardFormStyle}>
@@ -20,29 +18,48 @@ const NewCardForm = () => {
         <h2>Front</h2>
       </center>
 
-
-      <textarea id="front-text" rows={3} cols={30} placeholder="Write the question here..."></textarea>
+      <textarea
+        id="front-text"
+        rows={3}
+        cols={30}
+        placeholder="Write the question here..."
+      ></textarea>
       <br />
       <br />
 
       <label htmlFor="front-formula">Question Formula</label>
-      <CustomMathField field={"front-formula"} latexFormula={"front-formula-latex"} />
+      <CustomMathField
+        field={"front-formula"}
+        latexFormula={"front-formula-latex"}
+      />
 
       <label htmlFor="back-formula-latex">Answer Formula</label>
-      <CustomMathField field={"back-formula"} latexFormula={"back-formula-latex"} />
+      <CustomMathField
+        field={"back-formula"}
+        latexFormula={"back-formula-latex"}
+      />
 
-      <textarea id="back-text" rows={3} cols={30} placeholder="Write a Comment here (optional)"></textarea>
+      <textarea
+        id="back-text"
+        rows={3}
+        cols={30}
+        placeholder="Write a Comment here (optional)"
+      ></textarea>
 
       <button type="reset" value="Add" style={addButtonStyle}>
         Clear
       </button>
-      <button type="button" value="Add" style={addButtonStyle} onClick={() => addButtonClick()}>
+      <button
+        type="button"
+        value="Add"
+        style={addButtonStyle}
+        onClick={() => addButtonClick()}
+      >
         Add
       </button>
-    </div >
+    </div>
   );
 };
-
 
 const addButtonStyle = {
   float: "right",
@@ -52,6 +69,6 @@ const addButtonStyle = {
   paddingTop: "10px",
   paddingBottom: "10px",
   marginRight: "10px",
-}
+};
 
-export default NewCardForm;
+export default CardForm;

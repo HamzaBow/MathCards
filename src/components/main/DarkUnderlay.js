@@ -1,5 +1,5 @@
 // const DarkBackGr = ({ showAllCards, darkBgActive }) => {
-const DarkBackGr = ({ display, setDisplay }) => {
+const DarkUnderlay = ({ display, setDisplay }) => {
   const darkBgStyle = {
     position: "fixed",
     top: "0px",
@@ -19,4 +19,4 @@ const DarkBackGr = ({ display, setDisplay }) => {
   );
 };
 
-export default DarkBackGr;
+export default DarkUnderlay;
