@@ -47,11 +47,6 @@ export const THEME_COLORS = {
     MEDIUM: "hsl(196, 62%, 83%)",
     DARK:   "hsl(196, 62%, 62%)"
   },
-  SECONDARY: {
-    LIGHT: "",
-    MEDIUM: "",
-    DARK: ""
-  },
   GRAY: {
     LIGHT:  "hsl(0, 0%, 96%)",
     MEDIUM: "hsl(0, 0%, 50%)",
