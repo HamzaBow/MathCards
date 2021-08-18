@@ -73,7 +73,6 @@ function App() {
     const data = await res.json();
     return data;
   };
-  console.log("cards", cards);
 
   return (
     <div className="App" >

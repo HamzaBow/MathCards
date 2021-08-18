@@ -4,7 +4,7 @@ import { ACTIONS } from "../../App"
 addStyles();
 
 // const Card = ({ setDisplay, card, setShowAll, setFrontIsShown, cards, setChosenCardId, setDarkBgActive, setMainCardActive }) => {
-const Card = ({ key, card, dispatch }) => {
+const Card = ({ card, dispatch }) => {
     // TODO: use useReducer to CRUD cards
     // FIXME: sle
 
