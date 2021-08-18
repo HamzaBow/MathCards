@@ -26,3 +26,4 @@
 // TODO: Don't use any other colors, use only these one, 
 // TODO: Remove all colors from the css file and set colors inside components
 // TODO: change the fonts(esp. font-family & font-weight), current ones are body;
+// TODO: move Contexts from App.js to a separate component. A Contexts component.

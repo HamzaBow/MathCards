@@ -10,8 +10,8 @@ import NewCardButton from "./components/NewCardButton";
 
 import { ACTIONS } from "./Constants";
 
+
 export const ThemeContext = React.createContext();
-export const UpdateThemeContext = React.createContext();
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(false);
@@ -59,9 +59,8 @@ function App() {
   return (
     <div className="App" >
       <ThemeContext.Provider value={darkTheme}>
-        <Header />
+        <Header toggleTheme={toggleTheme} />
         <div>
-          <button onClick={toggleTheme} style={{ display: "block", marginLeft: "auto", marginRight: "auto", padding: "1rem 1.5rem", fontSize: "1.5rem", borderRadius: "3rem" }}>Toggle theme</button>
         </div>
         <Navbar />
         <NewCardButton setDisplay={setDisplay} />
