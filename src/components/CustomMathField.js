@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { addStyles, EditableMathField } from "react-mathquill";
 
 // inserts the required css to the <head> block.
@@ -8,11 +8,18 @@ addStyles();
 const CustomMathField = ({ field, latexFormula }) => {
   const [latex, setLatex] = useState("");
 
+  const mathFieldStyle = {
+    fontSize: "1.5rem",
+    backgroundColor: "rgb(240, 245, 245)",
+    minWidth: "120px",
+    padding: "0.4rem 1rem",
+  };
+
   return (
     <div>
       <EditableMathField
         id={field}
-        style={{ backgroundColor: "white", minWidth: "120px" }}
+        style={mathFieldStyle}
         latex={latex}
         onChange={(mathField) => {
           setLatex(mathField.latex());

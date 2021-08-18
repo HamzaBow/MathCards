@@ -1,26 +1,13 @@
 import Card from "./Card";
 
-const CardsList = ({
-  cards,
-  setShowAll,
-  setFrontIsShown,
-  setChosenCardId,
-  setDarkBgActive,
-  setMainCardActive,
-}) => {
+const CardsList = ({ cards, dispatch }) => {
+  // TODO: the container should have no visible style (except probably for margins, etc. ) to make the app style and layout SIMPLER
+  //       White background (for white theme) all the way to the left & right edges of the viewport.
+  console.log("cards in cardslist", cards);
   return (
     <div className="container">
-      {cards.map((card) => (
-        <Card
-          key={card.id}
-          card={card}
-          setShowAll={setShowAll}
-          setFrontIsShown={setFrontIsShown}
-          setChosenCardId={setChosenCardId}
-          setDarkBgActive={setDarkBgActive}
-          setMainCardActive={setMainCardActive}
-          cards={cards}
-        />
+      {cards.map((card, key) => (
+        <Card key={key} card={card} dispatch={dispatch} />
       ))}
     </div>
   );

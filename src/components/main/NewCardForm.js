@@ -1,54 +1,38 @@
-import React from "react";
 import { addStyles } from "react-mathquill";
 import CustomMathField from "../CustomMathField";
 
 addStyles();
 
-const NewCardForm = ({ cardFormActive }) => {
+const NewCardForm = () => {
 
   const addButtonClick = () => {
   }
 
   const cardFormStyle = {
-    visibility: cardFormActive ? "visible" : "hidden",
-    opacity: cardFormActive ? "1" : "0",
+    visibility: "visible",
+    opacity: "1",
   }
 
   return (
     <div id="new-card-form" style={cardFormStyle}>
-      <center><h2>Add a new Card</h2></center>
-      <fieldset>
-        <legend>Front</legend>
-        <br />
+      <center>
+        <h1>Add a new Card</h1>
+        <h2>Front</h2>
+      </center>
 
-        <label htmlFor="question">Question</label>
-        <input type="text" id="front-text"></input>
-        <br />
-        <br />
 
-        <label htmlFor="front-formula">Question Formula</label>
-        <CustomMathField field={"front-formula"} latexFormula={"front-formula-latex"} />
-
-      </fieldset>
+      <textarea id="front-text" rows={3} cols={30} placeholder="Write the question here..."></textarea>
       <br />
       <br />
-      <hr ></hr>
-      <br />
-      <br />
-      <fieldset>
-        <legend>Back</legend>
-        <label htmlFor="back-formula-latex">Answer Formula</label>
-        <CustomMathField field={"back-formula"} latexFormula={"back-formula-latex"} />
-        <br />
-        <br />
 
-        <label htmlFor="answer-comment">Comment</label>
-        <input type="text" id="back-text" placeholder="comment..."></input>
-        <br />
-        <br />
+      <label htmlFor="front-formula">Question Formula</label>
+      <CustomMathField field={"front-formula"} latexFormula={"front-formula-latex"} />
 
-      </fieldset>
-      <br />
+      <label htmlFor="back-formula-latex">Answer Formula</label>
+      <CustomMathField field={"back-formula"} latexFormula={"back-formula-latex"} />
+
+      <textarea id="back-text" rows={3} cols={30} placeholder="Write a Comment here (optional)"></textarea>
+
       <button type="reset" value="Add" style={addButtonStyle}>
         Clear
       </button>

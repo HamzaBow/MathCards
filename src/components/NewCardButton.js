@@ -1,14 +1,11 @@
-const NewCardButton = ({ setShowAll, setDarkBgActive, setCardFormActive }) => {
-  const openNewCardForm = () => {
-    setShowAll(false);
-    setCardFormActive(true);
-    setDarkBgActive(true);
-  };
-
+const NewCardButton = ({ setDisplay }) => {
   return (
     <div style={newCardContainerStyle}>
       <div>
-        <button className="btn-new-card-form" onClick={() => openNewCardForm()}>
+        <button
+          className="btn-new-card-form"
+          onClick={() => setDisplay({ mainCard: false, cardForm: true })}
+        >
           Add a New Card
         </button>
       </div>

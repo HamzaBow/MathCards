@@ -1,4 +1,5 @@
-const DarkBackGr = ({ showAllCards, darkBgActive }) => {
+// const DarkBackGr = ({ showAllCards, darkBgActive }) => {
+const DarkBackGr = ({ display, setDisplay }) => {
   const darkBgStyle = {
     position: "fixed",
     top: "0px",
@@ -6,11 +7,16 @@ const DarkBackGr = ({ showAllCards, darkBgActive }) => {
     bottom: "0px",
     left: "0px",
     backgroundColor: "rgb(0, 0, 0)",
-    visibility: darkBgActive ? "visible" : "hidden",
-    opacity: darkBgActive ? "0.6" : "0",
+    visibility: "visible",
+    opacity: "0.6",
     transition: "visibility 0.2s, opacity 0.2s linear",
   };
-  return <div style={darkBgStyle} onClick={() => showAllCards()}></div>;
+  return (
+    <div
+      style={darkBgStyle}
+      onClick={() => setDisplay({ mainCard: false, cardForm: false })}
+    ></div>
+  );
 };
 
 export default DarkBackGr;
