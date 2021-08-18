@@ -8,7 +8,7 @@ import CardForm from "./components/main/CardForm";
 import Navbar from "./components/Navbar";
 import NewCardButton from "./components/NewCardButton";
 
-import { ACTIONS } FROM "./Constants";
+import { ACTIONS } from "./Constants";
 
 export const ThemeContext = React.createContext();
 export const UpdateThemeContext = React.createContext();

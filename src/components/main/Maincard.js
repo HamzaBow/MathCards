@@ -4,11 +4,8 @@ import { useState, useEffect, useRef } from "react";
 addStyles();
 
 const Maincard = ({ chosenCard }) => {
-  // let chosenCard = cards.filter((card) => card.id === chosenCardId)[0];
   const [frontDisplayed, setFrontDisplayed] = useState(true);
   const divToRotate = useRef();
-  // it would be equal to undefined if data was not yet fetched
-  // TODO: should figure how to make the component not render until useEffect has finished.
 
   useEffect(() => {
     if (frontDisplayed) {
