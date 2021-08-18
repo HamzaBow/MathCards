@@ -1,12 +1,16 @@
+import {useContext} from "react"
 import { addStyles, StaticMathField } from "react-mathquill"
-import { ACTIONS } from "../../App"
+import { ACTIONS, THEME_COLORS } from "../../App"
+import {ThemeContext} from "../../App"
 
 addStyles();
 
 // const Card = ({ setDisplay, card, setShowAll, setFrontIsShown, cards, setChosenCardId, setDarkBgActive, setMainCardActive }) => {
 const Card = ({ card, dispatch }) => {
     // TODO: use useReducer to CRUD cards
-    // FIXME: sle
+
+    const darkTheme = useContext(ThemeContext)
+
 
     const displayMainCard = (id) => {
 
@@ -20,17 +24,22 @@ const Card = ({ card, dispatch }) => {
         // setMainCardActive(true);
         // setDarkBgActive(true);
     }
+    const containerItemStyle = {
+        boxShadow:       darkTheme ? "none"                  : "3px 5px 20px gray", 
+        color:           darkTheme ? THEME_COLORS.GRAY.LIGHT : THEME_COLORS.GRAY.DARK,
+        backgroundColor: darkTheme ? THEME_COLORS.GRAY.DARKER  : THEME_COLORS.GRAY.LIGHT
+    }
     return (
-        <div className="container-item" style={{ boxShadow: "3px 5px 20px gray" }} onClick={() => displayMainCard(card.id)}>
+        <div className="container-item" style={containerItemStyle} onClick={() => displayMainCard(card.id)}>
             <div className="card">
                 <div className="front">
-                    <h2>{card.front.question}</h2>
+                    <h3>{card.front.question}</h3>
                     <StaticMathField style={{ fontSize: "2em" }} >{card.front.formula}</StaticMathField>
                 </div>
 
                 <div className="back">
                     <StaticMathField style={{ fontSize: "2em" }} >{card.back.formula}</StaticMathField>
-                    <h2>{card.back.comment}</h2>
+                    <h3>{card.back.comment}</h3>
                 </div>
             </div>
         </div>

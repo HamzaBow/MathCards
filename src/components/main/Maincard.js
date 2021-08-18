@@ -37,7 +37,7 @@ const Maincard = ({ chosenCard }) => {
     >
       <div ref={divToRotate} className="card">
         <div className="front">
-          <h2>{chosenCard.front.question}</h2>
+          <h3>{chosenCard.front.question}</h3>
           <StaticMathField style={{ fontSize: "2rem" }}>
             {chosenCard.front.formula}
           </StaticMathField>
@@ -47,7 +47,7 @@ const Maincard = ({ chosenCard }) => {
           <StaticMathField style={{ fontSize: "2rem" }}>
             {chosenCard.back.formula}
           </StaticMathField>
-          <h2>{chosenCard.back.comment}</h2>
+          <h3>{chosenCard.back.comment}</h3>
         </div>
       </div>
     </div>
