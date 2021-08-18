@@ -10,7 +10,6 @@ import NewCardButton from "./components/NewCardButton";
 
 import { ACTIONS } from "./Constants";
 
-
 export const ThemeContext = React.createContext();
 
 function App() {

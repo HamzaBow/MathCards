@@ -1,6 +1,6 @@
 import {useContext} from "react"
 import { addStyles, StaticMathField } from "react-mathquill"
-import { ACTIONS, THEME_COLORS } from "../../Constants"
+import { ACTIONS, COLORS } from "../../Constants"
 import {ThemeContext} from "../../App"
 
 addStyles();
@@ -15,8 +15,8 @@ const Card = ({ card, dispatch }) => {
 
     const containerItemStyle = {
         boxShadow:       darkTheme ? "none"                  : "3px 5px 20px gray", 
-        color:           darkTheme ? THEME_COLORS.GRAY.LIGHT : THEME_COLORS.GRAY.DARK,
-        backgroundColor: darkTheme ? THEME_COLORS.GRAY.DARKER  : THEME_COLORS.GRAY.LIGHT
+        color:           darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK,
+        backgroundColor: darkTheme ? COLORS.GRAY_DARKER  : COLORS.GRAY_LIGHT
     }
     return (
         <div className="container-item" style={containerItemStyle} onClick={() => displayMainCard(card.id)}>
