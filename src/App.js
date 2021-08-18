@@ -8,52 +8,7 @@ import CardForm from "./components/main/CardForm";
 import Navbar from "./components/Navbar";
 import NewCardButton from "./components/NewCardButton";
 
-// TODO: to toggle Dark/Light theme, use useContext, themeContext = react.createContext()
-// TODO: find where hooks (useMemo, useCallback, useReducer, custom hooks) can be used to
-// TODO: improve performance and make the code cleaner.
-// TODO: make cards scrollable (horizontally and vertically) if overflown
-// TODO: or just make text and math fields schrollable
-
-// TODO: Put components "DarkUnderlay", "NewCardForm" and "Maincard" inside an if statement within JSX
-// TODO: and when showAllCards=true (e.g. clicking on darkBackGr), Remove components from the DOM, not just hide them (unless it effects performance.)
-// the above TODO probably shouldn't be implemented, because it would likely effect performance.
-// TODO: Add a CHANGELOG.md file
-// TODO: Start using git branches when working on a separate features
-// TODO: Start using git tags (semantic versionning)
-// TODO: git stash
-// TODO: start pushing changes to github
-// TODO: remove old junk commits, 
-// TODO: first commit should be the one where the code is clean enough (most junk removed)
-// TODO: change the code to TypeScript in all components.
-// TODO: propTypes. // probably not if using typescript
-// TODO: transitions effects when showing or hiding MainCard or NewCardForm;
-
-// TODO: put ACTIONS and THEME_COLORS in a seperate file(.js or .json)
-// TODO: CONTEXT boilerplatk too in a seperate file (maybe same as above on)
-export const ACTIONS = {
-  FETCH_CARDS:       "FETCH_CARDS",
-  SET_MAIN_CARD:     "SET_MAIN_CARD",
-  ADD_TO_COLLECTION: "ADD_TO_COLLECTION",
-  SET_TAGS:          "SET_TAGS",
-  SET_DIFFICULTIES:  "SET_DIFFICULTIES"
-}
-
-// TODO: Start using these theme colors
-// TODO: Don't use any other colors, use only these one, 
-// TODO: Remove all colors from the css file and set colors inside components
-export const THEME_COLORS = {
-  PRIMARY: {
-    LIGHT:  "hsl(196, 62%, 93%)",
-    MEDIUM: "hsl(196, 62%, 83%)",
-    DARK:   "hsl(196, 62%, 62%)"
-  },
-  GRAY: {
-    LIGHT:  "hsl(0, 0%, 96%)",
-    MEDIUM: "hsl(0, 0%, 50%)",
-    DARK:   "hsl(0, 0%, 30%)",
-    DARKER: "hsl(0, 0%, 20%)",
-  }
-}
+import { ACTIONS } FROM "./Constants";
 
 export const ThemeContext = React.createContext();
 export const UpdateThemeContext = React.createContext();
