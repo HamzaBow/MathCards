@@ -1,7 +1,4 @@
  
-// TODO: find where hooks (useMemo, useCallback, useReducer, custom hooks) can be leveraged to improve performance and make the code cleaner.
-// TODO: make cards scrollable (horizontally and vertically) if overflown
-// TODO: or just make text and math fields schrollable
 
 // TODO: Add a CHANGELOG.md file
 // TODO: Start using git branches when working on a separate features
@@ -23,3 +20,6 @@
 // TODO: use React-Quill to set text for in CardForm.js 
 // TODO: check if there are alternatives that are better than React-Quill.
 // TODO: create a folder named header/ inside src/ & create components HeaderLeft.js HeaderMiddle.js HeaderRight.js - because the header.js has become a bit complex. 
+// TODO: find where hooks (useMemo, useCallback, useReducer, custom hooks) can be leveraged to improve performance and make the code cleaner.
+// TODO: make cards scrollable (horizontally and vertically) if overflown
+// TODO: or just make text and math fields schrollable
