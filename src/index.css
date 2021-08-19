@@ -9,12 +9,12 @@ body {
 }
 
 .container {
-  background-color: rgb(230, 230, 230);
-  border-radius: 1rem;
+  background-color: white;
+  /* border-radius: 1rem; */
   min-width: 100px;
 
-  margin-left: 3rem;
-  margin-right: 3rem;
+  /* margin-left: 3rem;
+  margin-right: 3rem; */
   /* padding: 2.5%; */
   display: flex;
   flex-wrap: wrap;
@@ -22,7 +22,7 @@ body {
 }
 
 .container-item {
-  background-color: white;
+  /* background-color: red; */
   border-radius: 0.7rem;
 
   display: flex;
@@ -109,7 +109,7 @@ fieldset {
 
 #opened-card .front,
 #opened-card .back {
-  background-color: lightgrey;
+  background-color: white;
   border-radius: 15px;
   position: absolute;
   width: 100%;
@@ -126,21 +126,6 @@ fieldset {
 /* #opened-card .back { */
 .back {
   transform: rotateY(180deg);
-}
-
-.btn-new-card-form {
-  cursor: pointer;
-  font-size: 1.5rem;
-  background-color: cornsilk;
-  border-color: gray;
-  border-radius: 15px;
-  padding: 1.2rem 2.5rem;
-  /* height: 100px;
-  width: 300px; */
-}
-
-.btn-new-card-form:hover {
-  background-color: rgb(255, 255, 255);
 }
 
 @media (min-width: 200px) {
