@@ -21,7 +21,6 @@ const Card = ({ card, dispatch }) => {
     return (
         <div className="container-item" style={containerItemStyle} onClick={() => displayMainCard(card.id)}>
             <div className="card">
-                {/* TODO: show Caret only on hover */}
                 <BsFillCaretDownFill className="card-caret-down" style={{ float: "right", marginTop: "0.5rem", marginRight: "1rem", visibility:"hidden"}} />
                 <div className="front">
                     <h3>{card.front.question}</h3>
