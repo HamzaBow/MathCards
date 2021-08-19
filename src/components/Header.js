@@ -1,13 +1,11 @@
-import { ThemeContext } from "../App";
 import { ImSigma } from "react-icons/im";
 import { BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
-import { useContext } from "react";
 import { COLORS } from "../Constants";
-import { useThemeUpdate } from "../ThemeContext";
+import { useTheme, useThemeUpdate } from "../ThemeContext";
 
 const Header = () => {
     const toggleTheme = useThemeUpdate()
-    const darkTheme = useContext(ThemeContext);
+    const darkTheme = useTheme() 
 
     const headerStyle = {
         fontFamily: "Roboto",
