@@ -8,8 +8,9 @@ import { useThemeUpdate } from "../ThemeContext";
 const Header = () => {
     const toggleTheme = useThemeUpdate()
     const darkTheme = useContext(ThemeContext);
+
     const headerStyle = {
-        // fontFamily: "roboto",
+        fontFamily: "Roboto",
         backgroundColor: COLORS.PRIMARY_LIGHT,
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
@@ -49,7 +50,7 @@ const Header = () => {
         color: "white"
     }
 
-    const headerCenterStyle = {
+    const headerMiddleStyle = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -62,7 +63,7 @@ const Header = () => {
                 <BsList style={iconStyle} />
             </div>
 
-            <div style={headerCenterStyle}>
+            <div style={headerMiddleStyle}>
                 <span style={sigmaContainerStyle}>
                     <ImSigma style={SigmaIconStyle} />
                 </span>
