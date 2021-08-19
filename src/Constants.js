@@ -6,7 +6,7 @@ export const ACTIONS = {
   SET_DIFFICULTIES: "SET_DIFFICULTIES",
 };
 
-const PRIMARY_HUE = 96;
+const PRIMARY_HUE = 196;
 
 export const COLORS = {
   PRIMARY:       `hsl(${PRIMARY_HUE}, 62%, 83%)`,

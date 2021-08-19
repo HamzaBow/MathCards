@@ -61,10 +61,10 @@ function App() {
         <Header toggleTheme={toggleTheme} />
         <div>
         </div>
-        <Navbar />
+        {/* TODO: Should the navbar be remoed ?  */}
+        {/* <Navbar /> */}
         <NewCardButton setDisplay={setDisplay} />
         <CardsList cards={cards} dispatch={dispatch} />
-        <NewCardButton setDisplay={setDisplay} />
         <Footer />
 
         {(() => {
