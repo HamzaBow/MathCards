@@ -1,14 +1,13 @@
-import { useContext } from "react"
 import { addStyles, StaticMathField } from "react-mathquill"
 import { ACTIONS, COLORS } from "../../Constants"
-import { ThemeContext } from "../../App"
 import { BsFillCaretDownFill } from "react-icons/bs"
+import { useTheme } from "../../ThemeContext"
 
 addStyles();
 
 const Card = ({ card, dispatch }) => {
 
-    const darkTheme = useContext(ThemeContext)
+    const darkTheme = useTheme();
 
     const displayMainCard = (id) => {
         dispatch({ type: ACTIONS.SET_MAIN_CARD, payload: { cardId: card.id } })
@@ -28,12 +27,6 @@ const Card = ({ card, dispatch }) => {
                     <h3>{card.front.question}</h3>
                     <StaticMathField style={{ fontSize: "2em" }} >{card.front.formula}</StaticMathField>
                 </div>
-
-                {/* <div className="back">
-                    <BsFillCaretDownFill />
-                    <StaticMathField style={{ fontSize: "2em" }} >{card.back.formula}</StaticMathField>
-                    <h3>{card.back.comment}</h3>
-                </div> */}
             </div>
         </div>
     )

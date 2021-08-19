@@ -3,10 +3,13 @@ import { ImSigma } from "react-icons/im";
 import { BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
 import { useContext } from "react";
 import { COLORS } from "../Constants";
+import { useThemeUpdate } from "../ThemeContext";
 
-const Header = ({ toggleTheme }) => {
+const Header = () => {
+    const toggleTheme = useThemeUpdate()
     const darkTheme = useContext(ThemeContext);
     const headerStyle = {
+        // fontFamily: "roboto",
         backgroundColor: COLORS.PRIMARY_LIGHT,
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',

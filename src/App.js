@@ -5,19 +5,15 @@ import CardsList from "./components/main/CardsList";
 import DarkUnderlay from "./components/main/DarkUnderlay";
 import Maincard from "./components/main/Maincard";
 import CardForm from "./components/main/CardForm";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import NewCardButton from "./components/NewCardButton";
 
 import { ACTIONS } from "./Constants";
+import { ThemeProvider } from "./ThemeContext";
 
 export const ThemeContext = React.createContext();
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState(false);
-
-  function toggleTheme() {
-    setDarkTheme(prevDarkTheme => !prevDarkTheme)
-  }
 
   const [display, setDisplay] = useState({
     mainCard: false,
@@ -57,8 +53,9 @@ function App() {
 
   return (
     <div className="App" >
-      <ThemeContext.Provider value={darkTheme}>
-        <Header toggleTheme={toggleTheme} />
+      {/* <ThemeContext.Provider value={darkTheme}> */}
+      <ThemeProvider>
+        <Header />
         <div>
         </div>
         {/* TODO: Should the navbar be remoed ?  */}
@@ -95,7 +92,7 @@ function App() {
           }
         }
         )()}
-      </ThemeContext.Provider>
+      </ThemeProvider>
     </div>
   );
 }
