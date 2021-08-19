@@ -21,11 +21,12 @@ const Header = () => {
         fontSize: "2.5rem",
         fontWeight: "normal",
         display: "inline",
+        margin: 0,
     }
 
     const iconStyle = {
-        width: "2rem",
-        height: "2rem",
+        width: "1.5rem",
+        height: "1.5rem",
         padding: "0.4rem",
         margin: "0.5rem",
         borderRadius: "2rem",
@@ -35,8 +36,8 @@ const Header = () => {
         color: darkTheme ? COLORS.GRAY_DARK : COLORS.GRAY_LIGHT,
     }
     const sigmaContainerStyle = {
-        width: '4.5rem',
-        height: '4.5rem',
+        width: '3.5rem',
+        height: '3.5rem',
         borderRadius: "0.5rem",
         display: 'inline-grid',
         placeItems: 'center',
@@ -44,8 +45,8 @@ const Header = () => {
     }
 
     const SigmaIconStyle = {
-        width: "2.5rem",
-        height: "2.5rem",
+        width: "1.7rem",
+        height: "1.7rem",
         transform: "rotate(-20deg)",
         color: "white"
     }
@@ -54,7 +55,10 @@ const Header = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: '1.5rem'
+        gap: '1.5rem',
+
+        marginTop: "0.5rem",
+        marginBottom: "0.5rem",
     }
 
     return (

@@ -16,6 +16,10 @@
 // TODO: Remove all colors from the css file and set colors inside components
 // TODO: change the fonts(esp. font-family & font-weight), current ones are body;
 
-// TODO: Allow users to change the style of cards (priority-1: bg color, priority-2: text color, priority-3: allow them to resize the front, back and also resize the text and math content.) like notes apps which allow change of note theme (yellow bg, cool image bg (nature, ...) ...)
+// TODO: Allow users to change the style of cards (priority-1: bg color, priority-2: text color, priority-3: allow them to resize the front, back and also resize the text and math content.) like notes apps which allow change of note theme (yellow bg, cool image bg (nature, ...), card border shadows (enable or disable) ...)
 
 // TODO: main/ folder should only contain <main></main> elements (semantic <main> tag)
+
+// TODO: use React-Quill to set text for in CardForm.js 
+// TODO: check if there are alternatives that are better than React-Quill.
+// TODO: create a folder named header/ inside src/ & create components HeaderLeft.js HeaderMiddle.js HeaderRight.js - because the header.js has become a bit complex. 
