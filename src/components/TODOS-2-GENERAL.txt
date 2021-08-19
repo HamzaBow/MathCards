@@ -1,0 +1,14 @@
+Define minimal number of functionalities to have in math-cards-app
+		implement them, set version to 0.1
+			push to Github
+			
+		check material ui in figma
+			
+	use material ui the build the first version FAST
+	
+		Google: hero section
+		
+		use <main> element (semantic)
+		
+	    Suggest tours which explain ui and processes
+	with annotations (rectange + small-triangle)
