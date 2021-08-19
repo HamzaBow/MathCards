@@ -22,7 +22,7 @@ const Card = ({ card, dispatch }) => {
         <div className="container-item" style={containerItemStyle} onClick={() => displayMainCard(card.id)}>
             <div className="card">
                 {/* TODO: show Caret only on hover */}
-                <BsFillCaretDownFill style={{ float: "right", marginTop: "0.5rem", marginRight: "1rem" }} />
+                <BsFillCaretDownFill className="card-caret-down" style={{ float: "right", marginTop: "0.5rem", marginRight: "1rem", visibility:"hidden"}} />
                 <div className="front">
                     <h3>{card.front.question}</h3>
                     <StaticMathField style={{ fontSize: "2em" }} >{card.front.formula}</StaticMathField>

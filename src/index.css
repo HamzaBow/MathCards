@@ -44,6 +44,10 @@ body {
   cursor: pointer;
 }
 
+.container-item:hover .card-caret-down  {
+  visibility: visible !important;
+}
+
 #opened-card {
   text-align: center;
   background-color: transparent;
