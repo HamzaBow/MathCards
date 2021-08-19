@@ -10,13 +10,13 @@ const Header = ({ toggleTheme }) => {
         backgroundColor: COLORS.PRIMARY_LIGHT,
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
-
+        alignItems: 'center',
     }
 
     const headingStyle = {
+        fontSize: "2.5rem",
+        fontWeight: "normal",
         display: "inline",
-        // paddingTop: "30px",
-        // paddingBottom: "30px",
     }
 
     const iconStyle = {
@@ -33,12 +33,9 @@ const Header = ({ toggleTheme }) => {
     const sigmaContainerStyle = {
         width: '4.5rem',
         height: '4.5rem',
-        marginTop: '0.6rem',
-        marginBottom: '0.6rem',
         borderRadius: "0.5rem",
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: 'inline-grid',
+        placeItems: 'center',
         backgroundColor: COLORS.PRIMARY_DARK
     }
 
@@ -49,29 +46,32 @@ const Header = ({ toggleTheme }) => {
         color: "white"
     }
 
-    const flexHeaderStyle = {
-        display: "flex",
-        alignItems: "center"
+    const headerCenterStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '1.5rem'
     }
+
     return (
         <header style={headerStyle}>
-            <div style={{ ...flexHeaderStyle, justifyContent: 'start', marginLeft: '2rem' }}>
+            <div style={{ justifySelf: 'start', marginLeft: '1rem' }}>
                 <BsList style={iconStyle} />
             </div>
 
-            <div style={{ ...flexHeaderStyle, justifyContent: 'center', gap: '2rem' }}>
+            <div style={headerCenterStyle}>
                 <span style={sigmaContainerStyle}>
                     <ImSigma style={SigmaIconStyle} />
                 </span>
-                <h1 style={headingStyle}>Math Cards</h1>
+                <h1 style={headingStyle} >Math Cards</h1>
             </div>
 
-            <div style={{ ...flexHeaderStyle, justifyContent: 'end', gap: '1rem' }}>
-                <BsMoon style={iconStyle} onClick={toggleTheme} />
-                <BsBellFill style={iconStyle} />
+            <div style={{ justifySelf: 'end' }}>
+                <BsMoon     style={{ ...iconStyle, marginRight: '2rem' }} onClick={toggleTheme} />
+                <BsBellFill style={{ ...iconStyle, marginRight: '2rem' }} />
                 <BsGearFill style={{ ...iconStyle, marginRight: '2rem' }} />
             </div>
-        </header>
+        </header >
     )
 }
 export default Header
