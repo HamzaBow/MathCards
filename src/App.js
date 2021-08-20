@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useReducer } from "react";
-import Footer from "./components/Footer";
+
 import Header from "./components/Header";
-import CardsList from "./components/main/CardsList";
+import Main from "./components/main/Main";
+import Footer from "./components/Footer";
+
 import DarkUnderlay from "./components/main/DarkUnderlay";
 import Maincard from "./components/main/Maincard";
 import CardForm from "./components/main/CardForm";
-import NewCardButton from "./components/NewCardButton";
 
 import { ACTIONS } from "./Constants";
 import { ThemeProvider } from "./ThemeContext";
@@ -81,8 +82,7 @@ function App() {
     <div className="App" >
       <ThemeProvider>
         <Header />
-        <NewCardButton setDisplay={setDisplay} />
-        <CardsList cards={cards} dispatch={dispatch} />
+        <Main setDisplay={setDisplay} cards={cards} dispatch={dispatch}/>
         <Footer />
         {conditionnallyRender(display)}
       </ThemeProvider>
