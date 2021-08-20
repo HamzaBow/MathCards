@@ -1,5 +1,5 @@
 import { addStyles } from "react-mathquill";
-import CustomMathField from "../CustomMathField";
+import CustomMathField from "../utilities/CustomMathField";
 
 addStyles();
 
