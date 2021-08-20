@@ -5,7 +5,6 @@ import CardsList from "./components/main/CardsList";
 import DarkUnderlay from "./components/main/DarkUnderlay";
 import Maincard from "./components/main/Maincard";
 import CardForm from "./components/main/CardForm";
-// import Navbar from "./components/Navbar";
 import NewCardButton from "./components/NewCardButton";
 
 import { ACTIONS } from "./Constants";
@@ -14,28 +13,29 @@ import { ThemeProvider } from "./ThemeContext";
 export const ThemeContext = React.createContext();
 
 function App() {
-
+  //*-------------------------------- States --------------------------------*
   const [display, setDisplay] = useState({
     mainCard: false,
     cardForm: false,
   });
-
   const [chosenCard, setChosenCard] = useState(false);
+  const [cards, dispatch] = useReducer(reducer, [])
+  //*------------------------------------------------------------------------*
 
   function reducer(cards, action) {
     switch (action.type) {
       case ACTIONS.FETCH_CARDS:
         return action.payload.cards;
+      //------------------------
       case ACTIONS.SET_MAIN_CARD:
         setChosenCard(cards.filter((card) => card.id === action.payload.cardId)[0]);
         setDisplay({ mainCard: true, cardForm: false })
         return cards;
+      //------------------------
       default:
         return cards;
     }
   }
-
-  const [cards, dispatch] = useReducer(reducer, [])
 
   useEffect(() => {
     const getCards = async () => {
@@ -65,32 +65,30 @@ function App() {
         <Footer />
 
         {(() => {
-          if (display.mainCard) {
-            if (display.cardForm) {
-              // TODO: cutomise this error, e.g. throw new ValuesConflictError("...")
-              throw new Error("display.mainCard and display.cardForm can't be both true")
-            }
-            else {
-              return (
-                <>
-                  <DarkUnderlay display={display} setDisplay={setDisplay} />
-                  <Maincard chosenCard={chosenCard} />
-                </>
-              )
-            }
+          if (display.mainCard && !display.cardForm) {
+            return (
+              <>
+                <DarkUnderlay display={display} setDisplay={setDisplay} />
+                <Maincard chosenCard={chosenCard} />
+              </>
+            )
           }
-          else {
-            if (display.cardForm) {
-              return (
-                <>
-                  {/* TODO: rename newCardForm to CardForm */}
-                  <DarkUnderlay display={display} setDisplay={setDisplay} />
-                  <CardForm />
-                </>
-              )
-            }
+
+          if (!display.mainCard && display.cardForm) {
+            return (
+              <>
+                <DarkUnderlay display={display} setDisplay={setDisplay} />
+                <CardForm />
+              </>
+            )
           }
+
+          if (display.mainCard && display.cardForm) {
+            throw new Error("display.mainCard and display.cardForm can't be both true")
+          }
+
         }
+
         )()}
       </ThemeProvider>
     </div>

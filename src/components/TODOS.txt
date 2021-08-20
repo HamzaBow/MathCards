@@ -24,3 +24,6 @@
 // TODO: find where hooks (useMemo, useCallback, useReducer, custom hooks) can be leveraged to improve performance and make the code cleaner.
 // TODO: make cards scrollable (horizontally and vertically) if overflown
 // TODO: or just make text and math fields schrollable
+
+// TODO: cutomise error Error in App.js, e.g. throw new ValuesConflictError("...")
+// throw new Error("display.mainCard and display.cardForm can't be both true")
