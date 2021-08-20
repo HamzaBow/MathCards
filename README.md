@@ -5,8 +5,6 @@ It provides a large collection flashcards in many areas of math, and for differe
 It also alows users to create their own custom flashcards.
 The app is built using React.js
 
-# Getting Started with Create React App
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
