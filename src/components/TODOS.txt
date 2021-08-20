@@ -1,6 +1,7 @@
  
 
-// TODO: Add a CHANGELOG.md file
+// TODO: Add a CHANGELOG.md file.
+// TODO: Add a LICENCE file.
 // TODO: Start using git branches when working on a separate features
 // TODO: Start using git tags (semantic versionning)
 // TODO: git stash
