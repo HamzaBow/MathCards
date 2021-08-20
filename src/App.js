@@ -51,20 +51,7 @@ function App() {
     return data;
   };
 
-  return (
-    <div className="App" >
-      {/* <ThemeContext.Provider value={darkTheme}> */}
-      <ThemeProvider>
-        <Header />
-        <div>
-        </div>
-        {/* TODO: Should the navbar be remoed ?  */}
-        {/* <Navbar /> */}
-        <NewCardButton setDisplay={setDisplay} />
-        <CardsList cards={cards} dispatch={dispatch} />
-        <Footer />
-
-        {(() => {
+  const conditionnallyRender = (display) => {
           if (display.mainCard && !display.cardForm) {
             return (
               <>
@@ -87,9 +74,17 @@ function App() {
             throw new Error("display.mainCard and display.cardForm can't be both true")
           }
 
-        }
 
-        )()}
+  }
+
+  return (
+    <div className="App" >
+      <ThemeProvider>
+        <Header />
+        <NewCardButton setDisplay={setDisplay} />
+        <CardsList cards={cards} dispatch={dispatch} />
+        <Footer />
+        {conditionnallyRender(display)}
       </ThemeProvider>
     </div>
   );

@@ -27,3 +27,4 @@
 
 // TODO: cutomise error Error in App.js, e.g. throw new ValuesConflictError("...")
 // throw new Error("display.mainCard and display.cardForm can't be both true")
+// TODO: Should <Navbar /> be used or should the component Navbar.js be removed completely from the project
