@@ -19,14 +19,27 @@ const CardForm = () => {
 
       if (formState.front === true) {
         front.current.style.transform = "translate(  -50%, -50% )";
+        
         back.current.style.transform = "translate( 100vw, -50% )";
+
         other.current.style.transform = "translate( 100vw, -50% )";
       }
 
       if (formState.back === true) {
         front.current.style.transform = "translate(  -100vw, -50% )";
+
         back.current.style.transform  = "translate(  -50%, -50% )";
+
         other.current.style.transform = "translate( 100vw, -50% )";
+      }
+
+
+      if (formState.other === true) {
+        front.current.style.transform = "translate(  -100vw, -50% )";
+
+        back.current.style.transform  = "translate(  -100vw,  -50% )";
+
+        other.current.style.transform = "translate(  -50%, -50% )";
       }
 
     }, [formState]);
@@ -53,15 +66,10 @@ const CardForm = () => {
 
 
     return (
-        // <>
-        //     <div id="card-form__face card-form__face--front" ref={front}><FormFace  face="front" next={next} /></div>
-        //     <div id="card-form__face card-form__face--back"  ref={back}> <FormFace  face="back"  next={next} prev={prev}/></div>
-        //     <div id="card-form__face card-form__face--other" ref={other}><FormFace  face="other"             prev={prev}/></div>
-        // </>
         <>
-            <div id="card-form__face" ref={front}><FormFace  face="front" next={next} /></div>
-            <div id="card-form__face"  ref={back}> <FormFace  face="back"  next={next} prev={prev}/></div>
-            <div id="card-form__face" ref={other}><FormFace  face="other"             prev={prev}/></div>
+            <div className="card-form__face card-form--front" ref={front}><FormFace  face="front" next={next} /></div>
+            <div className="card-form__face card-form--back"  ref={back}> <FormFace  face="back"  next={next} prev={prev}/></div>
+            <div className="card-form__face card-form--other" ref={other}><FormFace  face="other"             prev={prev}/></div>
         </>
     )
 }

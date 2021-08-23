@@ -131,7 +131,7 @@ fieldset {
 
 /*---------------  new card style TODO: delete old styles after finishing --------------*/
 
-#card-form__face {
+.card-form__face {
   min-height: 30rem;
   font-size: 1rem;
   border-radius: 10px;
@@ -152,16 +152,13 @@ fieldset {
   transition: transform 0.8s, visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
-/* .card-form__face--front {
-  transform: translate(-50%, -50%);
-} */
-.card-form__face--back {
-  transform: translate( 100vw, -50% );
-}
-.card-form__face--other {
+.card-form--back {
   transform: translate( 100vw, -50% );
 }
 
+.card-form--other {
+  transform: translate( 100vw, -50% );
+}
 /*--------------------------------------------------------------------------------------*/
 
 
