@@ -132,6 +132,7 @@ const CardForm = () => {
         color="primary"
         endIcon={<ArrowForwardIcon />}
         onClick={nextButtonHandle}
+        style={{alignSelf: "end"}}
       >
         next
       </Button>
