@@ -70,3 +70,4 @@
 // TODO: remove "black", "white" and change them with convenient shades (after moving them from components to css files.)
 // TODO: if inside maincard state, pressing esc or q should quit that mode back to cards-display mode.
 // TODO: github.com has a cool dark them !!
+// TODO: remove all console.log in the code.

@@ -143,28 +143,27 @@ fieldset {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
+  transform: translate(-50%, -50%);
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   max-height: 80%;
 
-  transition: visibility 0.2s, opacity 0.2s linear;
+  transition: transform 0.8s, visibility 0.2s, opacity 0.2s ease-in-out;
 }
-.card-form__face {
-  border: 5px solid red;
-  display: inline-flex;
-  flex-direction: column;
 
-  gap: 5rem;
-  padding: 1.5rem;
-
-  max-height: 60vh;
-  overflow-y: auto;
+/* .card-form__face--front {
+  transform: translate(-50%, -50%);
+} */
+.card-form__face--back {
+  transform: translate( 100vw, -50% );
+}
+.card-form__face--other {
+  transform: translate( 100vw, -50% );
 }
 
 /*--------------------------------------------------------------------------------------*/
+
 
 .card-form__face__prompt-buttons-container {
   display: inline-flex;

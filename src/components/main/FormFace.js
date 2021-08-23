@@ -15,7 +15,10 @@ import TextFormatIcon from '@material-ui/icons/TextFormat';
 
 addStyles();
 
-const CardForm = () => {
+const FormFace = ({ face, next }) => {
+
+  face = face ?? "front";
+
   const [fields, dispatch] = useReducer(reducer, []);
   const [prompFieldType, setPromptFieldType] = useState(false);
 
@@ -24,7 +27,6 @@ const CardForm = () => {
       type: fieldType,
     };
   }
-  console.log("render");
 
   function reducer(fields, action) {
     switch (action.type) {
@@ -55,15 +57,12 @@ const CardForm = () => {
     dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL });
   };
 
-  const nextButtonHandle = () => {
-
-  }
-
   return (
-    <div id="card-form__face">
+    // <div id="card-form__face">
+    <>
       <div>
         <h1 style={{marginTop: "0px"}}>Add a new Card</h1>
-        <h2 style={{textAlign: "center"}}>Front</h2>
+        <h2 style={{textAlign: "center"}}>{face.charAt(0) + face.toLowerCase().slice(1)}</h2>
       </div>
 
       { fields.length !== 0 ? 
@@ -131,14 +130,15 @@ const CardForm = () => {
         variant="outlined"
         color="primary"
         endIcon={<ArrowForwardIcon />}
-        onClick={nextButtonHandle}
         style={{alignSelf: "end"}}
+        onClick={() => next()}
       >
         next
       </Button>
-    </div>
+    {/* </div> */}
+    </>
   );
 };
 
 
-export default CardForm;
+export default FormFace;
