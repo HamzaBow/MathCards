@@ -9,13 +9,14 @@ import { ButtonGroup } from "@material-ui/core";
 
 import {IoTriangleSharp} from "react-icons/io5"
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AddIcon from '@material-ui/icons/Add';
 import FunctionsIcon from '@material-ui/icons/Functions';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 
 addStyles();
 
-const FormFace = ({ face, next }) => {
+const FormFace = ({ face, next, prev }) => {
 
   face = face ?? "front";
 
@@ -56,6 +57,10 @@ const FormFace = ({ face, next }) => {
     togglePromptFieldType();
     dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL });
   };
+
+  const save = () => {
+
+  }
 
   return (
     // <div id="card-form__face">
@@ -125,6 +130,18 @@ const FormFace = ({ face, next }) => {
           }
         })()}
       </div>
+
+      <Button
+        className="card-form__next-btn"
+        variant="outlined"
+        color="primary"
+        startIcon={<ArrowBackIcon />}
+        style={{alignSelf: "end"}}
+        onClick={() => prev()}
+      >
+        Prev
+      </Button>
+
       <Button
         className="card-form__next-btn"
         variant="outlined"
