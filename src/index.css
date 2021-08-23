@@ -25,28 +25,24 @@ body {
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 3rem;
-
 }
 
 .container-item {
-  
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  border-radius: 0.7rem;
 
+  border-radius: 0.7rem;
 
   max-width: 300px;
   min-width: 180px;
-
 }
 
 .container-item:hover {
   cursor: pointer;
 }
 
-.container-item:hover .card-caret-down  {
+.container-item:hover .card-caret-down {
   visibility: visible !important;
 }
 
@@ -111,34 +107,12 @@ body {
 }
 
 
-#card-form__face {
-  font-size: 1rem;
-  border-radius: 10px;
-  padding: 3rem 3rem;
-  background-color: white;
-  color: rgb(53, 80, 80);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  max-height: 80%;
-
-  transition: visibility 0.2s, opacity 0.2s linear;
-}
-
 label {
   padding: 0 10px;
 }
 fieldset {
   border-color: black;
 }
-
 
 .container .front,
 .container .back {
@@ -150,44 +124,53 @@ fieldset {
   padding: 50px;
 }
 
-
 /* #opened-card .back { */
 .back {
   transform: rotateY(180deg);
 }
 
-
-
 /*---------------  new card style TODO: delete old styles after finishing --------------*/
 
-.face {
-    border: 5px solid red;
-    display: inline-flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.5rem;
+#card-form__face {
+  min-height: 30rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 1.5rem 3rem;
+  background-color: white;
+  color: rgb(53, 80, 80);
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
-    max-height: 60vh;
-    overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 80%;
 
-
+  transition: visibility 0.2s, opacity 0.2s linear;
 }
-    
+.card-form__face {
+  border: 5px solid red;
+  display: inline-flex;
+  flex-direction: column;
+
+  gap: 5rem;
+  padding: 1.5rem;
+
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
 /*--------------------------------------------------------------------------------------*/
 
-.mq-math-mode:hover {
-  cursor: pointer;
-}
-
-/*--------------------------------------------------------------------------------------*/
-
-.cardform__face__buttons-container {
+.card-form__face__prompt-buttons-container {
   display: inline-flex;
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-
 }
 
 .fields-container {
@@ -200,29 +183,32 @@ fieldset {
   padding: 1rem 0;
 }
 
-.cardform__face__field-prompt {
-  /* position: absolute;
-  transform: translate(-90%, -100%); */
+.card-form__next-btn {
+  margin-top: 2rem !important;
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+/* MATH */
+.mq-math-mode:hover {
+  cursor: pointer;
+}
+
+/* IT SHOWS A SCROLL BAR WHEN MATH QUILL IS OVERFLOWN */
+/* .mq-root-block {
+  overflow-x: auto !important; */
+/* } */
+
+.ql-toolbar {
+  background-color: #eaecec;
+}
+.ql-editor {
+  font-size: 1rem;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ------------------------------------------------------------------------------------- */
 
 
 @media (min-width: 200px) {

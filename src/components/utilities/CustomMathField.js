@@ -11,9 +11,9 @@ const CustomMathField = ({ field, latexFormula }) => {
   const mathFieldStyle = {
     fontSize: "1.5rem",
     backgroundColor: "rgb(240, 245, 245)",
-    minWidth: "220px",
-    maxWidth: "500px", // TODO: @media : make it smaller for smaller screens
+    width: "30rem",
     padding: "0.4rem 1rem",
+    maxWidth: "40rem",
   };
 
   return (

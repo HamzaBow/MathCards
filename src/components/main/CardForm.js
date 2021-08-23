@@ -8,6 +8,10 @@ import { Button } from "@material-ui/core"
 import { ButtonGroup } from "@material-ui/core";
 
 import {IoTriangleSharp} from "react-icons/io5"
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import AddIcon from '@material-ui/icons/Add';
+import FunctionsIcon from '@material-ui/icons/Functions';
+import TextFormatIcon from '@material-ui/icons/TextFormat';
 
 addStyles();
 
@@ -51,19 +55,18 @@ const CardForm = () => {
     dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL });
   };
 
+  const nextButtonHandle = () => {
+
+  }
 
   return (
     <div id="card-form__face">
-      <h1>Add a new Card</h1>
-      <h2>Front</h2>
+      <div>
+        <h1 style={{marginTop: "0px"}}>Add a new Card</h1>
+        <h2 style={{textAlign: "center"}}>Front</h2>
+      </div>
 
-      {/* <label htmlFor="front-formula">Question Formula</label>
-      <CustomMathField
-        field={"front-formula"}
-        latexFormula={"front-formula-latex"}
-      />
-
-      <Quill /> */}
+      { fields.length !== 0 ? 
       <div class="fields-container">
         {fields.map((field) => {
           if (field.type === FIELD_TYPE.MATH) {
@@ -84,20 +87,28 @@ const CardForm = () => {
           );
         })}
       </div>
-      <div class="cardform__face__buttons-container">
-        <Button variant="contained" color="primary" onClick={addFieldHandle}>
-          Add a field
+      : "" }
+
+      
+      <div class="card-form__face__prompt-buttons-container">
+        <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={addFieldHandle}>
+          New
         </Button>
         {(() => {
           if (prompFieldType) {
             return (
               <>
-                <IoTriangleSharp color="#3f51b5" style={{ marginBottom: "-2px" }}/>
-                <ButtonGroup className="cardform__face__field-prompt">
+                <IoTriangleSharp
+                  color="#3f51b5"
+                  // backgroundColor=""
+                  style={{ marginBottom: "-2px" }}
+                />
+                <ButtonGroup className="card-form__face__field-prompt">
                   <Button
                     variant="outlined"
                     color="primary"
                     onClick={addTextQuill}
+                    startIcon={<TextFormatIcon />}
                   >
                     text
                   </Button>
@@ -105,6 +116,7 @@ const CardForm = () => {
                     variant="outlined"
                     color="primary"
                     onClick={addMathQuill}
+                    startIcon={<FunctionsIcon />}
                   >
                     math
                   </Button>
@@ -114,6 +126,15 @@ const CardForm = () => {
           }
         })()}
       </div>
+      <Button
+        className="card-form__next-btn"
+        variant="outlined"
+        color="primary"
+        endIcon={<ArrowForwardIcon />}
+        onClick={nextButtonHandle}
+      >
+        next
+      </Button>
     </div>
   );
 };
