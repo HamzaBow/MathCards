@@ -4,6 +4,11 @@ import CustomMathField from "../utilities/CustomMathField";
 import { useReducer, useState } from "react";
 import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
+import { Button } from "@material-ui/core"
+import { ButtonGroup } from "@material-ui/core";
+
+import {IoTriangleSharp} from "react-icons/io5"
+
 addStyles();
 
 const CardForm = () => {
@@ -46,19 +51,11 @@ const CardForm = () => {
     dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL });
   };
 
-  const saveButtonHandle = () => {};
-
-  const fieldsContainerStyle = {
-    
-  }
 
   return (
-    <div id="new-card-form">
+    <div id="card-form__face">
       <h1>Add a new Card</h1>
       <h2>Front</h2>
-
-      <br />
-      <br />
 
       {/* <label htmlFor="front-formula">Question Formula</label>
       <CustomMathField
@@ -67,7 +64,7 @@ const CardForm = () => {
       />
 
       <Quill /> */}
-      <div style={fieldsContainerStyle}>
+      <div class="fields-container">
         {fields.map((field) => {
           if (field.type === FIELD_TYPE.MATH) {
             console.log("math");
@@ -87,47 +84,39 @@ const CardForm = () => {
           );
         })}
       </div>
-      <button
-        style={{ marginTop: "3rem", display: "block" }}
-        onClick={addFieldHandle}
-      >
-        Add a field
-      </button>
-      {(() => {
-        if (prompFieldType) {
-          return (
-            <>
-              <button onClick={addTextQuill}>text</button>
-              <button onClick={addMathQuill}>math formula</button>
-            </>
-          );
-        }
-      })()}
-
-      <button type="reset" value="Add" style={buttonStyle}>
-        Clear
-      </button>
-      <button
-        type="button"
-        value="Save"
-        style={buttonStyle}
-        onClick={() => saveButtonHandle()}
-      >
-        Add
-      </button>
+      <div class="cardform__face__buttons-container">
+        <Button variant="contained" color="primary" onClick={addFieldHandle}>
+          Add a field
+        </Button>
+        {(() => {
+          if (prompFieldType) {
+            return (
+              <>
+                <IoTriangleSharp color="#3f51b5" style={{ marginBottom: "-2px" }}/>
+                <ButtonGroup className="cardform__face__field-prompt">
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={addTextQuill}
+                  >
+                    text
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={addMathQuill}
+                  >
+                    math
+                  </Button>
+                </ButtonGroup>
+              </>
+            );
+          }
+        })()}
+      </div>
     </div>
   );
 };
 
-const buttonStyle = {
-  float: "right",
-  fontSize: "1.5em",
-  paddingLeft: "20px",
-  paddingRight: "20px",
-  paddingTop: "10px",
-  paddingBottom: "10px",
-  marginRight: "10px",
-  marginTop: "10rem",
-};
 
 export default CardForm;
