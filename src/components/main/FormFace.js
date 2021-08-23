@@ -63,7 +63,6 @@ const FormFace = ({ face, next, prev }) => {
   }
 
   return (
-    // <div id="card-form__face">
     <>
       <div>
         <h1 style={{marginTop: "0px"}}>Add a new Card</h1>
@@ -131,28 +130,43 @@ const FormFace = ({ face, next, prev }) => {
         })()}
       </div>
 
+      {prev ?
       <Button
-        className="card-form__next-btn"
-        variant="outlined"
-        color="primary"
-        startIcon={<ArrowBackIcon />}
-        style={{alignSelf: "end"}}
-        onClick={() => prev()}
+      className="card-form__next-btn"
+      variant="outlined"
+      color="primary"
+      startIcon={<ArrowBackIcon />}
+      style={{alignSelf: "end"}}
+      onClick={() => prev()}
       >
         Prev
       </Button>
+      :
+      ""
+      }
 
+      {next ?
       <Button
-        className="card-form__next-btn"
-        variant="outlined"
-        color="primary"
-        endIcon={<ArrowForwardIcon />}
-        style={{alignSelf: "end"}}
-        onClick={() => next()}
+      className="card-form__next-btn"
+      variant="outlined"
+      color="primary"
+      endIcon={<ArrowForwardIcon />}
+      style={{alignSelf: "end"}}
+      onClick={() => next()}
       >
         next
       </Button>
-    {/* </div> */}
+      :
+      <Button
+      className="card-form__next-btn"
+      variant="contained"
+      color="primary"
+      style={{alignSelf: "end"}}
+      onClick={() => save()}
+      >
+        save
+      </Button>
+      }
     </>
   );
 };
