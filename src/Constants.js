@@ -6,6 +6,27 @@ export const ACTIONS = {
   SET_DIFFICULTIES: "SET_DIFFICULTIES",
 };
 
+export const CARD_FORM_ACTIONS = {
+  ADD_TEXT_QUILL: "ADD_TEXT_QUILL",
+  ADD_MATH_QUILL: "ADD_MATH_QUILL",
+}
+
+export const FIELD_TYPE = {
+  MATH: "MATH",
+  TEXT: "TEXT",
+}
+
+export const CARD_LAYOUT = {
+    HUG_CONTENT: "hug-content",
+    FIXED_SIZE: "fixed-size"
+}
+
+export const CARD_SIZE = {
+    SMALL: "small",
+    MEDIUM: "medium",
+    LARGE: "large",
+}
+
 const PRIMARY_HUE = 196;
 
 export const COLORS = {

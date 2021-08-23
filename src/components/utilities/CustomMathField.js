@@ -11,12 +11,13 @@ const CustomMathField = ({ field, latexFormula }) => {
   const mathFieldStyle = {
     fontSize: "1.5rem",
     backgroundColor: "rgb(240, 245, 245)",
-    minWidth: "120px",
+    minWidth: "220px",
+    maxWidth: "500px", // TODO: @media : make it smaller for smaller screens
     padding: "0.4rem 1rem",
   };
 
   return (
-    <div>
+    <div style={{margin: "0.5rem"}}>
       <EditableMathField
         id={field}
         style={mathFieldStyle}

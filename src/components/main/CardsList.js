@@ -1,4 +1,5 @@
-import Card from "./Card";
+//  TODO: Card should be imported from ../cards/Card (finish implementing later).
+import Card from "../cards/Card";
 import { useTheme } from "../../ThemeContext";
 
 const CardsList = ({ cards, dispatch }) => {

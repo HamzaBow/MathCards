@@ -1,4 +1,6 @@
  
+// ********************           TODO          add a priority to each TODO down bellow and sort them by priority.
+
 
 // TODO: Add a CHANGELOG.md file.
 // TODO: Add a LICENCE file.
@@ -28,3 +30,43 @@
 // TODO: cutomise error Error in App.js, e.g. throw new ValuesConflictError("...")
 // throw new Error("display.mainCard and display.cardForm can't be both true")
 // TODO: Should <Navbar /> be used or should the component Navbar.js be removed completely from the project
+// TODO: Add possibility for an inline mathfield, it should be inserted into the innerHtml of the textQuill. (math field can be part of text field). A pull request can be made to React-Quill or to Quill-JS to add this feature. an npm package can also be built to provide this feature of a hybrid quill.
+// TODO: Allow user to share cards on social media (twitter, instagram, etc.) show a share icon (or social media apps icons). when a card is shared, a fancy version of the card should be generated.
+// TODO: tool bar of the quill should be a bit darker.
+// TODO: the reducer pattern (useReducer, reducerFunc with snippets, ACTIONS(change name and capitalize automatically in snippet)) which I used for "fields" in CardForm.js and for "cards" in App.js should be made into a snippet (either inline -addapted to be used inside of a component, or a whole  component snippet, in this case, a component is used to for just one state array(cards, fields, etc.)
+// TODO: move this reducer pattern from App.js into a separate file to make App.js cleaner.
+// TODO: move this reducer pattern from NewCard.js into a separate file to make NewCard.js cleaner. 
+// TODO: style used in quills in github (for issues) looks nicer, style the quill in a way similar to that.
+// TODO: quill resizable ??? would it be a good idea ? if so, the default size should be nice.
+// TODO: make a snippet for the way I use context as in ThemeContext.js
+// TODO: my custom snippets should be backed up along with my dot files (.vimrc, .tmux.conf .ideavimrc etc.)
+// TODO: see what other pattern that I am using which can be made into snippets
+// TODO: convert this app into a desktop app using Electron.js
+// TODO: Theme can be retrieved from the system theme.
+// TODO: <section> was not used at all, google where it should be used.
+// TODO: leverage all the tools inside browsers' devtools and extension to make the site better.
+// TODO: Should fields have Label?, if yes make them into placeholder, when field focused, they go outside the field (as in material ui)
+// TODO: Show a preview of the card next to the fieldset.
+// TODO: make the math quill work in a similar way to the quill in Desmos ("int" instead of "\int", "sqrt", "\sqrt", ...)
+
+
+// TODO: Make the CARDS and CARDS_LIST(cards container) easily reusable in other apps and by other users, i.e. make them loosely coupled to this app
+// TODO: loosely coupled card jsx <Card size="small/sm or  medium/md or large/lg" flippable=true ... />
+// TODO: loosely coupled cards_list jsx <CardsList theme="dark light /* add other possible themes */"  flippable=true ... />
+// TODO: loosely coupled cards_list jsx <CardsList theme="dark light /* add other possible themes */" .../>
+// TODO: all corners should have the same level of roundness, there should be considerable disparity between corners' roundness.
+// TODO: use SCSS, and leverage all of its capabilities.
+// TODO: add optional -t -s -d (for typescript, scss and dark-theme (dark background, lightgray text color) respectively) flags to webfly fish function.
+// TODO: There are certainly cases in the app where the css unit "em" would be better than "rem", find them and change the unit accordingly.
+// TODO: try to fit the math formula in its container by reducing the font-size a little bit before adding a scroll bar (horizontal).
+// TODO: in Card.js when having many fields, when the card gets overflown, the fields (math and text) should be at their max hight, implement that in javascript. The reason it should be fixed is that all field get very small even if they contain many lines. 
+// TODO: in mathfield(display, not input), pressing enter should not jump to
+// TODO: a theme prop for Card.js can be specified, e.g. <Card theme="snow" />
+// TODO: right clicking on a card should display the menu that is shown when right clicking on the caret.
+// TODO: if cards are a fixed size, the font-size for cards with little content can be increased.
+// TODO: remove css and style properties from components, put them in css files( many files - modularity ), and put only class names in components (add if conditions should be about whether to add a class name to className prop or not). 
+// TODO: remove cursor when hovering over math formula.
+// TODO: when showing a main card in center of screen, if a user presses left/right arrows, the next/previous card slides in and previous/next card slides out (in the direction of the arrows.), (h/l - vim keybindings do the same action).
+// TODO: remove "black", "white" and change them with convenient shades (after moving them from components to css files.)
+// TODO: if inside maincard state, pressing esc or q should quit that mode back to cards-display mode.
+// TODO: github.com has a cool dark them !!

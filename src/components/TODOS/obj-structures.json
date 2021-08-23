@@ -16,7 +16,8 @@
 			createdCards: ["COMMENT: SELECT ID FROM CARD WHERE AUTHOR=THIS_USER", "id1", "id2", "id5"],
 			collections:  ["collectionId1", "collectionId2", "collectionId3"],
 			difficultyLevels: ["medium", "hard"],
-			topics: ["tag1", "tag2", "tag3"]
+			topics: ["tag1", "tag2", "tag3"],
+			following: ["userId1", "userId2", "userId3"]
 		}
 	},
 	collection: ["cardId1", "cardId6", "cardId17"],
@@ -24,6 +25,7 @@
 
 	card: {
 		id: "id1",
+//		title?: "title          COMMENT: OPTIONAL", no need for title because the text quill can contain headings
 		author: "userId6",
 		difficultyLevels: ["COMMENT: IT CAN BE EMPTY(NO DIFFICULTY LEVELS WERE SET)", "very easy", "easy"],		
 		topics: ["COMMENT: CAN BE EMPTY", "tag1", "tag2"]
