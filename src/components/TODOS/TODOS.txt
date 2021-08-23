@@ -33,6 +33,7 @@
 // TODO: Add possibility for an inline mathfield, it should be inserted into the innerHtml of the textQuill. (math field can be part of text field). A pull request can be made to React-Quill or to Quill-JS to add this feature. an npm package can also be built to provide this feature of a hybrid quill.
 // TODO: Allow user to share cards on social media (twitter, instagram, etc.) show a share icon (or social media apps icons). when a card is shared, a fancy version of the card should be generated.
 // TODO: tool bar of the quill should be a bit darker.
+// TODO: tool bar of the quill should be hidden when the quill is not active/focused. 
 // TODO: the reducer pattern (useReducer, reducerFunc with snippets, ACTIONS(change name and capitalize automatically in snippet)) which I used for "fields" in CardForm.js and for "cards" in App.js should be made into a snippet (either inline -addapted to be used inside of a component, or a whole  component snippet, in this case, a component is used to for just one state array(cards, fields, etc.)
 // TODO: move this reducer pattern from App.js into a separate file to make App.js cleaner.
 // TODO: move this reducer pattern from NewCard.js into a separate file to make NewCard.js cleaner. 

@@ -65,36 +65,44 @@ const FormFace = ({ face, next, prev }) => {
   return (
     <>
       <div>
-        <h1 style={{marginTop: "0px"}}>Add a new Card</h1>
-        <h2 style={{textAlign: "center"}}>{face.charAt(0) + face.toLowerCase().slice(1)}</h2>
+        <h1 style={{ marginTop: "0px" }}>Add a new Card</h1>
+        <h2 style={{ textAlign: "center" }}>
+          {face.charAt(0) + face.toLowerCase().slice(1)}
+        </h2>
       </div>
 
-      { fields.length !== 0 ? 
-      <div class="fields-container">
-        {fields.map((field) => {
-          if (field.type === FIELD_TYPE.MATH) {
-            console.log("math");
-            return (
-              <CustomMathField
-                field={"front-formula"}
-                latexFormula={"front-formula-latex"}
-              />
+      {fields.length !== 0 ? (
+        <div class="fields-container">
+          {fields.map((field) => {
+            if (field.type === FIELD_TYPE.MATH) {
+              console.log("math");
+              return (
+                <CustomMathField
+                  field={"front-formula"}
+                  latexFormula={"front-formula-latex"}
+                />
+              );
+            }
+            if (field.type === FIELD_TYPE.TEXT) {
+              console.log("text");
+              return <Quill />;
+            }
+            throw new TypeError(
+              "type of the field should be either text or math"
             );
-          }
-          if (field.type === FIELD_TYPE.TEXT) {
-            console.log("text");
-            return <Quill />;
-          }
-          throw new TypeError(
-            "type of the field should be either text or math"
-          );
-        })}
-      </div>
-      : "" }
+          })}
+        </div>
+      ) : (
+        ""
+      )}
 
-      
       <div class="card-form__face__prompt-buttons-container">
-        <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={addFieldHandle}>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddIcon />}
+          onClick={addFieldHandle}
+        >
           New
         </Button>
         {(() => {
@@ -130,43 +138,44 @@ const FormFace = ({ face, next, prev }) => {
         })()}
       </div>
 
-      {prev ?
-      <Button
-      className="card-form__next-btn"
-      variant="outlined"
-      color="primary"
-      startIcon={<ArrowBackIcon />}
-      style={{alignSelf: "end"}}
-      onClick={() => prev()}
-      >
-        Prev
-      </Button>
-      :
-      ""
-      }
-
-      {next ?
-      <Button
-      className="card-form__next-btn"
-      variant="outlined"
-      color="primary"
-      endIcon={<ArrowForwardIcon />}
-      style={{alignSelf: "end"}}
-      onClick={() => next()}
-      >
-        next
-      </Button>
-      :
-      <Button
-      className="card-form__next-btn"
-      variant="contained"
-      color="primary"
-      style={{alignSelf: "end"}}
-      onClick={() => save()}
-      >
-        save
-      </Button>
-      }
+      <ButtonGroup>
+        {prev ? (
+          <Button
+            className="card-form__next-btn"
+            variant="outlined"
+            color="primary"
+            startIcon={<ArrowBackIcon />}
+            style={{ alignSelf: "end" }}
+            onClick={() => prev()}
+          >
+            Prev
+          </Button>
+        ) : (
+          ""
+        )}
+        {next ? (
+          <Button
+            className="card-form__next-btn"
+            variant="outlined"
+            color="primary"
+            endIcon={<ArrowForwardIcon />}
+            style={{ alignSelf: "end" }}
+            onClick={() => next()}
+          >
+            next
+          </Button>
+        ) : (
+          <Button
+            className="card-form__next-btn"
+            variant="contained"
+            color="primary"
+            style={{ alignSelf: "end" }}
+            onClick={() => save()}
+          >
+            save
+          </Button>
+        )}
+      </ButtonGroup>
     </>
   );
 };
