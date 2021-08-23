@@ -152,6 +152,11 @@ fieldset {
   transition: transform 0.8s, visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
+.card-form--front {
+
+  transform: translate( -50%, -100vh );
+}
+
 .card-form--back {
   transform: translate( 100vw, -50% );
 }
