@@ -63,13 +63,13 @@ const CardForm = () => {
             setFormState({front: false, back: true, other: false})            
         }
     }
-
+// className="card-form__face card-form--other"
 
     return (
         <>
-            <div className="card-form__face card-form--front" ref={front}><FormFace  face="front" next={next} /></div>
-            <div className="card-form__face card-form--back"  ref={back}> <FormFace  face="back"  next={next} prev={prev}/></div>
-            <div className="card-form__face card-form--other" ref={other}><FormFace  face="other"             prev={prev}/></div>
+            <FormFace  ref={front} face="front" next={next} />
+            <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
+            <FormFace  ref={other} face="other" prev={prev}/>
         </>
     )
 }

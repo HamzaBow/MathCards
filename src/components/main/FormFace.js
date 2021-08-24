@@ -1,3 +1,5 @@
+import React from "react";
+
 import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
 import CustomMathField from "../utilities/CustomMathField";
@@ -16,7 +18,7 @@ import TextFormatIcon from '@material-ui/icons/TextFormat';
 
 addStyles();
 
-const FormFace = ({ face, next, prev }) => {
+const FormFace = ({ face, next, prev }, ref) => {
 
   face = face ?? "front";
 
@@ -63,7 +65,7 @@ const FormFace = ({ face, next, prev }) => {
   }
 
   return (
-    <>
+    <div className={`card-form__face card-form--${face}`} ref={ref}>
       <div>
         <h1 style={{ marginTop: "0px" }}>Add a new Card</h1>
         <h2 style={{ textAlign: "center" }}>
@@ -176,9 +178,9 @@ const FormFace = ({ face, next, prev }) => {
           </Button>
         )}
       </ButtonGroup>
-    </>
+    </div>
   );
 };
 
 
-export default FormFace;
+export default React.forwardRef(FormFace);
