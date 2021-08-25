@@ -28,8 +28,6 @@ const CardForm = () => {
     //TODO: FIXME: refactor the inside of this useEffect hook (probably requires refactoring the whole page)
     useEffect(() => {
 
-      console.log('use effect 2')
-
       if (formState.front === true) {
         front.current.style.transform = "translate(  -50%, -50% )";
         

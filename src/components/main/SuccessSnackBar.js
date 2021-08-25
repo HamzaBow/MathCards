@@ -23,7 +23,6 @@ const SuccessSnackBar = ({ open, setActiveStep }) => {
 //     setOpen(true);
 //   };
   const handleClose = (event, reason) => {
-    console.log("inside handleclose:open", open)
     if (reason === "clickaway") {
       return;
     }

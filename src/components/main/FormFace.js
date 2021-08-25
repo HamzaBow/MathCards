@@ -69,7 +69,6 @@ const FormFace = ({ face, next, prev }, ref) => {
         <div className="fields-container">
           {fields.map((field) => {
             if (field.type === FIELD_TYPE.MATH) {
-              console.log("math");
               return (
                 <CustomMathField
                   field={"front-formula"}
@@ -78,7 +77,6 @@ const FormFace = ({ face, next, prev }, ref) => {
               );
             }
             if (field.type === FIELD_TYPE.TEXT) {
-              console.log("text");
               return <Quill />;
             }
             throw new TypeError(
