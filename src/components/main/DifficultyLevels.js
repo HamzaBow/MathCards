@@ -4,23 +4,12 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import { labelStyle } from "./labelStyle";
 
-const DifficultyLevels = () => {
-
-  const legendStyle = {
-    fontSize:   "1.2rem",
-    fontWeight: 600,
-
-    marginRight: "auto",
-    marginLeft: "auto",
-    marginBottom: "1.5rem",
-
-    color: "rgba(0, 0, 0, 0.7)",
-  }
-
+export const DifficultyLevels = () => {
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend" style={legendStyle}>Difficulty Levels</FormLabel>
+      <FormLabel component="legend" style={labelStyle}>Difficulty Levels</FormLabel>
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="veryEasy"

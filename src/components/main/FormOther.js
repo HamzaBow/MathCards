@@ -23,6 +23,9 @@ const FormOther = ({ prev }, ref) => {
     <div className={'card-form__face card-form--other'} ref={ref}>
         <h1 style={{ marginTop: 0 }}>Other Info</h1>
         <DifficultyLevels />
+        <hr/>
+        <TopicTags />
+        <hr/>
         {/*----------------------------------------------------------------------------*/}
         <ButtonGroup>
             <Button
