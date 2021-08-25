@@ -23,6 +23,7 @@ export default function TopicTags() {
     <FormControl component="fieldset">
       <FormLabel component="legend" style={labelStyle}>Choose Topics</FormLabel>
         <div className={classes.root}>
+       {/* TODO: FIXME: this Autocomplete tag causes the first translation of FormFront not to happend, figure out how to fix it. */}
         <Autocomplete color="primary"
             multiple
             id="tags-standard"
