@@ -8,10 +8,21 @@ import { ButtonGroup } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 
-const FormOther = ({ prev }, ref) => {
+const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
 
   const save = () => {
-
+    if(activeStep !== 3){
+      setActiveStep(prevStep => prevStep + 1)
+    }
+  }
+  const previous = () => {
+    prev()
+    if(activeStep === 3){
+      setActiveStep(prevStep => prevStep - 1) // prev() is going to decrement activeStep by one (total -2 decrement)
+    }
+    if(activeStep > 3){
+      throw new RangeError(`value of activeStep shouldn't be greater than 3. activeStep has value ${activeStep}`)
+    }
   }
 
   const hrStyle = {
@@ -32,7 +43,7 @@ const FormOther = ({ prev }, ref) => {
               color="primary"
               startIcon={<ArrowBackIcon />}
               style={{ alignSelf: "end" }}
-              onClick={() => prev()}
+              onClick={() => previous()}
             >
               Prev
             </Button>

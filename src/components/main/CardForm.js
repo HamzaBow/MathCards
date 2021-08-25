@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from 'react'
 import FormFace from './FormFace'
 import FormOther from './FormOther'
 
+import CardFormHeader from './CardFormHeader'
+import HorizontalLabelPositionBelowStepper from './Stepper'
+
 const CardForm = () => {
 
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
@@ -14,6 +17,8 @@ const CardForm = () => {
     const front = useRef()
     const back = useRef()
     const other = useRef()
+
+    const [activeStep, setActiveStep] = React.useState(0);
 
     useEffect(() => {
         front.current.style.transform = "translate(  -50%, -150vh )";
@@ -58,27 +63,35 @@ const CardForm = () => {
     function next(){
         if(formState.front === true){
             setFormState({front: false, back: true, other: false})            
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
         if(formState.back === true){
             setFormState({front: false, back: false, other: true})            
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
     }
 
     function prev(){
         if(formState.back === true){
             setFormState({front: true, back: false, other: false})            
+            setActiveStep((prevActiveStep) => prevActiveStep - 1);
         }
         if(formState.other === true){
             setFormState({front: false, back: true, other: false})            
+            setActiveStep((prevActiveStep) => prevActiveStep - 1);
         }
     }
 // className="card-form__face card-form--other"
 
     return (
         <>
+            <CardFormHeader />
             <FormFace  ref={front} face="front" next={next} />
             <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
-            <FormOther ref={other}                          prev={prev}/>
+            <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep} />
+            <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}}>
+                <HorizontalLabelPositionBelowStepper activeStep={activeStep} />
+            </div>
         </>
     )
 }

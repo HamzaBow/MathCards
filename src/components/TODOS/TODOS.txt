@@ -73,3 +73,4 @@
 // TODO: github.com has a cool dark them !!
 // TODO: remove all console.log in the code.
 // TODO: card form front used to slide down from above, and now it doesn't because of <Autocomplete> component that I used. FIX THAT and make card form from slide from above when the button (+ add card) is clicked.
+// TODO: add card skeleton before cards are loaded (server calls.)
