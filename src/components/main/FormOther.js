@@ -2,16 +2,11 @@ import React from "react";
 
 import DifficultyLevels from "./DifficultyLevels";
 
-import { addStyles } from "react-mathquill";
-// import { useReducer, useState } from "react";
-
 import { Button } from "@material-ui/core"
 import { ButtonGroup } from "@material-ui/core";
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
-
-addStyles();
 
 const FormOther = ({ prev }, ref) => {
 
