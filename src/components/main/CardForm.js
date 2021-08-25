@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import FormFace from './FormFace'
+import FormOther from './FormOther'
 
 const CardForm = () => {
 
@@ -69,7 +70,7 @@ const CardForm = () => {
         <>
             <FormFace  ref={front} face="front" next={next} />
             <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
-            <FormFace  ref={other} face="other" prev={prev}/>
+            <FormOther ref={other} prev={prev}/>
         </>
     )
 }

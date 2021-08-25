@@ -60,10 +60,6 @@ const FormFace = ({ face, next, prev }, ref) => {
     dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL });
   };
 
-  const save = () => {
-
-  }
-
   return (
     <div className={`card-form__face card-form--${face}`} ref={ref}>
       <div>
@@ -155,7 +151,6 @@ const FormFace = ({ face, next, prev }, ref) => {
         ) : (
           ""
         )}
-        {next ? (
           <Button
             className="card-form__next-btn"
             variant="outlined"
@@ -166,17 +161,6 @@ const FormFace = ({ face, next, prev }, ref) => {
           >
             next
           </Button>
-        ) : (
-          <Button
-            className="card-form__next-btn"
-            variant="contained"
-            color="primary"
-            style={{ alignSelf: "end" }}
-            onClick={() => save()}
-          >
-            save
-          </Button>
-        )}
       </ButtonGroup>
     </div>
   );
