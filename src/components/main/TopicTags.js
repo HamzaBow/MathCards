@@ -1,4 +1,6 @@
+import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Chip from '@material-ui/core/Chip'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { labelStyle } from "./labelStyle.js"
@@ -19,12 +21,13 @@ export default function TopicTags() {
   const classes = useStyles();
 
   return (
-
     <FormControl component="fieldset">
-      <FormLabel component="legend" style={labelStyle}>Choose Topics</FormLabel>
-        <div className={classes.root}>
-       {/* TODO: FIXME: this Autocomplete tag causes the first translation of FormFront not to happend, figure out how to fix it. */}
-        <Autocomplete color="primary"
+      <FormLabel component="legend" style={labelStyle}>
+        Choose Topics
+      </FormLabel>
+      <div className={classes.root}>
+        {/* TODO: FIXME: this Autocomplete tag causes the first translation of FormFront not to happend, figure out how to fix it. */}
+        {/* <Autocomplete color="primary"
             multiple
             id="tags-standard"
             options={tags}
@@ -38,8 +41,33 @@ export default function TopicTags() {
                 placeholder="Type here"
             />
             )}
+        /> */}
+        <Autocomplete
+          multiple
+          id="tags-standard"
+          options={tags.map((option) => option.title)}
+          defaultValue={[tags[5].title]}
+          // freeSolo
+          renderTags={(value, getTagProps) =>
+            value.map((option, index) => (
+              <Chip
+                // variant="outlined"
+                color="primary"
+                label={option}
+                {...getTagProps({ index })}
+              />
+            ))
+          }
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="standard"
+              // label="freeSolo"
+              placeholder="Type here"
+            />
+          )}
         />
-        </div>
+      </div>
     </FormControl>
   );
 }
