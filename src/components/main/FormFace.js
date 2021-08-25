@@ -59,9 +59,8 @@ const FormFace = ({ face, next, prev }, ref) => {
     togglePromptFieldType();
     dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL });
   };
-
   return (
-    <div className={`card-form__face card-form--${face}`} ref={ref}>
+    <div className={'card-form__step'} ref={ref}>
         <h1 style={{ marginTop: 0 }}>
           {face.charAt(0) + face.toLowerCase().slice(1)}
         </h1>

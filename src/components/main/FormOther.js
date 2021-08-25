@@ -20,13 +20,10 @@ const FormOther = ({ prev }, ref) => {
   }
 
   return (
-    <div className={'card-form__face card-form--other'} ref={ref}>
+    <div className={'card-form__step'} ref={ref}>
         <h1 style={{ marginTop: 0 }}>Other Info</h1>
         <DifficultyLevels />
-        <hr/>
         <TopicTags />
-        <hr/>
-        {/*----------------------------------------------------------------------------*/}
         <ButtonGroup>
             <Button
               className="card-form__next-btn"

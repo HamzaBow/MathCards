@@ -131,7 +131,7 @@ fieldset {
 
 /*---------------  new card style TODO: delete old styles after finishing --------------*/
 
-.card-form__face {
+.card-form__step {
   min-height: 30rem;
   min-width: 15rem;
   font-size: 1rem;
@@ -144,28 +144,16 @@ fieldset {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transform: translate(-50%, -50%);
   position: fixed;
   top: 50%;
   left: 50%;
   max-height: 80%;
 
-  transition: transform 0.8s, visibility 0.2s, opacity 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, 
+              visibility 0.2s ease-in-out, 
+              opacity 0.2s ease-in-out;
 }
-
-.card-form--front {
-
-  transform: translate( -50%, -100vh );
-}
-
-.card-form--back {
-  transform: translate( 100vw, -50% );
-}
-
-.card-form--other {
-  transform: translate( 100vw, -50% );
-}
-/*--------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------*/
 
 
 .card-form__face__prompt-buttons-container {

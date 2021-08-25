@@ -15,8 +15,15 @@ const CardForm = () => {
     const back = useRef()
     const other = useRef()
 
+    useEffect(() => {
+        front.current.style.transform = "translate(  -50%, -150vh )";
+        front.current.style.animation = "transition: transform 0.2s ease-in-out";
+    },[])
+
     //TODO: FIXME: refactor the inside of this useEffect hook (probably requires refactoring the whole page)
     useEffect(() => {
+
+      console.log('use effect 2')
 
       if (formState.front === true) {
         front.current.style.transform = "translate(  -50%, -50% )";
@@ -44,6 +51,7 @@ const CardForm = () => {
       }
 
     }, [formState]);
+    
 
 
     //TODO: use useReducer instead of useState (dispatch instead of two functions)
@@ -70,7 +78,7 @@ const CardForm = () => {
         <>
             <FormFace  ref={front} face="front" next={next} />
             <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
-            <FormOther ref={other} prev={prev}/>
+            <FormOther ref={other}                          prev={prev}/>
         </>
     )
 }
