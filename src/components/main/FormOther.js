@@ -7,6 +7,7 @@ import { ButtonGroup } from "@material-ui/core";
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
+import SuccessSnackBar from "./SuccessSnackBar";
 
 const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
 
@@ -29,6 +30,9 @@ const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
     width: "32rem",
     opacity: "0.3",
   }
+
+
+
   return (
     <div className={'card-form__step'} ref={ref}>
         <h1 style={{ margin: 0 }}>Other Info</h1>
@@ -59,6 +63,7 @@ const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
             </Button>
         </ButtonGroup>
 
+        <SuccessSnackBar open={activeStep === 3} setActiveStep={setActiveStep}/>
     </div>
   );
 };
