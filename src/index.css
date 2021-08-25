@@ -133,6 +133,7 @@ fieldset {
 
 .card-form__face {
   min-height: 30rem;
+  min-width: 15rem;
   font-size: 1rem;
   border-radius: 10px;
   padding: 1.5rem 3rem;

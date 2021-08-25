@@ -62,12 +62,9 @@ const FormFace = ({ face, next, prev }, ref) => {
 
   return (
     <div className={`card-form__face card-form--${face}`} ref={ref}>
-      <div>
-        <h1 style={{ marginTop: "0px" }}>Add a new Card</h1>
-        <h2 style={{ textAlign: "center" }}>
+        <h1 style={{ marginTop: 0 }}>
           {face.charAt(0) + face.toLowerCase().slice(1)}
-        </h2>
-      </div>
+        </h1>
 
       {fields.length !== 0 ? (
         <div class="fields-container">
