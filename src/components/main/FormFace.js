@@ -66,7 +66,7 @@ const FormFace = ({ face, next, prev }, ref) => {
         </h1>
 
       {fields.length !== 0 ? (
-        <div class="fields-container">
+        <div className="fields-container">
           {fields.map((field) => {
             if (field.type === FIELD_TYPE.MATH) {
               console.log("math");
@@ -90,7 +90,7 @@ const FormFace = ({ face, next, prev }, ref) => {
         ""
       )}
 
-      <div class="card-form__face__prompt-buttons-container">
+      <div className="card-form__face__prompt-buttons-container">
         <Button
           variant="contained"
           color="primary"
