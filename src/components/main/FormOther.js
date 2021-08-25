@@ -14,10 +14,16 @@ const FormOther = ({ prev }, ref) => {
 
   }
 
+  const hrStyle = {
+    width: "32rem",
+    opacity: "0.3",
+  }
   return (
     <div className={'card-form__step'} ref={ref}>
-        <h1 style={{ marginTop: 0 }}>Other Info</h1>
+        <h1 style={{ margin: 0 }}>Other Info</h1>
+        <hr style={hrStyle}/>
         <DifficultyLevels />
+        <hr style={hrStyle}/>
         <TopicTags />
         <ButtonGroup>
             <Button

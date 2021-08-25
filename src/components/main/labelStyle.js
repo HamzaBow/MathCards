@@ -5,7 +5,7 @@ export const labelStyle = {
 
     marginRight: "auto",
     marginLeft: "auto",
-    marginBottom: "1.5rem",
+    marginBottom: "1rem",
 
     color: "rgba(0, 0, 0, 0.7)",
 }

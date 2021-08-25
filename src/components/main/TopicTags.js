@@ -44,7 +44,7 @@ export default function TopicTags() {
         /> */}
         <Autocomplete
           multiple
-          id="tags-standard"
+          id="tags-outlined"
           options={tags.map((option) => option.title)}
           defaultValue={[tags[5].title]}
           // freeSolo
