@@ -3,7 +3,7 @@ import FormFace from './FormFace'
 import FormOther from './FormOther'
 
 import CardFormHeader from './CardFormHeader'
-import HorizontalLabelPositionBelowStepper from './Stepper'
+import CardFormStepper from './CardFormStepper'
 
 const CardForm = () => {
 
@@ -88,7 +88,7 @@ const CardForm = () => {
             <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
             <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep} />
             <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}}>
-                <HorizontalLabelPositionBelowStepper activeStep={activeStep} />
+                <CardFormStepper activeStep={activeStep} />
             </div>
         </>
     )

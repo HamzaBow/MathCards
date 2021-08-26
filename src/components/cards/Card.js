@@ -1,5 +1,5 @@
 import React from 'react'
-import { addStyles, StaticMathField } from "react-mathquill"
+import { StaticMathField } from "react-mathquill"
 import { CARD_LAYOUT, CARD_SIZE } from '../../Constants'; 
 import { ACTIONS, COLORS } from "../../Constants"
 import { BsFillCaretDownFill } from "react-icons/bs"
