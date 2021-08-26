@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Main from "./components/main/Main";
 import Footer from "./components/Footer";
 
-import DarkUnderlay from "./components/main/DarkUnderlay";
+import Overlay from "./components/main/Overlay";
 import Maincard from "./components/main/Maincard";
 import CardForm from "./components/main/CardForm";
 
@@ -56,7 +56,7 @@ function App() {
           if (display.mainCard && !display.cardForm) {
             return (
               <>
-                <DarkUnderlay display={display} setDisplay={setDisplay} />
+                <Overlay display={display} setDisplay={setDisplay} />
                 <Maincard chosenCard={chosenCard} />
               </>
             )
@@ -65,7 +65,7 @@ function App() {
           if (!display.mainCard && display.cardForm) {
             return (
               <>
-                <DarkUnderlay display={display} setDisplay={setDisplay} />
+                <Overlay display={display} setDisplay={setDisplay} />
                 <CardForm />
               </>
             )
