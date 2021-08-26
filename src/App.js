@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Main from "./components/main/Main";
 import Footer from "./components/Footer";
 
-import Overlay from "./components/main/Overlay";
+import Overlay from "./components/utilities/Overlay";
 import Maincard from "./components/main/Maincard";
 import CardForm from "./components/main/CardForm";
 
