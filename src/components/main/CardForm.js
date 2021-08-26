@@ -88,7 +88,7 @@ const CardForm = ( { setDisplay} ) => {
             <CardFormHeader />
             <FormFace  ref={front} face="front" next={next} />
             <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
-            <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep} />
+            <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep} setDisplay={setDisplay} />
             <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}}>
                 <CardFormStepper activeStep={activeStep} />
             </div>

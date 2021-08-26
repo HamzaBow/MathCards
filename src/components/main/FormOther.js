@@ -8,14 +8,28 @@ import { ButtonGroup } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 import SuccessSnackBar from "./SuccessSnackBar";
+import { useState } from "react";
 
-const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
+const FormOther = ({ prev, activeStep, setActiveStep, setDisplay }, ref) => {
 
+  // const save = () => {
+  //   if(activeStep !== 3){
+  //     setActiveStep(prevStep => prevStep + 1)
+  //   }
+  // }
+
+  const [saveDisabled, setSaveDisabled] = useState(false);
   const save = () => {
     if(activeStep !== 3){
       setActiveStep(prevStep => prevStep + 1)
+      setSaveDisabled(true);
+      setTimeout(() => {
+        setDisplay({ mainCard: false, cardForm: false })
+      }, 3000)
+      return;
     }
   }
+
   const previous = () => {
     prev()
     if(activeStep === 3){
@@ -58,6 +72,7 @@ const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
               color="primary"
               style={{ alignSelf: "end" }}
               onClick={() => save()}
+              disabled={saveDisabled}
             >
               save
             </Button>
