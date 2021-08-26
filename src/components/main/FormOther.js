@@ -15,11 +15,16 @@ const FormOther = ({ prev, activeStep, setActiveStep, setDisplay }, ref) => {
   const [saveDisabled, setSaveDisabled] = useState(false);
   const save = () => {
     if(activeStep !== 3){
-      setActiveStep(prevStep => prevStep + 1)
       setSaveDisabled(true);
+
+      setTimeout(() => {
+        setActiveStep(prevStep => prevStep + 1)
+      }, 1500)
+
       setTimeout(() => {
         setDisplay({ mainCard: false, cardForm: false })
-      }, 3000)
+      }, 4000)
+
       return;
     }
     throw new RangeError("activeStep is 3 !!!. It should have the value 2 in this step.")
