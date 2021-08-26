@@ -1,5 +1,5 @@
 // const DarkBackGr = ({ showAllCards, darkBgActive }) => {
-const Overlay = ({ display, setDisplay }) => {
+const Overlay = ({ setDisplay }) => {
   const darkBgStyle = {
     position: "fixed",
     top: "0px",

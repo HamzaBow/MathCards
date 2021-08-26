@@ -4,8 +4,9 @@ import FormOther from './FormOther'
 
 import CardFormHeader from './CardFormHeader'
 import CardFormStepper from './CardFormStepper'
+import Overlay from '../utilities/Overlay'
 
-const CardForm = () => {
+const CardForm = ( { setDisplay} ) => {
 
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
     const [formState, setFormState] = useState({
@@ -16,7 +17,7 @@ const CardForm = () => {
 
     const front = useRef()
     const back = useRef()
-    const other = useRef()
+    const other = useRef()  // other is the last form where the user adds tags and difficulty levels to the new card.
 
     const [activeStep, setActiveStep] = React.useState(0);
 
@@ -83,6 +84,7 @@ const CardForm = () => {
 
     return (
         <>
+            <Overlay setDisplay={setDisplay} />
             <CardFormHeader />
             <FormFace  ref={front} face="front" next={next} />
             <FormFace  ref={back}  face="back"  next={next} prev={prev}/>

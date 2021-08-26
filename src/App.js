@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Main from "./components/main/Main";
 import Footer from "./components/Footer";
 
-import Overlay from "./components/utilities/Overlay";
 import Maincard from "./components/main/Maincard";
 import CardForm from "./components/main/CardForm";
 
@@ -53,30 +52,22 @@ function App() {
   };
 
   const conditionnallyRender = (display) => {
-          if (display.mainCard && !display.cardForm) {
-            return (
-              <>
-                <Overlay display={display} setDisplay={setDisplay} />
-                <Maincard chosenCard={chosenCard} />
-              </>
-            )
-          }
+    if (display.mainCard && !display.cardForm) {
+      return (
+        <Maincard chosenCard={chosenCard} setDisplay={setDisplay} />
+      );
+    }
 
-          if (!display.mainCard && display.cardForm) {
-            return (
-              <>
-                <Overlay display={display} setDisplay={setDisplay} />
-                <CardForm />
-              </>
-            )
-          }
+    if (!display.mainCard && display.cardForm) {
+      return <CardForm setDisplay={setDisplay} />;
+    }
 
-          if (display.mainCard && display.cardForm) {
-            throw new Error("display.mainCard and display.cardForm can't be both true")
-          }
-
-
-  }
+    if (display.mainCard && display.cardForm) {
+      throw new Error(
+        "display.mainCard and display.cardForm can't be both true"
+      );
+    }
+  };
 
   return (
     <div className="App" >

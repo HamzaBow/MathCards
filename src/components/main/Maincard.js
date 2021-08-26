@@ -1,10 +1,11 @@
 import { addStyles, StaticMathField } from "react-mathquill";
 import { useState, useEffect, useRef } from "react";
 import { HiLightBulb } from "react-icons/hi";
+import Overlay from "../utilities/Overlay"
 
 addStyles();
 
-const Maincard = ({ chosenCard }) => {
+const Maincard = ({ chosenCard, setDisplay }) => {
   const [frontDisplayed, setFrontDisplayed] = useState(true);
   const divToRotate = useRef();
 
@@ -31,6 +32,8 @@ const Maincard = ({ chosenCard }) => {
   };
 
   return (
+    <>
+    <Overlay setDisplay={setDisplay} />
     <div
       id="opened-card"
       className="container-item"
@@ -57,6 +60,7 @@ const Maincard = ({ chosenCard }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
