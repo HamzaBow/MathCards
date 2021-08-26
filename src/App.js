@@ -45,29 +45,18 @@ function App() {
     getCards();
   }, []);
 
+  useEffect(() => {
+    if(display.cardForm && display.mainCard){
+      throw new Error('display.cardForm and display.mainCard cannot be both true.')
+    }
+  }, [display])
+
   const fetchCards = async () => {
     const res = await fetch("http://localhost:5000/cards");
     const data = await res.json();
     return data;
   };
 
-  const conditionnallyRender = (display) => {
-    if (display.mainCard && !display.cardForm) {
-      return (
-        <Maincard chosenCard={chosenCard} setDisplay={setDisplay} />
-      );
-    }
-
-    if (!display.mainCard && display.cardForm) {
-      return <CardForm setDisplay={setDisplay} />;
-    }
-
-    if (display.mainCard && display.cardForm) {
-      throw new Error(
-        "display.mainCard and display.cardForm can't be both true"
-      );
-    }
-  };
 
   return (
     <div className="App" >
@@ -75,7 +64,13 @@ function App() {
         <Header />
         <Main setDisplay={setDisplay} cards={cards} dispatch={dispatch}/>
         <Footer />
-        {conditionnallyRender(display)}
+
+          {(display.mainCard && !display.cardForm) && 
+              <Maincard chosenCard={chosenCard} setDisplay={setDisplay} />}
+
+          {(!display.mainCard && display.cardForm) &&
+              <CardForm setDisplay={setDisplay} />}
+
       </ThemeProvider>
     </div>
   );
