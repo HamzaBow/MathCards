@@ -4,6 +4,7 @@ import FormOther from './FormOther'
 
 import CardFormHeader from './CardFormHeader'
 import CardFormStepper from './CardFormStepper'
+import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
 
 const CardForm = () => {
@@ -14,6 +15,8 @@ const CardForm = () => {
         back: false,
         other: false,
     })
+
+    const [finished, setFinished] = useState(false);
 
     const front = useRef()
     const back = useRef()
@@ -85,13 +88,19 @@ const CardForm = () => {
     return (
         <>
             <Overlay />
-            <CardFormHeader />
-            <FormFace  ref={front} face="front" next={next} />
-            <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
-            <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep} />
-            <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}}>
-                <CardFormStepper activeStep={activeStep} />
-            </div>
+            { !finished ?
+            <>
+                <CardFormHeader />
+                <FormFace  ref={front} face="front" next={next} />
+                <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
+                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished}/>
+                <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}}>
+                    <CardFormStepper activeStep={activeStep}  />
+                </div>
+            </>
+            :
+            <SuccessSnackBar />
+            }
         </>
     )
 }

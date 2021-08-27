@@ -7,10 +7,9 @@ import { ButtonGroup } from "@material-ui/core";
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
-import SuccessSnackBar from "./SuccessSnackBar";
 import { useState } from "react";
 import { useHistory } from "react-router";
-const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
+const FormOther = ({ prev, activeStep, setActiveStep, setFinished }, ref) => {
 
   const [saveDisabled, setSaveDisabled] = useState(false);
   const history = useHistory();
@@ -23,12 +22,11 @@ const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
       setSaveDisabled(true);
       
       setTimeout(() => {
-        setActiveStep(prevStep => prevStep + 1)
-      }, 1500)
+        // setActiveStep(prevStep => prevStep + 1)
+        // history.push('/');
+        setFinished(true);
+      }, 2000)
       
-      setTimeout(() => {
-        history.push('/');
-      }, 4000)
 
       return;
     }
@@ -83,7 +81,6 @@ const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
             </Button>
         </ButtonGroup>
 
-        <SuccessSnackBar open={activeStep === 3} setActiveStep={setActiveStep}/>
     </div>
   );
 };

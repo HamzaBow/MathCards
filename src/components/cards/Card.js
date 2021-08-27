@@ -63,7 +63,7 @@ const Card = ({card, size, layout, dimentions, flippable, dispatch}) => {
     // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
     const displayMainCard = (id) => {
         dispatch({ type: ACTIONS.SET_MAIN_CARD, payload: { cardId: card.id } })
-        history.push('/maincard')
+        history.push(`/maincard/${card.id}`)
         
     }
     return (
