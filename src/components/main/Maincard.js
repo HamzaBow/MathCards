@@ -18,6 +18,13 @@ const Maincard = ({ chosenCard }) => {
     }
   }, [frontDisplayed]);
 
+  useEffect(() => {
+    document.title = 'Main Card';
+    return () => {
+      document.title = 'Math Cards';
+    }
+  })
+
   // TODO: useEffect( ... , []) which is on mount, press <space> flips the card, addEventListener
 
   // const mainCardStyle = {

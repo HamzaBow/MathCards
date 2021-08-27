@@ -7,7 +7,9 @@ import CardFormStepper from './CardFormStepper'
 import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
 
-const CardForm = () => {
+const CardForm = ( { operationType } ) => {
+
+    operationType = operationType ?? "create";
 
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
     const [formState, setFormState] = useState({
@@ -27,6 +29,17 @@ const CardForm = () => {
     useEffect(() => {
         front.current.style.transform = "translate(  -50%, -150vh )";
         front.current.style.animation = "transition: transform 0.2s ease-in-out";
+
+        if(operationType === 'create'){
+            document.title = 'New Card';
+        }
+        if(operationType === 'update'){
+            document.title = 'Update Card';
+        }
+
+        return () => {
+            document.title = 'Math Cards';
+        }
     },[])
 
     //TODO: FIXME: refactor the inside of this useEffect hook (probably requires refactoring the whole page)

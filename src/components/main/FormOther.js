@@ -8,11 +8,9 @@ import { ButtonGroup } from "@material-ui/core";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 import { useState } from "react";
-import { useHistory } from "react-router";
 const FormOther = ({ prev, activeStep, setActiveStep, setFinished }, ref) => {
 
   const [saveDisabled, setSaveDisabled] = useState(false);
-  const history = useHistory();
 
   if(activeStep === 3){
   }

@@ -11,7 +11,6 @@ import { ACTIONS } from "./Constants";
 import { ThemeProvider } from "./ThemeContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import { useHistory } from "react-router";
 
 
 export const ThemeContext = React.createContext();
@@ -22,8 +21,6 @@ function App() {
     mainCard: false,
     cardForm: false,
   });
-
-  // const history = useHistory();
 
   const [chosenCard, setChosenCard] = useState(false);
   const [cards, dispatch] = useReducer(reducer, []);
@@ -58,6 +55,7 @@ function App() {
       throw new Error('display.cardForm and display.mainCard cannot be both true.')
     }
   }, [display])
+
 
   const fetchCards = async () => {
     const res = await fetch("http://localhost:5000/cards");
