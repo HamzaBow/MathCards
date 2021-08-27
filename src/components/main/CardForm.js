@@ -29,6 +29,9 @@ const CardForm = ( { operationType } ) => {
     useEffect(() => {
         front.current.style.transform = "translate(  -50%, -150vh )";
         front.current.style.animation = "transition: transform 0.2s ease-in-out";
+    },[])
+
+    useEffect(() => {
 
         if(operationType === 'create'){
             document.title = 'New Card';
@@ -36,11 +39,10 @@ const CardForm = ( { operationType } ) => {
         if(operationType === 'update'){
             document.title = 'Update Card';
         }
-
         return () => {
             document.title = 'Math Cards';
         }
-    },[])
+    },[operationType])
 
     //TODO: FIXME: refactor the inside of this useEffect hook (probably requires refactoring the whole page)
     useEffect(() => {
