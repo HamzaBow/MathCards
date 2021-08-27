@@ -7,7 +7,7 @@ import { useTheme } from "../../ThemeContext"
 import { useHistory } from 'react-router';
 
 
-const Card = ({card, size, layout, dimentions, flippable, dispatch}) => {
+const Card = ({card, cardsDispatch, size, layout, dimentions, flippable}) => {
     const history = useHistory();
 
     const darkTheme = useTheme();
@@ -62,9 +62,7 @@ const Card = ({card, size, layout, dimentions, flippable, dispatch}) => {
 
     // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
     const displayMainCard = (id) => {
-        dispatch({ type: ACTIONS.SET_MAIN_CARD, payload: { cardId: card.id } })
         history.push(`/maincard/${card.id}`)
-        
     }
     return (
       <div
