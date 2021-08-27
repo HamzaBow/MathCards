@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { COLORS } from '../Constants';
 
-const NewCardButton = ({ setDisplay }) => {
+const NewCardButton = () => {
   const addButtonStyle = {
     width: "3rem",
     height: "3rem",
@@ -15,16 +15,6 @@ const NewCardButton = ({ setDisplay }) => {
   return (
     <div style={newCardContainerStyle}>
       <div>
-        {/* <button
-          className="btn-new-card-form"
-          onClick={() => setDisplay({ mainCard: false, cardForm: true })}
-        >
-          Add a New Card
-        </button> */}
-        {/* <BsFillPlusSquareFill style={addButtonStyle}
-          onClick={() => setDisplay({ mainCard: false, cardForm: true })}
-        /> */}
-
         <Link to='/cardform'>
           <BsFillPlusSquareFill style={addButtonStyle} />
         </Link>

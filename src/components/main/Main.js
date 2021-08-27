@@ -2,10 +2,10 @@ import React from "react";
 import NewCardButton from "../NewCardButton";
 import CardsList from "./CardsList";
 
-const Main = ({ setDisplay, cards, dispatch}) => {
+const Main = ({ cards, dispatch}) => {
   return (
     <main>
-      <NewCardButton setDisplay={setDisplay} />
+      <NewCardButton />
       <CardsList cards={cards} dispatch={dispatch} />
     </main>
   );
