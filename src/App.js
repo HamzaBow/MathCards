@@ -59,12 +59,13 @@ function App() {
             <ThemeProvider>
               <Header />
               <Main cards={cards} dispatch={dispatch} />
-              <Route path='/maincard' >
-                <Maincard chosenCard={chosenCard} />
+              
+              <Route path='/maincard/:id' >
+                <Maincard cards={cards} />
               </Route>
-
+             
               <Route path="/cardform" component={CardForm} />
-
+             
               <Footer />
             </ThemeProvider>
           </div>

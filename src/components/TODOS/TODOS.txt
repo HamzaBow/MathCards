@@ -77,3 +77,5 @@
 // TODO: add a "slide down from above" animation to CardForm's Header, and a "slide up from under screen" animation to CardForm's Footer(stepper).
 // TODO: when a user reaches the other info section. use NLP techniques to suggest tags to him, these tags should already be there when he reaches the OtherInfo section.
 // TODO: All functionalities in the app should be accessible using the keybaord. add a cool :focus effect on cards(this :focus effect shows which card is selected).
+// TODO: User must be able to sign in with their facebook accounts.
+// TODO: Either use PropTypes or switch all the code to typescript.

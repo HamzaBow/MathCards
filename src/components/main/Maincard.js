@@ -2,11 +2,16 @@ import { addStyles, StaticMathField } from "react-mathquill";
 import { useState, useEffect, useRef } from "react";
 import { HiLightBulb } from "react-icons/hi";
 import Overlay from "../utilities/Overlay";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 addStyles();
 
-const Maincard = ({ chosenCard }) => {
+const Maincard = ({ cards }) => {
+  const params = useParams();
+
+  const chosenCard = cards.find(card => card.id === params.id)
+
+
   const [frontDisplayed, setFrontDisplayed] = useState(true);
   const divToRotate = useRef();
 
