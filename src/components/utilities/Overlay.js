@@ -1,6 +1,8 @@
 // const DarkBackGr = ({ showAllCards, darkBgActive }) => {
-const Overlay = ({ setDisplay }) => {
-  const darkBgStyle = {
+import { Link } from "react-router-dom";
+
+const Overlay = () => {
+  const overlayStyle = {
     position: "fixed",
     top: "0px",
     right: "0px",
@@ -12,10 +14,9 @@ const Overlay = ({ setDisplay }) => {
     transition: "visibility 0.2s, opacity 0.2s linear",
   };
   return (
-    <div
-      style={darkBgStyle}
-      onClick={() => setDisplay({ mainCard: false, cardForm: false })}
-    ></div>
+    <Link to='/'>
+      <div style={overlayStyle}></div>
+    </Link>
   );
 };
 

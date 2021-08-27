@@ -6,7 +6,7 @@ import CardFormHeader from './CardFormHeader'
 import CardFormStepper from './CardFormStepper'
 import Overlay from '../utilities/Overlay'
 
-const CardForm = ( { setDisplay} ) => {
+const CardForm = () => {
 
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
     const [formState, setFormState] = useState({
@@ -84,11 +84,11 @@ const CardForm = ( { setDisplay} ) => {
 
     return (
         <>
-            <Overlay setDisplay={setDisplay} />
+            <Overlay />
             <CardFormHeader />
             <FormFace  ref={front} face="front" next={next} />
             <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
-            <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep} setDisplay={setDisplay} />
+            <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep} />
             <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}}>
                 <CardFormStepper activeStep={activeStep} />
             </div>

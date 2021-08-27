@@ -1,4 +1,6 @@
 import { BsFillPlusSquareFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom';
+
 import { COLORS } from '../Constants';
 
 const NewCardButton = ({ setDisplay }) => {
@@ -19,9 +21,13 @@ const NewCardButton = ({ setDisplay }) => {
         >
           Add a New Card
         </button> */}
-        <BsFillPlusSquareFill style={addButtonStyle}
+        {/* <BsFillPlusSquareFill style={addButtonStyle}
           onClick={() => setDisplay({ mainCard: false, cardForm: true })}
-        />
+        /> */}
+
+        <Link to='/cardform'>
+          <BsFillPlusSquareFill style={addButtonStyle} />
+        </Link>
       </div>
     </div>
   );

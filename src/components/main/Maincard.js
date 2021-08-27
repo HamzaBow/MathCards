@@ -1,11 +1,12 @@
 import { addStyles, StaticMathField } from "react-mathquill";
 import { useState, useEffect, useRef } from "react";
 import { HiLightBulb } from "react-icons/hi";
-import Overlay from "../utilities/Overlay"
+import Overlay from "../utilities/Overlay";
+// import { BrowserRouter as Router, Route } from "react-router-dom";
 
 addStyles();
 
-const Maincard = ({ chosenCard, setDisplay }) => {
+const Maincard = ({ chosenCard }) => {
   const [frontDisplayed, setFrontDisplayed] = useState(true);
   const divToRotate = useRef();
 
@@ -33,33 +34,33 @@ const Maincard = ({ chosenCard, setDisplay }) => {
 
   return (
     <>
-    <Overlay setDisplay={setDisplay} />
-    <div
-      id="opened-card"
-      className="container-item"
-      // style={mainCardStyle}
-      onClick={() => {
-        // setFrontIsShown((shown) => !shown);
-        setFrontDisplayed((displayed) => !displayed);
-      }}
-    >
-      <div ref={divToRotate} className="card">
-        <div className="front" >
-          <h3>{chosenCard.front.question}</h3>
-          <StaticMathField style={{ fontSize: "2rem" }}>
-            {chosenCard.front.formula}
-          </StaticMathField>
-        </div>
+      <Overlay />
+      <div
+        id="opened-card"
+        className="container-item"
+        // style={mainCardStyle}
+        onClick={() => {
+          // setFrontIsShown((shown) => !shown);
+          setFrontDisplayed((displayed) => !displayed);
+        }}
+      >
+        <div ref={divToRotate} className="card">
+          <div className="front">
+            <h3>{chosenCard.front.question}</h3>
+            <StaticMathField style={{ fontSize: "2rem" }}>
+              {chosenCard.front.formula}
+            </StaticMathField>
+          </div>
 
-        <div className="back" >
-          <HiLightBulb style={cardIconStyle} />
-          <StaticMathField style={{ fontSize: "2rem" }}>
-            {chosenCard.back.formula}
-          </StaticMathField>
-          <h3>{chosenCard.back.comment}</h3>
+          <div className="back">
+            <HiLightBulb style={cardIconStyle} />
+            <StaticMathField style={{ fontSize: "2rem" }}>
+              {chosenCard.back.formula}
+            </StaticMathField>
+            <h3>{chosenCard.back.comment}</h3>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

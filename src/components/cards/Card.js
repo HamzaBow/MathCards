@@ -4,9 +4,11 @@ import { CARD_LAYOUT, CARD_SIZE } from '../../Constants';
 import { ACTIONS, COLORS } from "../../Constants"
 import { BsFillCaretDownFill } from "react-icons/bs"
 import { useTheme } from "../../ThemeContext"
+import { useHistory } from 'react-router';
 
 
 const Card = ({card, size, layout, dimentions, flippable, dispatch}) => {
+    const history = useHistory();
 
     const darkTheme = useTheme();
 
@@ -61,6 +63,8 @@ const Card = ({card, size, layout, dimentions, flippable, dispatch}) => {
     // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
     const displayMainCard = (id) => {
         dispatch({ type: ACTIONS.SET_MAIN_CARD, payload: { cardId: card.id } })
+        history.push('/maincard')
+        
     }
     return (
       <div

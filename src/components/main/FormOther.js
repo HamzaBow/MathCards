@@ -9,20 +9,25 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 import SuccessSnackBar from "./SuccessSnackBar";
 import { useState } from "react";
-
-const FormOther = ({ prev, activeStep, setActiveStep, setDisplay }, ref) => {
+import { useHistory } from "react-router";
+const FormOther = ({ prev, activeStep, setActiveStep }, ref) => {
 
   const [saveDisabled, setSaveDisabled] = useState(false);
+  const history = useHistory();
+
+  if(activeStep === 3){
+  }
+
   const save = () => {
     if(activeStep !== 3){
       setSaveDisabled(true);
-
+      
       setTimeout(() => {
         setActiveStep(prevStep => prevStep + 1)
       }, 1500)
-
+      
       setTimeout(() => {
-        setDisplay({ mainCard: false, cardForm: false })
+        history.push('/');
       }, 4000)
 
       return;

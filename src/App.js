@@ -10,6 +10,10 @@ import CardForm from "./components/main/CardForm";
 import { ACTIONS } from "./Constants";
 import { ThemeProvider } from "./ThemeContext";
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+// import { useHistory } from "react-router";
+
+
 export const ThemeContext = React.createContext();
 
 function App() {
@@ -18,8 +22,12 @@ function App() {
     mainCard: false,
     cardForm: false,
   });
+
+  // const history = useHistory();
+
   const [chosenCard, setChosenCard] = useState(false);
-  const [cards, dispatch] = useReducer(reducer, [])
+  const [cards, dispatch] = useReducer(reducer, []);
+
   //*------------------------------------------------------------------------*
 
   function reducer(cards, action) {
@@ -29,7 +37,7 @@ function App() {
       //------------------------
       case ACTIONS.SET_MAIN_CARD:
         setChosenCard(cards.filter((card) => card.id === action.payload.cardId)[0]);
-        setDisplay({ mainCard: true, cardForm: false })
+        // setDisplay({ mainCard: true, cardForm: false })
         return cards;
       //------------------------
       default:
@@ -59,20 +67,30 @@ function App() {
 
 
   return (
-    <div className="App" >
-      <ThemeProvider>
-        <Header />
-        <Main setDisplay={setDisplay} cards={cards} dispatch={dispatch}/>
-        <Footer />
+    <Router>
+      <Route
+        path="/"
+        render={(props) => (
 
-          {(display.mainCard && !display.cardForm) && 
-              <Maincard chosenCard={chosenCard} setDisplay={setDisplay} />}
+          <div className="App">
+            <ThemeProvider>
+              <Header />
+              <Main setDisplay={setDisplay} cards={cards} dispatch={dispatch} />
 
-          {(!display.mainCard && display.cardForm) &&
-              <CardForm setDisplay={setDisplay} />}
+              {/* <Route path="/maincard" component={Maincard} /> */}
+              <Route path='/maincard' >
+                <Maincard chosenCard={chosenCard} />
+              </Route>
 
-      </ThemeProvider>
-    </div>
+              <Route path="/cardform" component={CardForm} />
+
+              <Footer />
+            </ThemeProvider>
+          </div>
+
+        )}
+      />
+    </Router>
   );
 }
 
