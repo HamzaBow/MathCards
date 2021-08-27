@@ -27,10 +27,6 @@ function App() {
       case ACTIONS.FETCH_CARDS:
         return action.payload.cards;
       //------------------------
-      case ACTIONS.SET_MAIN_CARD:
-        setChosenCard(cards.filter((card) => card.id === action.payload.cardId)[0]);
-        return cards;
-      //------------------------
       default:
         return cards;
     }
