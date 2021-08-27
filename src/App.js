@@ -57,7 +57,7 @@ function App() {
           <div className="App">
             <ThemeProvider>
               <Header />
-              <Main cardsDispatch={cardsDispatch} />              
+              <Main cards={cards} cardsDispatch={cardsDispatch} />              
 
               <Route path='/maincard/:id' >
                 <Maincard cards={cards} /> {/* ------------------------  Maincard */}

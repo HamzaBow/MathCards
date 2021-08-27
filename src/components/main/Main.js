@@ -6,7 +6,7 @@ const Main = ({ cards, cardsDispatch}) => {
   return (
     <main>
       <NewCardButton />
-      <CardsList cardsDispatch={cardsDispatch} />
+      <CardsList cards={cards} cardsDispatch={cardsDispatch} />
     </main>
   );
 };
