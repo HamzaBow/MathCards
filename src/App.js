@@ -16,10 +16,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 export const ThemeContext = React.createContext();
 
 function App() {
-  //*-------------------------------- States --------------------------------*
-  const [cards, cardsDispatch] = useReducer(cardsReducer, []);
 
-  //*------------------------------------------------------------------------*
+  // ----------------------------- CARDS -----------------------------
+  const [cards, cardsDispatch] = useReducer(cardsReducer, []);
 
   function cardsReducer(cards, action) {
     switch (action.type) {
@@ -30,7 +29,11 @@ function App() {
         return cards;
     }
   }
+  // --------------------------- END CARDS ---------------------------
 
+  
+
+  // *********************************************************************
   useEffect(() => {
     const getCards = async () => {
       const cardsFromServer = await fetchCards();
@@ -44,6 +47,7 @@ function App() {
     const data = await res.json();
     return data;
   };
+  // *********************************************************************
 
 
   return (
@@ -53,13 +57,13 @@ function App() {
           <div className="App">
             <ThemeProvider>
               <Header />
-              <Main cardsDispatch={cardsDispatch} />
-              
+              <Main cardsDispatch={cardsDispatch} />              
+
               <Route path='/maincard/:id' >
-                <Maincard cards={cards} />
+                <Maincard cards={cards} /> {/* ------------------------  Maincard */}
               </Route>
              
-              <Route path="/cardform" component={CardForm} />
+              <Route path="/cardform" component={CardForm} />  {/* ----  CardForm */}
              
               <Footer />
             </ThemeProvider>
