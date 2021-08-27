@@ -21,7 +21,7 @@ const SuccessSnackBar = () => {
   };
 
   return (
-      <Snackbar anchorOrigin={{ horizontal: "center", vertical: "top" }} open={open} autoHideDuration={4000} onClose={handleClose}>
+      <Snackbar anchorOrigin={{ horizontal: "center", vertical: "top" }} open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           Card Saved Successfully!
         </Alert>
