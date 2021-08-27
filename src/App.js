@@ -17,12 +17,11 @@ export const ThemeContext = React.createContext();
 
 function App() {
   //*-------------------------------- States --------------------------------*
-  const [chosenCard, setChosenCard] = useState(false);
-  const [cards, dispatch] = useReducer(reducer, []);
+  const [cards, cardsDispatch] = useReducer(cardsReducer, []);
 
   //*------------------------------------------------------------------------*
 
-  function reducer(cards, action) {
+  function cardsReducer(cards, action) {
     switch (action.type) {
       case ACTIONS.FETCH_CARDS:
         return action.payload.cards;
@@ -35,7 +34,7 @@ function App() {
   useEffect(() => {
     const getCards = async () => {
       const cardsFromServer = await fetchCards();
-      dispatch({ type: ACTIONS.FETCH_CARDS, payload: { cards: cardsFromServer } });
+      cardsDispatch({ type: ACTIONS.FETCH_CARDS, payload: { cards: cardsFromServer } });
     };
     getCards();
   }, []);
@@ -54,7 +53,7 @@ function App() {
           <div className="App">
             <ThemeProvider>
               <Header />
-              <Main cards={cards} dispatch={dispatch} />
+              <Main cardsDispatch={cardsDispatch} />
               
               <Route path='/maincard/:id' >
                 <Maincard cards={cards} />

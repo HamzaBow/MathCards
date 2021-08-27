@@ -2,11 +2,11 @@ import React from "react";
 import NewCardButton from "../NewCardButton";
 import CardsList from "./CardsList";
 
-const Main = ({ cards, dispatch}) => {
+const Main = ({ cards, cardsDispatch}) => {
   return (
     <main>
       <NewCardButton />
-      <CardsList cards={cards} dispatch={dispatch} />
+      <CardsList cardsDispatch={cardsDispatch} />
     </main>
   );
 };
