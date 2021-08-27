@@ -66,16 +66,12 @@ function App() {
 
   return (
     <Router>
-      <Route
-        path="/"
-        render={(props) => (
+      <Route path='/' >
 
           <div className="App">
             <ThemeProvider>
               <Header />
               <Main setDisplay={setDisplay} cards={cards} dispatch={dispatch} />
-
-              {/* <Route path="/maincard" component={Maincard} /> */}
               <Route path='/maincard' >
                 <Maincard chosenCard={chosenCard} />
               </Route>
@@ -86,8 +82,7 @@ function App() {
             </ThemeProvider>
           </div>
 
-        )}
-      />
+      </Route>
     </Router>
   );
 }
