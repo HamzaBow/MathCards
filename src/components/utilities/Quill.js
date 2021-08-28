@@ -1,8 +1,9 @@
 import ReactQuill from 'react-quill'
 import React from 'react'
 import 'react-quill/dist/quill.snow.css';
+import { CARD_FORM_ACTIONS } from '../../Constants';
 
-const Quill = () => {
+const Quill = ({ id, htmlContent, fieldsDispatch }) => {
 
     const quillContainerStyle = {
         width: '22rem',
@@ -17,7 +18,9 @@ const Quill = () => {
 
     return (
         <div style={quillContainerStyle} >
-            <ReactQuill theme="snow" style={quillStyle} />
+            <ReactQuill theme="snow" style={quillStyle} value={htmlContent} onChange={(htmlText) => {
+                fieldsDispatch({ type: CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT,
+                                 payload: {id: id, htmlContent: htmlText} })}} />
         </div>
     )
 }

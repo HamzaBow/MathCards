@@ -40,6 +40,14 @@ const FormFace = ({ face, next, prev }, ref) => {
           return field;
         })
 
+      case CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT:
+        return fields.map((field) => {
+          if(field.id === action.payload.id){
+            return { ...field, htmlContent: action.payload.htmlContent };
+          }
+          return field;
+        })
+
       default:
         return fields;
     }
@@ -96,7 +104,7 @@ const FormFace = ({ face, next, prev }, ref) => {
       {fields.length !== 0 && (
         <div className="fields-container">
           {fields.map((field, key) => {
-            if (field.type === FIELD_TYPE.MATH)
+            if (field.type === FIELD_TYPE.MATH){
               return (
                 <MathField
                   key={key}
@@ -105,9 +113,18 @@ const FormFace = ({ face, next, prev }, ref) => {
                   fieldsDispatch={fieldsDispatch}
                 />
               );
+            }
 
-            if (field.type === FIELD_TYPE.TEXT) return <Quill key={field.id} />;
-
+            if (field.type === FIELD_TYPE.TEXT){
+              return (
+                <Quill
+                  key={key}
+                  id={field.id}
+                  htmlContent={field.htmlContent}
+                  fieldsDispatch={fieldsDispatch} 
+                />
+              );
+            }
             if (
               field.type !== FIELD_TYPE.MATH &&
               field.type !== FIELD_TYPE.TEXT

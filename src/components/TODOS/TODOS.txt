@@ -79,3 +79,4 @@
 // TODO: All functionalities in the app should be accessible using the keybaord. add a cool :focus effect on cards(this :focus effect shows which card is selected).
 // TODO: User must be able to sign in with their facebook accounts.
 // TODO: Either use PropTypes or switch all the code to typescript.
+// TODO: when a user is writing some formula. pressing enter should insert a new MathField(mathquill) below and focus it ( as in desmos ).
