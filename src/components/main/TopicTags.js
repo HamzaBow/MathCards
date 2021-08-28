@@ -22,7 +22,6 @@ export default function TopicTags() {
   const classes = useStyles();
 
   const [tags, setTags] = useState([tagOptions[2].topic])
-  // console.log(ref);
 
   return (
     <FormControl component="fieldset">
