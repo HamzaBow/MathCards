@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useReducer } from 'react'
 import FormFace from './FormFace'
 import FormOther from './FormOther'
 
@@ -6,10 +6,63 @@ import CardFormHeader from './CardFormHeader'
 import CardFormStepper from './CardFormStepper'
 import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
+import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
 const CardForm = ( { operationType } ) => {
 
     operationType = operationType ?? "create";
+
+    // ******************************************* FIELDS *******************************************
+    function newField(id, fieldType) {
+        if (fieldType === FIELD_TYPE.TEXT) {
+        return {
+            id,
+            type: fieldType,
+            htmlContent: "",
+        };
+        }
+
+        if (fieldType === FIELD_TYPE.MATH) {
+        return {
+            id,
+            type: fieldType,
+            latex: "",
+        };
+        }
+    }
+
+    function fieldsReducer(fields, action) {
+        switch (action.type) {
+        case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
+            return [...fields, newField(action.payload.id, FIELD_TYPE.TEXT)];
+
+        case CARD_FORM_ACTIONS.ADD_MATH_QUILL:
+            return [...fields, newField(action.payload.id, FIELD_TYPE.MATH)];
+
+        case CARD_FORM_ACTIONS.UPDATE_LATEX:
+            return fields.map((field) => {
+            if(field.id === action.payload.id){
+                return { ...field, latex: action.payload.latex };
+            }
+            return field;
+            })
+
+        case CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT:
+            return fields.map((field) => {
+            if(field.id === action.payload.id){
+                return { ...field, htmlContent: action.payload.htmlContent };
+            }
+            return field;
+            })
+
+        default:
+            return fields;
+        }
+    }
+
+    const [fields, fieldsDispatch] = useReducer(fieldsReducer, []);
+
+    // ****************************************** END FIELDS ****************************************
 
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
     const [formState, setFormState] = useState({
@@ -106,10 +159,10 @@ const CardForm = ( { operationType } ) => {
             { !finished ?
             <>
                 <CardFormHeader />
-                <FormFace  ref={front} face="front" next={next} />
-                <FormFace  ref={back}  face="back"  next={next} prev={prev}/>
-                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished}/>
-                <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}}>
+                <FormFace  ref={front} face="front" next={next}             fields={fields} fieldsDispatch={fieldsDispatch} />
+                <FormFace  ref={back}  face="back"  next={next} prev={prev} fields={fields} fieldsDispatch={fieldsDispatch} />
+                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} />
+                <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}} >
                     <CardFormStepper activeStep={activeStep}  />
                 </div>
             </>
