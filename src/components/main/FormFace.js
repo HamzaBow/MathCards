@@ -133,6 +133,7 @@ const FormFace = ({ face, next, prev }, ref) => {
                 "type of the field should be either text or math"
               );
             }
+            return <></>;
           })}
         </div>
       )}
