@@ -1,9 +1,9 @@
 import React from "react";
+import { useReducer, useState } from "react";
 
 import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
-import CustomMathField from "../utilities/CustomMathField";
-import { useReducer, useState } from "react";
+import MathField from "../utilities/MathField";
 import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
 import { Button } from "@material-ui/core"
@@ -70,7 +70,7 @@ const FormFace = ({ face, next, prev }, ref) => {
           {fields.map((field) => {
             if (field.type === FIELD_TYPE.MATH) {
               return (
-                <CustomMathField
+                <MathField
                   field={"front-formula"}
                   latexFormula={"front-formula-latex"}
                 />

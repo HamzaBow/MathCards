@@ -5,7 +5,7 @@ import { addStyles, EditableMathField } from "react-mathquill";
 // you can skip this, if you want to do that by yourself.
 addStyles();
 
-const CustomMathField = ({ field, latexFormula }) => {
+const MathField = ({ field, latexFormula }) => {
   const [latex, setLatex] = useState("");
 
   const mathFieldStyle = {
@@ -33,4 +33,4 @@ const CustomMathField = ({ field, latexFormula }) => {
   );
 };
 
-export default CustomMathField;
+export default MathField;
