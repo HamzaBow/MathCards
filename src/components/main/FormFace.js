@@ -19,26 +19,58 @@ import TextFormatIcon from '@material-ui/icons/TextFormat';
 addStyles();
 
 const FormFace = ({ face, next, prev }, ref) => {
-
   face = face ?? "front";
 
-  const [fields, dispatch] = useReducer(reducer, []);
-  const [prompFieldType, setPromptFieldType] = useState(false);
+  // const [faceData, setFaceData] = useState([]);
 
-  function newField(fieldType) {
-    return {
-      type: fieldType,
-    };
-  }
-
+  // **************************** FIELDS ****************************
   function reducer(fields, action) {
     switch (action.type) {
       case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
-        return [...fields, newField(FIELD_TYPE.TEXT)];
+        return [...fields, newField(action.payload.id, FIELD_TYPE.TEXT)];
+
       case CARD_FORM_ACTIONS.ADD_MATH_QUILL:
-        return [...fields, newField(FIELD_TYPE.MATH)];
+        return [...fields, newField(action.payload.id, FIELD_TYPE.MATH)];
+
+      case CARD_FORM_ACTIONS.UPDATE_LATEX:
+        // console.clear();
+        // console.dir(action.payload);
+        // console.dir([...fields.filter((field) => field.id !== action.payload.id),  {...field, latex: action.payload.latex } ])
+        // return fields;
+        // return [...fields.filter((field) => field.id !== action.payload.id),  {...field, latex: action.payload.latex } ]
+        return fields.map((field) => {
+          if(field.id === action.payload.id){
+            return { ...field, latex: action.payload.latex };
+          }
+          return field;
+        })
+
       default:
         return fields;
+    }
+  }
+
+  const [fields, dispatch] = useReducer(reducer, []);
+  // *************************** END FIELDS *************************
+
+
+  const [prompFieldType, setPromptFieldType] = useState(false);
+
+  function newField(id, fieldType) {
+    if (fieldType === FIELD_TYPE.TEXT) {
+      return {
+        id,
+        type: fieldType,
+        htmlContent: "",
+      };
+    }
+
+    if (fieldType === FIELD_TYPE.MATH) {
+      return {
+        id,
+        type: fieldType,
+        latex: "",
+      };
     }
   }
 
@@ -52,40 +84,45 @@ const FormFace = ({ face, next, prev }, ref) => {
 
   const addTextQuill = () => {
     togglePromptFieldType();
-    dispatch({ type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL });
+    dispatch({ type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL, payload: { id: Date.now() } });
   };
 
   const addMathQuill = () => {
     togglePromptFieldType();
-    dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL });
+    dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL, payload: { id: Date.now() } });
   };
-  return (
-    <div className={'card-form__step'} ref={ref}>
-        <h1 style={{ marginTop: 0 }}>
-          {face.charAt(0) + face.toLowerCase().slice(1)}
-        </h1>
 
-      {fields.length !== 0 ? (
+  return (
+    <div className={"card-form__step"} ref={ref}>
+      <h1 style={{ marginTop: 0 }}>
+        {face.charAt(0) + face.toLowerCase().slice(1)}
+      </h1>
+
+      {fields.length !== 0 && (
         <div className="fields-container">
-          {fields.map((field) => {
-            if (field.type === FIELD_TYPE.MATH) {
+          {fields.map((field, key) => {
+            if (field.type === FIELD_TYPE.MATH)
               return (
                 <MathField
-                  field={"front-formula"}
-                  latexFormula={"front-formula-latex"}
+                  key={key}
+                  id={field.id}
+                  latex={field.latex}
+                  dispatch={dispatch}
                 />
               );
+
+            if (field.type === FIELD_TYPE.TEXT) return <Quill key={field.id} />;
+
+            if (
+              field.type !== FIELD_TYPE.MATH &&
+              field.type !== FIELD_TYPE.TEXT
+            ) {
+              throw new TypeError(
+                "type of the field should be either text or math"
+              );
             }
-            if (field.type === FIELD_TYPE.TEXT) {
-              return <Quill />;
-            }
-            throw new TypeError(
-              "type of the field should be either text or math"
-            );
           })}
         </div>
-      ) : (
-        ""
       )}
 
       <div className="card-form__face__prompt-buttons-container">
@@ -145,16 +182,16 @@ const FormFace = ({ face, next, prev }, ref) => {
         ) : (
           ""
         )}
-          <Button
-            className="card-form__next-btn"
-            variant="outlined"
-            color="primary"
-            endIcon={<ArrowForwardIcon />}
-            style={{ alignSelf: "end" }}
-            onClick={() => next()}
-          >
-            next
-          </Button>
+        <Button
+          className="card-form__next-btn"
+          variant="outlined"
+          color="primary"
+          endIcon={<ArrowForwardIcon />}
+          style={{ alignSelf: "end" }}
+          onClick={() => next()}
+        >
+          next
+        </Button>
       </ButtonGroup>
     </div>
   );

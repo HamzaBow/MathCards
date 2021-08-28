@@ -9,6 +9,7 @@ export const ACTIONS = {
 export const CARD_FORM_ACTIONS = {
   ADD_TEXT_QUILL: "ADD_TEXT_QUILL",
   ADD_MATH_QUILL: "ADD_MATH_QUILL",
+  UPDATE_LATEX: "UPDATE_LATEX",
 }
 
 export const FIELD_TYPE = {
