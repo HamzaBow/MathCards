@@ -24,7 +24,7 @@ const FormFace = ({ face, next, prev }, ref) => {
   // const [faceData, setFaceData] = useState([]);
 
   // **************************** FIELDS ****************************
-  function reducer(fields, action) {
+  function fieldsReducer(fields, action) {
     switch (action.type) {
       case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
         return [...fields, newField(action.payload.id, FIELD_TYPE.TEXT)];
@@ -33,11 +33,6 @@ const FormFace = ({ face, next, prev }, ref) => {
         return [...fields, newField(action.payload.id, FIELD_TYPE.MATH)];
 
       case CARD_FORM_ACTIONS.UPDATE_LATEX:
-        // console.clear();
-        // console.dir(action.payload);
-        // console.dir([...fields.filter((field) => field.id !== action.payload.id),  {...field, latex: action.payload.latex } ])
-        // return fields;
-        // return [...fields.filter((field) => field.id !== action.payload.id),  {...field, latex: action.payload.latex } ]
         return fields.map((field) => {
           if(field.id === action.payload.id){
             return { ...field, latex: action.payload.latex };
@@ -50,7 +45,7 @@ const FormFace = ({ face, next, prev }, ref) => {
     }
   }
 
-  const [fields, dispatch] = useReducer(reducer, []);
+  const [fields, fieldsDispatch] = useReducer(fieldsReducer, []);
   // *************************** END FIELDS *************************
 
 
@@ -84,12 +79,12 @@ const FormFace = ({ face, next, prev }, ref) => {
 
   const addTextQuill = () => {
     togglePromptFieldType();
-    dispatch({ type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL, payload: { id: Date.now() } });
+    fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL, payload: { id: Date.now() } });
   };
 
   const addMathQuill = () => {
     togglePromptFieldType();
-    dispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL, payload: { id: Date.now() } });
+    fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL, payload: { id: Date.now() } });
   };
 
   return (
@@ -107,7 +102,7 @@ const FormFace = ({ face, next, prev }, ref) => {
                   key={key}
                   id={field.id}
                   latex={field.latex}
-                  dispatch={dispatch}
+                  fieldsDispatch={fieldsDispatch}
                 />
               );
 
