@@ -7,6 +7,7 @@ import { labelStyle } from "./labelStyle.js"
 
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
 export default function TopicTags() {
   const classes = useStyles();
 
+  const [tags, setTags] = useState([tagOptions[2].topic])
+  // console.log(ref);
+
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend" style={labelStyle}>
@@ -30,8 +34,7 @@ export default function TopicTags() {
         <Autocomplete
           multiple
           id="tags-outlined"
-          options={tags.map((option) => option.title)}
-          defaultValue={[tags[5].title]}
+          options={tagOptions.map((option) => option.topic)}
           // freeSolo
           renderTags={(value, getTagProps) =>
             value.map((option, index) => (
@@ -51,23 +54,28 @@ export default function TopicTags() {
               placeholder="Type here"
             />
           )}
+
+
+          value={tags}
+          
+          onChange={(event, value) => { setTags(value); console.log(tags) }}
         />
       </div>
     </FormControl>
   );
 }
 
-const tags = [
-  { title: 'Complex Analysis', year: 2016 },
-  { title: 'Abstract Algebra', year: 2009 },
-  { title: 'Group Theory', year: 1973 },
-  { title: 'Linear Algebra', year: 1968 },
-  { title: 'Calculus', year: 1952 },
-  { title: 'Multivariable Calculus', year: 1995 },
-  { title: 'Topology', year: 1948 },
-  { title: 'Category Theory', year: 1921 },
-  { title: 'Mathematical Physics', year: 2000 },
-  { title: 'Number Theory', year: 2009 },
-  { title: 'Combinatorics', year: 1975 },
+const tagOptions = [
+  { topic: 'Complex Analysis', year: 2016 },
+  { topic: 'Abstract Algebra', year: 2009 },
+  { topic: 'Group Theory', year: 1973 },
+  { topic: 'Linear Algebra', year: 1968 },
+  { topic: 'Calculus', year: 1952 },
+  { topic: 'Multivariable Calculus', year: 1995 },
+  { topic: 'Topology', year: 1948 },
+  { topic: 'Category Theory', year: 1921 },
+  { topic: 'Mathematical Physics', year: 2000 },
+  { topic: 'Number Theory', year: 2009 },
+  { topic: 'Combinatorics', year: 1975 },
 ];
 
