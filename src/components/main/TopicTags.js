@@ -27,21 +27,6 @@ export default function TopicTags() {
       </FormLabel>
       <div className={classes.root}>
         {/* TODO: FIXME: this Autocomplete tag causes the first translation of FormFront not to happend, figure out how to fix it. */}
-        {/* <Autocomplete color="primary"
-            multiple
-            id="tags-standard"
-            options={tags}
-            getOptionLabel={(option) => option.title}
-            // defaultValue={[tags[13]]}
-            renderInput={(params) => (
-            <TextField
-                {...params}
-                variant="standard"
-                // label=""
-                placeholder="Type here"
-            />
-            )}
-        /> */}
         <Autocomplete
           multiple
           id="tags-outlined"

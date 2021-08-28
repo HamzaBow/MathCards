@@ -23,7 +23,7 @@ const FormFace = ({ face, next, prev }, ref) => {
 
   // const [faceData, setFaceData] = useState([]);
 
-  // **************************** FIELDS ****************************
+  // ******************************************* FIELDS *******************************************
   function fieldsReducer(fields, action) {
     switch (action.type) {
       case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
@@ -54,7 +54,7 @@ const FormFace = ({ face, next, prev }, ref) => {
   }
 
   const [fields, fieldsDispatch] = useReducer(fieldsReducer, []);
-  // *************************** END FIELDS *************************
+  // ****************************************** END FIELDS ****************************************
 
 
   const [prompFieldType, setPromptFieldType] = useState(false);
