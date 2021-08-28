@@ -3,7 +3,7 @@ import React from 'react'
 import 'react-quill/dist/quill.snow.css';
 import { CARD_FORM_ACTIONS } from '../../Constants';
 
-const Quill = ({ id, htmlContent, fieldsDispatch }) => {
+const Quill = ({ id, htmlContent, fieldsDispatch, face }) => {
 
     const quillContainerStyle = {
         width: '22rem',
@@ -20,7 +20,7 @@ const Quill = ({ id, htmlContent, fieldsDispatch }) => {
         <div style={quillContainerStyle} >
             <ReactQuill theme="snow" style={quillStyle} value={htmlContent} onChange={(htmlText) => {
                 fieldsDispatch({ type: CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT,
-                                 payload: {id: id, htmlContent: htmlText} })}} />
+                                 payload: {id: id, htmlContent: htmlText, face: face} })}} />
         </div>
     )
 }

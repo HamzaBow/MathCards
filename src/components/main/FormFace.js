@@ -1,5 +1,5 @@
 import React from "react";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 
 import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
@@ -37,12 +37,12 @@ const FormFace = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
 
   const addTextQuill = () => {
     togglePromptFieldType();
-    fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL, payload: { id: Date.now() } });
+    fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL, payload: { id: Date.now(), face: face } });
   };
 
   const addMathQuill = () => {
     togglePromptFieldType();
-    fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL, payload: { id: Date.now() } });
+    fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL, payload: { id: Date.now(), face: face } });
   };
 
   return (
@@ -53,7 +53,7 @@ const FormFace = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
 
       {fields.length !== 0 && (
         <div className="fields-container">
-          {fields.map((field, key) => {
+          {fields[face].map((field, key) => {
             if (field.type === FIELD_TYPE.MATH){
               return (
                 <MathField
@@ -61,6 +61,7 @@ const FormFace = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
                   id={field.id}
                   latex={field.latex}
                   fieldsDispatch={fieldsDispatch}
+                  face={face}
                 />
               );
             }
@@ -72,6 +73,7 @@ const FormFace = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
                   id={field.id}
                   htmlContent={field.htmlContent}
                   fieldsDispatch={fieldsDispatch} 
+                  face={face}
                 />
               );
             }

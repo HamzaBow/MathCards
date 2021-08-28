@@ -5,17 +5,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { labelStyle } from "./labelStyle";
-import { useState } from "react";
 
 export const DifficultyLevels = ({ difficultyLevels, setDifficultyLevels }) => {
-
-
-
-  const [veryEasy, setVeryEasy] = useState(false);
-  const [easy,     setEasy]     = useState(false);
-  const [medium,   setMedium]   = useState(false);
-  const [hard,     setHard]     = useState(false);
-  const [veryHard, setVeryHard] = useState(false);
 
   return (
     <FormControl component="fieldset">

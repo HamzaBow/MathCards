@@ -32,35 +32,43 @@ const CardForm = ( { operationType } ) => {
     }
 
     function fieldsReducer(fields, action) {
+        let face = 'front';
+        let otherFace = 'back';
+
+        if(action.payload.face === 'back'){
+            face = 'back';
+            otherFace = 'front';
+        }
+
         switch (action.type) {
-        case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
-            return [...fields, newField(action.payload.id, FIELD_TYPE.TEXT)];
+            case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
+                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, FIELD_TYPE.TEXT)]};
 
-        case CARD_FORM_ACTIONS.ADD_MATH_QUILL:
-            return [...fields, newField(action.payload.id, FIELD_TYPE.MATH)];
+            case CARD_FORM_ACTIONS.ADD_MATH_QUILL:
+                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, FIELD_TYPE.MATH)]};
 
-        case CARD_FORM_ACTIONS.UPDATE_LATEX:
-            return fields.map((field) => {
-            if(field.id === action.payload.id){
-                return { ...field, latex: action.payload.latex };
-            }
-            return field;
-            })
+            case CARD_FORM_ACTIONS.UPDATE_LATEX:
+                return {[otherFace]: [...fields[otherFace]], [face]: fields[face].map((field) => {
+                if(field.id === action.payload.id){
+                    return { ...field, latex: action.payload.latex };
+                }
+                return field;
+                })}
 
-        case CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT:
-            return fields.map((field) => {
-            if(field.id === action.payload.id){
-                return { ...field, htmlContent: action.payload.htmlContent };
-            }
-            return field;
-            })
+            case CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT:
+                return {[otherFace]: fields[otherFace], [face]: fields[face].map((field) => {
+                if(field.id === action.payload.id){
+                    return { ...field, htmlContent: action.payload.htmlContent };
+                }
+                return field;
+                })}
 
-        default:
-            return fields;
+            default:
+                return fields;
         }
     }
 
-    const [fields, fieldsDispatch] = useReducer(fieldsReducer, []);
+    const [fields, fieldsDispatch] = useReducer(fieldsReducer, {front: [], back: []});
 
     // ****************************************** END FIELDS ****************************************
 

@@ -6,7 +6,7 @@ import { CARD_FORM_ACTIONS } from "../../Constants"
 // you can skip this, if you want to do that by yourself.
 addStyles();
 
-const MathField = ({ id, latex, fieldsDispatch }) => {
+const MathField = ({ id, latex, fieldsDispatch, face }) => {
 
   // const [latex, setLatex] = useState("")
 
@@ -26,7 +26,7 @@ const MathField = ({ id, latex, fieldsDispatch }) => {
         latex={latex}
         onChange={(mathField) => {
           // setLatex(mathField.latex());
-          fieldsDispatch({ type: CARD_FORM_ACTIONS.UPDATE_LATEX, payload: { id: id, latex: mathField.latex() }})
+          fieldsDispatch({ type: CARD_FORM_ACTIONS.UPDATE_LATEX, payload: { id: id, latex: mathField.latex(), face: face }})
         }}
       />
     </div>
