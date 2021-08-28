@@ -7,7 +7,9 @@ import FormLabel from "@material-ui/core/FormLabel";
 import { labelStyle } from "./labelStyle";
 import { useState } from "react";
 
-export const DifficultyLevels = () => {
+export const DifficultyLevels = ({ difficultyLevels, setDifficultyLevels }) => {
+
+
 
   const [veryEasy, setVeryEasy] = useState(false);
   const [easy,     setEasy]     = useState(false);
@@ -21,31 +23,31 @@ export const DifficultyLevels = () => {
       <FormGroup aria-label="position" row>
         <FormControlLabel
           // value="veryEasy"
-          control={<Checkbox color="primary"  checked={veryEasy} onChange={(event) => { setVeryEasy(event.target.checked) } } />}
+          control={<Checkbox color="primary"  checked={difficultyLevels.veryEasy} onChange={(event) => { setDifficultyLevels({...difficultyLevels, veryEasy: event.target.checked }) } } />}
           label="Very Easy"
           labelPlacement="bottom"
         />
         <FormControlLabel
           // value="easy"
-          control={<Checkbox color="primary"  checked={easy} onChange={(event) => { setEasy(event.target.checked) } } />}
+          control={<Checkbox color="primary"  checked={difficultyLevels.easy} onChange={(event) => { setDifficultyLevels({...difficultyLevels, easy: event.target.checked }) } } />}
           label="Easy"
           labelPlacement="bottom"
         />
         <FormControlLabel
           // value="medium"
-          control={<Checkbox color="primary"  checked={medium} onChange={(event) => { setMedium(event.target.checked) } } />}
+          control={<Checkbox color="primary"  checked={difficultyLevels.medium} onChange={(event) => { setDifficultyLevels({...difficultyLevels, medium: event.target.checked }) } } />}
           label="Medium"
           labelPlacement="bottom"
         />
         <FormControlLabel
           // value="hard"
-          control={<Checkbox color="primary"  checked={hard} onChange={(event) => { setHard(event.target.checked) } } />}
+          control={<Checkbox color="primary"  checked={difficultyLevels.hard} onChange={(event) => { setDifficultyLevels({...difficultyLevels, hard: event.target.checked }) } } />}
           label="Hard"
           labelPlacement="bottom"
         />
         <FormControlLabel
           // value="veryHard"
-          control={<Checkbox color="primary"  checked={veryHard} onChange={(event) => { setVeryHard(event.target.checked) } } />}
+          control={<Checkbox color="primary"  checked={difficultyLevels.veryHard} onChange={(event) => { setDifficultyLevels({...difficultyLevels, veryHard: event.target.checked }) } } />}
           label="Very Hard"
           labelPlacement="bottom"
         />

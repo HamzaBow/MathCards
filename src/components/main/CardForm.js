@@ -64,6 +64,12 @@ const CardForm = ( { operationType } ) => {
 
     // ****************************************** END FIELDS ****************************************
 
+
+
+    // ****************************************** Difficulty Level ****************************************
+    const [difficultyLevels, setDifficultyLevels] = useState({veryEasy: false, easy: false, medium: false, hard: false, veryHard: false})
+    // *************************************** End Difficulty Level ****************************************
+
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
     const [formState, setFormState] = useState({
         front: true,
@@ -161,7 +167,7 @@ const CardForm = ( { operationType } ) => {
                 <CardFormHeader />
                 <FormFace  ref={front} face="front" next={next}             fields={fields} fieldsDispatch={fieldsDispatch} />
                 <FormFace  ref={back}  face="back"  next={next} prev={prev} fields={fields} fieldsDispatch={fieldsDispatch} />
-                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} />
+                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels}/>
                 <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}} >
                     <CardFormStepper activeStep={activeStep}  />
                 </div>
