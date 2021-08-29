@@ -80,3 +80,32 @@
 // TODO: User must be able to sign in with their facebook accounts.
 // TODO: Either use PropTypes or switch all the code to typescript.
 // TODO: when a user is writing some formula. pressing enter should insert a new MathField(mathquill) below and focus it ( as in desmos ).
+// TODO: find how to use (listen) to <esc> (escape) keyboard press, 
+
+
+
+
+// there are concepts that require more than two faces(front and back) to be shown in a way that users can benefit from the most. 
+// that's why the app should introduce the concept of multiple cards in one card.
+// possible names: deck, pack, pcards.
+// right click on pack: distribute the cards over the empty space in the user's screen.
+// right click on lone card(not pack) put it back in the pack.
+
+
+
+	   /--------------------------
+	  /--------------------------|
+	 /--------------------------||
+         |                         |||
+         |                         |||
+         |                         |||
+         |                         |||
+         |                         |||
+         |                         |||
+         |                         |||
+         |                     1/5 ||/
+         ---------------------------/
+
+
+
+

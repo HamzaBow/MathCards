@@ -7,7 +7,6 @@ import { labelStyle } from "./labelStyle.js"
 
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,10 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopicTags() {
+export default function TopicTags({ tags, setTags}) {
   const classes = useStyles();
 
-  const [tags, setTags] = useState([tagOptions[2].topic])
 
   return (
     <FormControl component="fieldset">
@@ -57,7 +55,7 @@ export default function TopicTags() {
 
           value={tags}
           
-          onChange={(event, value) => { setTags(value); console.log(tags) }}
+          onChange={(event, value) => { setTags(value)}}
         />
       </div>
     </FormControl>

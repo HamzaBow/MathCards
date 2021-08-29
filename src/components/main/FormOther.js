@@ -9,7 +9,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 import { useState } from "react";
 
-const FormOther = ({ prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels }, ref) => {
+const FormOther = ({ prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels, tags, setTags, addCard }, ref) => {
 
   const [saveDisabled, setSaveDisabled] = useState(false);
 
@@ -24,6 +24,7 @@ const FormOther = ({ prev, activeStep, setActiveStep, setFinished, difficultyLev
         // setActiveStep(prevStep => prevStep + 1)
         // history.push('/');
         setFinished(true);
+        addCard();
       }, 2000)
       
 
@@ -55,7 +56,7 @@ const FormOther = ({ prev, activeStep, setActiveStep, setFinished, difficultyLev
         <hr style={hrStyle}/>
         <DifficultyLevels difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels}/>
         <hr style={hrStyle}/>
-        <TopicTags />
+        <TopicTags tags={tags} setTags={setTags} />
         <ButtonGroup>
             <Button
               className="card-form__next-btn"

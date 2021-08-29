@@ -18,17 +18,20 @@ export const ThemeContext = React.createContext();
 function App() {
 
   // ----------------------------- CARDS -----------------------------
-  const [cards, cardsDispatch] = useReducer(cardsReducer, []);
-
+  
   function cardsReducer(cards, action) {
     switch (action.type) {
       case ACTIONS.FETCH_CARDS:
         return action.payload.cards;
-      //------------------------
-      default:
-        return cards;
-    }
-  }
+        //------------------------
+        case ACTIONS.NEW_CARD_UPDATE:
+          return [...cards, action.payload.card]
+          default:
+            return cards;
+          }
+        }
+
+  const [cards, cardsDispatch] = useReducer(cardsReducer, []);
   // --------------------------- END CARDS ---------------------------
 
   
@@ -60,10 +63,12 @@ function App() {
               <Main cards={cards} cardsDispatch={cardsDispatch} />              
 
               <Route path='/maincard/:id' >
-                <Maincard cards={cards} /> {/* ------------------------  Maincard */}
+                <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
               </Route>
              
-              <Route path="/cardform" component={CardForm} />  {/* ----  CardForm */}
+              <Route path="/cardform" >
+                <CardForm operationType="create" cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
+              </Route>
              
               <Footer />
             </ThemeProvider>

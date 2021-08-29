@@ -7,7 +7,7 @@ import { useTheme } from "../../ThemeContext"
 import { useHistory } from 'react-router';
 
 
-const Card = ({card, cardsDispatch, size, layout, dimentions, flippable}) => {
+const Card = ({card, size, layout, dimentions, flippable}) => {
     const history = useHistory();
 
     const darkTheme = useTheme();
@@ -80,11 +80,26 @@ const Card = ({card, cardsDispatch, size, layout, dimentions, flippable}) => {
               visibility: "hidden",
             }}
           />
-          <div className="front">
+
+          {/* <div className="front">
             <h3>{card.front?.question}</h3>
             <StaticMathField style={{ fontSize: "2em" }}>
               {card.front?.formula}
             </StaticMathField>
+          </div> */}
+
+
+          <div className="front">
+            {card.front.map((field, key) => {
+                if(field.type === 'MATH'){
+                  return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
+                }
+                if(field.type === 'TEXT'){
+                  return <div key={key} dangerouslySetInnerHTML={{__html: field.htmlContent}}></div>
+                }
+                return <></>
+              })
+            }
           </div>
 
           {(() => {

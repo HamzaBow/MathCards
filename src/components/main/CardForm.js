@@ -6,9 +6,9 @@ import CardFormHeader from './CardFormHeader'
 import CardFormStepper from './CardFormStepper'
 import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
-import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
+import { ACTIONS, CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
-const CardForm = ( { operationType } ) => {
+const CardForm = ( { operationType, cardsDispatch } ) => {
 
     operationType = operationType ?? "create";
 
@@ -70,13 +70,15 @@ const CardForm = ( { operationType } ) => {
 
     const [fields, fieldsDispatch] = useReducer(fieldsReducer, {front: [], back: []});
 
-    // ****************************************** END FIELDS ****************************************
 
-
-
-    // ****************************************** Difficulty Level ****************************************
+    // ****************************************** Difficulty Levels ****************************************
     const [difficultyLevels, setDifficultyLevels] = useState({veryEasy: false, easy: false, medium: false, hard: false, veryHard: false})
-    // *************************************** End Difficulty Level ****************************************
+
+    // ************************************************* Tags *********************************************
+    const [tags, setTags] = useState([])
+
+
+    // *************************************** END OF NEW CARD-RELATED STATES ****************************************
 
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
     const [formState, setFormState] = useState({
@@ -166,6 +168,17 @@ const CardForm = ( { operationType } ) => {
         }
     }
 // className="card-form__face card-form--other"
+    const addCard = async () =>{
+        const res = await fetch('http://localhost:5000/cards',{
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({id: Date.now().toString(), ...fields, difficultyLevels, tags})
+        })
+        const data = await res.json()
+        cardsDispatch({type: ACTIONS.NEW_CARD_UPDATE, payload: { card: data}})
+    }
 
     return (
         <>
@@ -175,7 +188,7 @@ const CardForm = ( { operationType } ) => {
                 <CardFormHeader />
                 <FormFace  ref={front} face="front" next={next}             fields={fields} fieldsDispatch={fieldsDispatch} />
                 <FormFace  ref={back}  face="back"  next={next} prev={prev} fields={fields} fieldsDispatch={fieldsDispatch} />
-                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels}/>
+                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} tags={tags} setTags={setTags} addCard={addCard}/>
                 <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}} >
                     <CardFormStepper activeStep={activeStep}  />
                 </div>
