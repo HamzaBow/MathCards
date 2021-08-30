@@ -54,7 +54,7 @@ const Card = ({card, size, layout, dimentions, flippable}) => {
       width,
       height,
 
-      boxShadow: darkTheme ? "none" : "3px 5px 20px gray",
+      boxShadow: darkTheme ? "none" : "0.5px 1.5px 10px gray",
       color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK,
       backgroundColor: darkTheme ? COLORS.GRAY_DARKER : COLORS.GRAY_LIGHT,
     };
