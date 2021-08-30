@@ -75,8 +75,6 @@ const Card = ({card, size, layout, dimentions, flippable}) => {
             className="card-caret-down"
             style={{
               float: "right",
-              marginTop: "0.5rem",
-              marginRight: "1rem",
               visibility: "hidden",
             }}
           />

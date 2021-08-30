@@ -2,12 +2,10 @@
 // ********************           TODO          add a priority to each TODO down bellow and sort them by priority.
 
 
-// TODO: Add a CHANGELOG.md file.
 // TODO: Add a LICENCE file.
 // TODO: Start using git branches when working on a separate features
 // TODO: Start using git tags (semantic versionning)
 // TODO: git stash
-// TODO: start pushing changes to github
 // TODO: remove old junk commits, first commit should be the one where the code is clean enough (most junk removed)
 // TODO: use propTypes or start using using typescript in all components.
 // TODO: transitions effects when showing or hiding MainCard or NewCardForm;
@@ -108,4 +106,10 @@
 
 
 
+
+
+
+
+
+// TODO: add a scratchpad functionality. some users might want to guess the solution in the back of the card before flipping it. so they write some formula(or anything)in the scratch pad, flip the card and check if they got they right solution.
 
