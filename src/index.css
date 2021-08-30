@@ -178,9 +178,15 @@ fieldset {
 /*--------------------------------------------------------------------------------------*/
 
 /* MATH */
+
+.mq-math-mode {
+  display: block !important;
+}
+
 .mq-math-mode:hover {
   cursor: pointer;
 }
+
 
 /* IT SHOWS A SCROLL BAR WHEN MATH QUILL IS OVERFLOWN */
 /* .mq-root-block {
