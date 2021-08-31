@@ -163,7 +163,7 @@ fieldset {
 }
 
 .fields-container {
-  overflow: scroll;
+  overflow: auto;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
