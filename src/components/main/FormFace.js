@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
@@ -9,10 +8,8 @@ import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 import { Button } from "@material-ui/core"
 import { ButtonGroup } from "@material-ui/core";
 
-import {IoTriangleSharp} from "react-icons/io5"
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import AddIcon from '@material-ui/icons/Add';
 import FunctionsIcon from '@material-ui/icons/Functions';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 
