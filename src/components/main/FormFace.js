@@ -21,27 +21,11 @@ addStyles();
 const FormFace = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
   face = face ?? "front";
 
-  // const [faceData, setFaceData] = useState([]);
-
-
-
-  const [prompFieldType, setPromptFieldType] = useState(false);
-
-  const togglePromptFieldType = () => {
-    setPromptFieldType((prev) => !prev);
-  };
-
-  const addFieldHandle = () => {
-    togglePromptFieldType();
-  };
-
   const addTextQuill = () => {
-    togglePromptFieldType();
     fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL, payload: { id: Date.now(), face: face } });
   };
 
   const addMathQuill = () => {
-    togglePromptFieldType();
     fieldsDispatch({ type: CARD_FORM_ACTIONS.ADD_MATH_QUILL, payload: { id: Date.now(), face: face } });
   };
 
@@ -91,45 +75,26 @@ const FormFace = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
       )}
 
       <div className="card-form__face__prompt-buttons-container">
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<AddIcon />}
-          onClick={addFieldHandle}
-        >
-          New
-        </Button>
-        {(() => {
-          if (prompFieldType) {
-            return (
-              <>
-                <IoTriangleSharp
-                  color="#3f51b5"
-                  // backgroundColor=""
-                  style={{ marginBottom: "-2px" }}
-                />
-                <ButtonGroup className="card-form__face__field-prompt">
+              <div style={{display: "flex", flexDirection: "row", gap: "1rem"}}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                     onClick={addTextQuill}
                     startIcon={<TextFormatIcon />}
+                    // style={{display: "inline-block"}}
                   >
                     text
                   </Button>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                     onClick={addMathQuill}
                     startIcon={<FunctionsIcon />}
+                    // style={{display: "inline-block"}}
                   >
                     math
                   </Button>
-                </ButtonGroup>
-              </>
-            );
-          }
-        })()}
+              </div>
       </div>
 
       <ButtonGroup>
