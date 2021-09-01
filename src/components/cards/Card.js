@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StaticMathField } from "react-mathquill"
 import { CARD_LAYOUT, CARD_SIZE } from '../../Constants'; 
 import { COLORS } from "../../Constants"
@@ -9,6 +9,8 @@ import { useHistory } from 'react-router';
 
 const Card = ({card, size, layout, dimentions, flippable}) => {
     const history = useHistory();
+
+    const [caretMenuDisplay, setCaretMenuDisplay] = useState(false);
 
     const darkTheme = useTheme();
 
@@ -64,20 +66,29 @@ const Card = ({card, size, layout, dimentions, flippable}) => {
     const displayMainCard = (id) => {
         history.push(`/maincard/${card.id}`)
     }
+
+    const handleCaretClick = () => {
+        setCaretMenuDisplay((prev) => !prev)
+    }
     return (
       <div
         className="container-item"
         style={containerItemStyle}
-        onClick={() => displayMainCard(card.id)}
+        // onClick={() => displayMainCard(card.id)}
       >
         <div className="card">
-          <BsFillCaretDownFill
-            className="card-caret-down"
-            style={{
-              float: "right",
-              visibility: "hidden",
-            }}
-          />
+          <div 
+            style={{ 
+                float: "right",
+                visibility: "hidden",
+                transform: caretMenuDisplay ? "rotate(-90deg)" : "rotate(0deg)",
+                transition: "transform 0.2s linear",
+                display: "inline-block"}}
+            onClick={handleCaretClick} >
+
+            <BsFillCaretDownFill className="card-caret-down" />
+
+          </div>
 
           <div className="front">
             {card.front.map((field, key) => {
@@ -96,10 +107,16 @@ const Card = ({card, size, layout, dimentions, flippable}) => {
             if (flippable) {
               return (
                 <div className="face back">
-                  <h3>{card.back?.question}</h3>
-                  <StaticMathField style={{ fontSize: "2em" }}>
-                    {card.front?.formula}
-                  </StaticMathField>
+                  {card.back.map((field, key) => {
+                    if (field.type === 'MATH') {
+                      return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
+                    }
+                    if (field.type === 'TEXT') {
+                      return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent }}></div>
+                    }
+                    return <></>
+                  })
+                  }
                 </div>
               );
             }
