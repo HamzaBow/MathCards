@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StaticMathField } from "react-mathquill"
 import { CARD_LAYOUT, CARD_SIZE } from '../../Constants';
 import { COLORS } from "../../Constants"
