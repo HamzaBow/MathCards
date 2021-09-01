@@ -141,7 +141,7 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
         </div>
         <div>
           <Button
-            className='card-caret-down'
+            className='btn-more'
             ref={anchorRef}
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"

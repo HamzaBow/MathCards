@@ -41,19 +41,19 @@ body {
   cursor: pointer;
 }
 
-.card-caret-down {
+.btn-more {
   padding: 0.4rem;
   padding-bottom: 0.3rem;
   border-radius: 1rem;
   visibility: hidden;
 }
 
-.container-item:hover .card-caret-down {
+.container-item:hover .btn-more {
   visibility: visible !important;
 }
 
 
-.card-caret-down:hover {
+.btn-more:hover {
   background-color: hsl(0, 0%, 85%);
 }
 
