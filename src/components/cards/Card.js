@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 const Card = ({ card, size, layout, dimentions, flippable }) => {
   const history = useHistory();
 
-  const [caretMenuDisplay, setCaretMenuDisplay] = useState(false);
-
   const darkTheme = useTheme();
 
   // ********************* Smart Defaults.**********************
@@ -83,9 +81,6 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
     history.push(`/maincard/${card.id}`)
   }
 
-  const handleCaretClick = () => {
-    setCaretMenuDisplay((prev) => !prev)
-  }
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -127,17 +122,7 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
       style={containerItemStyle}
     >
       <div className="card">
-        <div
-          style={{
-            float: "right",
-            visibility: "hidden",
-            transition: "transform 0.2s linear",
-            display: "inline-block"
-          }}
-          onClick={handleCaretClick} >
 
-
-        </div>
         <div>
           <Button
             className='btn-more'
