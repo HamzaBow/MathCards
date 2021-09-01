@@ -79,14 +79,6 @@ const Card = ({card, size, layout, dimentions, flippable}) => {
             }}
           />
 
-          {/* <div className="front">
-            <h3>{card.front?.question}</h3>
-            <StaticMathField style={{ fontSize: "2em" }}>
-              {card.front?.formula}
-            </StaticMathField>
-          </div> */}
-
-
           <div className="front">
             {card.front.map((field, key) => {
                 if(field.type === 'MATH'){

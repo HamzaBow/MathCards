@@ -58,18 +58,28 @@ const Maincard = ({ cards }) => {
       >
         <div ref={divToRotate} className="card">
           <div className="front">
-            <h3>{chosenCard.front.question}</h3>
-            <StaticMathField style={{ fontSize: "2rem" }}>
-              {chosenCard.front.formula}
-            </StaticMathField>
+            {chosenCard.front.map((field, key) => {
+              if (field.type === 'MATH') {
+                return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
+              }
+              if (field.type === 'TEXT') {
+                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent }}></div>
+              }
+              return <></>
+            })}
           </div>
 
           <div className="back">
             <HiLightBulb style={cardIconStyle} />
-            <StaticMathField style={{ fontSize: "2rem" }}>
-              {chosenCard.back.formula}
-            </StaticMathField>
-            <h3>{chosenCard.back.comment}</h3>
+            {chosenCard.back.map((field, key) => {
+              if (field.type === 'MATH') {
+                return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
+              }
+              if (field.type === 'TEXT') {
+                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent }}></div>
+              }
+              return <></>
+            })}
           </div>
         </div>
       </div>
