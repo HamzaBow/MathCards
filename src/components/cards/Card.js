@@ -12,6 +12,9 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import { BiEditAlt } from 'react-icons/bi'
+import { AiOutlineDelete } from 'react-icons/ai'
+import { CgPlayListAdd } from 'react-icons/cg'
 
 
 const Card = ({ card, size, layout, dimentions, flippable }) => {
@@ -133,9 +136,9 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                      <MenuItem onClick={handleClose}>Change</MenuItem>
-                      <MenuItem onClick={handleClose}>Delete</MenuItem>
-                      <MenuItem onClick={handleClose}>Save to ...</MenuItem>
+                      <MenuItem onClick={handleClose}><BiEditAlt       style={{marginRight: '0.7rem'}} />Edit  </MenuItem>
+                      <MenuItem onClick={handleClose}><AiOutlineDelete style={{marginRight: '0.7rem'}} />Delete</MenuItem>
+                      <MenuItem onClick={handleClose}><CgPlayListAdd   style={{marginRight: '0.7rem'}} />Save to ...</MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
