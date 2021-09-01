@@ -10,8 +10,6 @@ import { ACTIONS, CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
 const CardForm = ( { operationType, cardsDispatch } ) => {
 
-    operationType = operationType ?? "create";
-
     // ******************************************* FIELDS *******************************************
     function newField(id, fieldType) {
         if (fieldType === FIELD_TYPE.TEXT) {
