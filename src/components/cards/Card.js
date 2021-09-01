@@ -125,7 +125,6 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
     <div
       className="container-item"
       style={containerItemStyle}
-    // onClick={() => displayMainCard(card.id)}
     >
       <div className="card">
         <div
@@ -169,7 +168,7 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
             )}
           </Popper>
         </div>
-        <div className="front">
+        <div className="front" onClick={() => displayMainCard(card.id)} >
           {card.front.map((field, key) => {
             if (field.type === 'MATH') {
               return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
