@@ -20,16 +20,12 @@ const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished
     if(activeStep !== 3){
       setSaveDisabled(true);
       
-      setTimeout(() => {
-        // setActiveStep(prevStep => prevStep + 1)
-        // history.push('/');
-        setFinished(true);
-        if(operationType === 'create'){
-          addCard();
-        } else {
-          updateCard();
-        }
-      }, 2000)
+      setFinished(true);
+      if(operationType === 'create'){
+        addCard();
+      } else {
+        updateCard();
+      }
       
 
       return;
