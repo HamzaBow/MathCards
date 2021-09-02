@@ -9,7 +9,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 import { useState } from "react";
 
-const FormOther = ({ prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels, tags, setTags, addCard }, ref) => {
+const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels, tags, setTags, addCard, updateCard }, ref) => {
 
   const [saveDisabled, setSaveDisabled] = useState(false);
 
@@ -24,7 +24,11 @@ const FormOther = ({ prev, activeStep, setActiveStep, setFinished, difficultyLev
         // setActiveStep(prevStep => prevStep + 1)
         // history.push('/');
         setFinished(true);
-        addCard();
+        if(operationType === 'create'){
+          addCard();
+        } else {
+          updateCard();
+        }
       }, 2000)
       
 
@@ -77,7 +81,7 @@ const FormOther = ({ prev, activeStep, setActiveStep, setFinished, difficultyLev
               onClick={() => save()}
               disabled={saveDisabled}
             >
-              save
+              {operationType === 'create' ? "save" : "save changes"}
             </Button>
         </ButtonGroup>
 

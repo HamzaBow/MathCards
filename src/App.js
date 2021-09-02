@@ -23,12 +23,21 @@ function App() {
     switch (action.type) {
       case CARDS_ACTIONS.FETCH_CARDS:
         return action.payload.cards;
-      //------------------------
-      case CARDS_ACTIONS.NEW_CARD_UPDATE:
+      //---------------------------------
+      case CARDS_ACTIONS.NEW_CARD:
         return [...cards, action.payload.card]
-      //------------------------
-      case CARDS_ACTIONS.REMOVE_CARD_LOCALLY:
+      //---------------------------------
+      case CARDS_ACTIONS.REMOVE_CARD:
         return cards.filter((card) => card.id !== action.payload.id)
+      //---------------------------------
+      case CARDS_ACTIONS.UPDATE_CARD:
+        return cards.map((card) => {
+          if(card.id === action.payload.data.id){
+            return action.payload.data;
+          }
+          return card;
+        })
+      //---------------------------------
       default:
         return cards;
     }

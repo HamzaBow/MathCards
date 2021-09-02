@@ -191,7 +191,19 @@ const CardForm = ( { operationType, cards, cardsDispatch } ) => {
             body: JSON.stringify({id: Date.now().toString(), ...fields, difficultyLevels, tags})
         })
         const data = await res.json()
-        cardsDispatch({type: CARDS_ACTIONS.NEW_CARD_UPDATE, payload: { card: data}})
+        cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card: data}})
+    }
+
+    const updateCard = async () =>{
+        const res = await fetch(`http://localhost:5000/cards/${params.id}`,{
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({id: params.id, ...fields, difficultyLevels, tags})
+        })
+        const data = await res.json()
+        cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { data: data }})
     }
 
     return (
@@ -202,7 +214,7 @@ const CardForm = ( { operationType, cards, cardsDispatch } ) => {
                 <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader>
                 <FormFace  ref={front} face="front" next={next}             fields={fields} fieldsDispatch={fieldsDispatch} />
                 <FormFace  ref={back}  face="back"  next={next} prev={prev} fields={fields} fieldsDispatch={fieldsDispatch} />
-                <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} tags={tags} setTags={setTags} addCard={addCard}/>
+                <FormOther operationType={operationType} ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} tags={tags} setTags={setTags} addCard={addCard} updateCard={updateCard}/>
                 <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}} >
                     <CardFormStepper activeStep={activeStep}  />
                 </div>

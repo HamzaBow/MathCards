@@ -107,7 +107,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
       method: 'DELETE'
     })
 
-    cardsDispatch({type: CARDS_ACTIONS.REMOVE_CARD_LOCALLY, payload: {id: card.id}})
+    cardsDispatch({type: CARDS_ACTIONS.REMOVE_CARD, payload: {id: card.id}})
 
   }
 
