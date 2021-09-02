@@ -15,10 +15,10 @@ const headerStyle = {
     alignItems: "center",
 
 }
-const CardFormHeader = () => {
+const CardFormHeader = ({children}) => {
     return (
         <h1 style={headerStyle}>
-            New Card
+            {children}
         </h1>
     )
 }

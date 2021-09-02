@@ -199,7 +199,7 @@ const CardForm = ( { operationType, cards, cardsDispatch } ) => {
             <Overlay />
             { !finished ?
             <>
-                <CardFormHeader />
+                <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader>
                 <FormFace  ref={front} face="front" next={next}             fields={fields} fieldsDispatch={fieldsDispatch} />
                 <FormFace  ref={back}  face="back"  next={next} prev={prev} fields={fields} fieldsDispatch={fieldsDispatch} />
                 <FormOther ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} tags={tags} setTags={setTags} addCard={addCard}/>
