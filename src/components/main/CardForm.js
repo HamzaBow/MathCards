@@ -188,7 +188,8 @@ const CardForm = ( { operationType, cards, cardsDispatch } ) => {
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({id: Date.now().toString(), ...fields, difficultyLevels, tags})
+            body: JSON.stringify({id: `${Date.now().toString()} - ${Math.random().toString().slice(2,6)}`, 
+                                  ...fields, difficultyLevels, tags})
         })
         const data = await res.json()
         cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card: data}})
