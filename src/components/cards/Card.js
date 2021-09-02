@@ -90,6 +90,14 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
     setOpen(false);
   };
 
+  const handleEdit = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
+    history.push(`/cardform/edit/${card.id}`);
+  };
+
   function handleListKeyDown(event) {
     if (event.key === 'Tab') {
       event.preventDefault();
@@ -136,10 +144,23 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                      <MenuItem onClick={handleClose}><BiEditAlt       style={{marginRight: '0.7rem'}} />Edit  </MenuItem>
-                      <MenuItem onClick={handleClose}><AiOutlineDelete style={{marginRight: '0.7rem'}} />Delete</MenuItem>
-                      <MenuItem onClick={handleClose}><CgPlayListAdd   style={{marginRight: '0.7rem'}} />Save to ...</MenuItem>
+
+                      <MenuItem onClick={handleEdit}>
+                        <BiEditAlt style={{ marginRight: '0.7rem' }} />
+                        Edit
+                      </MenuItem>
+
+                      <MenuItem onClick={handleClose}>
+                        <AiOutlineDelete style={{ marginRight: '0.7rem' }} />
+                        Delete
+                      </MenuItem>
+
+                      <MenuItem onClick={handleClose}>
+                        <CgPlayListAdd style={{ marginRight: '0.7rem' }} />
+                        Save to ...
+                      </MenuItem>
                     </MenuList>
+
                   </ClickAwayListener>
                 </Paper>
               </Grow>

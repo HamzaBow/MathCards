@@ -15,7 +15,7 @@ const NewCardButton = () => {
   return (
     <div style={newCardContainerStyle}>
       <div>
-        <Link to='/cardform'>
+        <Link to='/cardform/new'>
           <BsFillPlusSquareFill style={addButtonStyle} />
         </Link>
       </div>

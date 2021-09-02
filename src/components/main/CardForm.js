@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react'
+import { useParams } from 'react-router-dom'
 import FormFace from './FormFace'
 import FormOther from './FormOther'
 
@@ -8,7 +9,9 @@ import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
 import { ACTIONS, CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
-const CardForm = ( { operationType, cardsDispatch } ) => {
+const CardForm = ( { operationType, cards, cardsDispatch } ) => {
+
+    const params = useParams();
 
     // ******************************************* FIELDS *******************************************
     function newField(id, fieldType) {
@@ -60,13 +63,16 @@ const CardForm = ( { operationType, cardsDispatch } ) => {
                 }
                 return field;
                 })}
+            case CARD_FORM_ACTIONS.SET_FIELDS:
+                return action.payload.fields;
 
             default:
                 return fields;
         }
     }
 
-    const [fields, fieldsDispatch] = useReducer(fieldsReducer, {front: [], back: []});
+    const [fields, fieldsDispatch] = useReducer(fieldsReducer, {front: [], back: [], other: []});
+
 
 
     // ****************************************** Difficulty Levels ****************************************
@@ -77,6 +83,16 @@ const CardForm = ( { operationType, cardsDispatch } ) => {
 
 
     // *************************************** END OF NEW CARD-RELATED STATES ****************************************
+
+    useEffect(() => {
+        if(operationType === 'edit'){
+            const card = cards.find(card => card.id === params.id)
+            fieldsDispatch({type: CARD_FORM_ACTIONS.SET_FIELDS, payload: {fields: {front: card.front, back: card.back} }})
+            setDifficultyLevels(card.difficultyLevels)
+            setTags(card.tags)
+        }
+    }, [])
+
 
     //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
     const [formState, setFormState] = useState({
@@ -103,8 +119,8 @@ const CardForm = ( { operationType, cardsDispatch } ) => {
         if(operationType === 'create'){
             document.title = 'New Card';
         }
-        if(operationType === 'update'){
-            document.title = 'Update Card';
+        if(operationType === 'edit'){
+            document.title = 'Edit Card';
         }
         return () => {
             document.title = 'Math Cards';
