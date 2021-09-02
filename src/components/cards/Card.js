@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticMathField } from "react-mathquill"
-import { CARD_LAYOUT, CARD_SIZE } from '../../Constants';
+import { CARDS_ACTIONS, CARD_LAYOUT, CARD_SIZE } from '../../Constants';
 import { COLORS } from "../../Constants"
 import { MdMoreHoriz } from "react-icons/md"
 import { useTheme } from "../../ThemeContext"
@@ -17,7 +17,7 @@ import { AiOutlineDelete } from 'react-icons/ai'
 import { CgPlayListAdd } from 'react-icons/cg'
 
 
-const Card = ({ card, size, layout, dimentions, flippable }) => {
+const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
   const history = useHistory();
 
   const darkTheme = useTheme();
@@ -98,6 +98,19 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
     history.push(`/cardform/edit/${card.id}`);
   };
 
+  const handleDelete = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
+    fetch(`http://localhost:5000/cards/${card.id}`,{
+      method: 'DELETE'
+    })
+
+    cardsDispatch({type: CARDS_ACTIONS.REMOVE_CARD_LOCALLY, payload: {id: card.id}})
+
+  }
+
   function handleListKeyDown(event) {
     if (event.key === 'Tab') {
       event.preventDefault();
@@ -150,7 +163,7 @@ const Card = ({ card, size, layout, dimentions, flippable }) => {
                         Edit
                       </MenuItem>
 
-                      <MenuItem onClick={handleClose}>
+                      <MenuItem onClick={handleDelete}>
                         <AiOutlineDelete style={{ marginRight: '0.7rem' }} />
                         Delete
                       </MenuItem>

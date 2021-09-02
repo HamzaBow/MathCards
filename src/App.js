@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import Maincard from "./components/main/Maincard";
 import CardForm from "./components/main/CardForm";
 
-import { ACTIONS } from "./Constants";
+import { CARDS_ACTIONS } from "./Constants";
 import { ThemeProvider } from "./ThemeContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -21,12 +21,14 @@ function App() {
 
   function cardsReducer(cards, action) {
     switch (action.type) {
-      case ACTIONS.FETCH_CARDS:
+      case CARDS_ACTIONS.FETCH_CARDS:
         return action.payload.cards;
       //------------------------
-      case ACTIONS.NEW_CARD_UPDATE:
+      case CARDS_ACTIONS.NEW_CARD_UPDATE:
         return [...cards, action.payload.card]
       //------------------------
+      case CARDS_ACTIONS.REMOVE_CARD_LOCALLY:
+        return cards.filter((card) => card.id !== action.payload.id)
       default:
         return cards;
     }
@@ -41,7 +43,7 @@ function App() {
   useEffect(() => {
     const getCards = async () => {
       const cardsFromServer = await fetchCards();
-      cardsDispatch({ type: ACTIONS.FETCH_CARDS, payload: { cards: cardsFromServer } });
+      cardsDispatch({ type: CARDS_ACTIONS.FETCH_CARDS, payload: { cards: cardsFromServer } });
     };
     getCards();
   }, []);
