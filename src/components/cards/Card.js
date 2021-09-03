@@ -66,9 +66,10 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
 
     boxShadow: darkTheme ? "none" : "0.5px 1.5px 10px gray",
     color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK,
-    backgroundColor: darkTheme ? COLORS.GRAY_DARKER : COLORS.GRAY_LIGHT,
+    backgroundColor: darkTheme ? '#21262d' : COLORS.GRAY_LIGHT,
+    border: darkTheme ? '3px solid #30363d' : 'none',
   };
-
+// 
 
   // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
   const displayMainCard = (id) => {
