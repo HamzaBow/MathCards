@@ -3,6 +3,7 @@ import { BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
 import { COLORS } from "../Constants";
 import { useTheme, useThemeUpdate } from "../ThemeContext";
 import { useState } from "react";
+import SearchBar from "./SearchBar"
 
 const darkColor = '#21262d';
 
@@ -107,7 +108,7 @@ const Header = () => {
             </div>
 
             <div style={headerMiddleStyle}>
-                
+                <SearchBar />                
             </div>
 
             <div style={{ justifySelf: 'end' }}>
