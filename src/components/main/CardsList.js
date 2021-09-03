@@ -7,7 +7,7 @@ const CardsList = ({ cards, cardsDispatch }) => {
   //       White background (for white theme) all the way to the left & right edges of the viewport.
   const darkTheme = useTheme();
   const containerStyle = {
-    backgroundColor: darkTheme ? "black" : "white",
+    backgroundColor: darkTheme ? '#010409' : "#f0f2f5",
     color: darkTheme ? "white" : "black",
   };
 

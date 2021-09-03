@@ -26,7 +26,7 @@ const Maincard = ({ cards }) => {
   useEffect(() => {
     document.title = 'Main Card';
     return () => {
-      document.title = 'Math Cards';
+      document.title = 'MathCards';
     }
   })
 

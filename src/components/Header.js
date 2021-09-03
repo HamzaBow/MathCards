@@ -2,8 +2,9 @@ import { ImSigma } from "react-icons/im";
 import { BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
 import { COLORS } from "../Constants";
 import { useTheme, useThemeUpdate } from "../ThemeContext";
-import SearchBar from "material-ui-search-bar"
 import { useState } from "react";
+
+const darkColor = '#21262d';
 
 const Header = () => {
     const toggleTheme = useThemeUpdate()
@@ -12,10 +13,13 @@ const Header = () => {
     const [searchString, setSearchString] = useState('');
     const headerStyle = {
         fontFamily: "Roboto",
-        backgroundColor: darkTheme ? 'rgb(30, 30, 30)' : 'white', //COLORS.PRIMARY_LIGHT,
+        backgroundColor: darkTheme ? darkColor : 'white', //COLORS.PRIMARY_LIGHT,
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
         alignItems: 'center',
+
+        position: 'relative',
+        boxShadow: '0px 2px 10px 5px lightgray '
     }
 
     const headingStyle = {
@@ -74,6 +78,19 @@ const Header = () => {
         marginTop: "0.5rem",
         marginBottom: "0.5rem",
     }
+    const [searchDataSource, setSearchDataSource] = useState([
+        'Complex Analysis',
+        'Abstract Algebra',
+        'Group Theory',
+        'Linear Algebra',
+        'Calculus',
+        'Multivariable Calculus',
+        'Topology',
+        'Category Theory',
+        'Mathematical Physics',
+        'Number Theory',
+        'Combinatorics'
+    ])
 
     return (
         <header style={headerStyle}>
@@ -84,17 +101,13 @@ const Header = () => {
                     <span style={sigmaContainerStyle}>
                         <ImSigma style={SigmaIconStyle} />
                     </span>
-                    <h1 style={headingStyle} >Math Cards</h1>
+                    <h1 style={headingStyle} >MathCards</h1>
                 </div>
 
             </div>
 
             <div style={headerMiddleStyle}>
-                <SearchBar
-                    value={searchString}
-                    onChange={(newValue) => setSearchString(newValue)}
-                    // onRequestSearch={() => doSomethingWith(this.state.value)}
-                />
+                
             </div>
 
             <div style={{ justifySelf: 'end' }}>
@@ -102,7 +115,7 @@ const Header = () => {
                 <BsBellFill style={{ ...iconStyle, marginRight: '1rem' }} />
                 <BsGearFill style={{ ...iconStyle, marginRight: '1rem' }} />
             </div>
-        </header >
+       </header >
     )
 }
 export default Header

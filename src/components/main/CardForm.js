@@ -123,7 +123,7 @@ const CardForm = ( { operationType, cards, cardsDispatch } ) => {
             document.title = 'Edit Card';
         }
         return () => {
-            document.title = 'Math Cards';
+            document.title = 'MathCards';
         }
     },[operationType])
 
