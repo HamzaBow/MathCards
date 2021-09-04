@@ -1,9 +1,10 @@
 import { ImSigma } from "react-icons/im";
-import { BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
+import { BsFillPlusSquareFill, BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
 import { COLORS } from "../Constants";
 import { useTheme, useThemeUpdate } from "../ThemeContext";
 import { useState } from "react";
 import SearchBar from "./SearchBar"
+import { Link } from "react-router-dom";
 
 const darkColor = '#21262d';
 
@@ -114,9 +115,12 @@ const Header = () => {
             </div>
 
             <div style={{ justifySelf: 'end' }}>
-                <BsMoon     style={{ ...iconStyle, marginRight: '1rem' }} onClick={toggleTheme} />
-                <BsBellFill style={{ ...iconStyle, marginRight: '1rem' }} />
-                <BsGearFill style={{ ...iconStyle, marginRight: '1rem' }} />
+                <Link to='/cardform/new'>
+                    <BsFillPlusSquareFill style={{ ...iconStyle, marginRight: '1.5rem', borderRadius: '5px' }} />
+                </Link>
+                <BsMoon               style={{ ...iconStyle, marginRight: '1rem' }} onClick={toggleTheme} />
+                <BsBellFill           style={{ ...iconStyle, marginRight: '1rem' }} />
+                <BsGearFill           style={{ ...iconStyle, marginRight: '1rem' }} />
             </div>
        </header >
     )
