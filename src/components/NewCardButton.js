@@ -19,8 +19,7 @@ const NewCardButton = () => {
     width: "3rem",
     height: "3rem",
     color: COLORS.PRIMARY_DARK,
-    backgroundColor: "white",
-    borderRadius: "0.5rem",
+    
     cursor: "pointer"
   }
   return (

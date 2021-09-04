@@ -4,8 +4,13 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { IconButton } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
-
+import { useTheme } from './../ThemeContext'
 export default function SearchBar() {
+  const darkTheme = useTheme()
+
+  const searchIconStyle = {
+    color: darkTheme ? 'white' : 'inherit', 
+  }
   return (
     <div style={{ flexGrow: 1 }}>
       {/* <Autocomplete
@@ -36,7 +41,7 @@ export default function SearchBar() {
                 />
                 <IconButton size="small" style={{ borderRadius: "0", paddingLeft: '0.6rem', paddingRight: '0.6rem' }}>
                     {/* <Search style={{ width: "1rem", height: "1rem" }} /> */}
-                    <Search />
+                    <Search style={searchIconStyle}/>
                 </IconButton>
             </div>
         )}

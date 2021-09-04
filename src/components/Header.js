@@ -20,7 +20,7 @@ const Header = () => {
         alignItems: 'center',
 
         position: 'relative',
-        boxShadow: darkTheme ? 'none' : '0px 2px 10px 5px lightgray '
+        boxShadow: darkTheme ? 'none' : '0px -2px 10px 5px lightgray '
     }
 
     const headingStyle = {
