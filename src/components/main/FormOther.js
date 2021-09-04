@@ -30,20 +30,17 @@ const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished
 
   function getNewTags() {
     const newTags = tags.filter((tag) => !tagOptions.map((tagOption) => tagOption.tag).includes(tag))
-    console.log(`newTags`, newTags)
     return newTags
   }
 
   const saveNewTags = async (newTags) => {
     await Promise.all(newTags.map( async (tag) => {
-        const res = await fetch("http://localhost:5000/tagOptions", {
+        await fetch("http://localhost:5000/tagOptions", {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
         body: JSON.stringify({ id: `${Date.now().toString()}-${Math.random().toString().slice(2, 6)}`, tag: tag })})
-        const data = res.json();
-        console.log(`data`, data);
     }))
   }
 
