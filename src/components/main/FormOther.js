@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import DifficultyLevels from "./DifficultyLevels";
 
@@ -7,26 +7,65 @@ import { ButtonGroup } from "@material-ui/core";
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
-import { useState } from "react";
 
 const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels, tags, setTags, addCard, updateCard }, ref) => {
 
   const [saveDisabled, setSaveDisabled] = useState(false);
 
-  if(activeStep === 3){
+  const [tagOptions, setTagOptions] = useState([])
+
+  useEffect(() => {
+    const getTagOptions = async () => {
+      const tagsFromServer = await fetchTagOptions();
+      setTagOptions(tagsFromServer);
+    }
+    getTagOptions();
+  }, [])
+
+  const fetchTagOptions = async () => {
+    const res = await fetch("http://localhost:5000/tagOptions");
+    const data = await res.json();
+    return data;
+  }
+
+  function getNewTags() {
+    const newTags = tags.filter((tag) => !tagOptions.map((tagOption) => tagOption.tag).includes(tag))
+    console.log(`newTags`, newTags)
+    return newTags
+  }
+
+  const saveNewTags = async (newTags) => {
+    await Promise.all(newTags.map( async (tag) => {
+
+        const res = await fetch("http://localhost:5000/tagOptions", {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ id: `${Date.now().toString()}-${Math.random().toString().slice(2, 6)}`, tag: tag })})
+        const data = res.json();
+        console.log(`data`, data);
+    }))
+  }
+
+
+  if (activeStep === 3) {
   }
 
   const save = () => {
-    if(activeStep !== 3){
+
+    saveNewTags(getNewTags());
+
+    if (activeStep !== 3) {
       setSaveDisabled(true);
-      
+
       setFinished(true);
-      if(operationType === 'create'){
+      if (operationType === 'create') {
         addCard();
       } else {
         updateCard();
       }
-      
+
 
       return;
     }
@@ -35,10 +74,10 @@ const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished
 
   const previous = () => {
     prev()
-    if(activeStep === 3){
+    if (activeStep === 3) {
       setActiveStep(prevStep => prevStep - 1) // prev() is going to decrement activeStep by one (total -2 decrement)
     }
-    if(activeStep > 3){
+    if (activeStep > 3) {
       throw new RangeError(`value of activeStep shouldn't be greater than 3. activeStep has value ${activeStep}`)
     }
   }
@@ -52,34 +91,34 @@ const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished
 
   return (
     <div className={'card-form__step'} ref={ref}>
-        <h1 style={{ margin: 0 }}>Other Info</h1>
-        <hr style={hrStyle}/>
-        <DifficultyLevels difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels}/>
-        <hr style={hrStyle}/>
-        <TopicTags tags={tags} setTags={setTags} />
-        <ButtonGroup>
-            <Button
-              className="card-form__next-btn"
-              variant="outlined"
-              color="primary"
-              startIcon={<ArrowBackIcon />}
-              style={{ alignSelf: "end" }}
-              onClick={() => previous()}
-            >
-              Prev
-            </Button>
+      <h1 style={{ margin: 0 }}>Other Info</h1>
+      <hr style={hrStyle} />
+      <DifficultyLevels difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} />
+      <hr style={hrStyle} />
+      <TopicTags tags={tags} setTags={setTags} tagOptions={tagOptions} />
+      <ButtonGroup>
+        <Button
+          className="card-form__next-btn"
+          variant="outlined"
+          color="primary"
+          startIcon={<ArrowBackIcon />}
+          style={{ alignSelf: "end" }}
+          onClick={() => previous()}
+        >
+          Prev
+        </Button>
 
-            <Button
-              className="card-form__next-btn"
-              variant="contained"
-              color="primary"
-              style={{ alignSelf: "end" }}
-              onClick={() => save()}
-              disabled={saveDisabled}
-            >
-              {operationType === 'create' ? "save" : "save changes"}
-            </Button>
-        </ButtonGroup>
+        <Button
+          className="card-form__next-btn"
+          variant="contained"
+          color="primary"
+          style={{ alignSelf: "end" }}
+          onClick={() => save()}
+          disabled={saveDisabled}
+        >
+          {operationType === 'create' ? "save" : "save changes"}
+        </Button>
+      </ButtonGroup>
 
     </div>
   );

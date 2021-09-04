@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip'
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,23 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopicTags({ tags, setTags}) {
+export default function TopicTags({ tags, setTags, tagOptions}) {
   const classes = useStyles();
-  const [tagOptions, setTagOptions] = useState([])
-
-  useEffect(() => {
-    const getTagOptions = async () => {
-      const tagsFromServer = await fetchTags();
-      setTagOptions(tagsFromServer);
-    }
-    getTagOptions();
-  }, [])
-
-  const fetchTags = async () => {
-    const res = await fetch("http://localhost:5000/tags");
-    const data = await res.json();
-    return data;
-  }
+  console.log(`tagOptions`, tagOptions)
 
   return (
     <FormControl component="fieldset">
@@ -43,10 +29,10 @@ export default function TopicTags({ tags, setTags}) {
       <div className={classes.root}>
         {/* TODO: FIXME: this Autocomplete tag causes the first translation of FormFront not to happend, figure out how to fix it. */}
         <Autocomplete
+          freeSolo
           multiple
           id="tags-outlined"
-          options={tagOptions}
-          // freeSolo
+          options={tagOptions.map((tagOption) => tagOption.tag)}
           renderTags={(value, getTagProps) =>
             value.map((option, index) => (
               <Chip
