@@ -7,7 +7,7 @@ import { Search } from '@material-ui/icons';
 
 export default function SearchBar() {
   return (
-    <div style={{ width: 300 }}>
+    <div style={{ flexGrow: 1 }}>
       {/* <Autocomplete
         id="free-solo-demo"
         freeSolo
