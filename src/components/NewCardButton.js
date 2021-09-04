@@ -10,7 +10,7 @@ const NewCardButton = () => {
   const newCardContainerStyle = {
     display: "flex",
     justifyContent: "center",
-    paddingTop: "1.5rem",
+    paddingTop: "6rem",
     // paddingBottom: "1.5rem",
     backgroundColor: darkTheme ? '#010409' : "#f0f2f5",
   };

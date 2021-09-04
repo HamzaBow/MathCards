@@ -19,7 +19,9 @@ const Header = () => {
         gridTemplateColumns: '1fr 1fr 1fr',
         alignItems: 'center',
 
-        position: 'relative',
+        position: 'fixed',
+        left: 0,
+        right: 0,
         boxShadow: darkTheme ? 'none' : '0px -2px 10px 5px lightgray '
     }
 
