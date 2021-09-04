@@ -2,7 +2,7 @@ import { ImSigma } from "react-icons/im";
 import { BsFillPlusSquareFill, BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
 import { COLORS } from "../Constants";
 import { useTheme, useThemeUpdate } from "../ThemeContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar"
 import { Link } from "react-router-dom";
 
@@ -10,9 +10,23 @@ const darkColor = '#21262d';
 
 const Header = () => {
     const toggleTheme = useThemeUpdate()
-    const darkTheme = useTheme() 
+    const darkTheme = useTheme()
 
-    const [searchString, setSearchString] = useState('');
+    const [searchOptions, setSearchOptions] = useState([])
+
+    useEffect(() => {
+        const getSearchOptions = async () => {
+            const searchOptionsFromServer = await fetchSearchOptions();
+            setSearchOptions(searchOptionsFromServer);
+        }
+        getSearchOptions();
+    }, [])
+
+    const fetchSearchOptions = async () => {
+        const res = await fetch("http://localhost:5000/tagOptions");
+        const data = await res.json();
+        return data;
+    }
     const headerStyle = {
         fontFamily: "Roboto",
         backgroundColor: darkTheme ? darkColor : 'white', //COLORS.PRIMARY_LIGHT,
@@ -82,26 +96,13 @@ const Header = () => {
         marginTop: "0.5rem",
         marginBottom: "0.5rem",
     }
-    const [searchDataSource, setSearchDataSource] = useState([
-        'Complex Analysis',
-        'Abstract Algebra',
-        'Group Theory',
-        'Linear Algebra',
-        'Calculus',
-        'Multivariable Calculus',
-        'Topology',
-        'Category Theory',
-        'Mathematical Physics',
-        'Number Theory',
-        'Combinatorics'
-    ])
 
     return (
         <header style={headerStyle}>
             <div style={{ justifySelf: 'start', marginLeft: '1rem' }}>
 
                 <div style={logoStyle}>
-                    <BsList style={{ ...iconStyle, margin: "0 0.8rem", padding: "0", width: '2rem', height:'2rem' }} />
+                    <BsList style={{ ...iconStyle, margin: "0 0.8rem", padding: "0", width: '2rem', height: '2rem' }} />
                     <span style={sigmaContainerStyle}>
                         <ImSigma style={SigmaIconStyle} />
                     </span>
@@ -111,18 +112,18 @@ const Header = () => {
             </div>
 
             <div style={headerMiddleStyle}>
-                <SearchBar />                
+                <SearchBar searchOptions={searchOptions} />
             </div>
 
             <div style={{ justifySelf: 'end' }}>
                 <Link to='/cardform/new'>
                     <BsFillPlusSquareFill style={{ ...iconStyle, marginRight: '1.5rem', borderRadius: '5px' }} />
                 </Link>
-                <BsMoon               style={{ ...iconStyle, marginRight: '1rem' }} onClick={toggleTheme} />
-                <BsBellFill           style={{ ...iconStyle, marginRight: '1rem' }} />
-                <BsGearFill           style={{ ...iconStyle, marginRight: '1rem' }} />
+                <BsMoon style={{ ...iconStyle, marginRight: '1rem' }} onClick={toggleTheme} />
+                <BsBellFill style={{ ...iconStyle, marginRight: '1rem' }} />
+                <BsGearFill style={{ ...iconStyle, marginRight: '1rem' }} />
             </div>
-       </header >
+        </header >
     )
 }
 export default Header

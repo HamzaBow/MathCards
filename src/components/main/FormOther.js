@@ -36,7 +36,6 @@ const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished
 
   const saveNewTags = async (newTags) => {
     await Promise.all(newTags.map( async (tag) => {
-
         const res = await fetch("http://localhost:5000/tagOptions", {
         method: 'POST',
         headers: {
