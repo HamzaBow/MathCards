@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip'
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,7 +19,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TopicTags({ tags, setTags}) {
   const classes = useStyles();
+  const [tagOptions, setTagOptions] = useState([])
 
+  useEffect(() => {
+    const getTagOptions = async () => {
+      const tagsFromServer = await fetchTags();
+      setTagOptions(tagsFromServer);
+    }
+    getTagOptions();
+  }, [])
+
+  const fetchTags = async () => {
+    const res = await fetch("http://localhost:5000/tags");
+    const data = await res.json();
+    return data;
+  }
 
   return (
     <FormControl component="fieldset">
@@ -31,7 +45,7 @@ export default function TopicTags({ tags, setTags}) {
         <Autocomplete
           multiple
           id="tags-outlined"
-          options={tagOptions.map((option) => option.topic)}
+          options={tagOptions}
           // freeSolo
           renderTags={(value, getTagProps) =>
             value.map((option, index) => (
@@ -61,18 +75,4 @@ export default function TopicTags({ tags, setTags}) {
     </FormControl>
   );
 }
-
-const tagOptions = [
-  { topic: 'Complex Analysis', year: 2016 },
-  { topic: 'Abstract Algebra', year: 2009 },
-  { topic: 'Group Theory', year: 1973 },
-  { topic: 'Linear Algebra', year: 1968 },
-  { topic: 'Calculus', year: 1952 },
-  { topic: 'Multivariable Calculus', year: 1995 },
-  { topic: 'Topology', year: 1948 },
-  { topic: 'Category Theory', year: 1921 },
-  { topic: 'Mathematical Physics', year: 2000 },
-  { topic: 'Number Theory', year: 2009 },
-  { topic: 'Combinatorics', year: 1975 },
-];
 
