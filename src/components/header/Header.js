@@ -14,7 +14,7 @@ export const logoStyle = {
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: '0.7rem',
+    gap: '0.2rem',
 
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
@@ -105,7 +105,7 @@ const Header = () => {
             <div style={{ justifySelf: 'start', marginLeft: '1rem' }}>
 
                 <div style={logoStyle}>
-                    <BsList style={{ ...iconStyle, margin: "0 0.3rem", padding: "0", width: '2rem', height: '2rem', color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK }} onClick={() => setDisplaySidebar((prev) => !prev)} />
+                    <BsList style={{ ...iconStyle, margin: "0 1rem 0 0.3rem", padding: "0", width: '2rem', height: '2rem', color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK }} onClick={() => setDisplaySidebar((prev) => !prev)} />
                     <Sidebar displaySidebar={displaySidebar} setDisplaySidebar={setDisplaySidebar} />
 
                     <span style={sigmaContainerStyle}>

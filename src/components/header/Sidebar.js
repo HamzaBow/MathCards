@@ -35,10 +35,10 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
       <Drawer anchor="left" open={displaySidebar} onClose={() => setDisplaySidebar(prev => !prev)} >
         <List>
 
-          <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)} >
             <div style={logoStyle}>
 
-              <ArrowBack style={{ ...iconStyle, margin: "0 0.8rem 0 0.4rem", padding: "0", width: '2rem', height: '2rem' }} />
+              <ArrowBack style={{ ...iconStyle, margin: "0 0.8rem 0 0rem", padding: "0", width: '2rem', height: '2rem' }} />
 
               <span style={sigmaContainerStyle}>
                 <ImSigma style={SigmaIconStyle} />
