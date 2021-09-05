@@ -32,7 +32,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
   return (
     <div>
-      <Drawer anchor="left" open={displaySidebar} onClose={() => { }} >
+      <Drawer anchor="left" open={displaySidebar} onClose={() => setDisplaySidebar(prev => !prev)} >
         <List>
 
           <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)}>
