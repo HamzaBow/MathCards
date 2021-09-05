@@ -1,9 +1,9 @@
 import { ImSigma } from "react-icons/im";
 import { BsFillPlusSquareFill, BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
-import { COLORS } from "../Constants";
-import { useTheme, useThemeUpdate } from "../ThemeContext";
+import { COLORS } from "../../Constants";
+import { useTheme, useThemeUpdate } from "../../ThemeContext";
 import { useEffect, useState } from "react";
-import SearchBar from "./SearchBar"
+import SearchBar from "../SearchBar"
 import { Link } from "react-router-dom";
 
 const darkColor = '#21262d';
