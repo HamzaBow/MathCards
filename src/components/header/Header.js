@@ -105,7 +105,7 @@ const Header = () => {
             <div style={{ justifySelf: 'start', marginLeft: '1rem' }}>
 
                 <div style={logoStyle}>
-                    <BsList style={{ ...iconStyle, margin: "0 0.8rem", padding: "0", width: '2rem', height: '2rem', color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK }} onClick={() => setDisplaySidebar((prev) => !prev)} />
+                    <BsList style={{ ...iconStyle, margin: "0 0.3rem", padding: "0", width: '2rem', height: '2rem', color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK }} onClick={() => setDisplaySidebar((prev) => !prev)} />
                     <Sidebar displaySidebar={displaySidebar} setDisplaySidebar={setDisplaySidebar} />
 
                     <span style={sigmaContainerStyle}>
