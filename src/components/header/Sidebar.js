@@ -10,10 +10,8 @@ import {List as ListIcon, Save, Star, Feedback, Help} from '@material-ui/icons/'
 import { AiFillHeart } from 'react-icons/ai'
 import { ImSigma } from "react-icons/im";
 import { logoStyle, sigmaContainerStyle, SigmaIconStyle, headingStyle, iconStyle } from './Header';
-import { useTheme } from '../../ThemeContext';
-import { COLORS } from '../../Constants';
+
 export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
-  const darkTheme = useTheme();
 
   return (
       <div>
