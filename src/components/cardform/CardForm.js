@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react'
 import { useParams } from 'react-router-dom'
 import FormFace from './FormFace'
-import FormOther from './FormOther'
+import FormOther from './formother/FormOther'
 
 import CardFormHeader from './CardFormHeader'
 import CardFormStepper from './CardFormStepper'

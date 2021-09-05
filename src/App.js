@@ -5,7 +5,7 @@ import Main from "./components/main/Main";
 import Footer from "./components/Footer";
 
 import Maincard from "./components/main/Maincard";
-import CardForm from "./components/main/CardForm";
+import CardForm from "./components/cardform/CardForm";
 
 import { CARDS_ACTIONS } from "./Constants";
 import { ThemeProvider } from "./ThemeContext";
