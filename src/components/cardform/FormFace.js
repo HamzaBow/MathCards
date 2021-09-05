@@ -10,8 +10,9 @@ import { ButtonGroup } from "@material-ui/core";
 
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import FunctionsIcon from '@material-ui/icons/Functions';
-import TextFormatIcon from '@material-ui/icons/TextFormat';
+
+import { BiText } from 'react-icons/bi/'
+import { ImSigma } from 'react-icons/im/'
 
 addStyles();
 
@@ -77,19 +78,17 @@ const FormFace = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
                     variant="contained"
                     color="primary"
                     onClick={addTextQuill}
-                    startIcon={<TextFormatIcon />}
-                    // style={{display: "inline-block"}}
+                    startIcon={<BiText size={25}/>}
                   >
-                    text
+                    Text
                   </Button>
                   <Button
                     variant="contained"
                     color="primary"
                     onClick={addMathQuill}
-                    startIcon={<FunctionsIcon />}
-                    // style={{display: "inline-block"}}
+                    startIcon={<ImSigma />}
                   >
-                    math
+                    Math
                   </Button>
               </div>
       </div>
