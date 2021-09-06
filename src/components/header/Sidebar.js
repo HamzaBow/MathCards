@@ -7,13 +7,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import { List as ListIcon, Star, Feedback, Help } from '@material-ui/icons/';
-import { AiFillHeart } from 'react-icons/ai'
+import { AiFillHeart } from 'react-icons/ai';
 import { ImSigma } from "react-icons/im";
 import { logoStyle, sigmaContainerStyle, SigmaIconStyle, headingStyle, iconStyle } from './Header';
 import { Collapse } from '@material-ui/core';
-import { ExpandLess, ExpandMore, Bookmark, Add } from '@material-ui/icons'
+import { ExpandLess, ExpandMore, Bookmark, Add } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import { FaHammer } from 'react-icons/fa'
+import { FaHammer } from 'react-icons/fa';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
@@ -93,35 +93,35 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <Divider />
 
-          <ListItem button key='Topics' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Topics' >
             <ListItemIcon>
               <VerticalSplitIcon style={{ transform: 'rotate(180deg)' }} />
             </ListItemIcon>
             <ListItemText primary='Topics' />
           </ListItem>
 
-          <ListItem button key='Bookmarks' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Bookmarks' >
             <ListItemIcon>
               <Bookmark />
             </ListItemIcon>
             <ListItemText primary='Bookmarks' />
           </ListItem>
 
-          <ListItem button key='Created Cards' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Created Cards' >
             <ListItemIcon>
               <FaHammer size={23}/>
             </ListItemIcon>
             <ListItemText primary='Created Cards' />
           </ListItem>
 
-          <ListItem button key='Liked' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Liked' >
             <ListItemIcon>
               <AiFillHeart size={23} style={{paddingLeft: '0.1rem'}} />
             </ListItemIcon>
             <ListItemText primary='Liked' />
           </ListItem>
 
-          <ListItem button key='Starred' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Starred' >
             <ListItemIcon>
               <Star />
             </ListItemIcon>
@@ -130,14 +130,14 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <Divider />
 
-          <ListItem button key='Following' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Following' >
             <ListItemIcon>
               <PeopleAltIcon />
             </ListItemIcon>
             <ListItemText primary='Following' />
           </ListItem>
 
-          <ListItem button key='Followers' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Followers' >
             <ListItemIcon>
               <PeopleAltIcon />
             </ListItemIcon>
@@ -146,14 +146,14 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <Divider />
 
-          <ListItem button key='Help' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Help' >
             <ListItemIcon>
               <Help />
             </ListItemIcon>
             <ListItemText primary="Help" />
           </ListItem>
 
-          <ListItem button key="Feedback" onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key="Feedback" >
             <ListItemIcon>
               <Feedback />
             </ListItemIcon>
