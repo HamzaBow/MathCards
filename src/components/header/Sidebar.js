@@ -15,6 +15,7 @@ import { ExpandLess, ExpandMore, Bookmark, Add } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import { FaHammer } from 'react-icons/fa'
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -125,6 +126,22 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
               <Star />
             </ListItemIcon>
             <ListItemText primary='Starred' />
+          </ListItem>
+
+          <Divider />
+
+          <ListItem button key='Following' onClick={() => setDisplaySidebar(prev => !prev)}>
+            <ListItemIcon>
+              <PeopleAltIcon />
+            </ListItemIcon>
+            <ListItemText primary='Following' />
+          </ListItem>
+
+          <ListItem button key='Followers' onClick={() => setDisplaySidebar(prev => !prev)}>
+            <ListItemIcon>
+              <PeopleAltIcon />
+            </ListItemIcon>
+            <ListItemText primary='Followers' />
           </ListItem>
 
           <Divider />
