@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
   const classes = useStyles();
-  const [collectionsOpen, setCollectionsOpen] = useState(true);
+  const [collectionsOpen, setCollectionsOpen] = useState(false);
 
   return (
     <div>
