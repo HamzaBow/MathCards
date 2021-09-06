@@ -86,7 +86,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <ListItem button key='Liked' onClick={() => setDisplaySidebar(prev => !prev)}>
             <ListItemIcon>
-              <AiFillHeart size={25} />
+              <AiFillHeart size={23} style={{paddingLeft: '0.1rem'}} />
             </ListItemIcon>
             <ListItemText primary='Liked' />
           </ListItem>
