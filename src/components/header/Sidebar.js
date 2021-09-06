@@ -10,10 +10,10 @@ import { List as ListIcon, Save, Star, Feedback, Help } from '@material-ui/icons
 import { AiFillHeart } from 'react-icons/ai'
 import { ImSigma } from "react-icons/im";
 import { logoStyle, sigmaContainerStyle, SigmaIconStyle, headingStyle, iconStyle } from './Header';
-import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import { Collapse } from '@material-ui/core';
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
+import { FaHammer } from 'react-icons/fa'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -107,7 +107,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <ListItem button key='Created Cards' onClick={() => setDisplaySidebar(prev => !prev)}>
             <ListItemIcon>
-              <FeaturedPlayListIcon />
+              <FaHammer size={23}/>
             </ListItemIcon>
             <ListItemText primary='Created Cards' />
           </ListItem>
