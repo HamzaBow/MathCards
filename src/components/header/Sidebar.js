@@ -6,12 +6,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import { List as ListIcon, Save, Star, Feedback, Help } from '@material-ui/icons/';
+import { List as ListIcon, Star, Feedback, Help } from '@material-ui/icons/';
 import { AiFillHeart } from 'react-icons/ai'
 import { ImSigma } from "react-icons/im";
 import { logoStyle, sigmaContainerStyle, SigmaIconStyle, headingStyle, iconStyle } from './Header';
 import { Collapse } from '@material-ui/core';
-import { ExpandLess, ExpandMore, Bookmark } from '@material-ui/icons'
+import { ExpandLess, ExpandMore, Bookmark, Add } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import { FaHammer } from 'react-icons/fa'
 
@@ -79,6 +79,13 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
                 </ListItemIcon>
                 <ListItemText primary="Multivariable Calculus" />
               </ListItem>
+
+              <ListItem button className={classes.nested} style={{display: 'flex', justifyContent: 'center'}}>
+                <ListItemIcon>
+                  <Add />
+                </ListItemIcon>
+              </ListItem>
+
             </List>
           </Collapse>
 
