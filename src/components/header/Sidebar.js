@@ -11,7 +11,7 @@ import { AiFillHeart } from 'react-icons/ai'
 import { ImSigma } from "react-icons/im";
 import { logoStyle, sigmaContainerStyle, SigmaIconStyle, headingStyle, iconStyle } from './Header';
 import { Collapse } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons'
+import { ExpandLess, ExpandMore, Bookmark } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import { FaHammer } from 'react-icons/fa'
 
@@ -98,11 +98,11 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
             <ListItemText primary='Starred' />
           </ListItem>
 
-          <ListItem button key='Saved Cards' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Bookmarks' onClick={() => setDisplaySidebar(prev => !prev)}>
             <ListItemIcon>
-              <Save />
+              <Bookmark />
             </ListItemIcon>
-            <ListItemText primary='Saved Cards' />
+            <ListItemText primary='Bookmarks' />
           </ListItem>
 
           <ListItem button key='Created Cards' onClick={() => setDisplaySidebar(prev => !prev)}>
