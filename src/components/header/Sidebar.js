@@ -14,6 +14,7 @@ import { Collapse } from '@material-ui/core';
 import { ExpandLess, ExpandMore, Bookmark, Add } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
 import { FaHammer } from 'react-icons/fa'
+import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,6 +91,13 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
           </Collapse>
 
           <Divider />
+
+          <ListItem button key='Topics' onClick={() => setDisplaySidebar(prev => !prev)}>
+            <ListItemIcon>
+              <VerticalSplitIcon style={{ transform: 'rotate(180deg)' }} />
+            </ListItemIcon>
+            <ListItemText primary='Topics' />
+          </ListItem>
 
           <ListItem button key='Liked' onClick={() => setDisplaySidebar(prev => !prev)}>
             <ListItemIcon>
