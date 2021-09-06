@@ -99,20 +99,6 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
             <ListItemText primary='Topics' />
           </ListItem>
 
-          <ListItem button key='Liked' onClick={() => setDisplaySidebar(prev => !prev)}>
-            <ListItemIcon>
-              <AiFillHeart size={23} style={{paddingLeft: '0.1rem'}} />
-            </ListItemIcon>
-            <ListItemText primary='Liked' />
-          </ListItem>
-
-          <ListItem button key='Starred' onClick={() => setDisplaySidebar(prev => !prev)}>
-            <ListItemIcon>
-              <Star />
-            </ListItemIcon>
-            <ListItemText primary='Starred' />
-          </ListItem>
-
           <ListItem button key='Bookmarks' onClick={() => setDisplaySidebar(prev => !prev)}>
             <ListItemIcon>
               <Bookmark />
@@ -127,9 +113,23 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
             <ListItemText primary='Created Cards' />
           </ListItem>
 
+          <ListItem button key='Liked' onClick={() => setDisplaySidebar(prev => !prev)}>
+            <ListItemIcon>
+              <AiFillHeart size={23} style={{paddingLeft: '0.1rem'}} />
+            </ListItemIcon>
+            <ListItemText primary='Liked' />
+          </ListItem>
+
+          <ListItem button key='Starred' onClick={() => setDisplaySidebar(prev => !prev)}>
+            <ListItemIcon>
+              <Star />
+            </ListItemIcon>
+            <ListItemText primary='Starred' />
+          </ListItem>
+
           <Divider />
 
-          <ListItem button key='All mail' onClick={() => setDisplaySidebar(prev => !prev)}>
+          <ListItem button key='Help' onClick={() => setDisplaySidebar(prev => !prev)}>
             <ListItemIcon>
               <Help />
             </ListItemIcon>
