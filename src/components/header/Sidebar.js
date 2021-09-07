@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -17,6 +17,8 @@ import { FaHammer } from 'react-icons/fa';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
+import { useUser } from '../../UserContext';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -30,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
   const classes = useStyles();
+
+  const user = useUser();
+
   const [collectionsOpen, setCollectionsOpen] = useState(false);
 
   return (
@@ -37,7 +42,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
       <Drawer anchor="left" open={displaySidebar} onClose={() => setDisplaySidebar(prev => !prev)} >
         <List>
 
-          <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)} style={{ paddingTop: '0', paddingBottom: '0', marginTop: '0', marginBottom: '7px'}} >
+          <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)} style={{ paddingTop: '0', paddingBottom: '0', marginTop: '0', marginBottom: '7px' }} >
             <div style={logoStyle}>
 
               <ArrowBack style={{ ...iconStyle, margin: "0 0.8rem 0 0rem", padding: "0", width: '2rem', height: '2rem' }} />
@@ -61,14 +66,16 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <ImSigma />
-                </ListItemIcon>
-                <ListItemText primary="Calculus II" />
-              </ListItem>
+              {user.collections.map((collection) => (
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
+                    <ImSigma />
+                  </ListItemIcon>
+                  <ListItemText primary={collection} />
+                </ListItem>
+              ))}
 
-              <ListItem button className={classes.nested}>
+              {/* <ListItem button className={classes.nested}>
                 <ListItemIcon>
                   <ImSigma />
                 </ListItemIcon>
@@ -86,7 +93,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
                 <ListItemIcon>
                   <Add />
                 </ListItemIcon>
-              </ListItem>
+              </ListItem> */}
 
             </List>
           </Collapse>
@@ -109,14 +116,14 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <ListItem button key='Created Cards' >
             <ListItemIcon>
-              <FaHammer size={23}/>
+              <FaHammer size={23} />
             </ListItemIcon>
             <ListItemText primary='Created Cards' />
           </ListItem>
 
           <ListItem button key='Liked' >
             <ListItemIcon>
-              <AiFillHeart size={23} style={{paddingLeft: '0.1rem'}} />
+              <AiFillHeart size={23} style={{ paddingLeft: '0.1rem' }} />
             </ListItemIcon>
             <ListItemText primary='Liked' />
           </ListItem>

@@ -17,6 +17,10 @@ export const CARD_FORM_ACTIONS = {
   SET_FIELDS: "SET_FIELDS",
 }
 
+export const USER_ACTIONS = {
+  NEW_COLLECTION: "NEW_COLLECTION"
+}
+
 export const FIELD_TYPE = {
   MATH: "MATH",
   TEXT: "TEXT",

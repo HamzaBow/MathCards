@@ -58,6 +58,7 @@ export const iconStyle = {
 const Header = () => {
     const toggleTheme = useThemeUpdate()
     const darkTheme = useTheme()
+    console.log(`darkTheme`, darkTheme)
     const [displaySidebar, setDisplaySidebar] = useState(false)
 
     const [searchOptions, setSearchOptions] = useState([])

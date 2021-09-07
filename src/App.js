@@ -9,11 +9,9 @@ import CardForm from "./components/cardform/CardForm";
 
 import { CARDS_ACTIONS } from "./Constants";
 import { ThemeProvider } from "./ThemeContext";
+import { UserProvider } from "./UserContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
-
-export const ThemeContext = React.createContext();
 
 function App() {
 
@@ -32,7 +30,7 @@ function App() {
       //---------------------------------
       case CARDS_ACTIONS.UPDATE_CARD:
         return cards.map((card) => {
-          if(card.id === action.payload.data.id){
+          if (card.id === action.payload.data.id) {
             return action.payload.data;
           }
           return card;
@@ -46,7 +44,7 @@ function App() {
   const [cards, cardsDispatch] = useReducer(cardsReducer, []);
   // --------------------------- END CARDS ---------------------------
 
-  
+
 
   // *********************************************************************
   useEffect(() => {
@@ -69,15 +67,16 @@ function App() {
     <Router>
       <Route path='/' >
 
-          <div className="App">
-            <ThemeProvider>
+        <div className="App">
+          <ThemeProvider>
+            <UserProvider>
               <Header />
-              <Main cards={cards} cardsDispatch={cardsDispatch} />              
+              <Main cards={cards} cardsDispatch={cardsDispatch} />
 
               <Route path='/maincard/:id' >
                 <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
               </Route>
-             
+
               <Route path="/cardform/new" >
                 <CardForm operationType="create" cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
               </Route>
@@ -87,8 +86,10 @@ function App() {
               </Route>
 
               <Footer />
-            </ThemeProvider>
-          </div>
+
+            </UserProvider>
+          </ThemeProvider>
+        </div>
 
       </Route>
     </Router>
