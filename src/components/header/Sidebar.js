@@ -17,7 +17,11 @@ import { FaHammer } from 'react-icons/fa';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
-import { useUser } from '../../UserContext';
+import { useUser, useUserUpdate } from '../../UserContext';
+
+import { TextField, Button } from '@material-ui/core';
+
+import { USER_ACTIONS } from '../../Constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,11 +35,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
+
   const classes = useStyles();
 
   const user = useUser();
+  const userDispatch = useUserUpdate();
 
   const [collectionsOpen, setCollectionsOpen] = useState(false);
+
+  const [creatingNewCollection, setCreatingNewCollection] = useState(false)
+  const [newCollectionName, setNewCollectionName] = useState('')
+  const saveNewCollection = () => {
+
+    userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollectionName: newCollectionName }})
+    setNewCollectionName('')
+    setCreatingNewCollection(false);
+  }
 
   return (
     <div>
@@ -89,11 +104,18 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
                 <ListItemText primary="Multivariable Calculus" />
               </ListItem> */}
 
-              <ListItem button className={classes.nested} style={{display: 'flex', justifyContent: 'center'}}>
+              {creatingNewCollection ?
+              <ListItem style={{display: 'flex', justifyContent: 'center'}}>
+                <TextField placeholder="Collection name" value={newCollectionName} onChange={(e) => setNewCollectionName(e.target.value)}/>
+                <Button onClick={saveNewCollection}>Save</Button>
+              </ListItem>
+              :
+              <ListItem button className={classes.nested} style={{display: 'flex', justifyContent: 'center'}} onClick={() => setCreatingNewCollection(true)}>
                 <ListItemIcon>
                   <Add />
                 </ListItemIcon>
               </ListItem> 
+            }
 
             </List>
           </Collapse>

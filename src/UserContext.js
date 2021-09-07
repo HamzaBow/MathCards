@@ -16,7 +16,7 @@ export function UserProvider({ children }) {
   function userReducer(user, action){
     switch (action.type) {
       case USER_ACTIONS.NEW_COLLECTION:
-        return {...user, collections: [...user.collections, action.payload.newCollection] }
+        return {...user, collections: [...user.collections, action.payload.newCollectionName] }
 
       default:
         break;
