@@ -121,6 +121,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
               <ListItem style={{display: 'flex', justifyContent: 'center'}}>
                 <TextField placeholder="Collection name" value={newCollectionTitle} onChange={(e) => setNewCollectionTitle(e.target.value)}/>
                 <Button onClick={saveNewCollection}>Save</Button>
+                <Button onClick={() => setCreatingNewCollection(false)}>Cancel</Button>
               </ListItem>
               :
               <ListItem button className={classes.nested} style={{display: 'flex', justifyContent: 'center'}} onClick={() => setCreatingNewCollection(true)}>
