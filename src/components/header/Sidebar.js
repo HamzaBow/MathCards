@@ -37,7 +37,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
       <Drawer anchor="left" open={displaySidebar} onClose={() => setDisplaySidebar(prev => !prev)} >
         <List>
 
-          <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)} >
+          <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)} style={{ paddingTop: '0', paddingBottom: '0', marginTop: '0', marginBottom: '7px'}} >
             <div style={logoStyle}>
 
               <ArrowBack style={{ ...iconStyle, margin: "0 0.8rem 0 0rem", padding: "0", width: '2rem', height: '2rem' }} />
