@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TopicTags({ tags, setTags, tagOptions}) {
   const classes = useStyles();
-  console.log(`tagOptions`, tagOptions)
 
   return (
     <FormControl component="fieldset">
