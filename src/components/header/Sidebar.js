@@ -87,13 +87,13 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
                   <ImSigma />
                 </ListItemIcon>
                 <ListItemText primary="Multivariable Calculus" />
-              </ListItem>
+              </ListItem> */}
 
               <ListItem button className={classes.nested} style={{display: 'flex', justifyContent: 'center'}}>
                 <ListItemIcon>
                   <Add />
                 </ListItemIcon>
-              </ListItem> */}
+              </ListItem> 
 
             </List>
           </Collapse>
