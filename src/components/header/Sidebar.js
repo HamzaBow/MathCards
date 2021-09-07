@@ -44,11 +44,24 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
   const [collectionsOpen, setCollectionsOpen] = useState(false);
 
   const [creatingNewCollection, setCreatingNewCollection] = useState(false)
-  const [newCollectionName, setNewCollectionName] = useState('')
-  const saveNewCollection = () => {
+  const [newCollectionTitle, setNewCollectionTitle] = useState('')
+  const saveNewCollection = async () => {
+    //saving the new collection to the server
+    const res1 = await fetch('http://localhost:5000/collections', {
+      method: 'POST',
+      headers: {
+          'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ id: `${Date.now().toString()}-${Math.random().toString().slice(2, 6)}`, title: newCollectionTitle})
+    });
+    const data1 = res1.json()
+    console.log(data1)
 
-    userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollectionName: newCollectionName }})
-    setNewCollectionName('')
+    //saving the new collection id to the user
+    //TODO
+
+    userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollectionName: newCollectionTitle }})
+    setNewCollectionTitle('')
     setCreatingNewCollection(false);
   }
 
@@ -106,7 +119,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
               {creatingNewCollection ?
               <ListItem style={{display: 'flex', justifyContent: 'center'}}>
-                <TextField placeholder="Collection name" value={newCollectionName} onChange={(e) => setNewCollectionName(e.target.value)}/>
+                <TextField placeholder="Collection name" value={newCollectionTitle} onChange={(e) => setNewCollectionTitle(e.target.value)}/>
                 <Button onClick={saveNewCollection}>Save</Button>
               </ListItem>
               :
