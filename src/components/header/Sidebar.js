@@ -102,20 +102,6 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
                 </ListItem>
               ))}
 
-              {/* <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <ImSigma />
-                </ListItemIcon>
-                <ListItemText primary="Algebra III" />
-              </ListItem>
-
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-                  <ImSigma />
-                </ListItemIcon>
-                <ListItemText primary="Multivariable Calculus" />
-              </ListItem> */}
-
               {creatingNewCollection ?
               <ListItem style={{display: 'flex', justifyContent: 'center'}}>
                 <TextField placeholder="Collection name" value={newCollectionTitle} onChange={(e) => setNewCollectionTitle(e.target.value)} />
