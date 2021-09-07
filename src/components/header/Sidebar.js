@@ -54,13 +54,12 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
       },
       body: JSON.stringify({ id: `${Date.now().toString()}-${Math.random().toString().slice(2, 6)}`, title: newCollectionTitle})
     });
-    const data1 = res1.json()
-    console.log(data1)
+    const data1 = await res1.json()
 
     //saving the new collection id to the user
     //TODO
 
-    userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollectionName: newCollectionTitle }})
+    userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollection: data1 }})
     setNewCollectionTitle('')
     setCreatingNewCollection(false);
   }
@@ -99,7 +98,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
                   <ListItemIcon>
                     <ImSigma />
                   </ListItemIcon>
-                  <ListItemText primary={collection} />
+                  <ListItemText primary={collection.title} />
                 </ListItem>
               ))}
 
@@ -119,7 +118,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
               {creatingNewCollection ?
               <ListItem style={{display: 'flex', justifyContent: 'center'}}>
-                <TextField placeholder="Collection name" value={newCollectionTitle} onChange={(e) => setNewCollectionTitle(e.target.value)}/>
+                <TextField placeholder="Collection name" value={newCollectionTitle} onChange={(e) => setNewCollectionTitle(e.target.value)} />
                 <Button onClick={saveNewCollection}>Save</Button>
                 <Button onClick={() => setCreatingNewCollection(false)}>Cancel</Button>
               </ListItem>
