@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StaticMathField } from "react-mathquill"
 import { CARDS_ACTIONS, CARD_LAYOUT, CARD_SIZE } from '../../Constants';
 import { COLORS } from "../../Constants"
@@ -15,10 +15,13 @@ import MenuList from '@material-ui/core/MenuList';
 import { BiEditAlt } from 'react-icons/bi'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CgPlayListAdd } from 'react-icons/cg'
+import SaveToPrompt from './SaveToPrompt';
 
 
 const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
   const history = useHistory();
+
+  const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
 
   const darkTheme = useTheme();
 
@@ -69,7 +72,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
     backgroundColor: darkTheme ? '#21262d' : COLORS.GRAY_LIGHT,
     border: darkTheme ? '3px solid #30363d' : 'none',
   };
-// 
+  // 
 
   // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
   const displayMainCard = (id) => {
@@ -78,6 +81,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const saveRef = React.useRef(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -104,11 +108,11 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
       return;
     }
     setOpen(false);
-    fetch(`http://localhost:5000/cards/${card.id}`,{
+    fetch(`http://localhost:5000/cards/${card.id}`, {
       method: 'DELETE'
     })
 
-    cardsDispatch({type: CARDS_ACTIONS.REMOVE_CARD, payload: {id: card.id}})
+    cardsDispatch({ type: CARDS_ACTIONS.REMOVE_CARD, payload: { id: card.id } })
 
   }
 
@@ -129,6 +133,10 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
     prevOpen.current = open;
   }, [open]);
 
+  const saveToHandle = () => {
+    setSaveToPromptOpen(true);
+  }
+
 
 
   return (
@@ -145,7 +153,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
             onClick={handleToggle}
-            style={{ float: "right", width: "0.2rem"}}
+            style={{ float: "right", width: "0.2rem" }}
           >
             <MdMoreHoriz style={{ width: "5rem", height: "2rem" }} />
           </Button>
@@ -169,17 +177,21 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
                         Delete
                       </MenuItem>
 
-                      <MenuItem onClick={handleClose}>
+                      <MenuItem onClick={saveToHandle} ref={saveRef}>
                         <CgPlayListAdd style={{ marginRight: '0.7rem' }} />
                         Save to ...
                       </MenuItem>
                     </MenuList>
+
+
 
                   </ClickAwayListener>
                 </Paper>
               </Grow>
             )}
           </Popper>
+
+          <SaveToPrompt saveToPromptOpen={saveToPromptOpen} setSaveToPromptOpen={setSaveToPromptOpen} saveRef={saveRef.current} />
         </div>
         <div className="front" onClick={() => displayMainCard(card.id)} >
           {card.front.map((field, key) => {
