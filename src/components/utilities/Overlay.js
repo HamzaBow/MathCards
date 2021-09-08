@@ -14,7 +14,7 @@ const Overlay = () => {
     transition: "visibility 0.2s, opacity 0.2s linear",
   };
   return (
-    <Link to='/'>
+    <Link to='/' draggable="false" style={{cursor: 'default'}}>
       <div style={overlayStyle}></div>
     </Link>
   );
