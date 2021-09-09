@@ -12,6 +12,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { UserProvider } from "./contexts/UserContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Signup from "./components/Signup";
+import AuthProvider from "./contexts/AuthContext";
 
 function App() {
 
@@ -68,27 +70,31 @@ function App() {
       <Route path='/' >
 
         <div className="App">
-          <ThemeProvider>
-            <UserProvider>
-              <Header />
-              <Main cards={cards} cardsDispatch={cardsDispatch} />
+          <AuthProvider>
+            <ThemeProvider>
+              <UserProvider>
+                <Header />
 
-              <Route path='/maincard/:id' >
-                <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
-              </Route>
+                <Signup />
+                {/* <Main cards={cards} cardsDispatch={cardsDispatch} /> */}
 
-              <Route path="/cardform/new" >
-                <CardForm operationType="create" cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
-              </Route>
+                <Route path='/maincard/:id' >
+                  <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
+                </Route>
 
-              <Route path="/cardform/edit/:id" >
-                <CardForm operationType="edit" cards={cards} cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
-              </Route>
+                <Route path="/cardform/new" >
+                  <CardForm operationType="create" cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
+                </Route>
 
-              <Footer />
+                <Route path="/cardform/edit/:id" >
+                  <CardForm operationType="edit" cards={cards} cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
+                </Route>
 
-            </UserProvider>
-          </ThemeProvider>
+                {/* <Footer /> */}
+
+              </UserProvider>
+            </ThemeProvider>
+          </AuthProvider>
         </div>
 
       </Route>
