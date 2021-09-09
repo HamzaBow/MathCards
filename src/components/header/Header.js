@@ -1,7 +1,7 @@
 import { ImSigma } from "react-icons/im";
 import { BsFillPlusSquareFill, BsMoon, BsBellFill, BsList, BsGearFill } from "react-icons/bs";
 import { COLORS } from "../../Constants";
-import { useTheme, useThemeUpdate } from "../../ThemeContext";
+import { useTheme, useThemeUpdate } from "../../contexts/ThemeContext";
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar"
 import { Link } from "react-router-dom";

@@ -1,6 +1,6 @@
 //  TODO: Card should be imported from ../cards/Card (finish implementing later).
 import Card from "../cards/Card";
-import { useTheme } from "../../ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const CardsList = ({ cards, cardsDispatch }) => {
   // TODO: the container should have no visible style (except probably for margins, etc. ) to make the app style and layout SIMPLER

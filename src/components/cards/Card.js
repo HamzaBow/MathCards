@@ -3,7 +3,7 @@ import { StaticMathField } from "react-mathquill"
 import { CARDS_ACTIONS, CARD_LAYOUT, CARD_SIZE } from '../../Constants';
 import { COLORS } from "../../Constants"
 import { MdMoreHoriz } from "react-icons/md"
-import { useTheme } from "../../ThemeContext"
+import { useTheme } from "../../contexts/ThemeContext"
 import { useHistory } from 'react-router';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';

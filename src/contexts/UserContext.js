@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react'
-import { USER_ACTIONS } from './Constants'
+import { USER_ACTIONS } from './../Constants'
 const UserContext = React.createContext()
 const UserUpdateContext = React.createContext()
 

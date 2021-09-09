@@ -8,8 +8,8 @@ import Maincard from "./components/main/Maincard";
 import CardForm from "./components/cardform/CardForm";
 
 import { CARDS_ACTIONS } from "./Constants";
-import { ThemeProvider } from "./ThemeContext";
-import { UserProvider } from "./UserContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { UserProvider } from "./contexts/UserContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
