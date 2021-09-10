@@ -12,9 +12,9 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { UserProvider } from "./contexts/UserContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Signup from "./components/Signup";
+import Signup from "./components/authentication/Signup";
 import AuthProvider, { useAuth } from "./contexts/AuthContext";
-import Login from "./components/Login";
+import Login from "./components/authentication/Login";
 
 import { useHistory, Redirect } from "react-router-dom"
 
