@@ -17,6 +17,7 @@ import AuthProvider, { useAuth } from "./contexts/AuthContext";
 import Login from "./components/authentication/Login";
 
 import { useHistory, Redirect } from "react-router-dom"
+import ForgotPassword from "./components/authentication/ForgotPassword";
 
 
 function App() {
@@ -113,6 +114,7 @@ function App() {
 
               <Route path="/login" component={Login} />
 
+              <Route path="/forgot-password" component={ForgotPassword} />
 
               {/* <Footer /> */}
 
