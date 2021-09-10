@@ -117,15 +117,17 @@ const Header = () => {
     <header style={headerStyle}>
       <div style={{ justifySelf: 'start', marginLeft: '1rem' }}>
 
-        <div style={logoStyle}>
-          <BsList style={{ ...iconStyle, margin: "0 1rem 0 0.3rem", padding: "0", width: '2rem', height: '2rem', color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK }} onClick={() => setDisplaySidebar((prev) => !prev)} />
-          <Sidebar displaySidebar={displaySidebar} setDisplaySidebar={setDisplaySidebar} />
+        <Link to='/'>
+          <div style={logoStyle}>
+            <BsList style={{ ...iconStyle, margin: "0 1rem 0 0.3rem", padding: "0", width: '2rem', height: '2rem', color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK }} onClick={() => setDisplaySidebar((prev) => !prev)} />
+            <Sidebar displaySidebar={displaySidebar} setDisplaySidebar={setDisplaySidebar} />
 
-          <span style={sigmaContainerStyle}>
-            <ImSigma style={SigmaIconStyle} />
-          </span>
-          <h1 style={{ ...headingStyle, color: darkTheme ? 'white' : 'black' }} >MathCards</h1>
-        </div>
+            <span style={sigmaContainerStyle}>
+              <ImSigma style={SigmaIconStyle} />
+            </span>
+            <h1 style={{ ...headingStyle, color: darkTheme ? 'white' : 'black' }} >MathCards</h1>
+          </div>
+        </Link>
 
       </div>
 
@@ -139,7 +141,7 @@ const Header = () => {
             Logout
           </Button>
           :
-          ( pathname === '/signup')
+          (pathname === '/signup')
             ?
             <Button variant='contained' color='primary' onClick={() => { history.push('/login') }}>
               Login
