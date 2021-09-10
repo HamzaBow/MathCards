@@ -107,11 +107,6 @@ const Header = () => {
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   }
-  function handleLogout() {
-    logout()
-    history.push('/login')
-  }
-
 
   return (
     <header style={headerStyle}>
@@ -139,7 +134,7 @@ const Header = () => {
 
       <div style={{ justifySelf: 'end' }}>
         {currentUser ?
-          <Button variant='contained' color='primary' onClick={handleLogout}>
+          <Button variant='contained' color='primary' onClick={logout}>
             Logout
           </Button>
           :
