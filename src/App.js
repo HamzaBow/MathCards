@@ -13,7 +13,11 @@ import { UserProvider } from "./contexts/UserContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./components/Signup";
-import AuthProvider from "./contexts/AuthContext";
+import AuthProvider, { useAuth } from "./contexts/AuthContext";
+import Login from "./components/Login";
+
+import { useHistory, Redirect } from "react-router-dom"
+
 
 function App() {
 
@@ -48,6 +52,7 @@ function App() {
 
 
 
+  const { currentUser } = useAuth() || { currentUser: undefined }
   // *********************************************************************
   useEffect(() => {
     const getCards = async () => {
@@ -55,6 +60,7 @@ function App() {
       cardsDispatch({ type: CARDS_ACTIONS.FETCH_CARDS, payload: { cards: cardsFromServer } });
     };
     getCards();
+    console.log('currentUser', currentUser)
   }, []);
 
   const fetchCards = async () => {
@@ -64,20 +70,28 @@ function App() {
   };
   // *********************************************************************
 
+  const history = useHistory()
+
+
+
 
   return (
     <Router>
-      <Route path='/' >
 
-        <div className="App">
-          <AuthProvider>
-            <ThemeProvider>
-              <UserProvider>
-                <Header />
+      <div className="App">
+        <ThemeProvider>
+          <UserProvider>
+            <AuthProvider>
+              <Header />
 
-                <Signup />
-                {/* <Main cards={cards} cardsDispatch={cardsDispatch} /> */}
+              {currentUser ?
+                <Redirect to='/' />
+                :
+                <Redirect to='/signup' />
+              }
 
+              <Route exact path='/' >
+                <Main cards={cards} cardsDispatch={cardsDispatch} />
                 <Route path='/maincard/:id' >
                   <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
                 </Route>
@@ -89,15 +103,20 @@ function App() {
                 <Route path="/cardform/edit/:id" >
                   <CardForm operationType="edit" cards={cards} cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
                 </Route>
+              </Route>
 
-                {/* <Footer /> */}
+              <Route path='/signup' component={Signup} />
 
-              </UserProvider>
-            </ThemeProvider>
-          </AuthProvider>
-        </div>
+              <Route path="/login" component={Login} />
 
-      </Route>
+
+              {/* <Footer /> */}
+
+            </AuthProvider>
+          </UserProvider>
+        </ThemeProvider>
+      </div>
+
     </Router>
   );
 }
