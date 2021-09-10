@@ -22,7 +22,7 @@ const Login = () => {
       history.push('/')
 
     } catch (err) {
-      setError('Failed to create an account')
+      setError('Failed to log in')
       console.error(err);
     }
     setLoading(false)
