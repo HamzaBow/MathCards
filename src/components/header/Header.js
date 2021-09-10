@@ -128,6 +128,8 @@ const Header = () => {
             <h1 style={{ ...headingStyle, color: darkTheme ? 'white' : 'black' }} >MathCards</h1>
           </div>
         </Link>
+        {/* <Link to='/signup'>signup</Link>{" "}
+        <Link to='/login'>login</Link> */}
 
       </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { useHistory } from 'react-router'
+import { Redirect, useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 
 
@@ -21,7 +21,7 @@ const Login = () => {
       await login(email, password)
       history.push('/')
 
-    } catch(err)  {
+    } catch (err) {
       setError('Failed to create an account')
       console.error(err);
     }
@@ -30,16 +30,26 @@ const Login = () => {
 
   return (
     <div style={{ paddingTop: "150px" }}>
+      { currentUser ?
+      // <>
+      // <h1>You are currently signed in with this email:</h1>
+      // <h2>{currentUser.email}</h2>
+      // </>
+      <Redirect to='/' />
+      :
+      <>
+        {error && <h1 style={{ backgroundColor: 'red' }}>{error}</h1>}
+        {<h1 style={{ backgroundColor: 'green' }}>{currentUser && 'current user: ' + JSON.stringify(currentUser.email)}</h1>}
+        <form onSubmit={handleSubmit}>
+          <h1>Log in</h1>
+          <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='email' />
+          <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='password' />
+          <button disabled={loading} type='submit' >submit</button>
+          <h2>Don't have an account? <Link to='/signup'>Sign Up</Link></h2>
+        </form>
+      </>
+      }
 
-      {error && <h1 style={{backgroundColor: 'red'}}>{error}</h1>}
-      {<h1 style={{backgroundColor: 'green'}}>{ currentUser && 'current user: '+JSON.stringify(currentUser.email)}</h1>}
-      <form onSubmit={handleSubmit}>
-        <h1>Log in</h1>
-        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='email' />
-        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='password' />
-        <button disabled={loading} type='submit' >submit</button>
-        <h2>Don't have an account? <Link to='/signup'>Sign Up</Link></h2>
-      </form>
     </div>
   )
 }

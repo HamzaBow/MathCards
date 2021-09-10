@@ -92,17 +92,21 @@ function App() {
 
               <Route exact path='/' >
                 <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <Route path='/maincard/:id' >
-                  <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
-                </Route>
+              </Route>
 
-                <Route path="/cardform/new" >
-                  <CardForm operationType="create" cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
-                </Route>
+              <Route path='/maincard/:id' >
+                <Main cards={cards} cardsDispatch={cardsDispatch} />
+                <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
+              </Route>
 
-                <Route path="/cardform/edit/:id" >
-                  <CardForm operationType="edit" cards={cards} cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
-                </Route>
+              <Route path="/cardform/new" >
+                <Main cards={cards} cardsDispatch={cardsDispatch} />
+                <CardForm operationType="create" cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
+              </Route>
+
+              <Route path="/cardform/edit/:id" >
+                <Main cards={cards} cardsDispatch={cardsDispatch} />
+                <CardForm operationType="edit" cards={cards} cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
               </Route>
 
               <Route path='/signup' component={Signup} />
