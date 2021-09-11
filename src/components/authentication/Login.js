@@ -123,7 +123,6 @@ export default function SignIn() {
                 handleSubmit,
               }) => (
                 <Form className={classes.form} noValidate>
-                  {/* <Form> */}
                   <CustomTextField
                     name="email"
                     type="email"

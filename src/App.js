@@ -16,12 +16,10 @@ import Signup from "./components/authentication/Signup";
 import AuthProvider, { useAuth } from "./contexts/AuthContext";
 import Login from "./components/authentication/Login";
 
-import { useHistory, Redirect } from "react-router-dom"
+import { useHistory, Redirect } from "react-router-dom";
 import ForgotPassword from "./components/authentication/ForgotPassword";
 
-
 function App() {
-
   // ----------------------------- CARDS -----------------------------
 
   function cardsReducer(cards, action) {
@@ -30,10 +28,10 @@ function App() {
         return action.payload.cards;
       //---------------------------------
       case CARDS_ACTIONS.NEW_CARD:
-        return [...cards, action.payload.card]
+        return [...cards, action.payload.card];
       //---------------------------------
       case CARDS_ACTIONS.REMOVE_CARD:
-        return cards.filter((card) => card.id !== action.payload.id)
+        return cards.filter((card) => card.id !== action.payload.id);
       //---------------------------------
       case CARDS_ACTIONS.UPDATE_CARD:
         return cards.map((card) => {
@@ -41,7 +39,7 @@ function App() {
             return action.payload.data;
           }
           return card;
-        })
+        });
       //---------------------------------
       default:
         return cards;
@@ -51,17 +49,18 @@ function App() {
   const [cards, cardsDispatch] = useReducer(cardsReducer, []);
   // --------------------------- END CARDS ---------------------------
 
-
-
-  const { currentUser } = useAuth() || { currentUser: undefined }
+  const { currentUser } = useAuth() || { currentUser: undefined };
   // *********************************************************************
   useEffect(() => {
     const getCards = async () => {
       const cardsFromServer = await fetchCards();
-      cardsDispatch({ type: CARDS_ACTIONS.FETCH_CARDS, payload: { cards: cardsFromServer } });
+      cardsDispatch({
+        type: CARDS_ACTIONS.FETCH_CARDS,
+        payload: { cards: cardsFromServer },
+      });
     };
     getCards();
-    console.log('currentUser', currentUser)
+    console.log("currentUser", currentUser);
   }, []);
 
   const fetchCards = async () => {
@@ -71,14 +70,10 @@ function App() {
   };
   // *********************************************************************
 
-  const history = useHistory()
-
-
-
+  const history = useHistory();
 
   return (
     <Router>
-
       <div className="App">
         <ThemeProvider>
           <UserProvider>
@@ -95,34 +90,42 @@ function App() {
                 <Main cards={cards} cardsDispatch={cardsDispatch} />
               </Route>
 
-              <Route path='/maincard/:id' >
+              <Route path="/maincard/:id">
                 <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <Maincard cards={cards} /> {/* --------------------------------------------  Maincard */}
+                <Maincard cards={cards} />{" "}
+                {/* --------------------------------------------  Maincard */}
               </Route>
 
-              <Route path="/cardform/new" >
+              <Route path="/cardform/new">
                 <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <CardForm operationType="create" cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
+                <CardForm
+                  operationType="create"
+                  cardsDispatch={cardsDispatch}
+                />{" "}
+                {/* ----  CardForm */}
               </Route>
 
-              <Route path="/cardform/edit/:id" >
+              <Route path="/cardform/edit/:id">
                 <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <CardForm operationType="edit" cards={cards} cardsDispatch={cardsDispatch} />  {/* ----  CardForm */}
+                <CardForm
+                  operationType="edit"
+                  cards={cards}
+                  cardsDispatch={cardsDispatch}
+                />{" "}
+                {/* ----  CardForm */}
               </Route>
 
-              <Route path='/signup' component={Signup} />
+              <Route path="/signup" component={Signup} />
 
               <Route path="/login" component={Login} />
 
               <Route path="/forgot-password" component={ForgotPassword} />
 
               {/* <Footer /> */}
-
             </AuthProvider>
           </UserProvider>
         </ThemeProvider>
       </div>
-
     </Router>
   );
 }
