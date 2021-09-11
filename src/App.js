@@ -78,16 +78,15 @@ function App() {
         <ThemeProvider>
           <UserProvider>
             <AuthProvider>
-
-              {currentUser ?
-                <Redirect to='/' />
-                :
-                <Redirect to='/signup' />
-              }
-
-              <Route exact path='/' >
-                <Header />
-                <Main cards={cards} cardsDispatch={cardsDispatch} />
+              <Route exact path="/">
+                {currentUser ? (
+                  <Redirect to="/" />
+                ) : (
+                  <>
+                    <Header />
+                    <Main cards={cards} cardsDispatch={cardsDispatch} />
+                  </>
+                )}
               </Route>
 
               <Route path="/maincard/:id">
