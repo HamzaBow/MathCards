@@ -108,7 +108,7 @@ export default function SignIn() {
             </Typography>
             {error && (
               <div className={classes.alert}>
-                <Alert severity="error">{error}</Alert>
+                <Alert variant="filled" severity="error">{error}</Alert>
               </div>
             )}
             <Formik
