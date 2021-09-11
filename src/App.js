@@ -83,7 +83,6 @@ function App() {
         <ThemeProvider>
           <UserProvider>
             <AuthProvider>
-              <Header />
 
               {currentUser ?
                 <Redirect to='/' />
@@ -92,6 +91,7 @@ function App() {
               }
 
               <Route exact path='/' >
+                <Header />
                 <Main cards={cards} cardsDispatch={cardsDispatch} />
               </Route>
 
