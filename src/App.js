@@ -11,13 +11,13 @@ import { CARDS_ACTIONS } from "./Constants";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { UserProvider } from "./contexts/UserContext";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Signup from "./components/authentication/Signup";
 import AuthProvider, { useAuth } from "./contexts/AuthContext";
+import Signup from "./components/authentication/Signup";
 import Login from "./components/authentication/Login";
-
-import { useHistory, Redirect } from "react-router-dom";
 import ForgotPassword from "./components/authentication/ForgotPassword";
+
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 function App() {
   // ----------------------------- CARDS -----------------------------
