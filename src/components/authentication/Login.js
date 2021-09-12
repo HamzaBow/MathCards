@@ -88,10 +88,10 @@ const validationSchema = yup.object({
   password: yup
     .string()
     .required()
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "Must Contain at Least 8 characters including uppercase, lowercase, numbers and special characters (!@#$% ...)"
-    ),
+    // .matches(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+    //   "Must Contain at Least 8 characters including uppercase, lowercase, numbers and special characters (!@#$% ...)"
+    // ),
 });
 
 export default function Login() {
