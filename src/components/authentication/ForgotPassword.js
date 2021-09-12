@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
-import { Redirect, useHistory } from 'react-router'
+import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 
 
@@ -9,7 +9,6 @@ const ForgotPassword = () => {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
 
   const { resetPassword, currentUser } = useAuth()
 
