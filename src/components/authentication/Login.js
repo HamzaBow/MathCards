@@ -15,6 +15,7 @@ import { Redirect, useHistory, Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { Formik, Form, useField } from "formik";
 import { Alert } from "@material-ui/lab";
+import { FcGoogle } from "react-icons/fc"
 
 import Logo from "../../logo/Logo";
 
@@ -45,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  continueWithGoogle: {
+    margin: theme.spacing(1, 0, 2),
   },
   alert: {
     width: "100%",
@@ -99,8 +103,9 @@ export default function Login() {
 
   const [error, setError] = useState("");
   const history = useHistory();
+  const [loading, setLoading] = useState(false)
 
-  const { login, currentUser } = useAuth();
+  const { login, currentUser, signInWithGoogleAuth } = useAuth();
   async function handleSubmit(data, { setSubmitting }) {
     // e.preventDefault()
     try {
@@ -113,6 +118,19 @@ export default function Login() {
       console.error(err);
     }
     setSubmitting(false);
+  }
+
+  async function handleContinueWithGoogle() {
+    try {
+      setError("");
+      setLoading(true);
+      await signInWithGoogleAuth()
+      history.push("/");
+    } catch (err) {
+      setError("Failed to sign in with Google");
+      console.error(err);
+    }
+    setLoading(false);
   }
   return (
     <>
@@ -171,6 +189,18 @@ export default function Login() {
                     className={classes.submit}
                   >
                     Log In
+                  </Button>
+                  <Button
+                    type="button"
+                    fullWidth
+                    disabled={loading}
+                    variant="contained"
+                    onClick={handleContinueWithGoogle}
+                    className={classes.continueWithGoogle}
+                    startIcon={<FcGoogle />}
+                    size="large"
+                  >
+                    Continue With Google
                   </Button>
                   <Grid container>
                     <Grid item xs>

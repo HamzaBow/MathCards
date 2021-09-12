@@ -16,6 +16,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Formik, Form, useField } from "formik";
 import { Alert } from "@material-ui/lab";
 
+import { FcGoogle } from "react-icons/fc"
+
 import Logo from "../../logo/Logo";
 
 import * as yup from "yup";
@@ -45,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  continueWithGoogle: {
+    margin: theme.spacing(1, 0, 2),
   },
   alert: {
     width: "100%",
@@ -103,8 +108,9 @@ export default function Signup() {
 
   const [error, setError] = useState("");
   const history = useHistory();
+  const [loading, setLoading] = useState(false)
 
-  const { signup, currentUser } = useAuth()
+  const { signup, currentUser, signInWithGoogleAuth  } = useAuth()
   async function handleSubmit(data, { setSubmitting }) {
     // e.preventDefault()
     try {
@@ -117,6 +123,19 @@ export default function Signup() {
       console.error(err);
     }
     setSubmitting(false);
+  }
+
+  async function handleContinueWithGoogle() {
+    try {
+      setError("");
+      setLoading(true);
+      await signInWithGoogleAuth()
+      history.push("/");
+    } catch (err) {
+      setError("Failed to sign in with Google");
+      console.error(err);
+    }
+    setLoading(false);
   }
   return (
     <>
@@ -178,8 +197,21 @@ export default function Signup() {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    size="large"
                   >
                     Sign Up
+                  </Button>
+                  <Button
+                    type="button"
+                    fullWidth
+                    disabled={loading}
+                    variant="contained"
+                    onClick={handleContinueWithGoogle}
+                    className={classes.continueWithGoogle}
+                    startIcon={<FcGoogle />}
+                    size="large"
+                  >
+                    Continue With Google
                   </Button>
                   <Grid container>
                     <Grid item xs>
