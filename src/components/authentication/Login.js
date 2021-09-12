@@ -16,34 +16,8 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Formik, Form, useField } from "formik";
 import { Alert } from "@material-ui/lab";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <UiLink color="inherit" href="https://www.mathcards.com/">
-        MathCards
-      </UiLink>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import * as yup from 'yup';
 
-const CustomTextField = ({ type, label, autoFocus, ...props }) => {
-  const [field] = useField(props);
-  return (
-    <TextField
-      {...field}
-      type={type}
-      label={label}
-      autoFocus={autoFocus}
-      variant="outlined"
-      margin="normal"
-      required
-      fullWidth
-    />
-  );
-};
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -71,6 +45,48 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <UiLink color="inherit" href="https://www.mathcards.com/">
+        MathCards
+      </UiLink>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+const CustomTextField = ({ type, label, autoFocus, ...props }) => {
+  const [field, meta] = useField(props);
+  const errorText = meta.error && meta.touched ? meta.error : "";
+  return (
+    <TextField
+      {...field}
+      type={type}
+      label={label}
+      autoFocus={autoFocus}
+      variant="outlined"
+      margin="normal"
+      fullWidth
+      helperText={errorText}
+      error={!!errorText}
+    />
+  );
+};
+
+const validationSchema = yup.object({
+  email: yup.string().email().required(),
+  password: yup
+    .string()
+    .required()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain at Least 8 characters including uppercase, lowercase, numbers and special characters (!@#$% ...)"
+    ),
+});
 
 export default function SignIn() {
   const classes = useStyles();
@@ -112,7 +128,9 @@ export default function SignIn() {
               </div>
             )}
             <Formik
+              validateOnChange={true}
               initialValues={{ email: "", password: "" }}
+              validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
               {({
