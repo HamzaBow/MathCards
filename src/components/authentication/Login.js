@@ -16,8 +16,9 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Formik, Form, useField } from "formik";
 import { Alert } from "@material-ui/lab";
 
-import * as yup from 'yup';
+import Logo from "../../logo/Logo";
 
+import * as yup from "yup";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.secondary.main,
     backgroundColor: "white",
     color: "darkblue",
-    border: "2.5px solid darkblue"
+    border: "2.5px solid darkblue",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -116,15 +117,20 @@ export default function SignIn() {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Log in
-            </Typography>
+            <Logo />
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginTop: '1rem' }}>
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5" style={{marginRight: '2rem'}}>
+                Log in
+              </Typography>
+            </div>
             {error && (
               <div className={classes.alert}>
-                <Alert variant="filled" severity="error">{error}</Alert>
+                <Alert variant="filled" severity="error">
+                  {error}
+                </Alert>
               </div>
             )}
             <Formik
