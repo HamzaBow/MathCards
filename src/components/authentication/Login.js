@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    border: "2px solid lightgray",
+    borderRadius: "12px",
+    paddingTop: theme.spacing(3),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
   },
   avatar: {
     margin: theme.spacing(1),
@@ -114,7 +119,7 @@ export default function SignIn() {
       {currentUser ? (
         <Redirect to="/" />
       ) : (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="sm">
           <CssBaseline />
           <div className={classes.paper}>
             <Logo />
@@ -186,10 +191,10 @@ export default function SignIn() {
                 </Form>
               )}
             </Formik>
-          </div>
           <Box mt={8}>
             <Copyright />
           </Box>
+          </div>
         </Container>
       )}
     </>
