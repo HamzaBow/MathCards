@@ -16,7 +16,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Formik, Form, useField } from "formik";
 import { Alert } from "@material-ui/lab";
 
-import { FcGoogle } from "react-icons/fc"
+import { FcGoogle } from "react-icons/fc";
 
 import Logo from "../../logo/Logo";
 
@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 1),
   },
   continueWithGoogle: {
-    margin: theme.spacing(1, 0, 2),
+    margin: theme.spacing(3, 0, 2),
   },
   alert: {
     width: "100%",
@@ -100,7 +100,7 @@ const validationSchema = yup.object({
   passwordConfirm: yup
     .string()
     .required()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
 export default function Signup() {
@@ -108,9 +108,9 @@ export default function Signup() {
 
   const [error, setError] = useState("");
   const history = useHistory();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const { signup, currentUser, signInWithGoogleAuth  } = useAuth()
+  const { signup, currentUser, signInWithGoogleAuth } = useAuth();
   async function handleSubmit(data, { setSubmitting }) {
     // e.preventDefault()
     try {
@@ -129,7 +129,7 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await signInWithGoogleAuth()
+      await signInWithGoogleAuth();
       history.push("/");
     } catch (err) {
       setError("Failed to sign in with Google");
@@ -146,11 +146,23 @@ export default function Signup() {
           <CssBaseline />
           <div className={classes.paper}>
             <Logo />
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginTop: '1rem' }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "0.5rem",
+                marginTop: "1rem",
+              }}
+            >
               <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5" style={{marginRight: '2rem'}}>
+              <Typography
+                component="h1"
+                variant="h5"
+                style={{ marginRight: "2rem" }}
+              >
                 Sign up
               </Typography>
             </div>
@@ -161,6 +173,26 @@ export default function Signup() {
                 </Alert>
               </div>
             )}
+
+            <Button
+              type="button"
+              fullWidth
+              disabled={loading}
+              variant="contained"
+              onClick={handleContinueWithGoogle}
+              className={classes.continueWithGoogle}
+              startIcon={<FcGoogle />}
+              size="large"
+            >
+              Continue With Google
+            </Button>
+            <Typography
+              component="h2"
+              variant="h6"
+              style={{ textAlign: "center", margin: "1.2rem 0 0.6rem" }}
+            >
+              OR
+            </Typography>
             <Formik
               validateOnChange={true}
               initialValues={{ email: "", password: "", passwordConfirm: "" }}
@@ -201,23 +233,11 @@ export default function Signup() {
                   >
                     Sign Up
                   </Button>
-                  <Button
-                    type="button"
-                    fullWidth
-                    disabled={loading}
-                    variant="contained"
-                    onClick={handleContinueWithGoogle}
-                    className={classes.continueWithGoogle}
-                    startIcon={<FcGoogle />}
-                    size="large"
-                  >
-                    Continue With Google
-                  </Button>
                   <Grid container>
                     <Grid item xs>
                       <Link to="/login">
                         <UiLink href="/login" variant="body2">
-                        Already have an account? Log in.
+                          Already have an account? Log in.
                         </UiLink>
                       </Link>
                     </Grid>
@@ -231,9 +251,9 @@ export default function Signup() {
                 </Form>
               )}
             </Formik>
-          <Box mt={8}>
-            <Copyright />
-          </Box>
+            <Box mt={8}>
+              <Copyright />
+            </Box>
           </div>
         </Container>
       )}
