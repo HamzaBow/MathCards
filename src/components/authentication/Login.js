@@ -145,7 +145,6 @@ export default function SignIn() {
                     name="email"
                     type="email"
                     label="Email Address"
-                    autoFocus
                   />
                   <CustomTextField
                     name="password"
