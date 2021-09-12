@@ -94,7 +94,7 @@ const validationSchema = yup.object({
     ),
 });
 
-export default function SignIn() {
+export default function Login() {
   const classes = useStyles();
 
   const [error, setError] = useState("");

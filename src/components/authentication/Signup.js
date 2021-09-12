@@ -98,7 +98,7 @@ const validationSchema = yup.object({
     .oneOf([yup.ref("password"), null], "Passwords must match")
 });
 
-export default function SignIn() {
+export default function Signup() {
   const classes = useStyles();
 
   const [error, setError] = useState("");
