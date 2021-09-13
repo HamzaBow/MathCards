@@ -19,6 +19,13 @@ import ForgotPassword from "./components/authentication/ForgotPassword";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useHistory, Redirect } from "react-router-dom";
 
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import {
+  createTheme,
+  ThemeProvider as MuiThemeProvider,
+} from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
 function App() {
   // ----------------------------- CARDS -----------------------------
 
@@ -75,6 +82,8 @@ function App() {
   return (
     <Router>
       <div className="App">
+<MuiThemeProvider theme={theme}>
+      <CssBaseline/>
         <ThemeProvider>
           <UserProvider>
             <AuthProvider>
@@ -124,7 +133,9 @@ function App() {
             </AuthProvider>
           </UserProvider>
         </ThemeProvider>
+        </MuiThemeProvider>
       </div>
+
     </Router>
   );
 }
