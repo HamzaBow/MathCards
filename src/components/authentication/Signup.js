@@ -176,12 +176,11 @@ export default function Signup() {
 
             <Button
               type="button"
-              fullWidth
               disabled={loading}
-              variant="contained"
+              variant="outlined"
               onClick={handleContinueWithGoogle}
               className={classes.continueWithGoogle}
-              startIcon={<FcGoogle />}
+              startIcon={<FcGoogle size={30} />}
               size="large"
             >
               Continue With Google
