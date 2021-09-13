@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar"
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { Button } from "@material-ui/core";
+import { Button, Paper } from "@material-ui/core";
 import { useAuth } from "../../contexts/AuthContext";
 import { useHistory, useLocation } from "react-router-dom"
 
@@ -85,7 +85,7 @@ const Header = () => {
   }
   const headerStyle = {
     fontFamily: "Roboto",
-    backgroundColor: darkTheme ? darkColor : 'white', //COLORS.PRIMARY_LIGHT,
+    // backgroundColor: darkTheme ? darkColor : 'white', //COLORS.PRIMARY_LIGHT,
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr',
     alignItems: 'center',
@@ -109,7 +109,9 @@ const Header = () => {
   }
 
   return (
-    <header style={headerStyle}>
+    // <header style={headerStyle}>
+    <header>
+      <Paper style={headerStyle}>
       <div style={{ justifySelf: 'start', marginLeft: '1rem' }}>
 
         <Link to='/'>
@@ -161,6 +163,7 @@ const Header = () => {
 
         <BsGearFill style={{ ...iconStyle, color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK, marginRight: '1rem' }} />
       </div>
+      </Paper>
     </header >
   )
 }
