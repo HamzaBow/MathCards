@@ -94,61 +94,60 @@ function App() {
   return (
     <Router>
       <div className="App">
-<MuiThemeProvider theme={theme}>
-      <CssBaseline/>
-        <ThemeProvider>
-          <UserProvider>
-            <AuthProvider>
-              <Route exact path="/">
-                {currentUser ? (
-                  <Redirect to="/" />
-                ) : (
-                  <>
-                    {/* <Header /> */}
-                    <MuiHeader />
-                    <Main cards={cards} cardsDispatch={cardsDispatch} />
-                  </>
-                )}
-              </Route>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <ThemeProvider>
+            <UserProvider>
+              <AuthProvider>
+                <Route exact path="/">
+                  {currentUser ? (
+                    <Redirect to="/" />
+                  ) : (
+                    <>
+                      {/* <Header /> */}
+                      <MuiHeader />
+                      <Main cards={cards} cardsDispatch={cardsDispatch} />
+                    </>
+                  )}
+                </Route>
 
-              <Route path="/maincard/:id">
-                <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <Maincard cards={cards} />{" "}
-                {/* --------------------------------------------  Maincard */}
-              </Route>
+                <Route path="/maincard/:id">
+                  <Main cards={cards} cardsDispatch={cardsDispatch} />
+                  <Maincard cards={cards} />{" "}
+                  {/* --------------------------------------------  Maincard */}
+                </Route>
 
-              <Route path="/cardform/new">
-                <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <CardForm
-                  operationType="create"
-                  cardsDispatch={cardsDispatch}
-                />{" "}
-                {/* ----  CardForm */}
-              </Route>
+                <Route path="/cardform/new">
+                  <Main cards={cards} cardsDispatch={cardsDispatch} />
+                  <CardForm
+                    operationType="create"
+                    cardsDispatch={cardsDispatch}
+                  />{" "}
+                  {/* ----  CardForm */}
+                </Route>
 
-              <Route path="/cardform/edit/:id">
-                <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <CardForm
-                  operationType="edit"
-                  cards={cards}
-                  cardsDispatch={cardsDispatch}
-                />{" "}
-                {/* ----  CardForm */}
-              </Route>
+                <Route path="/cardform/edit/:id">
+                  <Main cards={cards} cardsDispatch={cardsDispatch} />
+                  <CardForm
+                    operationType="edit"
+                    cards={cards}
+                    cardsDispatch={cardsDispatch}
+                  />{" "}
+                  {/* ----  CardForm */}
+                </Route>
 
-              <Route path="/signup" component={Signup} />
+                <Route path="/signup" component={Signup} />
 
-              <Route path="/login" component={Login} />
+                <Route path="/login" component={Login} />
 
-              <Route path="/forgot-password" component={ForgotPassword} />
+                <Route path="/forgot-password" component={ForgotPassword} />
 
-              {/* <Footer /> */}
-            </AuthProvider>
-          </UserProvider>
-        </ThemeProvider>
+                {/* <Footer /> */}
+              </AuthProvider>
+            </UserProvider>
+          </ThemeProvider>
         </MuiThemeProvider>
       </div>
-
     </Router>
   );
 }
