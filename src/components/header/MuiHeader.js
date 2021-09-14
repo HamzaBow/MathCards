@@ -30,9 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   search: {
-    position: "absolute",
-    left: "50%",
-    transform: "translateX(-50%)",
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
     borderWidth: "1px",
     borderColor: alpha(theme.palette.common.white, 0.35),
@@ -50,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
       width: "auto",
+      position: "absolute",
+      left: "50%",
+      transform: "translateX(-50%)",
     },
   },
   searchIcon: {
