@@ -19,6 +19,7 @@ import Sidebar from "./Sidebar";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    flexDirection: `${console.log(theme.palette.type)}`,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -33,15 +34,11 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     borderWidth: "1px",
-    borderColor: alpha(theme.palette.common.white, 0.35),
-    backgroundColor: alpha(theme.palette.common.white, 0.05),
+    borderColor: theme.palette.type === 'dark' ? alpha(theme.palette.common.white, 0.25) : alpha(theme.palette.common.black, 0.25) ,
     borderStyle: "solid",
     "&:hover": {
-      borderColor: alpha(theme.palette.common.white, 0.65),
-    backgroundColor: alpha(theme.palette.common.white, 0.10),
+      borderColor: theme.palette.type === 'dark' ? alpha(theme.palette.common.white, 0.50) : alpha(theme.palette.common.black, 0.45),
     },
-    // "&:hover": {
-    // },
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
