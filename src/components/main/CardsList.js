@@ -5,15 +5,8 @@ import { useTheme } from "../../contexts/ThemeContext";
 const CardsList = ({ cards, cardsDispatch }) => {
   // TODO: the container should have no visible style (except probably for margins, etc. ) to make the app style and layout SIMPLER
   //       White background (for white theme) all the way to the left & right edges of the viewport.
-  const darkTheme = useTheme();
-  const containerStyle = {
-    paddingTop: '7rem',
-    backgroundColor: darkTheme ? '#010409' : "#f0f2f5",
-    color: darkTheme ? "white" : "black",
-  };
-
   return (
-    <div className="container" style={containerStyle}>
+    <div className="container" >
       {cards.map((card, key) => (
         <Card key={key} card={card} cardsDispatch={cardsDispatch} />
       ))}
