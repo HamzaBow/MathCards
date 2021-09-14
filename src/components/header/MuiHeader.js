@@ -30,12 +30,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   search: {
-    position: "relative",
+    position: "absolute",
+    left: "50%",
+    transform: "translateX(-50%)",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    borderWidth: "1px",
+    borderColor: alpha(theme.palette.common.white, 0.35),
+    backgroundColor: alpha(theme.palette.common.white, 0.05),
+    borderStyle: "solid",
     "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      borderColor: alpha(theme.palette.common.white, 0.65),
+    backgroundColor: alpha(theme.palette.common.white, 0.10),
     },
+    // "&:hover": {
+    // },
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "100%",
@@ -63,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "20ch",
+      width: "40ch",
     },
   },
   sectionDesktop: {
