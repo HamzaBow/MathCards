@@ -36,8 +36,10 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "1px",
     borderColor: theme.palette.type === 'dark' ? alpha(theme.palette.common.white, 0.25) : alpha(theme.palette.common.black, 0.25) ,
     borderStyle: "solid",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey.A400 : theme.palette.grey[50],
     "&:hover": {
       borderColor: theme.palette.type === 'dark' ? alpha(theme.palette.common.white, 0.50) : alpha(theme.palette.common.black, 0.45),
+
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
