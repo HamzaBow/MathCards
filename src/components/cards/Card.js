@@ -144,7 +144,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
       className="container-item"
       style={containerItemStyle}
     >
-      <Paper>
+      <Paper elevation={3}>
       <div className="card">
         <div>
           <Button
