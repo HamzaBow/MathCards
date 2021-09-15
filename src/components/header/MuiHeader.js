@@ -16,6 +16,8 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
+import Divider from '@material-ui/core/Divider';
+import { useAuth } from '../../contexts/AuthContext'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -96,6 +98,7 @@ export default function MuiHeader() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const history = useHistory();
+  const { logout, currentUser } = useAuth();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -117,6 +120,11 @@ export default function MuiHeader() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleSignOut = () => {
+    handleMenuClose();
+    logout();
+  }
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -130,6 +138,8 @@ export default function MuiHeader() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Divider />
+      <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
     </Menu>
   );
 
@@ -167,7 +177,7 @@ export default function MuiHeader() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Your profile</p>
       </MenuItem>
     </Menu>
   );
