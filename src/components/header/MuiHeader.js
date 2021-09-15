@@ -203,7 +203,7 @@ export default function MuiHeader() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="add a new card" color="inherit" onClick={() => {history.push('/cardform/new')}}>
+            <IconButton aria-label="create a new card" color="inherit" onClick={() => {history.push('/cardform/new')}}>
                 <AddCircleIcon />
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
