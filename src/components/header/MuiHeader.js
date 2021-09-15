@@ -23,7 +23,6 @@ import { Avatar } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-    flexDirection: `${console.log(theme.palette.type)}`,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -108,7 +107,6 @@ export default function MuiHeader() {
 
   const history = useHistory();
   const { logout, currentUser } = useAuth();
-  console.log('currentUser', currentUser ?? "doesn't exist")
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
