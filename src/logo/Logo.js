@@ -32,8 +32,7 @@ export const headingStyle = {
   fontFamily: "Ubuntu",
   fontWeight: "400",
   display: "inline",
-  margin: 0,
-  color: "black",
+  margin: "0 0.5rem 0",
 };
 const Logo = () => {
   return (
