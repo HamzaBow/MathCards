@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import FormFace from './FormFace'
 import FormOther from './formother/FormOther'
 
-import CardFormHeader from './CardFormHeader'
 import CardFormStepper from './CardFormStepper'
 import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
@@ -212,7 +211,7 @@ const CardForm = ( { operationType, cards, cardsDispatch } ) => {
             <Overlay />
             { !finished ?
             <>
-                <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader>
+                {/* <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader> */}
                 <FormFace  ref={front} face="front" next={next}             fields={fields} fieldsDispatch={fieldsDispatch} />
                 <FormFace  ref={back}  face="back"  next={next} prev={prev} fields={fields} fieldsDispatch={fieldsDispatch} />
                 <FormOther operationType={operationType} ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} tags={tags} setTags={setTags} addCard={addCard} updateCard={updateCard}/>
