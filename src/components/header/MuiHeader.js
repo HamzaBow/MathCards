@@ -136,6 +136,7 @@ export default function MuiHeader() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem onClick={handleMenuClose}>Signed in as: {currentUser && (currentUser.displayName || currentUser.email) }</MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       <Divider />
