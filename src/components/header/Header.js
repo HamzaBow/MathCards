@@ -3,7 +3,6 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -216,7 +215,9 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Logo />
+          <IconButton style={{borderRadius: "0.3rem", paddingLeft: "0.3rem"}} size="small" onClick={() => {history.push("/")}}>
+            <Logo />
+          </IconButton>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
