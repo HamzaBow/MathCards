@@ -11,7 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Sidebar from "./Sidebar";
@@ -37,12 +37,20 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     borderWidth: "1px",
-    borderColor: theme.palette.type === 'dark' ? alpha(theme.palette.common.white, 0.25) : alpha(theme.palette.common.black, 0.25) ,
+    borderColor:
+      theme.palette.type === "dark"
+        ? alpha(theme.palette.common.white, 0.25)
+        : alpha(theme.palette.common.black, 0.25),
     borderStyle: "solid",
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey.A400 : theme.palette.grey[50],
+    backgroundColor:
+      theme.palette.type === "dark"
+        ? theme.palette.grey.A400
+        : theme.palette.grey[50],
     "&:hover": {
-      borderColor: theme.palette.type === 'dark' ? alpha(theme.palette.common.white, 0.50) : alpha(theme.palette.common.black, 0.45),
-
+      borderColor:
+        theme.palette.type === "dark"
+          ? alpha(theme.palette.common.white, 0.5)
+          : alpha(theme.palette.common.black, 0.45),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -123,7 +131,7 @@ export default function MuiHeader() {
   const handleSignOut = () => {
     handleMenuClose();
     logout();
-  }
+  };
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -156,7 +164,7 @@ export default function MuiHeader() {
     >
       <MenuItem>
         <IconButton aria-label="create a new card" color="inherit">
-            <AddCircleIcon />
+          <AddCircleIcon />
         </IconButton>
         <p>New card</p>
       </MenuItem>
@@ -191,7 +199,9 @@ export default function MuiHeader() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick={()=>{setDisplaySidebar(prev => !prev)}}
+            onClick={() => {
+              setDisplaySidebar((prev) => !prev);
+            }}
           >
             <MenuIcon />
           </IconButton>
