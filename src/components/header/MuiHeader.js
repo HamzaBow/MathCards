@@ -16,8 +16,9 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
-import Divider from '@material-ui/core/Divider';
-import { useAuth } from '../../contexts/AuthContext'
+import Divider from "@material-ui/core/Divider";
+import { useAuth } from "../../contexts/AuthContext";
+import { Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -107,6 +108,7 @@ export default function MuiHeader() {
 
   const history = useHistory();
   const { logout, currentUser } = useAuth();
+  console.log('currentUser', currentUser ?? "doesn't exist")
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -144,7 +146,10 @@ export default function MuiHeader() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Signed in as: {currentUser && (currentUser.displayName || currentUser.email) }</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        Signed in as:{" "}
+        {currentUser && (currentUser.displayName || currentUser.email)}
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <Divider />
       <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
@@ -183,7 +188,14 @@ export default function MuiHeader() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          {currentUser?.photoURL ? (
+            <Avatar
+              alt={currentUser.displayName}
+              src={currentUser.photoURL}
+            />
+          ) : (
+            <AccountCircle />
+          )}
         </IconButton>
         <p>Account</p>
       </MenuItem>
@@ -223,8 +235,14 @@ export default function MuiHeader() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="create a new card" color="inherit" onClick={() => {history.push('/cardform/new')}}>
-                <AddCircleIcon />
+            <IconButton
+              aria-label="create a new card"
+              color="inherit"
+              onClick={() => {
+                history.push("/cardform/new");
+              }}
+            >
+              <AddCircleIcon />
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
@@ -239,7 +257,14 @@ export default function MuiHeader() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {currentUser?.photoURL ? (
+                <Avatar
+                  alt={currentUser?.displayName && currentUser?.email}
+                  src={currentUser?.photoURL}
+                />
+              ) : (
+                <AccountCircle />
+              )}
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
