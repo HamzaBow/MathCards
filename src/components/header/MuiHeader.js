@@ -138,7 +138,6 @@ export default function MuiHeader() {
     >
       <MenuItem onClick={handleMenuClose}>Signed in as: {currentUser && (currentUser.displayName || currentUser.email) }</MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       <Divider />
       <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
     </Menu>
@@ -178,7 +177,7 @@ export default function MuiHeader() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Your profile</p>
+        <p>Account</p>
       </MenuItem>
     </Menu>
   );
