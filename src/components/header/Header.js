@@ -19,6 +19,7 @@ import { useHistory } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import { useAuth } from "../../contexts/AuthContext";
 import { Avatar } from "@material-ui/core";
+import Logo from "../../logo/Logo";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -215,9 +216,7 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
+          <Logo />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
