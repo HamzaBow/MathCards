@@ -145,10 +145,10 @@ export default function MuiHeader() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+        <IconButton aria-label="create a new card" color="inherit">
             <AddCircleIcon />
         </IconButton>
-        <p>Messages</p>
+        <p>New card</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
