@@ -16,6 +16,8 @@ import { FaHammer } from 'react-icons/fa';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
+import Logo from "../../logo/Logo"
+
 import { useUser, useUserUpdate } from '../../contexts/UserContext';
 
 import { TextField, Button } from '@material-ui/core';
@@ -70,7 +72,8 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)} style={{ paddingTop: '0', paddingBottom: '0', marginTop: '0', marginBottom: '7px' }} >
 
-              <ArrowBack />
+              <ArrowBack style={{marginRight: "2rem"}} />
+              <Logo />
 
           </ListItem>
 
