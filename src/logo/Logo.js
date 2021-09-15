@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import React from "react";
 import { ImSigma } from "react-icons/im";
 
@@ -41,7 +42,7 @@ const Logo = () => {
         <span style={sigmaContainerStyle}>
           <ImSigma style={SigmaIconStyle} />
         </span>
-        <h1 style={headingStyle}>MathCards</h1>
+        <h6 style={headingStyle}>MathCards</h6>
       </div>
     </div>
   );
