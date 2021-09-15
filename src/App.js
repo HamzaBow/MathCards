@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 
-import Header from "./components/header/Header";
-import MuiHeader from "./components/header/MuiHeader";
+import Header from "./components/header/MuiHeader";
 import Main from "./components/main/Main";
 import Footer from "./components/Footer";
 
@@ -105,7 +104,7 @@ function App() {
                   ) : (
                     <>
                       {/* <Header /> */}
-                      <MuiHeader />
+                      <Header />
                       <Main cards={cards} cardsDispatch={cardsDispatch} />
                     </>
                   )}

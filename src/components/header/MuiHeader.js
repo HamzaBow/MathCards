@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MuiHeader() {
+export default function Header() {
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
