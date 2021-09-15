@@ -103,7 +103,6 @@ function App() {
                     <Redirect to="/" />
                   ) : (
                     <>
-                      {/* <Header /> */}
                       <Header />
                       <Main cards={cards} cardsDispatch={cardsDispatch} />
                     </>

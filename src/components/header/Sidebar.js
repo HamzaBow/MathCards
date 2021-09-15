@@ -9,7 +9,6 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import { List as ListIcon, Star, Feedback, Help } from '@material-ui/icons/';
 import { AiFillHeart } from 'react-icons/ai';
 import { ImSigma } from "react-icons/im";
-import { logoStyle, sigmaContainerStyle, SigmaIconStyle, headingStyle, iconStyle } from './Header';
 import { Collapse } from '@material-ui/core';
 import { ExpandLess, ExpandMore, Bookmark, Add } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,15 +69,9 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
         <List>
 
           <ListItem button key='back' onClick={() => setDisplaySidebar(prev => !prev)} style={{ paddingTop: '0', paddingBottom: '0', marginTop: '0', marginBottom: '7px' }} >
-            <div style={logoStyle}>
 
-              <ArrowBack style={{ ...iconStyle, margin: "0 0.8rem 0 0rem", padding: "0", width: '2rem', height: '2rem' }} />
+              <ArrowBack />
 
-              <span style={sigmaContainerStyle}>
-                <ImSigma style={SigmaIconStyle} />
-              </span>
-              <h1 style={{ ...headingStyle, marginRight: '1.5rem' }} >MathCards</h1>
-            </div>
           </ListItem>
 
           <Divider />
