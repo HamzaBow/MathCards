@@ -168,7 +168,7 @@ export default function Header({chosenTheme, setChosenTheme}) {
           </Typography>
         </Box>
         <Box sx={{ mx: 3, my: 1 }}>
-          <Typography variant="h6">
+          <Typography variant="h6" style={{fontWeight: 800}} >
             {currentUser && (currentUser.displayName || currentUser.email)}
           </Typography>
         </Box>
