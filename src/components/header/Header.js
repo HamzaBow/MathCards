@@ -99,16 +99,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+export default function Header({chosenTheme, setChosenTheme}) {
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [themeAnchorEl, setThemeAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const history = useHistory();
   const { logout, currentUser } = useAuth();
 
   const isMenuOpen = Boolean(anchorEl);
+  const isThemeMenuOpen = Boolean(themeAnchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -121,12 +123,21 @@ export default function Header() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+    setThemeAnchorEl(null);
     handleMobileMenuClose();
   };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const handleThemeMenuOpen = (event) => {
+    setAnchorEl(null)
+    setThemeAnchorEl(event.currentTarget);
+  }
+  const handleChooseTheme = (selectedTheme) => {
+    handleMenuClose();
+    setChosenTheme(selectedTheme);
+  } 
 
   const handleSignOut = () => {
     handleMenuClose();
@@ -149,10 +160,28 @@ export default function Header() {
         {currentUser && (currentUser.displayName || currentUser.email)}
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleThemeMenuOpen}>Theme</MenuItem>
       <Divider />
       <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
     </Menu>
   );
+
+  const themeMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isThemeMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={() => handleChooseTheme('device-theme')}>Device theme</MenuItem>
+      <MenuItem onClick={() => handleChooseTheme('light')}>Light</MenuItem>
+      <MenuItem onClick={() => handleChooseTheme('dark')}>Dark</MenuItem>
+      <MenuItem onClick={() => handleChooseTheme('charcoal')}>Charcoal (dark)</MenuItem>
+    </Menu>
+  )
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -280,6 +309,7 @@ export default function Header() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {themeMenu}
       <Sidebar
         displaySidebar={displaySidebar}
         setDisplaySidebar={setDisplaySidebar}

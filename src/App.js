@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
@@ -28,15 +28,42 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const [chosenTheme, setChosenTheme] = useState("device-theme")
 
   const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          type: prefersDarkMode ? "dark" : "light",
-        },
-      }),
-    [prefersDarkMode]
+    () => {
+      switch (chosenTheme) {
+        case "light":
+          return createTheme({
+            palette: {
+              type: "light",
+            },
+          })
+        case "dark":
+          return createTheme({
+            palette: {
+              type: "dark",
+            },
+          })
+        case "charcoal":
+          return createTheme({
+            palette: {
+              type: "dark",
+              background: {
+                default : "#242729",
+                paper : "#323638",
+              }
+            },
+          })
+        default: //devide-theme
+          return createTheme({
+            palette: {
+              type: prefersDarkMode ? "dark" : "light",
+            },
+          })
+      }
+      },
+    [prefersDarkMode, chosenTheme]
   );
   // ----------------------------- CARDS -----------------------------
 
@@ -103,7 +130,7 @@ function App() {
                     <Redirect to="/" />
                   ) : (
                     <>
-                      <Header />
+                      <Header chosenTheme={chosenTheme} setChosenTheme={setChosenTheme} />
                       <Main cards={cards} cardsDispatch={cardsDispatch} />
                     </>
                   )}
