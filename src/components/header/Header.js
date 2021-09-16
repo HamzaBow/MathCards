@@ -130,9 +130,9 @@ export default function Header({chosenTheme, setChosenTheme}) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  const handleThemeMenuOpen = (event) => {
+  const handleThemeMenuOpen = () => {
+    setThemeAnchorEl(anchorEl)
     setAnchorEl(null)
-    setThemeAnchorEl(event.currentTarget);
   }
   const handleChooseTheme = (selectedTheme) => {
     handleMenuClose();
@@ -148,10 +148,11 @@ export default function Header({chosenTheme, setChosenTheme}) {
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={menuId}
+      getContentAnchorEl={null}
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      transformOrigin={{ vertical: "top", horizontal: "center" }}
+      // id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -168,11 +169,12 @@ export default function Header({chosenTheme, setChosenTheme}) {
 
   const themeMenu = (
     <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorEl={themeAnchorEl}
+      getContentAnchorEl={null}
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      transformOrigin={{ vertical: "top", horizontal: "center" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isThemeMenuOpen}
       onClose={handleMenuClose}
     >
