@@ -17,8 +17,9 @@ import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import { useAuth } from "../../contexts/AuthContext";
-import { Avatar } from "@material-ui/core";
+import { Avatar, ListItemIcon, ListItemText } from "@material-ui/core";
 import Logo from "../../logo/Logo";
+import { Brightness3, ExitToApp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -160,10 +161,25 @@ export default function Header({chosenTheme, setChosenTheme}) {
         Signed in as:{" "}
         {currentUser && (currentUser.displayName || currentUser.email)}
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleThemeMenuOpen}>Theme</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <ListItemIcon>
+          <AccountCircle />
+        </ListItemIcon>
+        <ListItemText primary="Profile" />
+        </MenuItem>
+      <MenuItem onClick={handleThemeMenuOpen}>
+        <ListItemIcon>
+          <Brightness3 />
+        </ListItemIcon>
+        <ListItemText primary="Theme" />
+      </MenuItem>
       <Divider />
-      <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
+      <MenuItem onClick={handleSignOut}>
+        <ListItemIcon>
+          <ExitToApp />
+        </ListItemIcon>
+        <ListItemText primary="Sign out" />
+        </MenuItem>
     </Menu>
   );
 
