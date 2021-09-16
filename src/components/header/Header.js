@@ -161,10 +161,12 @@ export default function Header({chosenTheme, setChosenTheme}) {
         classes={{list: classes.list}}
       >
     <Paper variant="outlined">
-        <Typography variant="body1" align="center">
-          {" "}
-          Signed in as:{" "}
-        </Typography>
+        <Box mt={1}>
+          <Typography variant="body1" align="center">
+            {" "}
+            Signed in as:{" "}
+          </Typography>
+        </Box>
         <Box sx={{ mx: 3, my: 1 }}>
           <Typography variant="h6">
             {currentUser && (currentUser.displayName || currentUser.email)}
