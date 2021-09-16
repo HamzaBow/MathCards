@@ -17,7 +17,7 @@ import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import { useAuth } from "../../contexts/AuthContext";
-import { Avatar, ListItemIcon, ListItemText } from "@material-ui/core";
+import { Avatar, Box, ListItemIcon, ListItemText, Typography } from "@material-ui/core";
 import Logo from "../../logo/Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
 
@@ -157,16 +157,21 @@ export default function Header({chosenTheme, setChosenTheme}) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
-        Signed in as:{" "}
-        {currentUser && (currentUser.displayName || currentUser.email)}
-      </MenuItem>
+      <Typography variant="body1" align="center"> Signed in as: </Typography>
+      <Box sx={{ mx: 3, mb: 1}}>
+        <Typography variant="body1" >
+          {currentUser && (currentUser.displayName || currentUser.email)}
+        </Typography>
+      </Box>
+
+      <Divider />
+
       <MenuItem onClick={handleMenuClose}>
         <ListItemIcon>
           <AccountCircle />
         </ListItemIcon>
         <ListItemText primary="Profile" />
-        </MenuItem>
+      </MenuItem>
       <MenuItem onClick={handleThemeMenuOpen}>
         <ListItemIcon>
           <Brightness3 />
@@ -188,7 +193,7 @@ export default function Header({chosenTheme, setChosenTheme}) {
           <ExitToApp />
         </ListItemIcon>
         <ListItemText primary="Sign out" />
-        </MenuItem>
+      </MenuItem>
     </Menu>
   );
 
