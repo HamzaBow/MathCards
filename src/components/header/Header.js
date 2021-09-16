@@ -158,8 +158,8 @@ export default function Header({chosenTheme, setChosenTheme}) {
       onClose={handleMenuClose}
     >
       <Typography variant="body1" align="center"> Signed in as: </Typography>
-      <Box sx={{ mx: 3, mb: 1}}>
-        <Typography variant="body1" >
+      <Box sx={{ mx: 3, my: 1}}>
+        <Typography variant="h6" >
           {currentUser && (currentUser.displayName || currentUser.email)}
         </Typography>
       </Box>
@@ -170,7 +170,7 @@ export default function Header({chosenTheme, setChosenTheme}) {
         <ListItemIcon>
           <AccountCircle />
         </ListItemIcon>
-        <ListItemText primary="Profile" />
+        <Box sx={{ mr: 5}} ><ListItemText primary="Profile" /></Box>
       </MenuItem>
       <MenuItem onClick={handleThemeMenuOpen}>
         <ListItemIcon>
