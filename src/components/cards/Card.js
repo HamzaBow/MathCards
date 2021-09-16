@@ -163,7 +163,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
                 {...TransitionProps}
                 style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
               >
-                <Paper>
+                <Paper variant="outlined">
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
 
