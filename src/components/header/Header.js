@@ -19,7 +19,7 @@ import Divider from "@material-ui/core/Divider";
 import { useAuth } from "../../contexts/AuthContext";
 import { Avatar, ListItemIcon, ListItemText } from "@material-ui/core";
 import Logo from "../../logo/Logo";
-import { Brightness3, ExitToApp } from "@material-ui/icons";
+import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -173,7 +173,16 @@ export default function Header({chosenTheme, setChosenTheme}) {
         </ListItemIcon>
         <ListItemText primary="Theme" />
       </MenuItem>
+
+      <MenuItem onClick={handleThemeMenuOpen}>
+        <ListItemIcon>
+          <Settings />
+        </ListItemIcon>
+        <ListItemText primary="Settings" />
+      </MenuItem>
+
       <Divider />
+
       <MenuItem onClick={handleSignOut}>
         <ListItemIcon>
           <ExitToApp />
