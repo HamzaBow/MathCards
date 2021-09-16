@@ -161,7 +161,7 @@ export default function Header({chosenTheme, setChosenTheme}) {
         onClose={handleMenuClose}
         classes={{list: classes.list}}
       >
-    <Paper  variant="outlined" >
+    <Paper variant="outlined">
         <Typography variant="body1" align="center">
           {" "}
           Signed in as:{" "}
@@ -218,11 +218,15 @@ export default function Header({chosenTheme, setChosenTheme}) {
       keepMounted
       open={isThemeMenuOpen}
       onClose={handleMenuClose}
+      classes={{list: classes.list}}
     >
+
+    <Paper variant="outlined">
       <MenuItem onClick={() => handleChooseTheme('device-theme')}>Device theme</MenuItem>
       <MenuItem onClick={() => handleChooseTheme('light')}>Light</MenuItem>
       <MenuItem onClick={() => handleChooseTheme('dark')}>Dark</MenuItem>
       <MenuItem onClick={() => handleChooseTheme('charcoal')}>Charcoal (dark)</MenuItem>
+    </Paper>
     </Menu>
   )
 
@@ -236,7 +240,9 @@ export default function Header({chosenTheme, setChosenTheme}) {
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
+      classes={{list: classes.list}}
     >
+    <Paper variant="outlined">
       <MenuItem>
         <IconButton aria-label="create a new card" color="inherit">
           <AddCircleIcon />
@@ -269,6 +275,7 @@ export default function Header({chosenTheme, setChosenTheme}) {
         </IconButton>
         <p>Account</p>
       </MenuItem>
+      </Paper>
     </Menu>
   );
 
