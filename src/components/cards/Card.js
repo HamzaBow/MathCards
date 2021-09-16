@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { StaticMathField } from "react-mathquill"
 import { CARDS_ACTIONS, CARD_LAYOUT, CARD_SIZE } from '../../Constants';
-import { COLORS } from "../../Constants"
 import { MdMoreHoriz } from "react-icons/md"
-import { useTheme } from "../../contexts/ThemeContext"
 import { useHistory } from 'react-router';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -22,8 +20,6 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
   const history = useHistory();
 
   const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
-
-  const darkTheme = useTheme();
 
   // ********************* Smart Defaults.**********************
   layout = layout ?? CARD_LAYOUT.HUG_CONTENT;
@@ -66,13 +62,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
   const containerItemStyle = {
     width,
     height,
-
-    // boxShadow: darkTheme ? "none" : "0.5px 1.5px 6px rgb(185, 185, 185)",
-    // color: darkTheme ? COLORS.GRAY_LIGHT : COLORS.GRAY_DARK,
-    // backgroundColor: darkTheme ? '#21262d' : COLORS.GRAY_LIGHT,
-    // border: darkTheme ? '3px solid #30363d' : 'none',
   };
-  // 
 
   // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
   const displayMainCard = (id) => {

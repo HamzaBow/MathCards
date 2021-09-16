@@ -17,7 +17,7 @@ import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import { useAuth } from "../../contexts/AuthContext";
-import { Avatar, Box, ListItemIcon, ListItemText, MenuList, Paper, Typography } from "@material-ui/core";
+import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@material-ui/core";
 import Logo from "../../logo/Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
 
@@ -78,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
