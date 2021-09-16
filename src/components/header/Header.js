@@ -17,7 +17,7 @@ import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import { useAuth } from "../../contexts/AuthContext";
-import { Avatar, Box, ListItemIcon, ListItemText, Typography } from "@material-ui/core";
+import { Avatar, Box, ListItemIcon, ListItemText, MenuList, Paper, Typography } from "@material-ui/core";
 import Logo from "../../logo/Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
 
@@ -98,6 +98,9 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  list: {
+    padding: 0,
+  },
 }));
 
 export default function Header({chosenTheme, setChosenTheme}) {
@@ -148,53 +151,61 @@ export default function Header({chosenTheme, setChosenTheme}) {
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
-      getContentAnchorEl={null}
-      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      transformOrigin={{ vertical: "top", horizontal: "center" }}
-      // id={menuId}
-      keepMounted
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <Typography variant="body1" align="center"> Signed in as: </Typography>
-      <Box sx={{ mx: 3, my: 1}}>
-        <Typography variant="h6" >
-          {currentUser && (currentUser.displayName || currentUser.email)}
+        anchorEl={anchorEl}
+        getContentAnchorEl={null}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
+        id={menuId}
+        keepMounted
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+        classes={{list: classes.list}}
+      >
+    <Paper  variant="outlined" >
+        <Typography variant="body1" align="center">
+          {" "}
+          Signed in as:{" "}
         </Typography>
-      </Box>
+        <Box sx={{ mx: 3, my: 1 }}>
+          <Typography variant="h6">
+            {currentUser && (currentUser.displayName || currentUser.email)}
+          </Typography>
+        </Box>
 
-      <Divider />
+        <Divider />
 
-      <MenuItem onClick={handleMenuClose}>
-        <ListItemIcon>
-          <AccountCircle />
-        </ListItemIcon>
-        <Box sx={{ mr: 5}} ><ListItemText primary="Profile" /></Box>
-      </MenuItem>
-      <MenuItem onClick={handleThemeMenuOpen}>
-        <ListItemIcon>
-          <Brightness3 />
-        </ListItemIcon>
-        <ListItemText primary="Theme" />
-      </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <ListItemIcon>
+            <AccountCircle />
+          </ListItemIcon>
+          <Box sx={{ mr: 5 }}>
+            <ListItemText primary="Profile" />
+          </Box>
+        </MenuItem>
+        <MenuItem onClick={handleThemeMenuOpen}>
+          <ListItemIcon>
+            <Brightness3 />
+          </ListItemIcon>
+          <ListItemText primary="Theme" />
+        </MenuItem>
 
-      <MenuItem onClick={handleThemeMenuOpen}>
-        <ListItemIcon>
-          <Settings />
-        </ListItemIcon>
-        <ListItemText primary="Settings" />
-      </MenuItem>
+        <MenuItem onClick={handleThemeMenuOpen}>
+          <ListItemIcon>
+            <Settings />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </MenuItem>
 
-      <Divider />
+        <Divider />
 
-      <MenuItem onClick={handleSignOut}>
-        <ListItemIcon>
-          <ExitToApp />
-        </ListItemIcon>
-        <ListItemText primary="Sign out" />
-      </MenuItem>
-    </Menu>
+        <MenuItem onClick={handleSignOut}>
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary="Sign out" />
+        </MenuItem>
+    </Paper>
+      </Menu>
   );
 
   const themeMenu = (
