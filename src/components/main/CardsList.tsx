@@ -1,8 +1,9 @@
 //  TODO: Card should be imported from ../cards/Card (finish implementing later).
 import Card from "../cards/Card";
-import { useTheme } from "../../contexts/ThemeContext";
+import { Props } from "./Main"
 
-const CardsList = ({ cards, cardsDispatch }) => {
+
+const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
   // TODO: the container should have no visible style (except probably for margins, etc. ) to make the app style and layout SIMPLER
   //       White background (for white theme) all the way to the left & right edges of the viewport.
   return (
