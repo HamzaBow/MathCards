@@ -15,6 +15,7 @@ import AuthProvider, { useAuth } from "./contexts/AuthContext";
 import Signup from "./components/authentication/Signup";
 import Login from "./components/authentication/Login";
 import ForgotPassword from "./components/authentication/ForgotPassword";
+import useLocalStorage from "./hooks/useLocalStorage"
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useHistory, Redirect } from "react-router-dom";
@@ -37,7 +38,7 @@ export interface Action {
 
   function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const [chosenTheme, setChosenTheme] = useState<Theme>("device-theme")
+  const [chosenTheme, setChosenTheme] = useLocalStorage("theme", "device-theme") as [Theme, Function];
 
   const theme = React.useMemo(
     () => {
