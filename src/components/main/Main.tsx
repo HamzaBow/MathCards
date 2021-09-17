@@ -3,7 +3,16 @@ import CardsList from "./CardsList";
 import { Redirect } from "react-router";
 import { useAuth } from "../../contexts/AuthContext";
 
-const Main = ({ cards, cardsDispatch }) => {
+import { CardInterface } from '../cardform/CardForm'
+
+import { Action } from "../../App"
+
+export interface Props {
+  cards: CardInterface[];
+  cardsDispatch: React.Dispatch<Action> 
+}
+
+const Main : React.FC<Props> = ({ cards, cardsDispatch }) => {
   const { currentUser } = useAuth() || { currentUser: undefined }
   return (
     <main>
