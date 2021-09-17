@@ -9,6 +9,11 @@ interface Props {
   saveRef: any;
 }
 
+export interface Collection {
+  id: string;
+  title: string;
+}
+
 const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
 
   const user = useUser();
@@ -25,10 +30,6 @@ const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, s
     setSaveToPromptOpen(false);
   }
 
-  interface Collection {
-    id: string;
-    title: string;
-  }
   return (
       <Popper open={saveToPromptOpen}  anchorEl={saveRef} role={undefined} placement="right" transition disablePortal>
         {({ TransitionProps, placement }) => (

@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FaHammer } from 'react-icons/fa';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import { Collection } from '../cards/SaveToPrompt'
 
 import Logo from "../Logo";
 
@@ -35,7 +36,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
+interface Props {
+  displaySidebar: boolean;
+  setDisplaySidebar: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
   const classes = useStyles();
 
@@ -89,7 +95,7 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {user.collections.map((collection) => (
+              {user.collections.map((collection: Collection) => (
                 <ListItem button className={classes.nested}>
                   <ListItemIcon>
                     <ImSigma />
@@ -188,3 +194,5 @@ export default function Sidebar({ displaySidebar, setDisplaySidebar }) {
     </div>
   );
 }
+
+export default Sidebar;
