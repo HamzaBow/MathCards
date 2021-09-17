@@ -3,24 +3,36 @@ import { useState, useEffect, useRef } from "react";
 import { HiLightBulb } from "react-icons/hi";
 import Overlay from "../utilities/Overlay";
 import { useParams } from "react-router-dom";
-
+import { CardInterface } from '../cardform/CardForm'
 addStyles();
 
-const Maincard = ({ cards }) => {
-  const params = useParams();
+interface Props {
+  cards: CardInterface[];
+}
 
+const Maincard: React.FC<Props> = ({ cards }) => {
+
+  interface RouteParams {
+    id: string;
+  }
+  const params = useParams<RouteParams>();
+  
   const chosenCard = cards.find(card => card.id === params.id)
 
 
   const [frontDisplayed, setFrontDisplayed] = useState(true);
-  const divToRotate = useRef();
+  const divToRotate = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (frontDisplayed) {
-      divToRotate.current.style.transform = "rotateY(0deg)";
+    if(divToRotate?.current){
+      if (frontDisplayed) {
+        divToRotate.current.style.transform = "rotateY(0deg)";
+      } else {
+        divToRotate.current.style.transform = "rotateY(180deg)";
+      }
     } else {
-      divToRotate.current.style.transform = "rotateY(180deg)";
-    }
+      console.error('cant rotate card, check divToRotate');
+    } 
   }, [frontDisplayed]);
 
   useEffect(() => {
@@ -36,7 +48,7 @@ const Maincard = ({ cards }) => {
   //   visibility: mainCardActive ? "visible" : "hidden",
   //   opacity: mainCardActive ? "1" : "0",
   // };
-  const cardIconStyle = {
+  const cardIconStyle: any = {
     color: "yellow",
     width: "3rem",
     height: "3rem",
@@ -58,12 +70,12 @@ const Maincard = ({ cards }) => {
       >
         <div ref={divToRotate} className="card">
           <div className="front">
-            {chosenCard.front.map((field, key) => {
+            {chosenCard?.front.map((field, key) => {
               if (field.type === 'MATH') {
                 return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
               }
               if (field.type === 'TEXT') {
-                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent }}></div>
+                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
               }
               return <></>
             })}
@@ -71,12 +83,12 @@ const Maincard = ({ cards }) => {
 
           <div className="back">
             <HiLightBulb style={cardIconStyle} />
-            {chosenCard.back.map((field, key) => {
+            {chosenCard?.back.map((field, key) => {
               if (field.type === 'MATH') {
                 return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
               }
               if (field.type === 'TEXT') {
-                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent }}></div>
+                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
               }
               return <></>
             })}
