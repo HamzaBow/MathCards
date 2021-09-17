@@ -13,7 +13,7 @@ import Container from "@material-ui/core/Container";
 import { Redirect, useHistory, Link } from "react-router-dom";
 
 import { useAuth } from "../../contexts/AuthContext";
-import { Formik, Form, useField } from "formik";
+import { Formik, Form, useField, FieldHookConfig } from "formik";
 import { Alert } from "@material-ui/lab";
 
 import { FcGoogle } from "react-icons/fc";
@@ -70,7 +70,13 @@ function Copyright() {
   );
 }
 
-const CustomTextField = ({ type, label, autoFocus, ...props }) => {
+type CustomTextFieldProps = {
+  type: string;
+  label: string;
+  autoFocus?: boolean;
+ } & FieldHookConfig<{}>
+
+const CustomTextField: React.FC<CustomTextFieldProps> = ({ type, label, autoFocus, ...props }) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
   return (
@@ -111,7 +117,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   const { signup, currentUser, signInWithGoogleAuth } = useAuth();
-  async function handleSubmit(data, { setSubmitting }) {
+  async function handleSubmit(data: any, { setSubmitting }: {setSubmitting: Function} ) {
     // e.preventDefault()
     try {
       setError("");
