@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 const Overlay = () => {
-  const overlayStyle = {
+  const overlayStyle: any = {
     position: "fixed",
     top: "0px",
     right: "0px",
