@@ -35,7 +35,7 @@ export interface DifficultyLevelsInterface {
   veryHard: boolean;
 }
 
-interface Card {
+export interface CardInterface {
   id: string;
   front: Field[];
   back: Field[];
@@ -45,7 +45,7 @@ interface Card {
 export type OperationType = 'edit' | 'create';
 interface Props {
   operationType: OperationType; 
-  cards?: Card[];
+  cards?: CardInterface[];
   cardsDispatch: Dispatch<Action> 
 }
 
@@ -131,7 +131,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
 
     useEffect(() => {
         if(operationType === 'edit'){
-            const card: Card = cards?.find((card: Card) => card?.id === params.id) as Card; 
+            const card: CardInterface = cards?.find((card: CardInterface) => card?.id === params.id) as CardInterface; 
             fieldsDispatch({type: CARD_FORM_ACTIONS.SET_FIELDS, payload: {fields: {front: card?.front, back: card?.back} }})
             setDifficultyLevels(card.difficultyLevels)
             setTags(card.tags)
