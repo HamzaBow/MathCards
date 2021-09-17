@@ -17,7 +17,7 @@ import { Formik, Form, useField } from "formik";
 import { Alert } from "@material-ui/lab";
 import { FcGoogle } from "react-icons/fc";
 
-import Logo from "../../logo/Logo";
+import Logo from  "../Logo";
 
 import * as yup from "yup";
 

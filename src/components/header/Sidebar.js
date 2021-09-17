@@ -16,7 +16,7 @@ import { FaHammer } from 'react-icons/fa';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
-import Logo from "../../logo/Logo"
+import Logo from "../Logo";
 
 import { useUser, useUserUpdate } from '../../contexts/UserContext';
 

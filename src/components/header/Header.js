@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import { useAuth } from "../../contexts/AuthContext";
 import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@material-ui/core";
-import Logo from "../../logo/Logo";
+import Logo from  "../Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({

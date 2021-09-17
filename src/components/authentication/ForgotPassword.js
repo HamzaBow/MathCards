@@ -16,7 +16,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Formik, Form, useField } from "formik";
 import { Alert } from "@material-ui/lab";
 
-import Logo from "../../logo/Logo";
+import Logo from "../Logo";
 
 import * as yup from "yup";
 
