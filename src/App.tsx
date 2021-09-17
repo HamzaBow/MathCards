@@ -26,9 +26,11 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+export type Theme = 'device-theme' | 'light' | 'dark' | 'charcoal'; 
+
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const [chosenTheme, setChosenTheme] = useState("device-theme")
+  const [chosenTheme, setChosenTheme] = useState<Theme>("device-theme")
 
   const theme = React.useMemo(
     () => {
