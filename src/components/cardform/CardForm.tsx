@@ -27,7 +27,7 @@ export interface Fields {
   back: Field[]
 }
 
-interface DifficultyLevels {
+export interface DifficultyLevelsInterface {
   veryEasy: boolean;
   easy: boolean;
   medium: boolean;
@@ -39,7 +39,7 @@ interface Card {
   id: string;
   front: Field[];
   back: Field[];
-  difficultyLevels: DifficultyLevels; 
+  difficultyLevels: DifficultyLevelsInterface; 
   tags: string[];
 }
 
