@@ -28,7 +28,7 @@ export const SigmaIconStyle = {
   color: "white",
 };
 
-export const headingStyle = {
+export const headingStyle: any = {
   fontSize: "1.5rem",
   fontFamily: "Ubuntu",
   fontWeight: "400",
