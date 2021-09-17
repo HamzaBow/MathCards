@@ -4,7 +4,18 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import { labelStyle } from "../labelStyle";
+
+export const labelStyle = {
+
+    fontSize:   "1.2rem",
+    fontWeight: 600,
+
+    marginRight: "auto",
+    marginLeft: "auto",
+    marginBottom: "1rem",
+
+    color: "rgba(0, 0, 0, 0.7)",
+}
 
 export const DifficultyLevels = ({ difficultyLevels, setDifficultyLevels }) => {
 

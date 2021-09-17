@@ -3,7 +3,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Chip from '@material-ui/core/Chip'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { labelStyle } from "../labelStyle.js"
 
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
@@ -17,6 +16,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export const labelStyle = {
+
+    fontSize:   "1.2rem",
+    fontWeight: 600,
+
+    marginRight: "auto",
+    marginLeft: "auto",
+    marginBottom: "1rem",
+
+    color: "rgba(0, 0, 0, 0.7)",
+}
 export default function TopicTags({ tags, setTags, tagOptions}) {
   const classes = useStyles();
 

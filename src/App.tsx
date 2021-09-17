@@ -67,7 +67,16 @@ function App() {
   );
   // ----------------------------- CARDS -----------------------------
 
-  function cardsReducer(cards, action) {
+  interface Card {
+    id: string;
+  }
+
+  interface Action {
+    type: string;
+    payload: any;
+  }
+
+  function cardsReducer(cards: Card[], action: Action) {
     switch (action.type) {
       case CARDS_ACTIONS.FETCH_CARDS:
         return action.payload.cards;
