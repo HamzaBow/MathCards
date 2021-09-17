@@ -27,7 +27,17 @@ export const labelStyle = {
 
     color: "rgba(0, 0, 0, 0.7)",
 }
-export default function TopicTags({ tags, setTags, tagOptions}) {
+interface TagOption {
+  id: string;
+  tag: string;
+}
+
+interface Props {
+  tags: string[];
+  setTags: (value: string[]) => void;
+  tagOptions: TagOption[];
+}
+const TopicTags : React.FC<Props> = ({ tags, setTags, tagOptions}) => {
   const classes = useStyles();
 
   return (
@@ -64,10 +74,11 @@ export default function TopicTags({ tags, setTags, tagOptions}) {
 
           value={tags}
           
-          onChange={(event, value) => { setTags(value)}}
+          onChange={(event, value: string[]) => { setTags(value)}}
         />
       </div>
     </FormControl>
   );
 }
 
+export default TopicTags;
