@@ -34,7 +34,11 @@ function getSteps() {
 //   }
 // }
 
-export default function CardFormStepper({ activeStep }) {
+interface Props {
+  activeStep: number;
+}
+
+const CardFormStepper : React.FC<Props> = ({ activeStep }) => {
   const classes = useStyles();
 
   const steps = getSteps();
@@ -75,3 +79,5 @@ export default function CardFormStepper({ activeStep }) {
     </div> 
   );
 }
+
+export default CardFormStepper;
