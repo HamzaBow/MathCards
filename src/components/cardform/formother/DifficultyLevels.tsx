@@ -4,6 +4,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import { DifficultyLevelsInterface } from "../CardForm";
 
 export const labelStyle = {
 
@@ -16,8 +17,12 @@ export const labelStyle = {
 
     color: "rgba(0, 0, 0, 0.7)",
 }
+interface Props {
+  difficultyLevels: DifficultyLevelsInterface;
+  setDifficultyLevels: Function;
+}
 
-export const DifficultyLevels = ({ difficultyLevels, setDifficultyLevels }) => {
+export const DifficultyLevels : React.FC<Props> = ({ difficultyLevels, setDifficultyLevels }) => {
 
   return (
     <FormControl component="fieldset">
