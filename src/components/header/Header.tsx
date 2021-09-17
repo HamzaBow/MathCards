@@ -20,6 +20,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@material-ui/core";
 import Logo from  "../Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
+import { Theme } from "../../App"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -102,12 +103,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({chosenTheme, setChosenTheme}) {
+interface Props {
+  chosenTheme: Theme;
+  setChosenTheme: Function;
+}
+
+const Header: React.FC<Props> = ({chosenTheme, setChosenTheme}) => {
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [themeAnchorEl, setThemeAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [themeAnchorEl, setThemeAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const history = useHistory();
   const { logout, currentUser } = useAuth();
@@ -116,7 +122,7 @@ export default function Header({chosenTheme, setChosenTheme}) {
   const isThemeMenuOpen = Boolean(themeAnchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
+  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -130,14 +136,14 @@ export default function Header({chosenTheme, setChosenTheme}) {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   const handleThemeMenuOpen = () => {
     setThemeAnchorEl(anchorEl)
     setAnchorEl(null)
   }
-  const handleChooseTheme = (selectedTheme) => {
+  const handleChooseTheme = (selectedTheme: Theme) => {
     handleMenuClose();
     setChosenTheme(selectedTheme);
   } 
@@ -368,3 +374,5 @@ export default function Header({chosenTheme, setChosenTheme}) {
     </div>
   );
 }
+
+export default Header;
