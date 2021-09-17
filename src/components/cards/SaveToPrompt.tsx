@@ -3,18 +3,31 @@ import React from 'react'
 import { BiEditAlt } from 'react-icons/bi'
 import { useUser, useUserUpdate } from '../../contexts/UserContext';
 
-const SaveToPrompt = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
+interface Props {
+  saveToPromptOpen: boolean;
+  setSaveToPromptOpen: Function;
+  saveRef: any;
+}
+
+const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
 
   const user = useUser();
   const userDispatch = useUserUpdate();
 
-  function handleClose(event) {
+  // const handleClose = (event: React.MouseEvent<Document, MouseEvent>): void => {
+  // const handleClose = (event: MouseEventHandler<HTMLLIElement>) => {
+  const handleClose = (event: any) => {
 
     if (saveRef && saveRef.contains(event.target)) {
       return;
     }
 
     setSaveToPromptOpen(false);
+  }
+
+  interface Collection {
+    id: string;
+    title: string;
   }
   return (
       <Popper open={saveToPromptOpen}  anchorEl={saveRef} role={undefined} placement="right" transition disablePortal>
@@ -26,7 +39,7 @@ const SaveToPrompt = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={saveToPromptOpen} id="menu-list-grow" > {/* onKeyDown={handleListKeyDown}> */}
-                  {user.collections.map(collection => (
+                  {user.collections.map((collection: Collection) => (
                     <MenuItem key={collection.id} onClick={handleClose}>
                       <BiEditAlt style={{ marginRight: '0.7rem' }} />
                         {collection.title}
