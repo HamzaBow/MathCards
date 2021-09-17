@@ -27,7 +27,7 @@ export const labelStyle = {
 
     color: "rgba(0, 0, 0, 0.7)",
 }
-interface TagOption {
+export interface TagOption {
   id: string;
   tag: string;
 }

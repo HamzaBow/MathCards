@@ -7,12 +7,28 @@ import { ButtonGroup } from "@material-ui/core";
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
+import { OperationType, DifficultyLevelsInterface } from '../CardForm'
+import { TagOption } from './TopicTags'
 
-const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels, tags, setTags, addCard, updateCard }, ref) => {
+interface OtherProps {
+  operationType: OperationType;
+  prev: Function;
+  activeStep: number;
+  setActiveStep(step: number | Function): void;
+  setFinished(finished: boolean): void;
+  difficultyLevels: DifficultyLevelsInterface;
+  setDifficultyLevels(difficultyLevels: DifficultyLevelsInterface): void;
+  tags: string[];
+  setTags(tagsToSet: string[]): void;
+  addCard: Function;
+  updateCard: Function;
+}
+
+const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({ operationType, prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels, tags, setTags, addCard, updateCard }, ref) => {
 
   const [saveDisabled, setSaveDisabled] = useState(false);
 
-  const [tagOptions, setTagOptions] = useState([])
+  const [tagOptions, setTagOptions] = useState<TagOption[]>([])
 
   useEffect(() => {
     const getTagOptions = async () => {
@@ -33,7 +49,7 @@ const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished
     return newTags
   }
 
-  const saveNewTags = async (newTags) => {
+  const saveNewTags = async (newTags: string[]) => {
     await Promise.all(newTags.map( async (tag) => {
         await fetch("http://localhost:5000/tagOptions", {
         method: 'POST',
@@ -71,7 +87,7 @@ const FormOther = ({ operationType, prev, activeStep, setActiveStep, setFinished
   const previous = () => {
     prev()
     if (activeStep === 3) {
-      setActiveStep(prevStep => prevStep - 1) // prev() is going to decrement activeStep by one (total -2 decrement)
+      setActiveStep((prevStep: number ) => prevStep - 1) // prev() is going to decrement activeStep by one (total -2 decrement)
     }
     if (activeStep > 3) {
       throw new RangeError(`value of activeStep shouldn't be greater than 3. activeStep has value ${activeStep}`)
