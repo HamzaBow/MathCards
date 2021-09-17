@@ -95,8 +95,8 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {user.collections.map((collection: Collection) => (
-                <ListItem button className={classes.nested}>
+              {user.collections.map((collection: Collection, key: number) => (
+                <ListItem key={key} button className={classes.nested}>
                   <ListItemIcon>
                     <ImSigma />
                   </ListItemIcon>
