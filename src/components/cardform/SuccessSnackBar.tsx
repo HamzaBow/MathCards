@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import MuiAlert from "@material-ui/lab/Alert";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { Snackbar } from "@material-ui/core";
 import { useHistory } from 'react-router-dom';
 
-function Alert(props) {
+function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
@@ -12,7 +12,7 @@ const SuccessSnackBar = () => {
 
   const [open, setOpen] = useState(true);
 
-  const handleClose = (event, reason) => {
+  const handleClose = (event: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
