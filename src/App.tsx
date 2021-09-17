@@ -14,7 +14,7 @@ import AuthProvider, { useAuth } from "./contexts/AuthContext";
 import Signup from "./components/authentication/Signup";
 import Login from "./components/authentication/Login";
 import ForgotPassword from "./components/authentication/ForgotPassword";
-import useLocalStorage from "./hooks/useLocalStorage"
+import useLocalStorage from "./hooks/useLocalStorage";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
@@ -26,54 +26,55 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import { CardInterface } from "./components/cardform/CardForm"
+import { CardInterface } from "./components/cardform/CardForm";
 
-export type Theme = 'device-theme' | 'light' | 'dark' | 'charcoal'; 
+export type Theme = "device-theme" | "light" | "dark" | "charcoal";
 
 export interface Action {
-    type: string;
-    payload: any;
-  }
+  type: string;
+  payload: any;
+}
 
-  function App() {
+function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const [chosenTheme, setChosenTheme] = useLocalStorage("theme", "device-theme") as [Theme, Function];
+  const [chosenTheme, setChosenTheme] = useLocalStorage(
+    "theme",
+    "device-theme"
+  ) as [Theme, Function];
 
-  const theme = React.useMemo(
-    () => {
-      switch (chosenTheme) {
-        case "light":
-          return createTheme({
-            palette: {
-              type: "light",
+  const theme = React.useMemo(() => {
+    switch (chosenTheme) {
+      case "light":
+        return createTheme({
+          palette: {
+            type: "light",
+          },
+        });
+      case "dark":
+        return createTheme({
+          palette: {
+            type: "dark",
+          },
+        });
+      case "charcoal":
+        return createTheme({
+          palette: {
+            type: "dark",
+            background: {
+              default: "#242729",
+              paper: "#323638",
             },
-          })
-        case "dark":
-          return createTheme({
-            palette: {
-              type: "dark",
-            },
-          })
-        case "charcoal":
-          return createTheme({
-            palette: {
-              type: "dark",
-              background: {
-                default : "#242729",
-                paper : "#323638",
-              }
-            },
-          })
-        default: //devide-theme
-          return createTheme({
-            palette: {
-              type: prefersDarkMode ? "dark" : "light",
-            },
-          })
-      }
-      },
-    [prefersDarkMode, chosenTheme]
-  );
+          },
+        });
+      default:
+        //devide-theme
+        return createTheme({
+          palette: {
+            type: prefersDarkMode ? "dark" : "light",
+          },
+        });
+    }
+  }, [prefersDarkMode, chosenTheme]);
   // ----------------------------- CARDS -----------------------------
 
   interface Action {
@@ -142,7 +143,10 @@ export interface Action {
                     <Redirect to="/" />
                   ) : (
                     <>
-                      <Header chosenTheme={chosenTheme} setChosenTheme={setChosenTheme} />
+                      <Header
+                        chosenTheme={chosenTheme}
+                        setChosenTheme={setChosenTheme}
+                      />
                       <Main cards={cards} cardsDispatch={cardsDispatch} />
                     </>
                   )}
