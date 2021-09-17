@@ -14,78 +14,86 @@ import { BiEditAlt } from 'react-icons/bi'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { CgPlayListAdd } from 'react-icons/cg'
 import SaveToPrompt from './SaveToPrompt';
+import { CardInterface } from '../cardform/CardForm'
+interface Props {
+  card: CardInterface;
+  cardsDispatch: Function;
+  size?: 'medium' | 'small' | 'large';
+  layout?: 'fixed-size' | 'hug-content';
+  dimentions?: number[];
+  flippable?: boolean;
+}
 
-
-const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
+const Card: React.FC<Props> = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
   const history = useHistory();
 
   const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
 
   // ********************* Smart Defaults.**********************
-  layout = layout ?? CARD_LAYOUT.HUG_CONTENT;
-  size = size ?? CARD_SIZE.MEDIUM;
-  flippable = flippable ?? false;
+  // layout = layout ?? CARD_LAYOUT.HUG_CONTENT;
+  // size = size ?? CARD_SIZE.MEDIUM;
+  // flippable = flippable ?? false;
 
-  card = (typeof card === "object" && card !== null) ? card : {}
+  // card = (typeof card === "object" && card !== null) ? card : {}
 
-  if (layout === CARD_LAYOUT.FIXED_SIZE) {
-    switch (size) {
+  // if (layout === CARD_LAYOUT.FIXED_SIZE) {
+  //   switch (size) {
 
-      case CARD_SIZE.SMALL:
-        dimentions = dimentions ?? { width: "10rem", height: "15rem" }
-        break;
+  //     case CARD_SIZE.SMALL:
+  //       dimentions = dimentions ?? { width: "10rem", height: "15rem" }
+  //       break;
 
-      case CARD_SIZE.MEDIUM:
-        dimentions = dimentions ?? { width: "20rem", height: "30rem" }
-        break;
+  //     case CARD_SIZE.MEDIUM:
+  //       dimentions = dimentions ?? { width: "20rem", height: "30rem" }
+  //       break;
 
-      case CARD_SIZE.LARGE:
-        dimentions = dimentions ?? { width: "30rem", height: "45rem" }
-        break;
+  //     case CARD_SIZE.LARGE:
+  //       dimentions = dimentions ?? { width: "30rem", height: "45rem" }
+  //       break;
 
-      default: // set it to medium
-        dimentions = dimentions ?? { width: "20rem", height: "30rem" }
-        break;
-    }
-  }
+  //     default: // set it to medium
+  //       dimentions = dimentions ?? { width: "20rem", height: "30rem" }
+  //       break;
+  //   }
+  // }
   // ****************** End of Smart Defaults ******************
 
-  let width = "auto";
-  let height = "auto";
+  // let width = "auto";
+  // let height = "auto";
 
-  if (layout === CARD_LAYOUT.FIXED_SIZE) {
-    width = dimentions.width;
-    height = dimentions.height;
-  }
+  // if (layout === CARD_LAYOUT.FIXED_SIZE) {
+  //   width = dimentions.width;
+  //   height = dimentions.height;
+  // }
 
-  // TODO: 
-  const containerItemStyle = {
-    width,
-    height,
-  };
+  // // TODO: 
+  // const containerItemStyle = {
+  //   width,
+  //   height,
+  // };
 
   // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
-  const displayMainCard = (id) => {
+  const displayMainCard = (id: string) => {
     history.push(`/maincard/${card.id}`)
   }
 
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const anchorRef = React.useRef<HTMLElement>(null);
   const saveRef = React.useRef(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  const handleClose = (event: React.MouseEvent<Document, MouseEvent>): void => {
+    if (anchorRef?.current && anchorRef?.current?.contains?.(event.target as Node)) {
       return;
     }
 
     setOpen(false);
   };
 
-  const handleEdit = (event) => {
+  const handleEdit = (event: any) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -93,8 +101,8 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
     history.push(`/cardform/edit/${card.id}`);
   };
 
-  const handleDelete = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  const handleDelete = (event: React.SyntheticEvent) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target as Node)) {
       return;
     }
     setOpen(false);
@@ -106,7 +114,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
 
   }
 
-  function handleListKeyDown(event) {
+  function handleListKeyDown(event: any) {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
@@ -114,10 +122,10 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
   }
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
+  const prevOpen = React.useRef<boolean>(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
+      anchorRef?.current?.focus();
     }
 
     prevOpen.current = open;
@@ -132,11 +140,12 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
   return (
     <div
       className="container-item"
-      style={containerItemStyle}
+      // style={containerItemStyle}
     >
       <Paper elevation={3}>
       <div className="card">
         <div>
+          {/* @ts-ignore: No idea what this error is */}
           <Button
             className='btn-more'
             ref={anchorRef}
@@ -189,7 +198,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
               return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
             }
             if (field.type === 'TEXT') {
-              return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent }}></div>
+              return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
             }
             return <></>
           })
@@ -205,7 +214,7 @@ const Card = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
                     return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
                   }
                   if (field.type === 'TEXT') {
-                    return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent }}></div>
+                    return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
                   }
                   return <></>
                 })
