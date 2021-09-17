@@ -42,9 +42,9 @@ interface Card {
   difficultyLevels: DifficultyLevelsInterface; 
   tags: string[];
 }
-
+export type OperationType = 'edit' | 'create';
 interface Props {
-  operationType: string;
+  operationType: OperationType; 
   cards?: Card[];
   cardsDispatch: Dispatch<Action> 
 }
