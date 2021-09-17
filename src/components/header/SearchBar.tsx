@@ -6,7 +6,11 @@ import { IconButton } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import { useTheme } from './../../contexts/ThemeContext'
 
-export default function SearchBar({ searchOptions }) {
+interface Props {
+  searchOptions: any;
+}
+
+const SearchBar: React.FC<Props> = ({ searchOptions }) => {
   const darkTheme = useTheme()
 
   const searchIconStyle = {
@@ -28,7 +32,7 @@ export default function SearchBar({ searchOptions }) {
         freeSolo
         id="free-solo-2-demo"
         // disableClearable
-        options={searchOptions.map((option) => option.tag)}
+        options={searchOptions.map((option: any) => option.tag)}
         renderInput={(params) => (
             <div style={{ display: "flex"}}>{/*, border: "1px solid red"}}>*/}
                 <TextField
@@ -50,5 +54,4 @@ export default function SearchBar({ searchOptions }) {
     </div>
   );
 }
-
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+export default SearchBar;
