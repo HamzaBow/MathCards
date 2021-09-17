@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const labelStyle = {
+const labelStyle = {
 
     fontSize:   "1.2rem",
     fontWeight: 600,

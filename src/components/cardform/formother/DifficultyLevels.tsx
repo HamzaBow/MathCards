@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import { DifficultyLevelsInterface } from "../CardForm";
 
-export const labelStyle = {
+const labelStyle = {
 
     fontSize:   "1.2rem",
     fontWeight: 600,
