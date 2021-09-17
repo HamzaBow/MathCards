@@ -50,7 +50,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({ 
                 <MathField
                   key={key}
                   id={field.id}
-                  latex={field.latex}
+                  latex={field.latex || ''}
                   fieldsDispatch={fieldsDispatch}
                   face={face}
                 />
@@ -62,7 +62,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({ 
                 <Quill
                   key={key}
                   id={field.id}
-                  htmlContent={field.htmlContent}
+                  htmlContent={field.htmlContent || ''}
                   fieldsDispatch={fieldsDispatch} 
                   face={face}
                 />
