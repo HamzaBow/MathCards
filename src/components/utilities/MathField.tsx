@@ -5,8 +5,14 @@ import { CARD_FORM_ACTIONS } from "../../Constants"
 // inserts the required css to the <head> block.
 // you can skip this, if you want to do that by yourself.
 addStyles();
+interface Props {
+  id: string | number;
+  latex: string;
+  fieldsDispatch: Function;
+  face: 'front' | 'back';
+}
 
-const MathField = ({ id, latex, fieldsDispatch, face }) => {
+const MathField: React.FC<Props> = ({ id, latex, fieldsDispatch, face }) => {
 
   // const [latex, setLatex] = useState("")
 

@@ -3,7 +3,14 @@ import React from 'react'
 import 'react-quill/dist/quill.snow.css';
 import { CARD_FORM_ACTIONS } from '../../Constants';
 
-const Quill = ({ id, htmlContent, fieldsDispatch, face }) => {
+interface Props {
+  id: string | number;
+  htmlContent: string;
+  fieldsDispatch: Function;
+  face: 'front' | 'back';
+}
+
+const Quill: React.FC<Props> = ({ id, htmlContent, fieldsDispatch, face }) => {
 
     const quillContainerStyle = {
         width: '22rem',
@@ -11,7 +18,7 @@ const Quill = ({ id, htmlContent, fieldsDispatch, face }) => {
         margin: '0.5rem',
     }
 
-    const quillStyle = {
+    const quillStyle: any = {
         maxHeight: '15rem',
         overflowY: 'auto'
     }
