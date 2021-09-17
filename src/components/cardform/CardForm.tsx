@@ -13,18 +13,51 @@ interface Action {
   payload: any;
 }
 
+export type FieldType = "MATH" | "TEXT";
+
+export interface Field {
+  id: number;
+  type: FieldType;
+  htmlContent?: string;
+  latex?: string;
+}
+
+export interface Fields {
+  front: Field[];
+  back: Field[]
+}
+
+interface DifficultyLevels {
+  veryEasy: boolean;
+  easy: boolean;
+  medium: boolean;
+  hard: boolean;
+  veryHard: boolean;
+}
+
+interface Card {
+  id: string;
+  front: Field[];
+  back: Field[];
+  difficultyLevels: DifficultyLevels; 
+  tags: string[];
+}
+
 interface Props {
   operationType: string;
-  cards?: any[];
+  cards?: Card[];
   cardsDispatch: Dispatch<Action> 
 }
 
 const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) => {
 
-    const params = useParams();
+    interface RouteParams {
+      id: string;
+    }
+    const params = useParams<RouteParams>();
 
     // ******************************************* FIELDS *******************************************
-    function newField(id, fieldType) {
+    function newField(id: number, fieldType: "MATH" | "TEXT") {
         if (fieldType === FIELD_TYPE.TEXT) {
         return {
             id,
@@ -42,9 +75,11 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
         }
     }
 
-    function fieldsReducer(fields, action) {
-        let face = 'front';
-        let otherFace = 'back';
+    function fieldsReducer(fields: Fields, action: Action) {
+        type Face = "front" | "back";
+
+        let face: Face = "front";
+        let otherFace: Face = "back";
 
         if(action.payload.face === 'back'){
             face = 'back';
@@ -53,10 +88,10 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
 
         switch (action.type) {
             case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
-                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, FIELD_TYPE.TEXT)]};
+                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, 'TEXT')]};
 
             case CARD_FORM_ACTIONS.ADD_MATH_QUILL:
-                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, FIELD_TYPE.MATH)]};
+                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, 'MATH')]};
 
             case CARD_FORM_ACTIONS.UPDATE_LATEX:
                 return {[otherFace]: [...fields[otherFace]], [face]: fields[face].map((field) => {
@@ -89,15 +124,15 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
     const [difficultyLevels, setDifficultyLevels] = useState({veryEasy: false, easy: false, medium: false, hard: false, veryHard: false})
 
     // ************************************************* Tags *********************************************
-    const [tags, setTags] = useState([])
+    const [tags, setTags] = useState<string[]>([])
 
 
     // *************************************** END OF NEW CARD-RELATED STATES ****************************************
 
     useEffect(() => {
         if(operationType === 'edit'){
-            const card = cards.find(card => card.id === params.id)
-            fieldsDispatch({type: CARD_FORM_ACTIONS.SET_FIELDS, payload: {fields: {front: card.front, back: card.back} }})
+            const card: Card = cards?.find((card: Card) => card?.id === params.id) as Card; 
+            fieldsDispatch({type: CARD_FORM_ACTIONS.SET_FIELDS, payload: {fields: {front: card?.front, back: card?.back} }})
             setDifficultyLevels(card.difficultyLevels)
             setTags(card.tags)
         }
@@ -113,15 +148,19 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
 
     const [finished, setFinished] = useState(false);
 
-    const front = useRef()
-    const back = useRef()
-    const other = useRef()  // other is the last form where the user adds tags and difficulty levels to the new card.
+    const front = useRef<HTMLDivElement>(null)
+    const back = useRef<HTMLDivElement>(null)
+    const other = useRef<HTMLDivElement>(null)  // other is the last form where the user adds tags and difficulty levels to the new card.
 
     const [activeStep, setActiveStep] = React.useState(0);
 
     useEffect(() => {
+      if(front !== null && front.current !== null){
         front.current.style.transform = "translate(  -50%, -150vh )";
         front.current.style.animation = "transition: transform 0.2s ease-in-out";
+      } else {
+        console.error("front or front.current is null")
+      }
     },[])
 
     useEffect(() => {
@@ -140,6 +179,9 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
     //TODO: FIXME: refactor the inside of this useEffect hook (probably requires refactoring the whole page)
     useEffect(() => {
 
+      if(front !== null && front.current !== null &&
+         back !== null && back.current !== null &&
+         other !== null && other.current !== null){
       if (formState.front === true) {
         front.current.style.transform = "translate(  -50%, -50% )";
         
@@ -164,6 +206,9 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
 
         other.current.style.transform = "translate(  -50%, -50% )";
       }
+    } else {
+      console.error("`front`, `back` or `other` refs are null (or their current property is null)")
+    }
 
     }, [formState]);
     
