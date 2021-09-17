@@ -156,8 +156,7 @@ function App() {
                   <CardForm
                     operationType="create"
                     cardsDispatch={cardsDispatch}
-                  />{" "}
-                  {/* ----  CardForm */}
+                  />
                 </Route>
 
                 <Route path="/cardform/edit/:id">

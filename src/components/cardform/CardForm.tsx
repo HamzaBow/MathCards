@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useReducer } from 'react'
+import React, { useState, useRef, useEffect, useReducer, Component, Dispatch } from 'react'
 import { useParams } from 'react-router-dom'
 import FormFace from './FormFace'
 import FormOther from './formother/FormOther'
@@ -8,7 +8,18 @@ import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
 import { CARDS_ACTIONS, CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
-const CardForm = ( { operationType, cards, cardsDispatch } ) => {
+interface Action {
+  type: string;
+  payload: any;
+}
+
+interface Props {
+  operationType: string;
+  cards?: any[];
+  cardsDispatch: Dispatch<Action> 
+}
+
+const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) => {
 
     const params = useParams();
 
