@@ -26,9 +26,16 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import { CardInterface } from "./components/cardform/CardForm"
+
 export type Theme = 'device-theme' | 'light' | 'dark' | 'charcoal'; 
 
-function App() {
+export interface Action {
+    type: string;
+    payload: any;
+  }
+
+  function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [chosenTheme, setChosenTheme] = useState<Theme>("device-theme")
 
@@ -69,16 +76,12 @@ function App() {
   );
   // ----------------------------- CARDS -----------------------------
 
-  interface Card {
-    id: string;
-  }
-
   interface Action {
     type: string;
     payload: any;
   }
 
-  function cardsReducer(cards: Card[], action: Action) {
+  function cardsReducer(cards: CardInterface[], action: Action) {
     switch (action.type) {
       case CARDS_ACTIONS.FETCH_CARDS:
         return action.payload.cards;
