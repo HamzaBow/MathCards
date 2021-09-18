@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Redirect, Link } from "react-router-dom";
 
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "contexts/AuthContext";
 import { Formik, Form, useField, FieldHookConfig } from "formik";
 import { Alert } from "@material-ui/lab";
 
