@@ -142,10 +142,7 @@ function App() {
                     <Redirect to="/" />
                   ) : (
                     <>
-                      <Header
-                        chosenTheme={chosenTheme}
-                        setChosenTheme={setChosenTheme}
-                      />
+                      <Header/>
                       <Main cards={cards} cardsDispatch={cardsDispatch} />
                     </>
                   )}
