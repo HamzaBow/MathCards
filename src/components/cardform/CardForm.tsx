@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useReducer, Component, Dispatch } from 'react'
+import React, { useState, useRef, useEffect, useReducer, Dispatch } from 'react'
 import { useParams } from 'react-router-dom'
 import FormFace from './FormFace'
 import FormOther from './formother/FormOther'

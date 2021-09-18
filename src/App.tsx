@@ -120,7 +120,6 @@ function App() {
       });
     };
     getCards();
-    console.log("currentUser", currentUser);
   }, []);
 
   const fetchCards = async () => {

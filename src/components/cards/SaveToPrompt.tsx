@@ -1,7 +1,7 @@
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from '@material-ui/core'
 import React from 'react'
 import { BiEditAlt } from 'react-icons/bi'
-import { useUser, useUserUpdate } from '../../contexts/UserContext';
+import { useUser } from '../../contexts/UserContext';
 
 interface Props {
   saveToPromptOpen: boolean;
@@ -17,7 +17,6 @@ export interface Collection {
 const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
 
   const user = useUser();
-  const userDispatch = useUserUpdate();
 
   // const handleClose = (event: React.MouseEvent<Document, MouseEvent>): void => {
   // const handleClose = (event: MouseEventHandler<HTMLLIElement>) => {

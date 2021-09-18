@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StaticMathField } from "react-mathquill"
-import { CARDS_ACTIONS, CARD_LAYOUT, CARD_SIZE } from '../../Constants';
+import { CARDS_ACTIONS } from '../../Constants';
 import { MdMoreHoriz } from "react-icons/md"
 import { useHistory } from 'react-router';
 import Button from '@material-ui/core/Button';
@@ -24,7 +24,7 @@ interface Props {
   flippable?: boolean;
 }
 
-const Card: React.FC<Props> = ({ card, cardsDispatch, size, layout, dimentions, flippable }) => {
+const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions*/ flippable }) => {
   const history = useHistory();
 
   const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
