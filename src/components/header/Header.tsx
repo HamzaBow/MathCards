@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -108,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
 const Header: React.FC = () => {
 
   const setThemeString = useThemeUpdate() as Function;
+  const [logoDisplayed, setLogoDisplayed] = useState<Boolean>(true);
 
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = React.useState(false);
@@ -286,6 +287,14 @@ const Header: React.FC = () => {
     </Menu>
   );
 
+function handleSearbarFocus(){
+  if(window.innerWidth < 600){
+    setLogoDisplayed(false)
+  }
+}
+function handleSearbarBlur(){
+  setLogoDisplayed(true)
+}
   return (
     <div className={classes.grow}>
       <AppBar position="static" color="inherit">
@@ -301,9 +310,11 @@ const Header: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <IconButton style={{borderRadius: "0.3rem", paddingLeft: "0.3rem"}} size="small" onClick={() => {history.push("/")}}>
-            <Logo />
-          </IconButton>
+          {logoDisplayed &&
+            <IconButton style={{borderRadius: "0.3rem", paddingLeft: "0.3rem"}} size="small" onClick={() => {history.push("/")}}>
+              <Logo />
+            </IconButton>
+          }
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -315,6 +326,8 @@ const Header: React.FC = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onFocus={handleSearbarFocus}
+              onBlur={handleSearbarBlur}
             />
           </div>
           <div className={classes.grow} />
