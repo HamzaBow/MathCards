@@ -39,15 +39,12 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     borderWidth: "1px",
+    backgroundColor: theme.palette.background.default,
     borderColor:
       theme.palette.type === "dark"
         ? alpha(theme.palette.common.white, 0.25)
         : alpha(theme.palette.common.black, 0.25),
     borderStyle: "solid",
-    backgroundColor:
-      theme.palette.type === "dark"
-        ? theme.palette.grey.A400
-        : theme.palette.grey[50],
     "&:hover": {
       borderColor:
         theme.palette.type === "dark"
@@ -73,11 +70,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 1,
   },
   inputRoot: {
     color: "inherit",
   },
   inputInput: {
+
+
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
