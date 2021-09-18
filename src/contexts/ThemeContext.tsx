@@ -9,11 +9,12 @@ export function useThemeUpdate() {
     return useContext(ThemeUpdateContext)
 }
 
+export type ThemeString = "device-theme" | "light" | "dark" | "charcoal";
+
 interface Props {
   children: JSX.Element;
 }
 const ThemeProvider: React.FC<Props> = ({children}) => {
-    type ThemeString = "device-theme" | "light" | "dark" | "charcoal";
 
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const [themeString, setThemeString] = useLocalStorage(
