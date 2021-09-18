@@ -1,20 +1,20 @@
 import React, { useEffect, useReducer } from "react";
 
-import Header from "./components/header/Header";
-import Main from "./components/main/Main";
+import Header from "components/header/Header";
+import Main from "components/main/Main";
 
-import Maincard from "./components/main/Maincard";
-import CardForm from "./components/cardform/CardForm";
+import Maincard from "components/main/Maincard";
+import CardForm from "components/cardform/CardForm";
 
-import { CARDS_ACTIONS } from "./Constants";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import { UserProvider } from "./contexts/UserContext";
+import { CARDS_ACTIONS } from "Constants";
+import { ThemeProvider } from "contexts/ThemeContext";
+import { UserProvider } from "contexts/UserContext";
 
 import AuthProvider, { useAuth } from "./contexts/AuthContext";
-import Signup from "./components/authentication/Signup";
-import Login from "./components/authentication/Login";
-import ForgotPassword from "./components/authentication/ForgotPassword";
-import useLocalStorage from "./hooks/useLocalStorage";
+import Signup from "components/authentication/Signup";
+import Login from "components/authentication/Login";
+import ForgotPassword from "components/authentication/ForgotPassword";
+import useLocalStorage from "hooks/useLocalStorage";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
@@ -26,7 +26,7 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import { CardInterface } from "./components/cardform/CardForm";
+import { CardInterface } from "components/cardform/CardForm";
 
 export type Theme = "device-theme" | "light" | "dark" | "charcoal";
 
