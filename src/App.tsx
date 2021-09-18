@@ -7,7 +7,7 @@ import Maincard from "components/main/Maincard";
 import CardForm from "components/cardform/CardForm";
 
 import { CARDS_ACTIONS } from "Constants";
-import { ThemeProvider } from "contexts/ThemeContext";
+import ThemeProvider from "contexts/ThemeContext";
 import { UserProvider } from "contexts/UserContext";
 
 import AuthProvider, { useAuth } from "./contexts/AuthContext";
