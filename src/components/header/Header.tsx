@@ -16,11 +16,11 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "contexts/AuthContext";
 import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@material-ui/core";
-import Logo from  "../Logo";
+import Logo from  "components/Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
-import { Theme } from "../../App"
+import { Theme } from "App"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
