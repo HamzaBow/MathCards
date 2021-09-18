@@ -13,16 +13,16 @@ interface Props {
   children: JSX.Element;
 }
 const ThemeProvider: React.FC<Props> = ({children}) => {
-    type Theme = "device-theme" | "light" | "dark" | "charcoal";
+    type ThemeString = "device-theme" | "light" | "dark" | "charcoal";
 
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-    const [chosenTheme, setChosenTheme] = useLocalStorage(
-      "theme",
+    const [themeString, setThemeString] = useLocalStorage(
+      "themeString",
       "device-theme"
-    ) as [Theme, Function];
+    ) as [ThemeString, Function];
 
     const theme = React.useMemo(() => {
-      switch (chosenTheme) {
+      switch (themeString) {
         case "light":
           return createTheme({
             palette: {
@@ -53,11 +53,11 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
             },
           });
       }
-    }, [prefersDarkMode, chosenTheme]);
+    }, [prefersDarkMode, themeString]);
 
     return (
           <MuiThemeProvider theme={theme}>
-            <ThemeUpdateContext.Provider value={setChosenTheme}>
+            <ThemeUpdateContext.Provider value={setThemeString}>
                 {children}
             </ThemeUpdateContext.Provider>
           </MuiThemeProvider>
