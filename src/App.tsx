@@ -14,16 +14,10 @@ import AuthProvider, { useAuth } from "./contexts/AuthContext";
 import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
-import useLocalStorage from "hooks/useLocalStorage";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import {
-  createTheme,
-  ThemeProvider as MuiThemeProvider,
-} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
@@ -36,45 +30,6 @@ export interface Action {
 }
 
 function App() {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  const [chosenTheme, setChosenTheme] = useLocalStorage(
-    "theme",
-    "device-theme"
-  ) as [Theme, Function];
-
-  const theme = React.useMemo(() => {
-    switch (chosenTheme) {
-      case "light":
-        return createTheme({
-          palette: {
-            type: "light",
-          },
-        });
-      case "dark":
-        return createTheme({
-          palette: {
-            type: "dark",
-          },
-        });
-      case "charcoal":
-        return createTheme({
-          palette: {
-            type: "dark",
-            background: {
-              default: "#242729",
-              paper: "#323638",
-            },
-          },
-        });
-      default:
-        //devide-theme
-        return createTheme({
-          palette: {
-            type: prefersDarkMode ? "dark" : "light",
-          },
-        });
-    }
-  }, [prefersDarkMode, chosenTheme]);
   // ----------------------------- CARDS -----------------------------
 
   interface Action {
@@ -132,10 +87,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <MuiThemeProvider theme={theme}>
-          <CssBaseline />
-          <ThemeProvider>
-            <UserProvider>
+        <ThemeProvider>
+          <UserProvider>
+            <CssBaseline />
               <AuthProvider>
                 <Route exact path="/">
                   {currentUser ? (
@@ -182,7 +136,6 @@ function App() {
               </AuthProvider>
             </UserProvider>
           </ThemeProvider>
-        </MuiThemeProvider>
       </div>
     </Router>
   );
