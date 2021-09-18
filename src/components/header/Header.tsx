@@ -20,7 +20,8 @@ import { useAuth } from "contexts/AuthContext";
 import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@material-ui/core";
 import Logo from  "components/Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
-import { Theme } from "App"
+import { ThemeString } from "contexts/ThemeContext"
+import { useThemeUpdate } from "contexts/ThemeContext"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -103,12 +104,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  chosenTheme: Theme;
-  setChosenTheme: Function;
-}
 
-const Header: React.FC<Props> = ({chosenTheme, setChosenTheme}) => {
+const Header: React.FC = () => {
+
+  const setThemeString = useThemeUpdate() as Function;
+
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -143,9 +143,9 @@ const Header: React.FC<Props> = ({chosenTheme, setChosenTheme}) => {
     setThemeAnchorEl(anchorEl)
     setAnchorEl(null)
   }
-  const handleChooseTheme = (selectedTheme: Theme) => {
+  const handleChooseTheme = (selectedTheme: ThemeString) => {
     handleMenuClose();
-    setChosenTheme(selectedTheme);
+    setThemeString(selectedTheme);
   } 
 
   const handleSignOut = () => {
