@@ -293,7 +293,7 @@ const Header: React.FC = () => {
     }
   }
   function handleSearbarBlur(){
-    if(window.innerWidth < 600 && logoRef?.current?.style){
+    if(logoRef?.current?.style){
       logoRef.current.style.width = '100%';
     }
   }
