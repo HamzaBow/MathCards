@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -107,8 +107,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header: React.FC = () => {
 
+  const logoRef = useRef<HTMLDivElement>(null);
   const setThemeString = useThemeUpdate() as Function;
-  const [logoDisplayed, setLogoDisplayed] = useState<Boolean>(true);
 
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = React.useState(false);
@@ -287,14 +287,16 @@ const Header: React.FC = () => {
     </Menu>
   );
 
-function handleSearbarFocus(){
-  if(window.innerWidth < 600){
-    setLogoDisplayed(false)
+  function handleSearbarFocus(){
+    if(window.innerWidth < 600 && logoRef?.current?.style){
+      logoRef.current.style.width = '0px';
+    }
   }
-}
-function handleSearbarBlur(){
-  setLogoDisplayed(true)
-}
+  function handleSearbarBlur(){
+    if(window.innerWidth < 600 && logoRef?.current?.style){
+      logoRef.current.style.width = '100%';
+    }
+  }
   return (
     <div className={classes.grow}>
       <AppBar position="static" color="inherit">
@@ -310,11 +312,11 @@ function handleSearbarBlur(){
           >
             <MenuIcon />
           </IconButton>
-          {logoDisplayed &&
+          <div ref={logoRef} style={{ transition: "width 500ms" }}>
             <IconButton style={{borderRadius: "0.3rem", paddingLeft: "0.3rem"}} size="small" onClick={() => {history.push("/")}}>
               <Logo />
             </IconButton>
-          }
+          </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
