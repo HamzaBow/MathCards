@@ -98,6 +98,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: content-box;
   align-items: center;
 
   padding: 2rem;

@@ -22,6 +22,30 @@ const Maincard: React.FC<Props> = ({ cards }) => {
 
   const [frontDisplayed, setFrontDisplayed] = useState(true);
   const divToRotate = useRef<HTMLDivElement>(null);
+  const frontRef = useRef<HTMLDivElement>(null);
+  const backRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if(frontRef?.current && backRef?.current){
+    const frontWidth = window.getComputedStyle(frontRef?.current).getPropertyValue("width")
+    const frontHeight= window.getComputedStyle(frontRef?.current).getPropertyValue("height")
+    const backWidth  = window.getComputedStyle(backRef?.current).getPropertyValue("width")
+    const backHeight = window.getComputedStyle(backRef?.current).getPropertyValue("height")
+
+    if(frontHeight > backHeight){
+      backRef.current.style.height = frontHeight ;
+    } else {
+      frontRef.current.style.height = backHeight ;
+    }
+
+    if(frontWidth > backWidth){
+      backRef.current.style.width = frontWidth ;
+    } else{
+      frontRef.current.style.width = backWidth;
+    }
+
+  }
+  }, [])
 
   useEffect(() => {
     if(divToRotate?.current){
@@ -36,6 +60,7 @@ const Maincard: React.FC<Props> = ({ cards }) => {
   }, [frontDisplayed]);
 
   useEffect(() => {
+    console.log(divToRotate);
     document.title = 'Main Card';
     return () => {
       document.title = 'MathCards';
@@ -69,7 +94,7 @@ const Maincard: React.FC<Props> = ({ cards }) => {
         }}
       >
         <div ref={divToRotate} className="card">
-          <Paper className="front">
+          <Paper ref={frontRef} className="front">
             {chosenCard?.front.map((field, key) => {
               if (field.type === "MATH") {
                 return (
@@ -92,7 +117,7 @@ const Maincard: React.FC<Props> = ({ cards }) => {
             })}
           </Paper>
 
-          <Paper className="back">
+          <Paper ref={backRef} className="back">
             <HiLightBulb style={cardIconStyle} />
             {chosenCard?.back.map((field, key) => {
               if (field.type === "MATH") {
