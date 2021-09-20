@@ -4,6 +4,7 @@ import { HiLightBulb } from "react-icons/hi";
 import Overlay from "../utilities/Overlay";
 import { useParams } from "react-router-dom";
 import { CardInterface } from '../cardform/CardForm'
+import { Paper } from "@material-ui/core";
 addStyles();
 
 interface Props {
@@ -11,7 +12,6 @@ interface Props {
 }
 
 const Maincard: React.FC<Props> = ({ cards }) => {
-
   interface RouteParams {
     id: string;
   }
@@ -69,30 +69,52 @@ const Maincard: React.FC<Props> = ({ cards }) => {
         }}
       >
         <div ref={divToRotate} className="card">
-          <div className="front">
+          <Paper className="front">
             {chosenCard?.front.map((field, key) => {
-              if (field.type === 'MATH') {
-                return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
+              if (field.type === "MATH") {
+                return (
+                  <StaticMathField key={key} style={{ fontSize: "2rem" }}>
+                    {field.latex}
+                  </StaticMathField>
+                );
               }
-              if (field.type === 'TEXT') {
-                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
+              if (field.type === "TEXT") {
+                return (
+                  <div
+                    key={key}
+                    dangerouslySetInnerHTML={{
+                      __html: field.htmlContent || "",
+                    }}
+                  ></div>
+                );
               }
-              return <></>
+              return <></>;
             })}
-          </div>
+          </Paper>
 
-          <div className="back">
+          <Paper className="back">
             <HiLightBulb style={cardIconStyle} />
             {chosenCard?.back.map((field, key) => {
-              if (field.type === 'MATH') {
-                return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
+              if (field.type === "MATH") {
+                return (
+                  <StaticMathField key={key} style={{ fontSize: "2rem" }}>
+                    {field.latex}
+                  </StaticMathField>
+                );
               }
-              if (field.type === 'TEXT') {
-                return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
+              if (field.type === "TEXT") {
+                return (
+                  <div
+                    key={key}
+                    dangerouslySetInnerHTML={{
+                      __html: field.htmlContent || "",
+                    }}
+                  ></div>
+                );
               }
-              return <></>
+              return <></>;
             })}
-          </div>
+          </Paper>
         </div>
       </div>
     </>
