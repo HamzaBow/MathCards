@@ -33,15 +33,15 @@ const Maincard: React.FC<Props> = ({ cards }) => {
     const backHeight = window.getComputedStyle(backRef?.current).getPropertyValue("height")
 
     if(frontHeight > backHeight){
-      backRef.current.style.height = frontHeight ;
+      backRef.current.style.minHeight = frontHeight ;
     } else {
-      frontRef.current.style.height = backHeight ;
+      frontRef.current.style.minHeight = backHeight ;
     }
 
     if(frontWidth > backWidth){
-      backRef.current.style.width = frontWidth ;
+      backRef.current.style.minWidth = frontWidth ;
     } else{
-      frontRef.current.style.width = backWidth;
+      frontRef.current.style.minWidth = backWidth;
     }
 
   }
