@@ -26,24 +26,20 @@ const Maincard: React.FC<Props> = ({ cards }) => {
   const backRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Make card's front and back faces the same size (width and height)
     if(frontRef?.current && backRef?.current){
     const frontWidth = window.getComputedStyle(frontRef?.current).getPropertyValue("width")
     const frontHeight= window.getComputedStyle(frontRef?.current).getPropertyValue("height")
     const backWidth  = window.getComputedStyle(backRef?.current).getPropertyValue("width")
     const backHeight = window.getComputedStyle(backRef?.current).getPropertyValue("height")
 
-    if(frontHeight > backHeight){
-      backRef.current.style.minHeight = frontHeight ;
-    } else {
-      frontRef.current.style.minHeight = backHeight ;
-    }
+    const maxWidth = Math.max(parseFloat(frontWidth.slice(0, -2)), parseFloat(backWidth.slice(0, -2)))
+    const maxHeight = Math.max(parseFloat(frontHeight.slice(0, -2)), parseFloat(backHeight.slice(0, -2)))
 
-    if(frontWidth > backWidth){
-      backRef.current.style.minWidth = frontWidth ;
-    } else{
-      frontRef.current.style.minWidth = backWidth;
-    }
-
+    frontRef.current.style.width = maxWidth + 'px';
+    backRef.current.style.width = maxWidth + 'px' ;
+    frontRef.current.style.height = maxHeight + 'px' ;
+    backRef.current.style.height = maxHeight + 'px' ;
   }
   }, [])
 
