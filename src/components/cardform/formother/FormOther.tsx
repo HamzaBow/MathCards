@@ -39,7 +39,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({
   }, [])
 
   const fetchTagOptions = async () => {
-    const res = await fetch("http://localhost:5000/tagOptions");
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/tagoptions`);
     const data = await res.json();
     return data;
   }
@@ -51,7 +51,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({
 
   const saveNewTags = async (newTags: string[]) => {
     await Promise.all(newTags.map( async (tag) => {
-        await fetch("http://localhost:5000/tagOptions", {
+        await fetch(`${process.env.REACT_APP_API_URL}/tagoptions`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',

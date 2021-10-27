@@ -35,7 +35,7 @@ export function UserProvider({ children }) {
   }, [])
 
   const fetchCollections = async () => {
-    const res = await fetch('http://localhost:5000/collections');
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/collections`);
     const data = res.json();
     return data;
   }

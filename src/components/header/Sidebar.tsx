@@ -54,7 +54,7 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
   const [newCollectionTitle, setNewCollectionTitle] = useState('')
   const saveNewCollection = async () => {
     //saving the new collection to the server
-    const res1 = await fetch('http://localhost:5000/collections', {
+    const res1 = await fetch(`${process.env.REACT_APP_API_URL}/collections`, {
       method: 'POST',
       headers: {
           'Content-type': 'application/json',

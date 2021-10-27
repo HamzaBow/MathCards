@@ -238,7 +238,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
     }
 // className="card-form__face card-form--other"
     const addCard = async () =>{
-        const res = await fetch('http://localhost:5000/cards',{
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/cards`,{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -251,7 +251,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
     }
 
     const updateCard = async () =>{
-        const res = await fetch(`http://localhost:5000/cards/${params.id}`,{
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/cards/${params.id}`,{
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json',

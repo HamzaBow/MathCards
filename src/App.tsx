@@ -77,7 +77,7 @@ function App() {
   }, []);
 
   const fetchCards = async () => {
-    const res = await fetch("http://localhost:5000/cards");
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/cards`);
     const data = await res.json();
     return data;
   };

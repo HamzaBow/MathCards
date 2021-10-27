@@ -106,7 +106,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
       return;
     }
     setOpen(false);
-    fetch(`http://localhost:5000/cards/${card.id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/cards/${card.id}`, {
       method: 'DELETE'
     })
 
