@@ -28,7 +28,6 @@ export interface Action {
   type: string;
   payload: any;
 }
-
 function App() {
   // ----------------------------- CARDS -----------------------------
 
@@ -90,52 +89,52 @@ function App() {
         <ThemeProvider>
           <UserProvider>
             <CssBaseline />
-              <AuthProvider>
-                <Route exact path="/">
-                  {currentUser ? (
-                    <Redirect to="/" />
-                  ) : (
-                    <>
-                      <Header/>
-                      <Main cards={cards} cardsDispatch={cardsDispatch} />
-                    </>
-                  )}
-                </Route>
+            <AuthProvider>
+              <Route exact path="/">
+                {currentUser ? (
+                  <Redirect to="/" />
+                ) : (
+                  <>
+                    <Header />
+                    <Main cards={cards} cardsDispatch={cardsDispatch} />
+                  </>
+                )}
+              </Route>
 
-                <Route path="/maincard/:id">
-                  <Main cards={cards} cardsDispatch={cardsDispatch} />
-                  <Maincard cards={cards} />{" "}
-                  {/* --------------------------------------------  Maincard */}
-                </Route>
+              <Route path="/maincard/:id">
+                <Main cards={cards} cardsDispatch={cardsDispatch} />
+                <Maincard cards={cards} />{" "}
+                {/* --------------------------------------------  Maincard */}
+              </Route>
 
-                <Route path="/cardform/new">
-                  <Main cards={cards} cardsDispatch={cardsDispatch} />
-                  <CardForm
-                    operationType="create"
-                    cardsDispatch={cardsDispatch}
-                  />
-                </Route>
+              <Route path="/cardform/new">
+                <Main cards={cards} cardsDispatch={cardsDispatch} />
+                <CardForm
+                  operationType="create"
+                  cardsDispatch={cardsDispatch}
+                />
+              </Route>
 
-                <Route path="/cardform/edit/:id">
-                  <Main cards={cards} cardsDispatch={cardsDispatch} />
-                  <CardForm
-                    operationType="edit"
-                    cards={cards}
-                    cardsDispatch={cardsDispatch}
-                  />{" "}
-                  {/* ----  CardForm */}
-                </Route>
+              <Route path="/cardform/edit/:id">
+                <Main cards={cards} cardsDispatch={cardsDispatch} />
+                <CardForm
+                  operationType="edit"
+                  cards={cards}
+                  cardsDispatch={cardsDispatch}
+                />{" "}
+                {/* ----  CardForm */}
+              </Route>
 
-                <Route path="/signup" component={Signup} />
+              <Route path="/signup" component={Signup} />
 
-                <Route path="/login" component={Login} />
+              <Route path="/login" component={Login} />
 
-                <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/forgot-password" component={ForgotPassword} />
 
-                {/* <Footer /> */}
-              </AuthProvider>
-            </UserProvider>
-          </ThemeProvider>
+              {/* <Footer /> */}
+            </AuthProvider>
+          </UserProvider>
+        </ThemeProvider>
       </div>
     </Router>
   );
