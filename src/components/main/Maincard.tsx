@@ -56,7 +56,6 @@ const Maincard: React.FC<Props> = ({ cards }) => {
   }, [frontDisplayed]);
 
   useEffect(() => {
-    console.log(divToRotate);
     document.title = 'Main Card';
     return () => {
       document.title = 'MathCards';
