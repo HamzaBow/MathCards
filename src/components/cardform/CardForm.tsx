@@ -243,8 +243,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({id: `${Date.now().toString()} - ${Math.random().toString().slice(2,6)}`, 
-                                  ...fields, difficultyLevels, tags})
+            body: JSON.stringify({...fields, difficultyLevels, tags})
         })
         const data = await res.json()
         cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card: data}})
@@ -256,9 +255,10 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({id: params.id, ...fields, difficultyLevels, tags})
+            body: JSON.stringify({...fields, difficultyLevels, tags})
         })
         const data = await res.json()
+        console.log('put req data', data)
         cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { data: data }})
     }
 
