@@ -251,7 +251,7 @@ const Header: React.FC = () => {
       classes={{list: classes.list}}
     >
     <Paper variant="outlined">
-      <MenuItem>
+      <MenuItem onClick={() => { history.push("/cardform/new") }}>
         <IconButton aria-label="create a new card" color="inherit">
           <AddCircleIcon />
         </IconButton>
