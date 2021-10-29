@@ -36,7 +36,7 @@ export interface DifficultyLevelsInterface {
 }
 
 export interface CardInterface {
-  id: string;
+  _id: string;
   front: Field[];
   back: Field[];
   difficultyLevels: DifficultyLevelsInterface; 
@@ -131,7 +131,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
 
     useEffect(() => {
         if(operationType === 'edit'){
-            const card: CardInterface = cards?.find((card: CardInterface) => card?.id === params.id) as CardInterface; 
+            const card: CardInterface = cards?.find((card: CardInterface) => card?._id === params.id) as CardInterface; 
             fieldsDispatch({type: CARD_FORM_ACTIONS.SET_FIELDS, payload: {fields: {front: card?.front, back: card?.back} }})
             setDifficultyLevels(card.difficultyLevels)
             setTags(card.tags)

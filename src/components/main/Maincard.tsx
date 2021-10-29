@@ -17,7 +17,7 @@ const Maincard: React.FC<Props> = ({ cards }) => {
   }
   const params = useParams<RouteParams>();
   
-  const chosenCard = cards.find(card => card.id === params.id)
+  const chosenCard = cards.find(card => card._id === params.id)
 
 
   const [frontDisplayed, setFrontDisplayed] = useState(true);

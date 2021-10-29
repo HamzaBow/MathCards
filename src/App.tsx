@@ -45,11 +45,11 @@ function App() {
         return [...cards, action.payload.card];
       //---------------------------------
       case CARDS_ACTIONS.REMOVE_CARD:
-        return cards.filter((card) => card.id !== action.payload.id);
+        return cards.filter((card) => card._id !== action.payload.id);
       //---------------------------------
       case CARDS_ACTIONS.UPDATE_CARD:
         return cards.map((card) => {
-          if (card.id === action.payload.data.id) {
+          if (card._id === action.payload.data.id) {
             return action.payload.data;
           }
           return card;

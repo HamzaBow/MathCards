@@ -74,7 +74,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
 
   // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
   const displayMainCard = (id: string) => {
-    history.push(`/maincard/${card.id}`)
+    history.push(`/maincard/${card._id}`)
   }
 
   const [open, setOpen] = React.useState(false);
@@ -98,7 +98,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
       return;
     }
     setOpen(false);
-    history.push(`/cardform/edit/${card.id}`);
+    history.push(`/cardform/edit/${card._id}`);
   };
 
   const handleDelete = (event: React.SyntheticEvent) => {
@@ -106,11 +106,11 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
       return;
     }
     setOpen(false);
-    fetch(`${process.env.REACT_APP_API_URL}/cards/${card.id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/cards/${card._id}`, {
       method: 'DELETE'
     })
 
-    cardsDispatch({ type: CARDS_ACTIONS.REMOVE_CARD, payload: { id: card.id } })
+    cardsDispatch({ type: CARDS_ACTIONS.REMOVE_CARD, payload: { id: card._id } })
 
   }
 
@@ -192,7 +192,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
 
           <SaveToPrompt saveToPromptOpen={saveToPromptOpen} setSaveToPromptOpen={setSaveToPromptOpen} saveRef={saveRef.current} />
         </div>
-        <div className="front" onClick={() => displayMainCard(card.id)} >
+        <div className="front" onClick={() => displayMainCard(card._id)} >
           {card.front.map((field, key) => {
             if (field.type === 'MATH') {
               return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
