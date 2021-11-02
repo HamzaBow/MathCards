@@ -56,7 +56,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify({ id: `${Date.now().toString()}-${Math.random().toString().slice(2, 6)}`, tag: tag })})
+        body: JSON.stringify({ tag: tag })})
     }))
   }
 

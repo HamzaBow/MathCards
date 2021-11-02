@@ -59,7 +59,7 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
       headers: {
           'Content-type': 'application/json',
       },
-      body: JSON.stringify({ id: `${Date.now().toString()}-${Math.random().toString().slice(2, 6)}`, title: newCollectionTitle})
+      body: JSON.stringify({title: newCollectionTitle})
     });
     const data1 = await res1.json()
 
