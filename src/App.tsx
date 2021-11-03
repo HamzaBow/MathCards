@@ -7,10 +7,7 @@ import Maincard from "components/main/Maincard";
 import CardForm from "components/cardform/CardForm";
 
 import { CARDS_ACTIONS } from "Constants";
-import ThemeProvider from "contexts/ThemeContext";
-import { UserProvider } from "contexts/UserContext";
-
-import AuthProvider, { useAuth } from "./contexts/AuthContext";
+import { useAuth } from "contexts/AuthContext";
 import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
@@ -82,59 +79,47 @@ function App() {
     return data;
   };
   // *********************************************************************
-
   return (
     <Router>
       <div className="App">
-        <ThemeProvider>
-          <UserProvider>
-            <CssBaseline />
-            <AuthProvider>
-              <Route exact path="/">
-                {currentUser ? (
-                  <Redirect to="/" />
-                ) : (
-                  <>
-                    <Header />
-                    <Main cards={cards} cardsDispatch={cardsDispatch} />
-                  </>
-                )}
-              </Route>
+        <CssBaseline />
+        <Route exact path="/">
+          {currentUser ? (
+            <>
+              <Header />
+              <Main cards={cards} cardsDispatch={cardsDispatch} />
+            </>
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
 
-              <Route path="/maincard/:id">
-                <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <Maincard cards={cards} />{" "}
-                {/* --------------------------------------------  Maincard */}
-              </Route>
+        <Route path="/maincard/:id">
+          <Main cards={cards} cardsDispatch={cardsDispatch} />
+          <Maincard cards={cards} />{" "}
+          {/* --------------------------------------------  Maincard */}
+        </Route>
 
-              <Route path="/cardform/new">
-                <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <CardForm
-                  operationType="create"
-                  cardsDispatch={cardsDispatch}
-                />
-              </Route>
+        <Route path="/cardform/new">
+          <Main cards={cards} cardsDispatch={cardsDispatch} />
+          <CardForm operationType="create" cardsDispatch={cardsDispatch} />
+        </Route>
 
-              <Route path="/cardform/edit/:id">
-                <Main cards={cards} cardsDispatch={cardsDispatch} />
-                <CardForm
-                  operationType="edit"
-                  cards={cards}
-                  cardsDispatch={cardsDispatch}
-                />{" "}
-                {/* ----  CardForm */}
-              </Route>
+        <Route path="/cardform/edit/:id">
+          <Main cards={cards} cardsDispatch={cardsDispatch} />
+          <CardForm
+            operationType="edit"
+            cards={cards}
+            cardsDispatch={cardsDispatch}
+          />{" "}
+          {/* ----  CardForm */}
+        </Route>
 
-              <Route path="/signup" component={Signup} />
+        <Route path="/signup" component={Signup} />
 
-              <Route path="/login" component={Login} />
+        <Route path="/login" component={Login} />
 
-              <Route path="/forgot-password" component={ForgotPassword} />
-
-              {/* <Footer /> */}
-            </AuthProvider>
-          </UserProvider>
-        </ThemeProvider>
+        <Route path="/forgot-password" component={ForgotPassword} />
       </div>
     </Router>
   );
