@@ -258,7 +258,6 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
             body: JSON.stringify({...fields, difficultyLevels, tags})
         })
         const data = await res.json()
-        console.log('put req data', data)
         cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { data: data }})
     }
 
