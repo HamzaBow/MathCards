@@ -24,8 +24,22 @@ interface OtherProps {
   updateCard: Function;
 }
 
-const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({ operationType, prev, activeStep, setActiveStep, setFinished, difficultyLevels, setDifficultyLevels, tags, setTags, addCard, updateCard }, ref) => {
-
+const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
+  {
+    operationType,
+    prev,
+    activeStep,
+    setActiveStep,
+    setFinished,
+    difficultyLevels,
+    setDifficultyLevels,
+    tags,
+    setTags,
+    addCard,
+    updateCard,
+  },
+  ref
+) => {
   const [saveDisabled, setSaveDisabled] = useState(false);
 
   const [tagOptions, setTagOptions] = useState<TagOption[]>([])
