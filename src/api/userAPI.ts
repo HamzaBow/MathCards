@@ -69,3 +69,59 @@ export const fetchDeleteUser = async (_id: string) => {
   const data = await res.json();
   return data;
 };
+
+//***********************************************************
+//**********************   FOLLOWING   **********************
+//***********************************************************
+
+export const fetchAddFollowed = async (_id: string, followedId: string) => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/following`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ followedId }),
+  });
+  const data = await res.json();
+  return data;
+}
+
+export const fetchDeleteFollowed = async (_id: string, followedId: string) => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/following`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ followedId }),
+  });
+  const data = await res.json();
+  return data;
+}
+
+//***********************************************************
+//***************   COLLECTIONS INSIDE USER   ***************
+//***********************************************************
+
+export const fetchAddCollection = async (_id: string, collectionId: string) => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/collections`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ collectionId }),
+  });
+  const data = await res.json();
+  return data;
+}
+
+export const fetchDeleteCollection = async (_id: string, collectionId: string) => {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/collections`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ collectionId }),
+  });
+  const data = await res.json();
+  return data;
+}
