@@ -262,23 +262,57 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
     }
 
     return (
-        <>
-            <Overlay />
-            { !finished ?
-            <>
-                {/* <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader> */}
-                <FormFace  ref={front} face="front" next={next}             fields={fields} fieldsDispatch={fieldsDispatch} />
-                <FormFace  ref={back}  face="back"  next={next} prev={prev} fields={fields} fieldsDispatch={fieldsDispatch} />
-                <FormOther operationType={operationType} ref={other} prev={prev} activeStep={activeStep} setActiveStep={setActiveStep}  setFinished={setFinished} difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} tags={tags} setTags={setTags} addCard={addCard} updateCard={updateCard}/>
-                <div style={{position:"fixed", bottom: "0", left: "25%", right: "0", width: "50%"}} >
-                    <CardFormStepper activeStep={activeStep}  />
-                </div>
-            </>
-            :
-            <SuccessSnackBar />
-            }
-        </>
-    )
+      <>
+        <Overlay />
+        {!finished ? (
+          <>
+            {/* <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader> */}
+            <FormFace
+              ref={front}
+              face="front"
+              next={next}
+              fields={fields}
+              fieldsDispatch={fieldsDispatch}
+            />
+            <FormFace
+              ref={back}
+              face="back"
+              next={next}
+              prev={prev}
+              fields={fields}
+              fieldsDispatch={fieldsDispatch}
+            />
+            <FormOther
+              operationType={operationType}
+              ref={other}
+              prev={prev}
+              activeStep={activeStep}
+              setActiveStep={setActiveStep}
+              setFinished={setFinished}
+              difficultyLevels={difficultyLevels}
+              setDifficultyLevels={setDifficultyLevels}
+              tags={tags}
+              setTags={setTags}
+              addCard={addCard}
+              updateCard={updateCard}
+            />
+            <div
+              style={{
+                position: "fixed",
+                bottom: "0",
+                left: "25%",
+                right: "0",
+                width: "50%",
+              }}
+            >
+              <CardFormStepper activeStep={activeStep} />
+            </div>
+          </>
+        ) : (
+          <SuccessSnackBar />
+        )}
+      </>
+    );
 }
 
 export default CardForm
