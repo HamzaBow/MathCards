@@ -1,13 +1,4 @@
-interface UserData {
-  uid: string;
-  following: string[];
-  collectionsIds: string[];
-}
-interface UserPatchData {
-  uid?: string;
-  following?: string[];
-  collectionsIds?: string[];
-}
+import { UserData, UserPatchData } from "./types";
 
 export const fetchAllUsers = async () => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/users`);
@@ -74,7 +65,7 @@ export const fetchDeleteUser = async (_id: string) => {
 //**********************   FOLLOWING   **********************
 //***********************************************************
 
-export const fetchAddFollowed = async (_id: string, followedId: string) => {
+export const fetchAddFollowedToUser = async (_id: string, followedId: string) => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/following`, {
     method: "POST",
     headers: {
@@ -86,7 +77,7 @@ export const fetchAddFollowed = async (_id: string, followedId: string) => {
   return data;
 }
 
-export const fetchDeleteFollowed = async (_id: string, followedId: string) => {
+export const fetchDeleteFollowedFromUser = async (_id: string, followedId: string) => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/following`, {
     method: "DELETE",
     headers: {
@@ -102,7 +93,7 @@ export const fetchDeleteFollowed = async (_id: string, followedId: string) => {
 //***************   COLLECTIONS INSIDE USER   ***************
 //***********************************************************
 
-export const fetchAddCollection = async (_id: string, collectionId: string) => {
+export const fetchAddCollectionToUser = async (_id: string, collectionId: string) => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/collections`, {
     method: "POST",
     headers: {
@@ -114,7 +105,7 @@ export const fetchAddCollection = async (_id: string, collectionId: string) => {
   return data;
 }
 
-export const fetchDeleteCollection = async (_id: string, collectionId: string) => {
+export const fetchDeleteCollectionFromUser = async (_id: string, collectionId: string) => {
   const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/collections`, {
     method: "DELETE",
     headers: {
