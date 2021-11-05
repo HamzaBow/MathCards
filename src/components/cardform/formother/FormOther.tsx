@@ -44,84 +44,91 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
 ) => {
   const [saveDisabled, setSaveDisabled] = useState(false);
 
-  const [tagOptions, setTagOptions] = useState<TagOption[]>([])
+  const [tagOptions, setTagOptions] = useState<TagOption[]>([]);
 
   useEffect(() => {
     const getTagOptions = async () => {
       const tagsFromServer = await fetchTagOptions();
       setTagOptions(tagsFromServer);
-    }
+    };
     getTagOptions();
-  }, [])
+  }, []);
 
   const fetchTagOptions = async () => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/tagoptions`);
     const data = await res.json();
     return data;
-  }
+  };
 
   function getNewTags() {
-    const newTags = tags.filter((tag) => !tagOptions.map((tagOption) => tagOption.tag).includes(tag))
-    return newTags
+    const newTags = tags.filter(
+      (tag) => !tagOptions.map((tagOption) => tagOption.tag).includes(tag)
+    );
+    return newTags;
   }
 
   const saveNewTags = async (newTags: string[]) => {
-    await Promise.all(newTags.map( async (tag) => {
+    await Promise.all(
+      newTags.map(async (tag) => {
         await fetch(`${process.env.REACT_APP_API_URL}/tagoptions`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ tag: tag })})
-    }))
-  }
-
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ tag: tag }),
+        });
+      })
+    );
+  };
 
   if (activeStep === 3) {
   }
 
   const save = () => {
-
     saveNewTags(getNewTags());
 
     if (activeStep !== 3) {
       setSaveDisabled(true);
 
       setFinished(true);
-      if (operationType === 'create') {
+      if (operationType === "create") {
         addCard();
       } else {
         updateCard();
       }
 
-
       return;
     }
-    throw new RangeError("activeStep is 3 !!!. It should have the value 2 in this step.")
-  }
+    throw new RangeError(
+      "activeStep is 3 !!!. It should have the value 2 in this step."
+    );
+  };
 
   const previous = () => {
-    prev()
+    prev();
     if (activeStep === 3) {
-      setActiveStep((prevStep: number ) => prevStep - 1) // prev() is going to decrement activeStep by one (total -2 decrement)
+      setActiveStep((prevStep: number) => prevStep - 1); // prev() is going to decrement activeStep by one (total -2 decrement)
     }
     if (activeStep > 3) {
-      throw new RangeError(`value of activeStep shouldn't be greater than 3. activeStep has value ${activeStep}`)
+      throw new RangeError(
+        `value of activeStep shouldn't be greater than 3. activeStep has value ${activeStep}`
+      );
     }
-  }
+  };
 
   const hrStyle = {
     width: "32rem",
     opacity: "0.3",
-  }
-
-
+  };
 
   return (
-    <div className={'card-form__step'} ref={ref}>
+    <div className={"card-form__step"} ref={ref}>
       <h1 style={{ margin: 0 }}>Other Info</h1>
       <hr style={hrStyle} />
-      <DifficultyLevels difficultyLevels={difficultyLevels} setDifficultyLevels={setDifficultyLevels} />
+      <DifficultyLevels
+        difficultyLevels={difficultyLevels}
+        setDifficultyLevels={setDifficultyLevels}
+      />
       <hr style={hrStyle} />
       <TopicTags tags={tags} setTags={setTags} tagOptions={tagOptions} />
       <ButtonGroup>
@@ -144,10 +151,9 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
           onClick={() => save()}
           disabled={saveDisabled}
         >
-          {operationType === 'create' ? "save" : "save changes"}
+          {operationType === "create" ? "save" : "save changes"}
         </Button>
       </ButtonGroup>
-
     </div>
   );
 };
