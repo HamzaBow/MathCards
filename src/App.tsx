@@ -18,6 +18,7 @@ import { Redirect } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
+import { fetchAllCards } from "api/cardAPI";
 
 export type Theme = "device-theme" | "light" | "dark" | "charcoal";
 
@@ -64,7 +65,7 @@ function App() {
   // *********************************************************************
   useEffect(() => {
     const getCards = async () => {
-      const cardsFromServer = await fetchCards();
+      const cardsFromServer = await fetchAllCards();
       cardsDispatch({
         type: CARDS_ACTIONS.FETCH_CARDS,
         payload: { cards: cardsFromServer },
@@ -73,11 +74,6 @@ function App() {
     getCards();
   }, []);
 
-  const fetchCards = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/cards`);
-    const data = await res.json();
-    return data;
-  };
   // *********************************************************************
   return (
     <Router>
