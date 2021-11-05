@@ -90,7 +90,7 @@ function App() {
               <Main cards={cards} cardsDispatch={cardsDispatch} />
             </>
           ) : (
-            <Redirect to="/" />
+            <Redirect to="/login" />
           )}
         </Route>
 
