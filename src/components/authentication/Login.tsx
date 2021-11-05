@@ -96,11 +96,11 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({ type, label, autoFocu
 
 const validationSchema = yup.object({
   email: yup.string().email().required(),
-  password: yup.string().required(),
-  // .matches(
-  //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-  //   "Must Contain at Least 8 characters including uppercase, lowercase, numbers and special characters (!@#$% ...)"
-  // ),
+  password: yup.string().required()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+      "Must Contain at Least 8 characters including uppercase, lowercase, numbers and special characters (!@#$% ...)"
+    ),
 });
 
 export default function Login() {
