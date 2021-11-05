@@ -20,6 +20,7 @@ import { FcGoogle } from "react-icons/fc";
 import Logo from  "../Logo";
 
 import * as yup from "yup";
+import { fetchCreateUser } from "api/userAPI";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -128,7 +129,9 @@ export default function Login() {
     try {
       setError("");
       setLoading(true);
-      await signInWithGoogleAuth();
+      const signInWithGoogleAuthResult = await signInWithGoogleAuth();
+      await fetchCreateUser(signInWithGoogleAuthResult.user.uid)
+      // TODO: what if `signIn..` succeeds and `fetchCreateUser` fails, FIX IT
       history.push("/");
     } catch (err) {
       setError("Failed to sign in with Google");
