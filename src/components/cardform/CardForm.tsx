@@ -293,6 +293,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
               setDifficultyLevels={setDifficultyLevels}
               tags={tags}
               setTags={setTags}
+              fields={fields}
               addCard={addCard}
               updateCard={updateCard}
             />
