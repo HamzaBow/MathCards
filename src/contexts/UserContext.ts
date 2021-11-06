@@ -53,3 +53,5 @@ const UserProvider : React.FC<Props> = ({children}) => {
   )
 
 }
+
+export default UserProvider;
