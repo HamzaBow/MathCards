@@ -294,6 +294,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
               tags={tags}
               setTags={setTags}
               frontNBackFields={frontNBackFields}
+              cardsDispatch={cardsDispatch}
               addCard={addCard}
               updateCard={updateCard}
             />
