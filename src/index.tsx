@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthProvider from "contexts/AuthContext";
 import ThemeProvider from "contexts/ThemeContext";
-import { UserProvider } from "contexts/UserContext";
+import UserProvider from "contexts/UserContext";
 
 ReactDOM.render(
   <React.StrictMode>
