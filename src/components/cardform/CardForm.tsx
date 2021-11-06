@@ -75,7 +75,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
         }
     }
 
-    function fieldsReducer(frontNBackFields: FrontNBackFields, action: Action) {
+    function frontNBackFieldsReducer(frontNBackFields: FrontNBackFields, action: Action) {
         type Face = "front" | "back";
 
         let face: Face = "front";
@@ -116,7 +116,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
         }
     }
 
-    const [frontNBackFields, frontNBackFieldsDispatch] = useReducer(fieldsReducer, {front: [], back: [], other: []});
+    const [frontNBackFields, frontNBackFieldsDispatch] = useReducer(frontNBackFieldsReducer, {front: [], back: [], other: []});
 
 
 
