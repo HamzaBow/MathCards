@@ -7,7 +7,7 @@ import { ButtonGroup } from "@material-ui/core";
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
-import { OperationType, DifficultyLevelsInterface, Field } from '../CardForm'
+import { OperationType, DifficultyLevelsInterface, FrontNBackFields } from '../CardForm'
 import { TagOption } from './TopicTags'
 
 interface OtherProps {
@@ -20,7 +20,7 @@ interface OtherProps {
   setDifficultyLevels(difficultyLevels: DifficultyLevelsInterface): void;
   tags: string[];
   setTags(tagsToSet: string[]): void;
-  fields: Field[];
+  frontNBackFields: FrontNBackFields;
   addCard: Function;
   updateCard: Function;
 }
@@ -36,7 +36,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     setDifficultyLevels,
     tags,
     setTags,
-    fields,
+    frontNBackFields,
     addCard,
     updateCard,
   },

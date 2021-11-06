@@ -13,7 +13,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import { BiText } from 'react-icons/bi/'
 import { ImSigma } from 'react-icons/im/'
-import { Fields } from './CardForm'
+import { FrontNBackFields } from './CardForm'
 
 addStyles();
 
@@ -21,12 +21,12 @@ interface OtherProps {
   face: "front" | "back";
   next: Function;
   prev?: Function;
-  fields: Fields;
+  frontNBackFields: FrontNBackFields;
   fieldsDispatch: Function;
 }
 
 
-const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({ face, next, prev, fields, fieldsDispatch }, ref) => {
+const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({ face, next, prev, frontNBackFields, fieldsDispatch }, ref) => {
   face = face ?? "front";
 
   const addTextQuill = () => {
@@ -44,7 +44,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = ({ 
       </h1>
 
         <div className="fields-container">
-          {fields[face].map((field, key) => {
+          {frontNBackFields[face].map((field, key) => {
             if (field.type === FIELD_TYPE.MATH){
               return (
                 <MathField

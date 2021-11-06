@@ -22,7 +22,7 @@ export interface Field {
   latex?: string;
 }
 
-export interface Fields {
+export interface FrontNBackFields {
   front: Field[];
   back: Field[]
 }
@@ -75,7 +75,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
         }
     }
 
-    function fieldsReducer(fields: Fields, action: Action) {
+    function fieldsReducer(frontNBackFields: FrontNBackFields, action: Action) {
         type Face = "front" | "back";
 
         let face: Face = "front";
@@ -88,13 +88,13 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
 
         switch (action.type) {
             case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
-                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, 'TEXT')]};
+                return { [otherFace]: frontNBackFields[otherFace], [face]: [...frontNBackFields[face], newField(action.payload.id, 'TEXT')]};
 
             case CARD_FORM_ACTIONS.ADD_MATH_QUILL:
-                return { [otherFace]: fields[otherFace], [face]: [...fields[face], newField(action.payload.id, 'MATH')]};
+                return { [otherFace]: frontNBackFields[otherFace], [face]: [...frontNBackFields[face], newField(action.payload.id, 'MATH')]};
 
             case CARD_FORM_ACTIONS.UPDATE_LATEX:
-                return {[otherFace]: [...fields[otherFace]], [face]: fields[face].map((field) => {
+                return {[otherFace]: [...frontNBackFields[otherFace]], [face]: frontNBackFields[face].map((field) => {
                 if(field.id === action.payload.id){
                     return { ...field, latex: action.payload.latex };
                 }
@@ -102,21 +102,21 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
                 })}
 
             case CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT:
-                return {[otherFace]: fields[otherFace], [face]: fields[face].map((field) => {
+                return {[otherFace]: frontNBackFields[otherFace], [face]: frontNBackFields[face].map((field) => {
                 if(field.id === action.payload.id){
                     return { ...field, htmlContent: action.payload.htmlContent };
                 }
                 return field;
                 })}
             case CARD_FORM_ACTIONS.SET_FIELDS:
-                return action.payload.fields;
+                return action.payload.frontNBackFields;
 
             default:
-                return fields;
+                return frontNBackFields;
         }
     }
 
-    const [fields, fieldsDispatch] = useReducer(fieldsReducer, {front: [], back: [], other: []});
+    const [frontNBackFields, frontNBackFieldsDispatch] = useReducer(fieldsReducer, {front: [], back: [], other: []});
 
 
 
@@ -132,7 +132,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
     useEffect(() => {
         if(operationType === 'edit'){
             const card: CardInterface = cards?.find((card: CardInterface) => card?._id === params.id) as CardInterface; 
-            fieldsDispatch({type: CARD_FORM_ACTIONS.SET_FIELDS, payload: {fields: {front: card?.front, back: card?.back} }})
+            frontNBackFieldsDispatch({type: CARD_FORM_ACTIONS.SET_FIELDS, payload: {frontNBackFields: {front: card?.front, back: card?.back} }})
             setDifficultyLevels(card.difficultyLevels)
             setTags(card.tags)
         }
@@ -243,7 +243,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({...fields, difficultyLevels, tags})
+            body: JSON.stringify({...frontNBackFields, difficultyLevels, tags})
         })
         const data = await res.json()
         cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card: data}})
@@ -255,7 +255,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({...fields, difficultyLevels, tags})
+            body: JSON.stringify({...frontNBackFields, difficultyLevels, tags})
         })
         const data = await res.json()
         cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { data: data }})
@@ -271,16 +271,16 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
               ref={front}
               face="front"
               next={next}
-              fields={fields}
-              fieldsDispatch={fieldsDispatch}
+              frontNBackFields={frontNBackFields}
+              fieldsDispatch={frontNBackFieldsDispatch}
             />
             <FormFace
               ref={back}
               face="back"
               next={next}
               prev={prev}
-              fields={fields}
-              fieldsDispatch={fieldsDispatch}
+              frontNBackFields={frontNBackFields}
+              fieldsDispatch={frontNBackFieldsDispatch}
             />
             <FormOther
               operationType={operationType}
@@ -293,7 +293,7 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
               setDifficultyLevels={setDifficultyLevels}
               tags={tags}
               setTags={setTags}
-              fields={fields}
+              frontNBackFields={frontNBackFields}
               addCard={addCard}
               updateCard={updateCard}
             />
