@@ -29,11 +29,6 @@ export interface Action {
 function App() {
   // ----------------------------- CARDS -----------------------------
 
-  interface Action {
-    type: string;
-    payload: any;
-  }
-
   function cardsReducer(cards: CardInterface[], action: Action) {
     switch (action.type) {
       case CARDS_ACTIONS.FETCH_CARDS:
