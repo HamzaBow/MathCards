@@ -11,7 +11,11 @@ export function useUserUpdate() {
   return useContext(UserUpdateContext)
 }
 
-export function UserProvider({ children }) {
+interface Props {
+  children: JSX.Element;
+}
+
+const UserProvider : React.FC<Props> = ({children}) => {
 
   function userReducer(user, action){
     switch (action.type) {
