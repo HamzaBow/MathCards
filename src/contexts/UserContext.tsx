@@ -15,6 +15,23 @@ interface Props {
   children: JSX.Element;
 }
 
+interface User {
+  _id: string;
+  uid: string;
+  following: string[];
+  collectionsIds: string[];
+}
+
+enum UserReducerActionTypes {
+  FetchUser,
+  FetchUserCollections,
+}
+
+interface UserReducerActions {
+  type: UserReducerActionTypes;
+  payload: any;
+}
+
 const UserProvider : React.FC<Props> = ({children}) => {
 
   function userReducer(user, action){
