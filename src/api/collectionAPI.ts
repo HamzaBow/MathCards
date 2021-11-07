@@ -49,7 +49,6 @@ export const fetchUpdateCollectionPATCH = async (_id: string, collectionPatchDat
 };
 
 export const fetchDeleteCollection = async (_id: string) => {
-  //uid is the id given by auth service provider
   const res = await fetch(`${process.env.REACT_APP_API_URL}/collections/${_id}`, {
     method: "DELETE",
     headers: {
