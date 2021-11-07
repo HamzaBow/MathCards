@@ -50,7 +50,6 @@ export const fetchUpdateUserPATCH = async (_id: string, userPatchData: UserPatch
 };
 
 export const fetchDeleteUser = async (_id: string) => {
-  //uid is the id given by auth service provider
   const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}`, {
     method: "DELETE",
     headers: {
