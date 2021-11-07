@@ -12,14 +12,14 @@ export const fetchUser = async (_id: string) => {
   return data;
 };
 
-export const fetchCreateUser = async (uid: string) => {
-  //uid is the id given by auth service provider
+export const fetchCreateUser = async (authId: string) => {
+  //authId is the id given by auth service provider
   const res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
-    body: JSON.stringify({ uid: uid }),
+    body: JSON.stringify({ authId: authId }),
   });
   const data = await res.json();
   return data;

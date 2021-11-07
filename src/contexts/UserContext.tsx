@@ -17,7 +17,7 @@ interface Props {
 
 interface User {
   _id: string;
-  uid: string;
+  authId: string;
   following: string[];
   collectionsIds: string[];
 }

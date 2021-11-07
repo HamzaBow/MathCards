@@ -35,12 +35,12 @@ export interface CollectionPatchData {
 //-----------------------------------------------------------
 
 export interface UserData {
-  uid: string;
+  authId: string;
   following: string[];
   collectionsIds: string[];
 }
 export interface UserPatchData {
-  uid?: string;
+  authId?: string;
   following?: string[];
   collectionsIds?: string[];
 }
