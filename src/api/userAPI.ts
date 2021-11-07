@@ -87,31 +87,3 @@ export const fetchDeleteFollowedFromUser = async (_id: string, followedId: strin
   const data = await res.json();
   return data;
 }
-
-//***********************************************************
-//***************   COLLECTIONS INSIDE USER   ***************
-//***********************************************************
-
-export const fetchAddCollectionToUser = async (_id: string, collectionId: string) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/collections`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({ collectionId }),
-  });
-  const data = await res.json();
-  return data;
-}
-
-export const fetchDeleteCollectionFromUser = async (_id: string, collectionId: string) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/collections`, {
-    method: "DELETE",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({ collectionId }),
-  });
-  const data = await res.json();
-  return data;
-}
