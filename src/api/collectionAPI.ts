@@ -23,29 +23,29 @@ export const fetchCollection = async (collectionId: string) => {
 
 export const fetchCreateCollection = async (collectionData: CollectionData) => {
   return await fetchGetData({
-    url: 'baseUrl',
-    initParams: init("POST", collectionData),
+    url         : 'baseUrl',
+    initParams  : init("POST", collectionData),
   });
 };
 
 export const fetchUpdateCollectionPUT = async (collectionId: string, collectionData: CollectionData) => {
   return await fetchGetData({
-    url: `${baseUrl}/${collectionId}`,
-    initParams: init("PUT", collectionData),
+    url         : `${baseUrl}/${collectionId}`,
+    initParams  : init("PUT", collectionData),
   });
 };
 
 export const fetchUpdateCollectionPATCH = async (collectionId: string, collectionPatchData: CollectionPatchData) => {
   return await fetchGetData({
-    url: `${baseUrl}/${collectionId}`,
-    initParams: init("PATCH", collectionPatchData),
+    url         : `${baseUrl}/${collectionId}`,
+    initParams  : init("PATCH", collectionPatchData),
   });
 };
 
 export const fetchDeleteCollection = async (collectionId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${collectionId}`,
-    initParams: init("DELETE"),
+    url         : `${baseUrl}/${collectionId}`,
+    initParams  : init("DELETE"),
   });
 };
 
@@ -55,14 +55,14 @@ export const fetchDeleteCollection = async (collectionId: string) => {
 
 export const fetchAddCardToCollection = async (collectionId: string, cardId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${collectionId}/cards`,
-    initParams: init("POST", { cardId }),
+    url         : `${baseUrl}/${collectionId}/cards`,
+    initParams  : init("POST", { cardId }),
   });
 }
 
 export const fetchDeleteCardFromCollection = async (collectionId: string, cardId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${collectionId}/cards`,
-    initParams: init("DELETE", { cardId }),
+    url         : `${baseUrl}/${collectionId}/cards`,
+    initParams  : init("DELETE", { cardId }),
   });
 }
