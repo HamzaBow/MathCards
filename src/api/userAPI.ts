@@ -15,6 +15,12 @@ export const fetchUser = async (userId: string) => {
   });
 };
 
+export const fetchUserFromAuthId = async (authId: string) => {
+  return await fetchGetData({
+    url: `${baseUrl}?authId=${authId}`,
+  });
+};
+
 export const fetchCreateUser = async (authId: string) => {
   //authId is the id given by auth service provider
   return await fetchGetData({
