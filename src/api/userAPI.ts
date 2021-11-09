@@ -1,63 +1,47 @@
 import { UserData, UserPatchData } from "./types";
+import { fetchGetData, init } from "api/utils";
+
+const baseUrl = `${process.env.REACT_APP_API_URL}/users`;
 
 export const fetchAllUsers = async () => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users`);
-  const data = await res.json();
-  return data;
+  return await fetchGetData({
+    url: baseUrl,
+  });
 };
 
 export const fetchUser = async (_id: string) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}`);
-  const data = await res.json();
-  return data;
+  return await fetchGetData({
+    url: `${baseUrl}/${_id}`,
+  });
 };
 
 export const fetchCreateUser = async (authId: string) => {
   //authId is the id given by auth service provider
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({ authId: authId }),
+  return await fetchGetData({
+    url         : baseUrl,
+    initParams  : init("POST", { authId }),
   });
-  const data = await res.json();
-  return data;
 };
 
 export const fetchUpdateUserPUT = async (_id: string, userData: UserData) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}`, {
-    method: "PUT",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(userData),
+  return await fetchGetData({
+    url         : `${baseUrl}/${_id}`,
+    initParams  : init("PUT", userData),
   });
-  const data = await res.json();
-  return data;
 };
 
 export const fetchUpdateUserPATCH = async (_id: string, userPatchData: UserPatchData) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(userPatchData),
+  return await fetchGetData({
+    url         : `${baseUrl}/${_id}`,
+    initParams  : init("PATCH", userPatchData),
   });
-  const data = await res.json();
-  return data;
 };
 
 export const fetchDeleteUser = async (_id: string) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-type": "application/json",
-    },
+  return await fetchGetData({
+    url         : `${baseUrl}/${_id}`,
+    initParams  : init("DELETE"),
   });
-  const data = await res.json();
-  return data;
 };
 
 //***********************************************************
@@ -65,25 +49,15 @@ export const fetchDeleteUser = async (_id: string) => {
 //***********************************************************
 
 export const fetchAddFollowedToUser = async (_id: string, followedId: string) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/following`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({ followedId }),
+  return await fetchGetData({
+    url         : `${baseUrl}/${_id}/following`,
+    initParams  : init("POST", { followedId }),
   });
-  const data = await res.json();
-  return data;
 }
 
 export const fetchDeleteFollowedFromUser = async (_id: string, followedId: string) => {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/users/${_id}/following`, {
-    method: "DELETE",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({ followedId }),
+  return await fetchGetData({
+    url         : `${baseUrl}/${_id}/following`,
+    initParams  : init("DELETE", { followedId }),
   });
-  const data = await res.json();
-  return data;
 }
