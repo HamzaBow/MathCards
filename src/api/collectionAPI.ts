@@ -15,9 +15,9 @@ export const fetchCollectionsForUser = async (userId: string) => {
   });
 };
 
-export const fetchCollection = async (_id: string) => {
+export const fetchCollection = async (collectionId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}`,
+    url: `${baseUrl}/${collectionId}`,
   });
 };
 
@@ -28,23 +28,23 @@ export const fetchCreateCollection = async (collectionData: CollectionData) => {
   });
 };
 
-export const fetchUpdateCollectionPUT = async (_id: string, collectionData: CollectionData) => {
+export const fetchUpdateCollectionPUT = async (collectionId: string, collectionData: CollectionData) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}`,
+    url: `${baseUrl}/${collectionId}`,
     initParams: init("PUT", collectionData),
   });
 };
 
-export const fetchUpdateCollectionPATCH = async (_id: string, collectionPatchData: CollectionPatchData) => {
+export const fetchUpdateCollectionPATCH = async (collectionId: string, collectionPatchData: CollectionPatchData) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}`,
+    url: `${baseUrl}/${collectionId}`,
     initParams: init("PATCH", collectionPatchData),
   });
 };
 
-export const fetchDeleteCollection = async (_id: string) => {
+export const fetchDeleteCollection = async (collectionId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}`,
+    url: `${baseUrl}/${collectionId}`,
     initParams: init("DELETE"),
   });
 };
@@ -53,16 +53,16 @@ export const fetchDeleteCollection = async (_id: string) => {
 //************************   CARDS INSIDE COLLECTION   *************************
 //******************************************************************************
 
-export const fetchAddCardToCollection = async (_id: string, cardId: string) => {
+export const fetchAddCardToCollection = async (collectionId: string, cardId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}/cards`,
+    url: `${baseUrl}/${collectionId}/cards`,
     initParams: init("POST", { cardId }),
   });
 }
 
-export const fetchDeleteCardFromCollection = async (_id: string, cardId: string) => {
+export const fetchDeleteCardFromCollection = async (collectionId: string, cardId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}/cards`,
+    url: `${baseUrl}/${collectionId}/cards`,
     initParams: init("DELETE", { cardId }),
   });
 }
