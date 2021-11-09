@@ -9,9 +9,9 @@ export const fetchAllUsers = async () => {
   });
 };
 
-export const fetchUser = async (_id: string) => {
+export const fetchUser = async (userId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}`,
+    url: `${baseUrl}/${userId}`,
   });
 };
 
@@ -23,23 +23,23 @@ export const fetchCreateUser = async (authId: string) => {
   });
 };
 
-export const fetchUpdateUserPUT = async (_id: string, userData: UserData) => {
+export const fetchUpdateUserPUT = async (userId: string, userData: UserData) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}`,
+    url         : `${baseUrl}/${userId}`,
     initParams  : init("PUT", userData),
   });
 };
 
-export const fetchUpdateUserPATCH = async (_id: string, userPatchData: UserPatchData) => {
+export const fetchUpdateUserPATCH = async (userId: string, userPatchData: UserPatchData) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}`,
+    url         : `${baseUrl}/${userId}`,
     initParams  : init("PATCH", userPatchData),
   });
 };
 
-export const fetchDeleteUser = async (_id: string) => {
+export const fetchDeleteUser = async (userId: string) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}`,
+    url         : `${baseUrl}/${userId}`,
     initParams  : init("DELETE"),
   });
 };
@@ -48,16 +48,16 @@ export const fetchDeleteUser = async (_id: string) => {
 //**********************   FOLLOWING   **********************
 //***********************************************************
 
-export const fetchAddFollowedToUser = async (_id: string, followedId: string) => {
+export const fetchAddFollowedToUser = async (userId: string, followedId: string) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}/following`,
+    url         : `${baseUrl}/${userId}/following`,
     initParams  : init("POST", { followedId }),
   });
 }
 
-export const fetchDeleteFollowedFromUser = async (_id: string, followedId: string) => {
+export const fetchDeleteFollowedFromUser = async (userId: string, followedId: string) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}/following`,
+    url         : `${baseUrl}/${userId}/following`,
     initParams  : init("DELETE", { followedId }),
   });
 }
