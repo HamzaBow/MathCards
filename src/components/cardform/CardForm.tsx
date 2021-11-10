@@ -237,18 +237,6 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
         }
     }
 // className="card-form__face card-form--other"
-    const addCard = async () =>{
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/cards`,{
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({...frontNBackFields, difficultyLevels, tags})
-        })
-        const data = await res.json()
-        cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card: data}})
-    }
-
     const updateCard = async () =>{
         const res = await fetch(`${process.env.REACT_APP_API_URL}/cards/${params.id}`,{
             method: 'PUT',
@@ -295,7 +283,6 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
               setTags={setTags}
               frontNBackFields={frontNBackFields}
               cardsDispatch={cardsDispatch}
-              addCard={addCard}
               updateCard={updateCard}
             />
             <div

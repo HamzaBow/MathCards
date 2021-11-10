@@ -26,7 +26,6 @@ interface OtherProps {
   setTags(tagsToSet: string[]): void;
   frontNBackFields: FrontNBackFields;
   cardsDispatch: Dispatch<Action> 
-  addCard: Function;
   updateCard: Function;
 }
 
@@ -43,7 +42,6 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     setTags,
     frontNBackFields,
     cardsDispatch,
-    addCard,
     updateCard,
   },
   ref
@@ -103,7 +101,6 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
       // @ts-ignore 
       const cardData = { ownerId: user._id ,front, back, difficultyLevels, tags  };
       if (operationType === "create") {
-        // addCard();
         const card = await fetchCreateCard(cardData)
         cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card }})
       } else {
