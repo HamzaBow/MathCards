@@ -112,10 +112,10 @@ const Header: React.FC = () => {
   const setThemeString = useThemeUpdate() as Function;
 
   const classes = useStyles();
-  const [displaySidebar, setDisplaySidebar] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [themeAnchorEl, setThemeAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [displaySidebar, setDisplaySidebar] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [themeAnchorEl, setThemeAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
   const history = useHistory();
   const { logout, currentUser } = useAuth();
