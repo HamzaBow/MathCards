@@ -236,18 +236,6 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
             setActiveStep((prevActiveStep) => prevActiveStep - 1);
         }
     }
-// className="card-form__face card-form--other"
-    const updateCard = async () =>{
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/cards/${params.id}`,{
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({...frontNBackFields, difficultyLevels, tags})
-        })
-        const data = await res.json()
-        cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { data: data }})
-    }
 
     return (
       <>
@@ -283,7 +271,6 @@ const CardForm: React.FC<Props>  = ( { operationType, cards, cardsDispatch } ) =
               setTags={setTags}
               frontNBackFields={frontNBackFields}
               cardsDispatch={cardsDispatch}
-              updateCard={updateCard}
             />
             <div
               style={{
