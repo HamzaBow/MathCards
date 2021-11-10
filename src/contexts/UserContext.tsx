@@ -19,12 +19,20 @@ interface Props {
   children: JSX.Element;
 }
 
+export interface Collection {
+  _id: string;
+  title: string;
+  ownerId: string;
+  cardsIds?: string[];
+  tags?: string[];
+}
+
 export interface User {
   _id: string;
   authId: string;
   following: string[];
   ownedCards: CardInterface[]
-  collections: string[];
+  collections: Collection[];
 }
 
 export enum UserActions {
