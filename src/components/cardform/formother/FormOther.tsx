@@ -111,8 +111,8 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card }})
       } else {
         // updateCard();
-        const data = await fetchUpdateCardPUT(params.id, cardData)
-        cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { data }})
+        const card = await fetchUpdateCardPUT(params.id, cardData)
+        cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { card }})
       }
 
       return;

@@ -42,8 +42,8 @@ function App() {
       //---------------------------------
       case CARDS_ACTIONS.UPDATE_CARD:
         return cards.map((card) => {
-          if (card._id === action.payload.data._id) {
-            return action.payload.data;
+          if (card._id === action.payload.card._id) {
+            return action.payload.card;
           }
           return card;
         });
