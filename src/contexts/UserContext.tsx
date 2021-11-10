@@ -19,9 +19,9 @@ interface Props {
   children: JSX.Element;
 }
 
-interface User {
-  _id: string | null;
-  authId: string | null;
+export interface User {
+  _id: string;
+  authId: string;
   following: string[];
   ownedCards: CardInterface[]
   collections: string[];
@@ -57,8 +57,8 @@ const UserProvider : React.FC<Props> = ({children}) => {
   }
 
   const [user, userDispatch] = useReducer(userReducer, {
-  _id: null, 
-  authId: null,
+  _id: "", 
+  authId: "",
   following: [],
   ownedCards: [],
   collections: [] 
