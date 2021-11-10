@@ -1,6 +1,6 @@
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from '@material-ui/core'
 import React from 'react'
-import { BiEditAlt } from 'react-icons/bi'
+import { ImSigma } from "react-icons/im";
 import { useUser } from '../../contexts/UserContext';
 import { Collection } from 'contexts/UserContext'
 import { fetchAddCardToCollection } from 'api/collectionAPI';
@@ -22,7 +22,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({ collectionId, cardId, t
   }
   return (
   <MenuItem onClick={handleSaveCardToCollection}>
-    <BiEditAlt style={{ marginRight: '0.7rem' }} />
+    <ImSigma style={{ marginRight: '0.7rem' }} />
       {title}
   </MenuItem>
   )
