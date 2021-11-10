@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FaHammer } from 'react-icons/fa';
 import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import { Collection } from '../cards/SaveToPrompt'
+import { Collection } from 'contexts/UserContext'
 
 import Logo from "../Logo";
 
