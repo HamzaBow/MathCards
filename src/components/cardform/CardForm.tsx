@@ -6,7 +6,7 @@ import FormOther from './formother/FormOther'
 import CardFormStepper from './CardFormStepper'
 import SuccessSnackBar from "./SuccessSnackBar";
 import Overlay from '../utilities/Overlay'
-import { CARDS_ACTIONS, CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
+import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
 interface Action {
   type: string;
