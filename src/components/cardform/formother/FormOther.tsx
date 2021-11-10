@@ -12,6 +12,7 @@ import { TagOption } from './TopicTags'
 import { fetchCreateCard } from "api/cardAPI"
 import { Action } from "App";
 import { CARDS_ACTIONS } from "Constants";
+import { useUser } from "contexts/UserContext";
 
 interface OtherProps {
   operationType: OperationType;
@@ -50,6 +51,8 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   const [saveDisabled, setSaveDisabled] = useState(false);
 
   const [tagOptions, setTagOptions] = useState<TagOption[]>([]);
+
+  const user = useUser()
 
   useEffect(() => {
     const getTagOptions = async () => {
@@ -96,15 +99,16 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
       setSaveDisabled(true);
 
       setFinished(true);
-      // if (operationType === "create") {
-      //   addCard();
-      //   const { front, back } = frontNBackFields
-      //   const cardData = { ownerId: ,front, back, difficultyLevels, tags  };
-      //   const data = await fetchCreateCard(cardData)
-      //   cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card: data}})
-      // } else {
-      //   updateCard();
-      // }
+      const { front, back } = frontNBackFields
+      // @ts-ignore 
+      const cardData = { ownerId: user._id ,front, back, difficultyLevels, tags  };
+      if (operationType === "create") {
+        // addCard();
+        const card = await fetchCreateCard(cardData)
+        cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card }})
+      } else {
+        updateCard();
+      }
 
       return;
     }
