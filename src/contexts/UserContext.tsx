@@ -1,5 +1,9 @@
+import { fetchUserFromAuthId } from 'api/userAPI'
+import { CardInterface } from 'components/cardform/CardForm'
+import Card from 'components/cards/Card'
 import React, { useContext, useEffect, useReducer } from 'react'
 import { USER_ACTIONS } from './../Constants'
+import { useAuth } from './AuthContext'
 const UserContext = React.createContext({})
 const UserUpdateContext = React.createContext({})
 
@@ -16,50 +20,58 @@ interface Props {
 }
 
 interface User {
-  _id: string;
-  authId: string;
+  _id: string | null;
+  authId: string | null;
   following: string[];
-  collectionsIds: string[];
+  ownedCards: CardInterface[]
+  collections: string[];
 }
 
-enum UserReducerActionTypes {
+enum UserActions {
   FetchUser,
+  FetchUserCards,
   FetchUserCollections,
 }
 
-interface UserReducerActions {
-  type: UserReducerActionTypes;
+interface UserReducerAction {
+  type: UserActions;
   payload: any;
 }
 
 const UserProvider : React.FC<Props> = ({children}) => {
 
-  function userReducer(user, action){
+  function userReducer(user: User, action: UserReducerAction ): User {
     switch (action.type) {
-      case USER_ACTIONS.FETCH_COLLECTIONS:
-        return {...user, collections: action.payload.collectionsFromServer};
-      case USER_ACTIONS.NEW_COLLECTION:
-        return {...user, collections: [...user.collections, action.payload.newCollection] }
+      case UserActions.FetchUser:
+        return { ...user, ...action.payload.userFromServer }
+      //---------------------------------
+      case UserActions.FetchUserCollections:
+        return { ...user, collections:  action.payload.userCollectionsFromServer}
+      //---------------------------------
+      case UserActions.FetchUserCards:
+        return { ...user, ...action.payload.userCardsFromServer }
+      //---------------------------------
       default:
-        break;
+        return user; 
     }
   }
 
-  const [user, userDispatch] = useReducer(userReducer, {userId: '12345', userName: 'Hamza', collections: ['Group Theory', 'Real Analysis I', 'Complex Analysis II']})
+  const [user, userDispatch] = useReducer(userReducer, {
+  _id: null, 
+  authId: null,
+  following: [],
+  ownedCards: [],
+  collections: [] 
+  } ) 
 
+  const { currentUser } = useAuth()
   useEffect(() => {
-    const getCollections = async () => {
-      const collectionsFromServer = await fetchCollections(); 
-      userDispatch({type: USER_ACTIONS.FETCH_COLLECTIONS, payload: { collectionsFromServer }})
-    } 
-    getCollections();
+    const fetchUser = async () => {
+      const userFromServer = await fetchUserFromAuthId(currentUser?.uid)
+      userDispatch({type: UserActions.FetchUser, payload: { userFromServer }})
+    }
+    fetchUser()
   }, [])
-
-  const fetchCollections = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/collections`);
-    const data = res.json();
-    return data;
-  }
 
   return (
     <UserContext.Provider value={user}>

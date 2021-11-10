@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch } from "react";
 
 import DifficultyLevels from "./DifficultyLevels";
 
@@ -9,6 +9,9 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 import { OperationType, DifficultyLevelsInterface, FrontNBackFields } from '../CardForm'
 import { TagOption } from './TopicTags'
+import { fetchCreateCard } from "api/cardAPI"
+import { Action } from "App";
+import { CARDS_ACTIONS } from "Constants";
 
 interface OtherProps {
   operationType: OperationType;
@@ -21,6 +24,7 @@ interface OtherProps {
   tags: string[];
   setTags(tagsToSet: string[]): void;
   frontNBackFields: FrontNBackFields;
+  cardsDispatch: Dispatch<Action> 
   addCard: Function;
   updateCard: Function;
 }
@@ -37,6 +41,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     tags,
     setTags,
     frontNBackFields,
+    cardsDispatch,
     addCard,
     updateCard,
   },
@@ -84,18 +89,22 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   if (activeStep === 3) {
   }
 
-  const save = () => {
+  const save = async () => {
     saveNewTags(getNewTags());
 
     if (activeStep !== 3) {
       setSaveDisabled(true);
 
       setFinished(true);
-      if (operationType === "create") {
-        addCard();
-      } else {
-        updateCard();
-      }
+      // if (operationType === "create") {
+      //   addCard();
+      //   const { front, back } = frontNBackFields
+      //   const cardData = { ownerId: ,front, back, difficultyLevels, tags  };
+      //   const data = await fetchCreateCard(cardData)
+      //   cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card: data}})
+      // } else {
+      //   updateCard();
+      // }
 
       return;
     }

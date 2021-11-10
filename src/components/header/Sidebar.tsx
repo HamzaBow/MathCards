@@ -66,9 +66,9 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     //saving the new collection id to the user
     //TODO
 
-    userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollection: data1 }})
-    setNewCollectionTitle('')
-    setCreatingNewCollection(false);
+    // userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollection: data1 }})
+    // setNewCollectionTitle('')
+    // setCreatingNewCollection(false);
   }
 
   return (
@@ -95,14 +95,14 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {user.collections.map((collection: Collection, key: number) => (
+              {/* {user.collections.map((collection: Collection, key: number) => (
                 <ListItem key={key} button className={classes.nested}>
                   <ListItemIcon>
                     <ImSigma />
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
                 </ListItem>
-              ))}
+              ))} */}
 
               {creatingNewCollection ?
               <ListItem style={{display: 'flex', justifyContent: 'center'}}>

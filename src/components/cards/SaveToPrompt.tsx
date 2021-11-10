@@ -9,6 +9,7 @@ interface Props {
   saveRef: any;
 }
 
+
 export interface Collection {
   id: string;
   title: string;
@@ -16,7 +17,8 @@ export interface Collection {
 
 const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
 
-  const user = useUser();
+const user = useUser();
+console.log('user', user)
 
   // const handleClose = (event: React.MouseEvent<Document, MouseEvent>): void => {
   // const handleClose = (event: MouseEventHandler<HTMLLIElement>) => {
@@ -39,12 +41,12 @@ const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, s
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={saveToPromptOpen} id="menu-list-grow" > {/* onKeyDown={handleListKeyDown}> */}
-                  {user.collections.map((collection: Collection) => (
+                  {/* {user.collections.map((collection: Collection) => (
                     <MenuItem key={collection.id} onClick={handleClose}>
                       <BiEditAlt style={{ marginRight: '0.7rem' }} />
                         {collection.title}
                     </MenuItem>
-                  ))}
+                  ))} */}
                 </MenuList>
 
 
