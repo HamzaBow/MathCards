@@ -9,6 +9,12 @@ export const fetchAllCards = async () => {
   });
 };
 
+export const fetchCardsFromCardsIds = async (cardsIds: string[]) => {
+  return await fetchGetData({
+    url: `${baseUrl}?cardsids=${cardsIds.join(',')}`,
+  });
+};
+
 export const fetchCard = async (cardId: string) => {
   return await fetchGetData({
     url: `${baseUrl}/${cardId}`,
