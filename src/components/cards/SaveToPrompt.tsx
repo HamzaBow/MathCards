@@ -3,6 +3,33 @@ import React from 'react'
 import { BiEditAlt } from 'react-icons/bi'
 import { useUser } from '../../contexts/UserContext';
 import { Collection } from 'contexts/UserContext'
+import { fetchAddCardToCollection } from 'api/collectionAPI';
+
+// ***********************************************************************************************************************
+// ***********************************************************************************************************************
+
+interface CollectionItemProps {
+  collectionId: string;
+  cardId: string;
+  title: string;
+  setSaveToPromptOpen: Function;
+}
+
+const CollectionItem: React.FC<CollectionItemProps> = ({ collectionId, cardId, title, setSaveToPromptOpen }) => {
+  const handleSaveCardToCollection = (event: any) => {
+    fetchAddCardToCollection(collectionId, cardId )
+    setSaveToPromptOpen(false)
+  }
+  return (
+  <MenuItem onClick={handleSaveCardToCollection}>
+    <BiEditAlt style={{ marginRight: '0.7rem' }} />
+      {title}
+  </MenuItem>
+  )
+}
+
+// ***********************************************************************************************************************
+// ***********************************************************************************************************************
 
 interface Props {
   cardId: string;
@@ -13,7 +40,7 @@ interface Props {
 
 const SaveToPrompt: React.FC<Props> = ({cardId, saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
 
-const user = useUser();
+  const user = useUser();
 
   // const handleClose = (event: React.MouseEvent<Document, MouseEvent>): void => {
   // const handleClose = (event: MouseEventHandler<HTMLLIElement>) => {
@@ -22,7 +49,6 @@ const user = useUser();
     if (saveRef && saveRef.contains(event.target)) {
       return;
     }
-
     setSaveToPromptOpen(false);
   }
 
@@ -38,10 +64,7 @@ const user = useUser();
                 <MenuList autoFocusItem={saveToPromptOpen} id="menu-list-grow" > {/* onKeyDown={handleListKeyDown}> */}
                   {/* @ts-ignore  */}
                   {user.collections.map((collection: Collection) => (
-                    <MenuItem key={collection._id} onClick={handleClose}>
-                      <BiEditAlt style={{ marginRight: '0.7rem' }} />
-                        {collection.title}
-                    </MenuItem>
+                    <CollectionItem key={collection._id} collectionId={collection._id} cardId={cardId} title={collection.title} setSaveToPromptOpen={setSaveToPromptOpen}  />
                   ))}
                 </MenuList>
 
