@@ -27,10 +27,12 @@ export interface User {
   collections: string[];
 }
 
-enum UserActions {
+export enum UserActions {
   FetchUser,
   FetchUserCards,
   FetchUserCollections,
+  AddCollection,
+  ResetUser,
 }
 
 interface UserReducerAction {
@@ -51,6 +53,11 @@ const UserProvider : React.FC<Props> = ({children}) => {
       case UserActions.FetchUserCards:
         return { ...user, ...action.payload.userCardsFromServer }
       //---------------------------------
+      case UserActions.AddCollection:
+        return { ...user, collections: [...user.collections, action.payload.newCollection]}
+      //---------------------------------
+      case UserActions.ResetUser:
+        return { _id: "",  authId: "", following: [], ownedCards: [], collections: [] }
       default:
         return user; 
     }
