@@ -23,7 +23,6 @@ import { useUser, useUserUpdate, UserActions } from '../../contexts/UserContext'
 
 import { TextField, Button } from '@material-ui/core';
 
-import { USER_ACTIONS } from '../../Constants';
 import { fetchCreateCollection } from 'api/collectionAPI';
 
 const useStyles = makeStyles((theme) => ({
