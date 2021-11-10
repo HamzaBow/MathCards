@@ -37,7 +37,7 @@ const user = useUser();
                 <MenuList autoFocusItem={saveToPromptOpen} id="menu-list-grow" > {/* onKeyDown={handleListKeyDown}> */}
                   {/* @ts-ignore  */}
                   {user.collections.map((collection: Collection) => (
-                    <MenuItem key={collection.id} onClick={handleClose}>
+                    <MenuItem key={collection._id} onClick={handleClose}>
                       <BiEditAlt style={{ marginRight: '0.7rem' }} />
                         {collection.title}
                     </MenuItem>
