@@ -21,8 +21,8 @@ export interface CardPatchData {
 export interface CollectionData {
   title: string;
   ownerId: string;
-  cardsIds: string[];
-  tags: string[];
+  cardsIds?: string[];
+  tags?: string[];
 }
 
 export interface CollectionPatchData {
