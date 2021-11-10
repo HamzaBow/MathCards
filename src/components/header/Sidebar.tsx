@@ -19,11 +19,12 @@ import { Collection } from '../cards/SaveToPrompt'
 
 import Logo from "../Logo";
 
-import { useUser, useUserUpdate } from '../../contexts/UserContext';
+import { useUser, useUserUpdate, UserActions } from '../../contexts/UserContext';
 
 import { TextField, Button } from '@material-ui/core';
 
 import { USER_ACTIONS } from '../../Constants';
+import { fetchCreateCollection } from 'api/collectionAPI';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,21 +55,14 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
   const [newCollectionTitle, setNewCollectionTitle] = useState('')
   const saveNewCollection = async () => {
     //saving the new collection to the server
-    const res1 = await fetch(`${process.env.REACT_APP_API_URL}/collections`, {
-      method: 'POST',
-      headers: {
-          'Content-type': 'application/json',
-      },
-      body: JSON.stringify({title: newCollectionTitle})
-    });
-    const data1 = await res1.json()
 
-    //saving the new collection id to the user
-    //TODO
 
-    // userDispatch({type: USER_ACTIONS.NEW_COLLECTION, payload: { newCollection: data1 }})
-    // setNewCollectionTitle('')
-    // setCreatingNewCollection(false);
+    // @ts-ignore: _id should exist inside user, ????
+    const collection = await fetchCreateCollection({ ownerId: user._id, title: newCollectionTitle })
+    // @ts-ignore: expression should be callable, ??? 
+    userDispatch({type: UserActions.AddCollection , payload: { newCollection: collection }})
+    setNewCollectionTitle('')
+    setCreatingNewCollection(false);
   }
 
   return (
@@ -95,14 +89,15 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {/* {user.collections.map((collection: Collection, key: number) => (
+              {/* @ts-ignore: _id should exist inside user, ???? */} 
+              {user.collections.map((collection: Collection, key: number) => (
                 <ListItem key={key} button className={classes.nested}>
                   <ListItemIcon>
                     <ImSigma />
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
                 </ListItem>
-              ))} */}
+              ))}
 
               {creatingNewCollection ?
               <ListItem style={{display: 'flex', justifyContent: 'center'}}>
