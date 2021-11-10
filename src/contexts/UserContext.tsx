@@ -1,9 +1,7 @@
 import { fetchCollectionsForUser } from 'api/collectionAPI'
 import { fetchUserFromAuthId } from 'api/userAPI'
 import { CardInterface } from 'components/cardform/CardForm'
-import Card from 'components/cards/Card'
 import React, { useContext, useEffect, useReducer } from 'react'
-import { USER_ACTIONS } from './../Constants'
 import { useAuth } from './AuthContext'
 const UserContext = React.createContext({})
 const UserUpdateContext = React.createContext({})
