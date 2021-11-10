@@ -22,6 +22,7 @@ import Logo from  "components/Logo";
 import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
 import { ThemeString } from "contexts/ThemeContext"
 import { useThemeUpdate } from "contexts/ThemeContext"
+import { UserActions, useUserUpdate } from "contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -149,9 +150,13 @@ const Header: React.FC = () => {
     setThemeString(selectedTheme);
   } 
 
+  const userDispatch = useUserUpdate()
   const handleSignOut = () => {
     handleMenuClose();
+    // @ts-ignore
+    userDispatch({ type: UserActions.ResetUser })
     logout();
+    // TODO: the two expressions above have to happen together or not happen at all
   };
 
   const menuId = "primary-search-account-menu";
