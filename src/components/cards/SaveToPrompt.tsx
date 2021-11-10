@@ -2,17 +2,12 @@ import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from '@mat
 import React from 'react'
 import { BiEditAlt } from 'react-icons/bi'
 import { useUser } from '../../contexts/UserContext';
+import { Collection } from 'contexts/UserContext'
 
 interface Props {
   saveToPromptOpen: boolean;
   setSaveToPromptOpen: Function;
   saveRef: any;
-}
-
-
-export interface Collection {
-  id: string;
-  title: string;
 }
 
 const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
