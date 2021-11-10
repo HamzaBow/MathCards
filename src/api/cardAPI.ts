@@ -9,9 +9,9 @@ export const fetchAllCards = async () => {
   });
 };
 
-export const fetchCard = async (_id: string) => {
+export const fetchCard = async (cardId: string) => {
   return await fetchGetData({
-    url: `${baseUrl}/${_id}`,
+    url: `${baseUrl}/${cardId}`,
   });
 };
 
@@ -22,26 +22,26 @@ export const fetchCreateCard = async (cardData: CardData) => {
   });
 };
 
-export const fetchUpdateCardPUT = async (_id: string, cardData: CardData) => {
+export const fetchUpdateCardPUT = async (cardId: string, cardData: CardData) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}`,
+    url         : `${baseUrl}/${cardId}`,
     initParams  : init("PUT", cardData),
   });
 };
 
 export const fetchUpdateCardPATCH = async (
-  _id: string,
+  cardId: string,
   cardPatchData: CardPatchData
 ) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}`,
+    url         : `${baseUrl}/${cardId}`,
     initParams  : init("PUT", cardPatchData),
   });
 };
 
-export const fetchDeleteCard = async (_id: string) => {
+export const fetchDeleteCard = async (cardId: string) => {
   return await fetchGetData({
-    url         : `${baseUrl}/${_id}`,
+    url         : `${baseUrl}/${cardId}`,
     initParams  : init("DELETE"),
   });
 };
