@@ -77,8 +77,8 @@ const UserProvider : React.FC<Props> = ({children}) => {
       const userFromServer = await fetchUserFromAuthId(currentUser?.uid)
       userDispatch({type: UserActions.FetchUser, payload: { userFromServer }})
     }
-    fetchUser()
-  }, [])
+  }, [currentUser])
+
 
   return (
     <UserContext.Provider value={user}>
