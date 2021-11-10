@@ -18,7 +18,6 @@ export interface Collection {
 const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
 
 const user = useUser();
-console.log('user', user)
 
   // const handleClose = (event: React.MouseEvent<Document, MouseEvent>): void => {
   // const handleClose = (event: MouseEventHandler<HTMLLIElement>) => {
