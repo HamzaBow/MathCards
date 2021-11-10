@@ -15,6 +15,7 @@ import { AiOutlineDelete } from 'react-icons/ai'
 import { CgPlayListAdd } from 'react-icons/cg'
 import SaveToPrompt from './SaveToPrompt';
 import { CardInterface } from '../cardform/CardForm'
+import { fetchDeleteCard } from 'api/cardAPI';
 interface Props {
   card: CardInterface;
   cardsDispatch: Function;
@@ -106,12 +107,8 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
       return;
     }
     setOpen(false);
-    fetch(`${process.env.REACT_APP_API_URL}/cards/${card._id}`, {
-      method: 'DELETE'
-    })
-
+    fetchDeleteCard(card._id)
     cardsDispatch({ type: CARDS_ACTIONS.REMOVE_CARD, payload: { id: card._id } })
-
   }
 
   function handleListKeyDown(event: any) {
