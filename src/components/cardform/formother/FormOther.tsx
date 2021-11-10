@@ -9,10 +9,11 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TopicTags from "./TopicTags";
 import { OperationType, DifficultyLevelsInterface, FrontNBackFields } from '../CardForm'
 import { TagOption } from './TopicTags'
-import { fetchCreateCard } from "api/cardAPI"
+import { fetchCreateCard, fetchUpdateCardPUT } from "api/cardAPI"
 import { Action } from "App";
 import { CARDS_ACTIONS } from "Constants";
 import { useUser } from "contexts/UserContext";
+import { useParams } from 'react-router-dom'
 
 interface OtherProps {
   operationType: OperationType;
@@ -51,6 +52,11 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   const [tagOptions, setTagOptions] = useState<TagOption[]>([]);
 
   const user = useUser()
+
+  interface RouteParams {
+    id: string;
+  }
+  const params = useParams<RouteParams>();
 
   useEffect(() => {
     const getTagOptions = async () => {
@@ -104,7 +110,9 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         const card = await fetchCreateCard(cardData)
         cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card }})
       } else {
-        updateCard();
+        // updateCard();
+        const data = await fetchUpdateCardPUT(params.id, cardData)
+        cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { data }})
       }
 
       return;
