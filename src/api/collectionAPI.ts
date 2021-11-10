@@ -23,7 +23,7 @@ export const fetchCollection = async (collectionId: string) => {
 
 export const fetchCreateCollection = async (collectionData: CollectionData) => {
   return await fetchGetData({
-    url         : 'baseUrl',
+    url         : baseUrl,
     initParams  : init("POST", collectionData),
   });
 };
