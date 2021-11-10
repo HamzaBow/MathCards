@@ -3,6 +3,7 @@ import { fetchUserFromAuthId } from 'api/userAPI'
 import { CardInterface } from 'components/cardform/CardForm'
 import React, { useContext, useEffect, useReducer } from 'react'
 import { useAuth } from './AuthContext'
+
 const UserContext = React.createContext({})
 const UserUpdateContext = React.createContext({})
 
