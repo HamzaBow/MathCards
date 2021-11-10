@@ -5,12 +5,13 @@ import { useUser } from '../../contexts/UserContext';
 import { Collection } from 'contexts/UserContext'
 
 interface Props {
+  cardId: string;
   saveToPromptOpen: boolean;
   setSaveToPromptOpen: Function;
   saveRef: any;
 }
 
-const SaveToPrompt: React.FC<Props> = ({saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
+const SaveToPrompt: React.FC<Props> = ({cardId, saveToPromptOpen, setSaveToPromptOpen, saveRef}) => {
 
 const user = useUser();
 

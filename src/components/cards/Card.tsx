@@ -187,7 +187,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
             )}
           </Popper>
 
-          <SaveToPrompt saveToPromptOpen={saveToPromptOpen} setSaveToPromptOpen={setSaveToPromptOpen} saveRef={saveRef.current} />
+          <SaveToPrompt cardId={card._id} saveToPromptOpen={saveToPromptOpen} setSaveToPromptOpen={setSaveToPromptOpen} saveRef={saveRef.current} />
         </div>
         <div className="front" onClick={() => displayMainCard(card._id)} >
           {card.front.map((field, key) => {
