@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useMemo, useReducer } from "react";
 
 import Header from "components/header/Header";
 import Main from "components/main/Main";
@@ -61,9 +61,11 @@ function App() {
   // --------------------------- END CARDS ---------------------------
 
   const { currentUser } = useAuth() || { currentUser: undefined };
+
   const user = useUser()
   // *********************************************************************
-
+  // @ts-ignore
+  const userId = useMemo(() => user._id, [ user._id ])
   useEffect(() => {
     // @ts-ignore
     if(user._id !== "") {
@@ -77,7 +79,7 @@ function App() {
       };
       getCards();
     }
-  }, [ user ]);
+  }, [ userId ]);
 
   // *********************************************************************
   return (
