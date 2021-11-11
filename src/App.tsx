@@ -48,6 +48,8 @@ function App() {
           return card;
         });
       //---------------------------------
+      case CARDS_ACTIONS.RESET_CARDS:
+        return []
       default:
         return cards;
     }
@@ -77,7 +79,7 @@ function App() {
         <Route exact path="/">
           {currentUser ? (
             <>
-              <Header />
+              <Header cardsDispatch={cardsDispatch} />
               <Main cards={cards} cardsDispatch={cardsDispatch} />
             </>
           ) : (

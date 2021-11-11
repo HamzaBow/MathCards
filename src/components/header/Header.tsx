@@ -23,6 +23,8 @@ import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
 import { ThemeString } from "contexts/ThemeContext"
 import { useThemeUpdate } from "contexts/ThemeContext"
 import { UserActions, useUserUpdate } from "contexts/UserContext";
+import { CARDS_ACTIONS } from "Constants";
+import { Action } from "App";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -105,8 +107,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+interface Props {
+  cardsDispatch: React.Dispatch<Action>
+}
 
-const Header: React.FC = () => {
+const Header: React.FC<Props> = ({ cardsDispatch }) => {
 
   const logoRef = useRef<HTMLDivElement>(null);
   const setThemeString = useThemeUpdate() as Function;
@@ -151,10 +156,12 @@ const Header: React.FC = () => {
   } 
 
   const userDispatch = useUserUpdate()
+
   const handleSignOut = () => {
     handleMenuClose();
     // @ts-ignore
     userDispatch({ type: UserActions.ResetUser })
+    cardsDispatch({type: CARDS_ACTIONS.RESET_CARDS})
     logout();
     // TODO: the two expressions above have to happen together or not happen at all
   };
