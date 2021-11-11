@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -67,6 +67,12 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     setCreatingNewCollection(false);
   }
 
+  function handleCollectionClick(collecId: string): MouseEventHandler<HTMLDivElement>{
+    return () => {
+      setDisplaySidebar(false)
+      history.push(`/collection/${collecId}`)
+    }
+  }
   return (
     <div>
       <Drawer anchor="left" open={displaySidebar} onClose={() => setDisplaySidebar(prev => !prev)} >
@@ -93,7 +99,7 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             <List component="div" disablePadding>
               {/* @ts-ignore: _id should exist inside user, ???? */} 
               {user.collections.map((collection: Collection, key: number) => (
-                <ListItem key={key} button className={classes.nested}  onClick={() => history.push(`/collection/${collection._id}`)} >
+                <ListItem key={key} button className={classes.nested}  onClick={handleCollectionClick(collection._id)} >
                   <ListItemIcon>
                     <ImSigma />
                   </ListItemIcon>
