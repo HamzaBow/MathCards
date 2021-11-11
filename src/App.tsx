@@ -24,7 +24,7 @@ export type Theme = "device-theme" | "light" | "dark" | "charcoal";
 
 export interface Action {
   type: string;
-  payload: any;
+  payload?: any;
 }
 function App() {
   // ----------------------------- CARDS -----------------------------
