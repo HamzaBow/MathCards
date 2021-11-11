@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useReducer } from "react";
+import React, { useEffect, useMemo, useReducer, useState } from "react";
 
 import Header from "components/header/Header";
 import Main from "components/main/Main";
@@ -18,10 +18,15 @@ import { Redirect } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
-import { fetchCardsForUser } from "api/cardAPI";
+import { fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";
 import { useUser } from "contexts/UserContext";
 
 export type Theme = "device-theme" | "light" | "dark" | "charcoal";
+
+export enum CardsType {
+  UserCards,
+  CollectionCards,
+}
 
 export interface Action {
   type: string;
@@ -66,12 +71,37 @@ function App() {
   // *********************************************************************
   // @ts-ignore
   const userId = useMemo(() => user._id, [ user._id ])
+  const [cardsType, setCardsType] = useState(CardsType.UserCards)
+  const [collectionId, setCollectionId] = useState("")
+
   useEffect(() => {
-    // @ts-ignore
     if(userId !== "") {
       const getCards = async () => {
         // @ts-ignore
-        const cardsFromServer = await fetchCardsForUser(userId);
+        let cardsFromServer
+        
+        if (cardsType === CardsType.UserCards) {
+          cardsFromServer = await fetchCardsForUser(userId);
+        } 
+
+        if (cardsType === CardsType.CollectionCards){
+          // @ts-ignore
+          if(user.collections.toString() === "") {
+            return
+          }
+          if ( collectionId === ""){
+            throw new Error("collection id must be specified")
+          }
+          // @ts-ignore
+          const cardsIds = user?.collections?.filter((col) => col._id === collectionId)?.[0]?.cardsIds
+
+          if (cardsIds === undefined){
+            throw new Error("collection doesn't exist")
+          } else {
+            cardsFromServer = await fetchCardsFromCardsIds(cardsIds)
+          }
+        }
+        
         cardsDispatch({
           type: CARDS_ACTIONS.FETCH_CARDS,
           payload: { cards: cardsFromServer },
@@ -79,18 +109,31 @@ function App() {
       };
       getCards();
     }
-  }, [ userId ]);
+  }, [ userId, cardsType, collectionId, user ]);
 
   // *********************************************************************
   return (
     <Router>
       <div className="App">
         <CssBaseline />
+
         <Route exact path="/">
           {currentUser ? (
             <>
               <Header cardsDispatch={cardsDispatch} />
-              <Main cards={cards} cardsDispatch={cardsDispatch} />
+              <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} />
+            </>
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Route>
+
+        <Route exact path="/collection/:id">
+          {/* { setCardsType(CardsType.CollectionCards)} */}
+          {currentUser ? (
+            <>
+              <Header cardsDispatch={cardsDispatch} />
+              <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} setCollectionId={setCollectionId} />
             </>
           ) : (
             <Redirect to="/login" />
@@ -98,18 +141,18 @@ function App() {
         </Route>
 
         <Route path="/maincard/:id">
-          <Main cards={cards} cardsDispatch={cardsDispatch} />
+          <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType}/>
           <Maincard cards={cards} />{" "}
           {/* --------------------------------------------  Maincard */}
         </Route>
 
         <Route path="/cardform/new">
-          <Main cards={cards} cardsDispatch={cardsDispatch} />
+          <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType}/>
           <CardForm operationType="create" cardsDispatch={cardsDispatch} />
         </Route>
 
         <Route path="/cardform/edit/:id">
-          <Main cards={cards} cardsDispatch={cardsDispatch} />
+          <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType}/>
           <CardForm
             operationType="edit"
             cards={cards}
