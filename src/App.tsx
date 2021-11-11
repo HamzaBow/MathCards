@@ -68,10 +68,10 @@ function App() {
   const userId = useMemo(() => user._id, [ user._id ])
   useEffect(() => {
     // @ts-ignore
-    if(user._id !== "") {
+    if(userId !== "") {
       const getCards = async () => {
         // @ts-ignore
-        const cardsFromServer = await fetchCardsForUser(user._id);
+        const cardsFromServer = await fetchCardsForUser(userId);
         cardsDispatch({
           type: CARDS_ACTIONS.FETCH_CARDS,
           payload: { cards: cardsFromServer },
