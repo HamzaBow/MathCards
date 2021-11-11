@@ -18,7 +18,8 @@ import { Redirect } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
-import { fetchAllCards } from "api/cardAPI";
+import { fetchCardsForUser } from "api/cardAPI";
+import { useUser } from "contexts/UserContext";
 
 export type Theme = "device-theme" | "light" | "dark" | "charcoal";
 
@@ -27,6 +28,7 @@ export interface Action {
   payload?: any;
 }
 function App() {
+
   // ----------------------------- CARDS -----------------------------
 
   function cardsReducer(cards: CardInterface[], action: Action) {
@@ -59,17 +61,23 @@ function App() {
   // --------------------------- END CARDS ---------------------------
 
   const { currentUser } = useAuth() || { currentUser: undefined };
+  const user = useUser()
   // *********************************************************************
+
   useEffect(() => {
-    const getCards = async () => {
-      const cardsFromServer = await fetchAllCards();
-      cardsDispatch({
-        type: CARDS_ACTIONS.FETCH_CARDS,
-        payload: { cards: cardsFromServer },
-      });
-    };
-    getCards();
-  }, []);
+    // @ts-ignore
+    if(user._id !== "") {
+      const getCards = async () => {
+        // @ts-ignore
+        const cardsFromServer = await fetchCardsForUser(user._id);
+        cardsDispatch({
+          type: CARDS_ACTIONS.FETCH_CARDS,
+          payload: { cards: cardsFromServer },
+        });
+      };
+      getCards();
+    }
+  }, [ user ]);
 
   // *********************************************************************
   return (
