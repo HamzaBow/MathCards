@@ -24,6 +24,7 @@ import { useUser, useUserUpdate, UserActions } from '../../contexts/UserContext'
 import { TextField, Button } from '@material-ui/core';
 
 import { fetchCreateCollection } from 'api/collectionAPI';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,8 @@ interface Props {
 const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
   const classes = useStyles();
+
+  const history = useHistory();
 
   const user = useUser();
   const userDispatch = useUserUpdate();
@@ -90,7 +93,7 @@ const Sidebar : React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             <List component="div" disablePadding>
               {/* @ts-ignore: _id should exist inside user, ???? */} 
               {user.collections.map((collection: Collection, key: number) => (
-                <ListItem key={key} button className={classes.nested}>
+                <ListItem key={key} button className={classes.nested}  onClick={() => history.push(`/collection/${collection._id}`)} >
                   <ListItemIcon>
                     <ImSigma />
                   </ListItemIcon>
