@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import Header from "components/header/Header";
 import Main from "components/main/Main";
@@ -70,17 +70,18 @@ function App() {
   const user = useUser()
   // *********************************************************************
   // @ts-ignore
-  const userId = useMemo(() => user._id, [ user._id ])
   const [cardsType, setCardsType] = useState(CardsType.UserCards)
   const [collectionId, setCollectionId] = useState("")
 
   useEffect(() => {
-    if(userId === "") return
+    // @ts-ignore
+    if(user._id === "") return
     const getCards = async () => {
       // @ts-ignore
       let cardsFromServer
       if (cardsType === CardsType.UserCards) {
-        cardsFromServer = await fetchCardsForUser(userId);
+      // @ts-ignore
+        cardsFromServer = await fetchCardsForUser(user._id);
       }
       if (cardsType !== CardsType.CollectionCards) return
       // @ts-ignore
@@ -100,7 +101,8 @@ function App() {
       });
     };
     getCards();
-  }, [ userId, cardsType, collectionId, user ]);
+    // @ts-ignore
+  }, [ user._id, cardsType, collectionId, user ]);
 
   // *********************************************************************
   return (
