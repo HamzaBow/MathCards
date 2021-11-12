@@ -75,40 +75,31 @@ function App() {
   const [collectionId, setCollectionId] = useState("")
 
   useEffect(() => {
-    if(userId !== "") {
-      const getCards = async () => {
-        // @ts-ignore
-        let cardsFromServer
-        
-        if (cardsType === CardsType.UserCards) {
-          cardsFromServer = await fetchCardsForUser(userId);
-        } 
-
-        if (cardsType === CardsType.CollectionCards){
-          // @ts-ignore
-          if(user.collections.toString() === "") {
-            return
-          }
-          if ( collectionId === ""){
-            throw new Error("collection id must be specified")
-          }
-          // @ts-ignore
-          const cardsIds = user?.collections?.filter((col) => col._id === collectionId)?.[0]?.cardsIds
-
-          if (cardsIds === undefined){
-            throw new Error("collection doesn't exist")
-          } else {
-            cardsFromServer = await fetchCardsFromCardsIds(cardsIds)
-          }
-        }
-        
-        cardsDispatch({
-          type: CARDS_ACTIONS.FETCH_CARDS,
-          payload: { cards: cardsFromServer },
-        });
-      };
-      getCards();
-    }
+    if(userId === "") return
+    const getCards = async () => {
+      // @ts-ignore
+      let cardsFromServer
+      if (cardsType === CardsType.UserCards) {
+        cardsFromServer = await fetchCardsForUser(userId);
+      }
+      if (cardsType !== CardsType.CollectionCards) return
+      // @ts-ignore
+      if (user.collections.length === 0) return;
+      if ( collectionId === ""){
+        throw new Error("collection id must be specified")
+      }
+      // @ts-ignore
+      const cardsIds = user?.collections?.filter((col) => col._id === collectionId)?.[0]?.cardsIds
+      if (cardsIds === undefined){
+        throw new Error("collection doesn't exist")
+      }
+      cardsFromServer = await fetchCardsFromCardsIds(cardsIds)
+      cardsDispatch({
+        type: CARDS_ACTIONS.FETCH_CARDS,
+        payload: { cards: cardsFromServer },
+      });
+    };
+    getCards();
   }, [ userId, cardsType, collectionId, user ]);
 
   // *********************************************************************
