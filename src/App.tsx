@@ -83,18 +83,22 @@ function App() {
       // @ts-ignore
         cardsFromServer = await fetchCardsForUser(user._id);
       }
-      if (cardsType !== CardsType.CollectionCards) return
-      // @ts-ignore
-      if (user.collections.length === 0) return;
-      if ( collectionId === ""){
-        throw new Error("collection id must be specified")
+      if (cardsType === CardsType.CollectionCards) {
+        // @ts-ignore
+        if (user.collections.length !== 0) {
+          if ( collectionId === ""){
+            throw new Error("collection id must be specified")
+          }
+          // @ts-ignore
+          const cardsIds = user?.collections?.filter((col) => col._id === collectionId)?.[0]?.cardsIds
+          if (cardsIds === undefined){
+            throw new Error("collection doesn't exist")
+          }
+          cardsFromServer = await fetchCardsFromCardsIds(cardsIds)
+        } else {
+          cardsFromServer = []
+        }
       }
-      // @ts-ignore
-      const cardsIds = user?.collections?.filter((col) => col._id === collectionId)?.[0]?.cardsIds
-      if (cardsIds === undefined){
-        throw new Error("collection doesn't exist")
-      }
-      cardsFromServer = await fetchCardsFromCardsIds(cardsIds)
       cardsDispatch({
         type: CARDS_ACTIONS.FETCH_CARDS,
         payload: { cards: cardsFromServer },
