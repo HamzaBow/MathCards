@@ -1,4 +1,4 @@
-import { fetchGetData, init } from "api/utils";
+import { fetchGetData, init, validateArray, validateString } from "api/utils";
 import { CardData, CardPatchData } from "api/types"
 
 const baseUrl = `${process.env.REACT_APP_API_URL}/cards`;
@@ -10,18 +10,21 @@ export const fetchAllCards = async () => {
 };
 
 export const fetchCardsForUser = async (userId: string) => {
+  validateString(userId)
   return await fetchGetData({
     url: `${baseUrl}?userid=${userId}`,
   });
 };
 
 export const fetchCardsFromCardsIds = async (cardsIds: string[]) => {
+  validateArray(cardsIds)
   return await fetchGetData({
     url: `${baseUrl}?cardsids=${cardsIds.join(',')}`,
   });
 };
 
 export const fetchCard = async (cardId: string) => {
+  validateString(cardId)
   return await fetchGetData({
     url: `${baseUrl}/${cardId}`,
   });
@@ -35,6 +38,7 @@ export const fetchCreateCard = async (cardData: CardData) => {
 };
 
 export const fetchUpdateCardPUT = async (cardId: string, cardData: CardData) => {
+  validateString(cardId)
   return await fetchGetData({
     url         : `${baseUrl}/${cardId}`,
     initParams  : init("PUT", cardData),
@@ -45,6 +49,7 @@ export const fetchUpdateCardPATCH = async (
   cardId: string,
   cardPatchData: CardPatchData
 ) => {
+  validateString(cardId)
   return await fetchGetData({
     url         : `${baseUrl}/${cardId}`,
     initParams  : init("PUT", cardPatchData),
@@ -52,6 +57,7 @@ export const fetchUpdateCardPATCH = async (
 };
 
 export const fetchDeleteCard = async (cardId: string) => {
+  validateString(cardId)
   return await fetchGetData({
     url         : `${baseUrl}/${cardId}`,
     initParams  : init("DELETE"),

@@ -29,3 +29,28 @@ export const fetchGetData = async (fetchParams: FetchParams) => {
   const data = await res.json();
   return data;
 }
+
+export function validateString(str: string): void {
+  if (str === null) {
+    throw new Error(`${Object.keys({ str })} cannot be null`)
+  }
+  if (str === undefined) {
+    throw new Error(`${Object.keys({ str })} cannot be undefined`)
+  }
+  if (str === "") {
+    throw new Error(`${Object.keys({ str })} cannot be an empty string`)
+  }
+}
+
+export function validateArray(arr: string[]): void {
+  if (arr === null) {
+    throw new Error(`${Object.keys({ arr })} cannot be null`)
+  }
+  if (arr === undefined) {
+    throw new Error(`${Object.keys({ arr })} cannot be undefined`)
+  }
+  if (arr.length === 0) {
+    throw new Error(`${Object.keys({ arr })} cannot be an empty array`)
+  }
+  arr.forEach((str) => {validateString(str)})
+}
