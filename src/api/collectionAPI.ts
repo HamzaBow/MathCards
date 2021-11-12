@@ -10,14 +10,14 @@ export const fetchAllCollections = async () => {
 };
 
 export const fetchCollectionsForUser = async (userId: string) => {
-  validateString(userId)
+  validateString(userId, 'userId')
   return await fetchGetData({
     url: `${baseUrl}?userid=${userId}`,
   });
 };
 
 export const fetchCollection = async (collectionId: string) => {
-  validateString(collectionId)
+  validateString(collectionId, 'collectionId')
   return await fetchGetData({
     url: `${baseUrl}/${collectionId}`,
   });
@@ -31,7 +31,7 @@ export const fetchCreateCollection = async (collectionData: CollectionData) => {
 };
 
 export const fetchUpdateCollectionPUT = async (collectionId: string, collectionData: CollectionData) => {
-  validateString(collectionId)
+  validateString(collectionId, 'collectionId')
   return await fetchGetData({
     url         : `${baseUrl}/${collectionId}`,
     initParams  : init("PUT", collectionData),
@@ -39,7 +39,7 @@ export const fetchUpdateCollectionPUT = async (collectionId: string, collectionD
 };
 
 export const fetchUpdateCollectionPATCH = async (collectionId: string, collectionPatchData: CollectionPatchData) => {
-  validateString(collectionId)
+  validateString(collectionId, 'collectionId')
   return await fetchGetData({
     url         : `${baseUrl}/${collectionId}`,
     initParams  : init("PATCH", collectionPatchData),
@@ -47,7 +47,7 @@ export const fetchUpdateCollectionPATCH = async (collectionId: string, collectio
 };
 
 export const fetchDeleteCollection = async (collectionId: string) => {
-  validateString(collectionId)
+  validateString(collectionId, 'collectionId')
   return await fetchGetData({
     url         : `${baseUrl}/${collectionId}`,
     initParams  : init("DELETE"),
@@ -59,8 +59,8 @@ export const fetchDeleteCollection = async (collectionId: string) => {
 //******************************************************************************
 
 export const fetchAddCardToCollection = async (collectionId: string, cardId: string) => {
-  validateString(collectionId)
-  validateString(cardId)
+  validateString(collectionId, 'collectionId')
+  validateString(cardId, 'cardId')
   return await fetchGetData({
     url         : `${baseUrl}/${collectionId}/cards`,
     initParams  : init("POST", { cardId }),
@@ -68,8 +68,8 @@ export const fetchAddCardToCollection = async (collectionId: string, cardId: str
 }
 
 export const fetchDeleteCardFromCollection = async (collectionId: string, cardId: string) => {
-  validateString(collectionId)
-  validateString(cardId)
+  validateString(collectionId, 'collectionId')
+  validateString(cardId, 'cardId')
   return await fetchGetData({
     url         : `${baseUrl}/${collectionId}/cards`,
     initParams  : init("DELETE", { cardId }),
