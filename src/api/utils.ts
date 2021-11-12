@@ -1,4 +1,4 @@
-type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 interface FetchParams {
   url: string;
@@ -8,7 +8,7 @@ interface FetchParams {
 export function init(method: Method, data?: any): RequestInit {
   interface InitParams {
     method: Method;
-    headers: { "Content-type": "application/json"};
+    headers: { "Content-type": "application/json" };
     body?: string;
   }
   const initParams: InitParams = {
@@ -20,7 +20,7 @@ export function init(method: Method, data?: any): RequestInit {
   if (data !== undefined) {
     initParams.body = JSON.stringify(data);
   }
-  return initParams
+  return initParams;
 }
 
 export const fetchGetData = async (fetchParams: FetchParams) => {
@@ -28,29 +28,79 @@ export const fetchGetData = async (fetchParams: FetchParams) => {
   const res = await fetch(url, initParams);
   const data = await res.json();
   return data;
+};
+
+//-----------------------------------------------------------------------
+//----------------------------   Validation   ---------------------------
+//-----------------------------------------------------------------------
+
+class CustomError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = this.constructor.name;
+  }
 }
 
-export function validateString(str: string): void {
+//--------------------------------------------------------
+class UrlValidationError extends CustomError {}
+//--------------------------------------------------------
+class QueryStringValidationError extends UrlValidationError {}
+class QueryArrayValidationError extends UrlValidationError {}
+//--------------------------------------------------------
+class NullStringError extends QueryStringValidationError {}
+class UndefinedStringError extends QueryStringValidationError {}
+class EmptyStringError extends QueryStringValidationError {}
+//--------------------------------------------------------
+
+export function validateString(str: string, varName?: string): void {
+  if (varName === undefined) {
+    varName = "string";
+  }
   if (str === null) {
-    throw new Error(`${Object.keys({ str })} cannot be null`)
+    throw new NullStringError(`${varName} cannot be null`);
   }
   if (str === undefined) {
-    throw new Error(`${Object.keys({ str })} cannot be undefined`)
+    throw new UndefinedStringError(`${varName} cannot be undefined`);
   }
   if (str === "") {
-    throw new Error(`${Object.keys({ str })} cannot be an empty string`)
+    throw new EmptyStringError(`${varName} cannot be an empty string`);
   }
 }
 
-export function validateArray(arr: string[]): void {
+export function validateArray(arr: string[], varName?: string): void {
+  if (varName === undefined) {
+    varName = "array";
+  }
   if (arr === null) {
-    throw new Error(`${Object.keys({ arr })} cannot be null`)
+    throw new QueryArrayValidationError(`${varName} array cannot be null`);
   }
   if (arr === undefined) {
-    throw new Error(`${Object.keys({ arr })} cannot be undefined`)
+    throw new QueryArrayValidationError(`${varName} array cannot be undefined`);
   }
   if (arr.length === 0) {
-    throw new Error(`${Object.keys({ arr })} cannot be an empty array`)
+    throw new QueryArrayValidationError(
+      `${varName} array cannot be an empty array`
+    );
   }
-  arr.forEach((str) => {validateString(str)})
+  try {
+    arr.forEach((str) => {
+      validateString(str);
+    });
+  } catch (error) {
+    if (error instanceof NullStringError) {
+      throw new QueryArrayValidationError(
+        `${varName} array cannot contain a null element`
+      );
+    } else if (error instanceof UndefinedStringError) {
+      throw new QueryArrayValidationError(
+        `${varName} array cannot contain an undefined element`
+      );
+    } else if (error instanceof EmptyStringError) {
+      throw new QueryArrayValidationError(
+        `${varName} array cannot contain an empty string element`
+      );
+    } else {
+      throw error;
+    }
+  }
 }
