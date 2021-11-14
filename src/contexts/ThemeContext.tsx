@@ -5,7 +5,6 @@ import {
   ThemeProvider as MuiThemeProvider,
   Theme,
   StyledEngineProvider,
-  adaptV4Theme,
 } from "@mui/material/styles";
 import useLocalStorage from "hooks/useLocalStorage";
 
@@ -38,19 +37,19 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
     const theme = React.useMemo(() => {
       switch (themeString) {
         case "light":
-          return createTheme(adaptV4Theme({
+          return createTheme({
             palette: {
               mode: "light",
             },
-          }));
+          });
         case "dark":
-          return createTheme(adaptV4Theme({
+          return createTheme({
             palette: {
               mode: "dark",
             },
-          }));
+          });
         case "charcoal":
-          return createTheme(adaptV4Theme({
+          return createTheme({
             palette: {
               mode: "dark",
               background: {
@@ -58,14 +57,14 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
                 paper: "#323638",
               },
             },
-          }));
+          });
         default:
           //devide-theme
-          return createTheme(adaptV4Theme({
+          return createTheme({
             palette: {
               mode: prefersDarkMode ? "dark" : "light",
             },
-          }));
+          });
       }
     }, [prefersDarkMode, themeString]);
 
