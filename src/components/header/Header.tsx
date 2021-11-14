@@ -354,8 +354,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               size="large">
               <AddCircleIcon />
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit" size="large">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton aria-label="show 2 new notifications" color="inherit" size="large">
+              <Badge badgeContent={2} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
