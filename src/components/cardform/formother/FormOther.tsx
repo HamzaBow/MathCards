@@ -2,10 +2,10 @@ import React, { useState, useEffect, Dispatch } from "react";
 
 import DifficultyLevels from "./DifficultyLevels";
 
-import { Button } from "@material-ui/core"
-import { ButtonGroup } from "@material-ui/core";
+import { Button } from "@mui/material"
+import { ButtonGroup } from "@mui/material";
 
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import TopicTags from "./TopicTags";
 import { OperationType, DifficultyLevelsInterface, FrontNBackFields } from '../CardForm'
 import { TagOption } from './TopicTags'

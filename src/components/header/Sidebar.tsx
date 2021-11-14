@@ -1,27 +1,27 @@
 import React, { MouseEventHandler, useState } from 'react';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ArrowBack from '@material-ui/icons/ArrowBack';
-import { List as ListIcon, Star, Feedback, Help } from '@material-ui/icons/';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import { List as ListIcon, Star, Feedback, Help } from '@mui/icons-material/';
 import { AiFillHeart } from 'react-icons/ai';
 import { ImSigma } from "react-icons/im";
-import { Collapse } from '@material-ui/core';
-import { ExpandLess, ExpandMore, Bookmark, Add } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
+import { Collapse } from '@mui/material';
+import { ExpandLess, ExpandMore, Bookmark, Add } from '@mui/icons-material';
+import makeStyles from '@mui/styles/makeStyles';
 import { FaHammer } from 'react-icons/fa';
-import VerticalSplitIcon from '@material-ui/icons/VerticalSplit';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import VerticalSplitIcon from '@mui/icons-material/VerticalSplit';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { Collection } from 'contexts/UserContext'
 
 import Logo from "../Logo";
 
 import { useUser, useUserUpdate, UserActions } from '../../contexts/UserContext';
 
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@mui/material';
 
 import { fetchCreateCollection } from 'api/collectionAPI';
 import { useHistory } from 'react-router-dom';

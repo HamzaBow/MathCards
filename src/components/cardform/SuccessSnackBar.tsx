@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import { Snackbar } from "@material-ui/core";
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import { Snackbar } from "@mui/material";
 import { useHistory } from 'react-router-dom';
 
 function Alert(props: AlertProps) {

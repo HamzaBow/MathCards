@@ -1,11 +1,11 @@
 import React from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Chip from '@material-ui/core/Chip'
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import Chip from '@mui/material/Chip'
+import makeStyles from '@mui/styles/makeStyles';
+import TextField from '@mui/material/TextField';
 
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const useStyles = makeStyles((theme) => ({
   root: {

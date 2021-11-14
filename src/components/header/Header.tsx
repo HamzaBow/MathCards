@@ -1,25 +1,26 @@
 import React, { useState, useRef } from "react";
-import { alpha, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from "@material-ui/icons/MoreVert";
+import { alpha } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import InputBase from "@mui/material/InputBase";
+import Badge from "@mui/material/Badge";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import MoreIcon from "@mui/icons-material/MoreVert";
 import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
-import Divider from "@material-ui/core/Divider";
+import Divider from "@mui/material/Divider";
 import { useAuth } from "contexts/AuthContext";
-import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@material-ui/core";
+import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@mui/material";
 import Logo from  "components/Logo";
-import { Brightness3, ExitToApp, Settings } from "@material-ui/icons";
+import { Brightness3, ExitToApp, Settings } from "@mui/icons-material";
 import { ThemeString } from "contexts/ThemeContext"
 import { useThemeUpdate } from "contexts/ThemeContext"
 import { UserActions, useUserUpdate } from "contexts/UserContext";
@@ -45,13 +46,13 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "1px",
     backgroundColor: theme.palette.background.default,
     borderColor:
-      theme.palette.type === "dark"
+      theme.palette.mode === "dark"
         ? alpha(theme.palette.common.white, 0.25)
         : alpha(theme.palette.common.black, 0.25),
     borderStyle: "solid",
     "&:hover": {
       borderColor:
-        theme.palette.type === "dark"
+        theme.palette.mode === "dark"
           ? alpha(theme.palette.common.white, 0.5)
           : alpha(theme.palette.common.black, 0.45),
     },
@@ -83,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 
 
     padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -264,13 +265,13 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
     >
     <Paper variant="outlined">
       <MenuItem onClick={() => { history.push("/cardform/new") }}>
-        <IconButton aria-label="create a new card" color="inherit">
+        <IconButton aria-label="create a new card" color="inherit" size="large">
           <AddCircleIcon />
         </IconButton>
         <p>New card</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
+        <IconButton aria-label="show 11 new notifications" color="inherit" size="large">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -283,7 +284,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
-        >
+          size="large">
           {currentUser?.photoURL ? (
             <Avatar
               alt={currentUser.displayName}
@@ -321,7 +322,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
             onClick={() => {
               setDisplaySidebar((prev) => !prev);
             }}
-          >
+            size="large">
             <MenuIcon />
           </IconButton>
           <div ref={logoRef} style={{ transition: "width 500ms" }}>
@@ -352,10 +353,10 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               onClick={() => {
                 history.push("/cardform/new");
               }}
-            >
+              size="large">
               <AddCircleIcon />
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <IconButton aria-label="show 17 new notifications" color="inherit" size="large">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -367,7 +368,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
-            >
+              size="large">
               {currentUser?.photoURL ? (
                 <Avatar
                   alt={currentUser?.displayName && currentUser?.email}
@@ -385,7 +386,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
-            >
+              size="large">
               <MoreIcon />
             </IconButton>
           </div>

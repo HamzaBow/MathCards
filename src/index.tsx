@@ -10,11 +10,13 @@ import UserProvider from "contexts/UserContext";
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <ThemeProvider>
-        <UserProvider>
-          <App />
-        </UserProvider>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider>
+          <UserProvider>
+            <App />
+          </UserProvider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -15,7 +15,7 @@ import ForgotPassword from "components/authentication/ForgotPassword";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
-import CssBaseline from "@material-ui/core/CssBaseline";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
 import { fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";

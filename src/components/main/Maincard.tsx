@@ -4,7 +4,7 @@ import { HiLightBulb } from "react-icons/hi";
 import Overlay from "../utilities/Overlay";
 import { useParams } from "react-router-dom";
 import { CardInterface } from '../cardform/CardForm'
-import { Paper } from "@material-ui/core";
+import { Paper } from "@mui/material";
 addStyles();
 
 interface Props {

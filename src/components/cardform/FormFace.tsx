@@ -5,11 +5,11 @@ import Quill from "../utilities/Quill";
 import MathField from "../utilities/MathField";
 import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
-import { Button } from "@material-ui/core"
-import { ButtonGroup } from "@material-ui/core";
+import { Button } from "@mui/material"
+import { ButtonGroup } from "@mui/material";
 
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { BiText } from 'react-icons/bi/'
 import { ImSigma } from 'react-icons/im/'

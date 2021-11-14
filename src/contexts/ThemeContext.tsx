@@ -1,7 +1,20 @@
 import React, { useContext } from 'react'
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { createTheme, ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {
+  createTheme,
+  ThemeProvider as MuiThemeProvider,
+  Theme,
+  StyledEngineProvider,
+  adaptV4Theme,
+} from "@mui/material/styles";
 import useLocalStorage from "hooks/useLocalStorage";
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 const ThemeUpdateContext = React.createContext({})
 
@@ -25,44 +38,46 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
     const theme = React.useMemo(() => {
       switch (themeString) {
         case "light":
-          return createTheme({
+          return createTheme(adaptV4Theme({
             palette: {
-              type: "light",
+              mode: "light",
             },
-          });
+          }));
         case "dark":
-          return createTheme({
+          return createTheme(adaptV4Theme({
             palette: {
-              type: "dark",
+              mode: "dark",
             },
-          });
+          }));
         case "charcoal":
-          return createTheme({
+          return createTheme(adaptV4Theme({
             palette: {
-              type: "dark",
+              mode: "dark",
               background: {
                 default: "#242729",
                 paper: "#323638",
               },
             },
-          });
+          }));
         default:
           //devide-theme
-          return createTheme({
+          return createTheme(adaptV4Theme({
             palette: {
-              type: prefersDarkMode ? "dark" : "light",
+              mode: prefersDarkMode ? "dark" : "light",
             },
-          });
+          }));
       }
     }, [prefersDarkMode, themeString]);
 
     return (
-          <MuiThemeProvider theme={theme}>
-            <ThemeUpdateContext.Provider value={setThemeString}>
-                {children}
-            </ThemeUpdateContext.Provider>
-          </MuiThemeProvider>
-    )
+      <StyledEngineProvider injectFirst>
+        <MuiThemeProvider theme={theme}>
+          <ThemeUpdateContext.Provider value={setThemeString}>
+              {children}
+          </ThemeUpdateContext.Provider>
+        </MuiThemeProvider>
+      </StyledEngineProvider>
+    );
 
 }
 
