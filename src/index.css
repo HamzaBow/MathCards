@@ -39,8 +39,8 @@ body {
 .btn-more {
   padding: 0.4rem;
   padding-bottom: 0.3rem;
-  /* border-radius: 1rem; */
   visibility: hidden;
+  color:gray;
 }
 
 .container-item:hover .btn-more {
