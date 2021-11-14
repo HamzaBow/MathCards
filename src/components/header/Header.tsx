@@ -171,7 +171,6 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const renderMenu = (
     <Menu
         anchorEl={anchorEl}
-        getContentAnchorEl={null}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         transformOrigin={{ vertical: "top", horizontal: "center" }}
         id={menuId}
@@ -232,7 +231,6 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const themeMenu = (
     <Menu
       anchorEl={themeAnchorEl}
-      getContentAnchorEl={null}
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       transformOrigin={{ vertical: "top", horizontal: "center" }}
       id={menuId}
