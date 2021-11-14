@@ -85,8 +85,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
-
-  const handleClose = (event: React.MouseEvent<Document, MouseEvent>): void => {
+  const handleClose = (event: MouseEvent | TouchEvent): void => {
     if (anchorRef?.current && anchorRef?.current?.contains?.(event.target as Node)) {
       return;
     }
