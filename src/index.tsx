@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import AuthProvider from "contexts/AuthContext";
 import ThemeProvider from "contexts/ThemeContext";
 import UserProvider from "contexts/UserContext";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 ReactDOM.render(
   <React.StrictMode>
