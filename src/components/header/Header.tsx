@@ -33,6 +33,7 @@ import { useThemeUpdate } from "contexts/ThemeContext";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { CARDS_ACTIONS } from "Constants";
 import { Action } from "App";
+import ArrowBack from '@mui/icons-material/ArrowBack';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -119,6 +120,7 @@ interface Props {
 
 const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const logoRef = useRef<HTMLDivElement>(null);
+  const accountRef = useRef<HTMLButtonElement | null>(null);
   const setThemeString = useThemeUpdate() as Function;
 
   const classes = useStyles();
@@ -232,7 +234,10 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       </Paper>
     </Menu>
   );
-
+  const handleThemeBackBtn = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(accountRef.current);
+    setThemeAnchorEl(null);
+  }
   const themeMenu = (
     <Menu
       anchorEl={themeAnchorEl}
@@ -245,6 +250,11 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       classes={{ list: classes.list }}
     >
       <Paper variant="outlined">
+        <MenuItem onClick={ handleThemeBackBtn }>
+          <ArrowBack sx={{ mr: '0.7rem' }} />
+          Back
+        </MenuItem>
+        <Divider style={{ margin: 0}} />
         <MenuItem onClick={() => handleChooseTheme("device-theme")}>
           Device theme
         </MenuItem>
@@ -390,6 +400,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               </Badge>
             </IconButton>
             <IconButton
+              ref={accountRef}
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
