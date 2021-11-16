@@ -2,7 +2,7 @@ import React, { useState, useEffect, Dispatch } from "react";
 
 import DifficultyLevels from "./DifficultyLevels";
 
-import { Button } from "@mui/material"
+import { Button, Paper } from "@mui/material"
 import { ButtonGroup } from "@mui/material";
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -137,7 +137,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   };
 
   return (
-    <div className={"card-form__step"} ref={ref}>
+    <Paper className={"card-form__step"} ref={ref}>
       <h1 style={{ margin: 0 }}>Other Info</h1>
       <hr style={hrStyle} />
       <DifficultyLevels
@@ -169,7 +169,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
           {operationType === "create" ? "save" : "save changes"}
         </Button>
       </ButtonGroup>
-    </div>
+    </Paper>
   );
 };
 
