@@ -201,7 +201,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           </Typography>
         </Box>
 
-        <Divider />
+        <Divider sx={{ mt: "8px", mb: "8px"}} />
 
         <MenuItem onClick={handleMenuClose}>
           <ListItemIcon>
