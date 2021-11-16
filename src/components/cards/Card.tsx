@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StaticMathField } from "react-mathquill"
 import { CARDS_ACTIONS } from '../../Constants';
-import { MdMoreHoriz } from "react-icons/md"
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useHistory } from 'react-router';
 import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -149,8 +149,19 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
             aria-haspopup="true"
             onClick={handleToggle}
             style={{ float: "right", width: "0.2rem" }}
+            sx={{
+              padding: 0,
+              width: 0,
+              minWidth: 0.15,
+              backgroundColor: "text.main",
+              float: "right",
+              visibility: "hidden",
+              "&:hover": {
+                backgroundColor: 'text.disabled'
+              }
+            }}
           >
-            <MdMoreHoriz style={{ width: "5rem", height: "2rem" }} />
+            <MoreHorizIcon sx={{ color: "text.secondary" }} />
           </Button>
           <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
             {({ TransitionProps, placement }) => (
