@@ -16,9 +16,13 @@ declare module '@mui/styles/defaultTheme' {
 
 
 const ThemeUpdateContext = React.createContext({})
+const ThemeStringContext = React.createContext({})
 
 export function useThemeUpdate() {
     return useContext(ThemeUpdateContext)
+}
+export function useTheme() {
+    return useContext(ThemeStringContext)
 }
 
 export type ThemeString = "device-theme" | "light" | "dark";
@@ -57,9 +61,11 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
     return (
       <StyledEngineProvider injectFirst>
         <MuiThemeProvider theme={theme}>
-          <ThemeUpdateContext.Provider value={setThemeString}>
+          <ThemeStringContext.Provider value={ themeString }>
+            <ThemeUpdateContext.Provider value={setThemeString}>
               {children}
-          </ThemeUpdateContext.Provider>
+            </ThemeUpdateContext.Provider>
+          </ThemeStringContext.Provider>
         </MuiThemeProvider>
       </StyledEngineProvider>
     );
