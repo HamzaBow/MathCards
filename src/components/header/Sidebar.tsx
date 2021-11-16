@@ -16,19 +16,16 @@ import { FaHammer } from "react-icons/fa";
 import VerticalSplitIcon from "@mui/icons-material/VerticalSplit";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { Collection } from "contexts/UserContext";
-
 import Logo from "../Logo";
-
 import {
   useUser,
   useUserUpdate,
   UserActions,
 } from "../../contexts/UserContext";
-
 import { TextField, Button } from "@mui/material";
-
 import { fetchCreateCollection } from "api/collectionAPI";
 import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
+  drawerList: {
+    backgroundColor: theme.palette.background.paper,
+  }
 }));
 
 interface Props {
@@ -89,8 +89,8 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
         anchor="left"
         open={displaySidebar}
         onClose={() => setDisplaySidebar((prev) => !prev)}
-      >
-        <List>
+        >
+        <List className={classes.drawerList}>
           <ListItem
             button
             key="back"
