@@ -259,7 +259,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           <ListItemText>Back</ListItemText>
         </MenuItem>
 
-        <Divider style={{ margin: 0 }} />
+        <Divider />
 
         <MenuItem onClick={() => handleChooseTheme("device-theme")}>
           {themeString === "device-theme" && (
