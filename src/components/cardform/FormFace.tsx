@@ -46,10 +46,31 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
 
   return (
     <Paper className={"card-form__step"} ref={ref}>
-      <h1 style={{ marginTop: 0 }}>
+      <div>
+      <h1 style={{ marginTop: 0, textAlign: "center" }}>
         {face.charAt(0) + face.toLowerCase().slice(1)}
       </h1>
-
+      <div className="card-form__face__prompt-buttons-container">
+        <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addTextQuill}
+            startIcon={<Add />}
+          >
+            Text
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addMathQuill}
+            startIcon={<Add />}
+          >
+            Math
+          </Button>
+        </div>
+      </div>
+      </div>
       <div className="fields-container">
         {frontNBackFields[face].map((field, key) => {
           if (field.type === FIELD_TYPE.MATH) {
@@ -87,26 +108,6 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         })}
       </div>
 
-      <div className="card-form__face__prompt-buttons-container">
-        <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addTextQuill}
-            startIcon={<Add />}
-          >
-            Text
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addMathQuill}
-            startIcon={<Add />}
-          >
-            Math
-          </Button>
-        </div>
-      </div>
 
       <ButtonGroup>
         {prev ? (
