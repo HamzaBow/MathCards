@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { alpha } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -18,11 +18,18 @@ import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import { useAuth } from "contexts/AuthContext";
-import { Avatar, Box, ListItemIcon, ListItemText, Paper, Typography } from "@mui/material";
-import Logo from  "components/Logo";
+import {
+  Avatar,
+  Box,
+  ListItemIcon,
+  ListItemText,
+  Paper,
+  Typography,
+} from "@mui/material";
+import Logo from "components/Logo";
 import { Brightness3, ExitToApp, Settings } from "@mui/icons-material";
-import { ThemeString } from "contexts/ThemeContext"
-import { useThemeUpdate } from "contexts/ThemeContext"
+import { ThemeString } from "contexts/ThemeContext";
+import { useThemeUpdate } from "contexts/ThemeContext";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { CARDS_ACTIONS } from "Constants";
 import { Action } from "App";
@@ -81,8 +88,6 @@ const useStyles = makeStyles((theme) => ({
     color: "inherit",
   },
   inputInput: {
-
-
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
@@ -109,11 +114,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  cardsDispatch: React.Dispatch<Action>
+  cardsDispatch: React.Dispatch<Action>;
 }
 
 const Header: React.FC<Props> = ({ cardsDispatch }) => {
-
   const logoRef = useRef<HTMLDivElement>(null);
   const setThemeString = useThemeUpdate() as Function;
 
@@ -121,7 +125,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const [displaySidebar, setDisplaySidebar] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [themeAnchorEl, setThemeAnchorEl] = useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+    useState<null | HTMLElement>(null);
 
   const history = useHistory();
   const { logout, currentUser } = useAuth();
@@ -148,21 +153,21 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   const handleThemeMenuOpen = () => {
-    setThemeAnchorEl(anchorEl)
-    setAnchorEl(null)
-  }
+    setThemeAnchorEl(anchorEl);
+    setAnchorEl(null);
+  };
   const handleChooseTheme = (selectedTheme: ThemeString) => {
     handleMenuClose();
     setThemeString(selectedTheme);
-  } 
+  };
 
-  const userDispatch = useUserUpdate()
+  const userDispatch = useUserUpdate();
 
   const handleSignOut = () => {
     handleMenuClose();
     // @ts-ignore
-    userDispatch({ type: UserActions.ResetUser })
-    cardsDispatch({type: CARDS_ACTIONS.RESET_CARDS})
+    userDispatch({ type: UserActions.ResetUser });
+    cardsDispatch({ type: CARDS_ACTIONS.RESET_CARDS });
     logout();
     // TODO: the two expressions above have to happen together or not happen at all
   };
@@ -170,16 +175,16 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        transformOrigin={{ vertical: "top", horizontal: "center" }}
-        id={menuId}
-        keepMounted
-        open={isMenuOpen}
-        onClose={handleMenuClose}
-        classes={{list: classes.list}}
-      >
-    <Paper variant="outlined">
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      transformOrigin={{ vertical: "top", horizontal: "center" }}
+      id={menuId}
+      keepMounted
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+      classes={{ list: classes.list }}
+    >
+      <Paper variant="outlined">
         <Box mt={1}>
           <Typography variant="body1" align="center">
             {" "}
@@ -187,7 +192,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           </Typography>
         </Box>
         <Box sx={{ mx: 3, my: 1 }}>
-          <Typography variant="h6" style={{fontWeight: 800}} >
+          <Typography variant="h6" style={{ fontWeight: 800 }}>
             {currentUser && (currentUser.displayName || currentUser.email)}
           </Typography>
         </Box>
@@ -224,8 +229,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           </ListItemIcon>
           <ListItemText primary="Sign out" />
         </MenuItem>
-    </Paper>
-      </Menu>
+      </Paper>
+    </Menu>
   );
 
   const themeMenu = (
@@ -237,16 +242,17 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       keepMounted
       open={isThemeMenuOpen}
       onClose={handleMenuClose}
-      classes={{list: classes.list}}
+      classes={{ list: classes.list }}
     >
-
-    <Paper variant="outlined">
-      <MenuItem onClick={() => handleChooseTheme('device-theme')}>Device theme</MenuItem>
-      <MenuItem onClick={() => handleChooseTheme('light')}>Light</MenuItem>
-      <MenuItem onClick={() => handleChooseTheme('dark')}>Dark</MenuItem>
-    </Paper>
+      <Paper variant="outlined">
+        <MenuItem onClick={() => handleChooseTheme("device-theme")}>
+          Device theme
+        </MenuItem>
+        <MenuItem onClick={() => handleChooseTheme("light")}>Light</MenuItem>
+        <MenuItem onClick={() => handleChooseTheme("dark")}>Dark</MenuItem>
+      </Paper>
     </Menu>
-  )
+  );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -258,53 +264,66 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
-      classes={{list: classes.list}}
+      classes={{ list: classes.list }}
     >
-    <Paper variant="outlined">
-      <MenuItem onClick={() => { history.push("/cardform/new") }}>
-        <IconButton aria-label="create a new card" color="inherit" size="large">
-          <AddCircleIcon />
-        </IconButton>
-        <p>New card</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit" size="large">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-          size="large">
-          {currentUser?.photoURL ? (
-            <Avatar
-              alt={currentUser.displayName}
-              src={currentUser.photoURL}
-            />
-          ) : (
-            <AccountCircle />
-          )}
-        </IconButton>
-        <p>Account</p>
-      </MenuItem>
+      <Paper variant="outlined">
+        <MenuItem
+          onClick={() => {
+            history.push("/cardform/new");
+          }}
+        >
+          <IconButton
+            aria-label="create a new card"
+            color="inherit"
+            size="large"
+          >
+            <AddCircleIcon />
+          </IconButton>
+          <p>New card</p>
+        </MenuItem>
+        <MenuItem>
+          <IconButton
+            aria-label="show 11 new notifications"
+            color="inherit"
+            size="large"
+          >
+            <Badge badgeContent={11} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <p>Notifications</p>
+        </MenuItem>
+        <MenuItem onClick={handleProfileMenuOpen}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+            size="large"
+          >
+            {currentUser?.photoURL ? (
+              <Avatar
+                alt={currentUser.displayName}
+                src={currentUser.photoURL}
+              />
+            ) : (
+              <AccountCircle />
+            )}
+          </IconButton>
+          <p>Account</p>
+        </MenuItem>
       </Paper>
     </Menu>
   );
 
-  function handleSearbarFocus(){
-    if(window.innerWidth < 600 && logoRef?.current?.style){
-      logoRef.current.style.width = '0px';
+  function handleSearbarFocus() {
+    if (window.innerWidth < 600 && logoRef?.current?.style) {
+      logoRef.current.style.width = "0px";
     }
   }
-  function handleSearbarBlur(){
-    if(logoRef?.current?.style){
-      logoRef.current.style.width = '100%';
+  function handleSearbarBlur() {
+    if (logoRef?.current?.style) {
+      logoRef.current.style.width = "100%";
     }
   }
   return (
@@ -319,11 +338,18 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
             onClick={() => {
               setDisplaySidebar((prev) => !prev);
             }}
-            size="large">
+            size="large"
+          >
             <MenuIcon />
           </IconButton>
           <div ref={logoRef} style={{ transition: "width 500ms" }}>
-            <IconButton style={{borderRadius: "0.3rem", paddingLeft: "0.3rem"}} size="small" onClick={() => {history.push("/")}}>
+            <IconButton
+              style={{ borderRadius: "0.3rem", paddingLeft: "0.3rem" }}
+              size="small"
+              onClick={() => {
+                history.push("/");
+              }}
+            >
               <Logo />
             </IconButton>
           </div>
@@ -350,10 +376,15 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               onClick={() => {
                 history.push("/cardform/new");
               }}
-              size="large">
+              size="large"
+            >
               <AddCircleIcon />
             </IconButton>
-            <IconButton aria-label="show 2 new notifications" color="inherit" size="large">
+            <IconButton
+              aria-label="show 2 new notifications"
+              color="inherit"
+              size="large"
+            >
               <Badge badgeContent={2} color="error">
                 <NotificationsIcon />
               </Badge>
@@ -365,7 +396,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
-              size="large">
+              size="large"
+            >
               {currentUser?.photoURL ? (
                 <Avatar
                   alt={currentUser?.displayName && currentUser?.email}
@@ -383,7 +415,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
-              size="large">
+              size="large"
+            >
               <MoreIcon />
             </IconButton>
           </div>
@@ -398,6 +431,6 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       />
     </div>
   );
-}
+};
 
 export default Header;
