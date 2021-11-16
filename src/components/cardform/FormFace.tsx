@@ -11,9 +11,8 @@ import { ButtonGroup } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { BiText } from "react-icons/bi/";
-import { ImSigma } from "react-icons/im/";
 import { FrontNBackFields } from "./CardForm";
+import { Add } from "@mui/icons-material";
 
 addStyles();
 
@@ -94,7 +93,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
             variant="contained"
             color="primary"
             onClick={addTextQuill}
-            startIcon={<BiText size={25} />}
+            startIcon={<Add />}
           >
             Text
           </Button>
@@ -102,7 +101,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
             variant="contained"
             color="primary"
             onClick={addMathQuill}
-            startIcon={<ImSigma />}
+            startIcon={<Add />}
           >
             Math
           </Button>
