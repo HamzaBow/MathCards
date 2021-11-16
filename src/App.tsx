@@ -21,8 +21,6 @@ import { CardInterface } from "components/cardform/CardForm";
 import { fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";
 import { useUser } from "contexts/UserContext";
 
-export type Theme = "device-theme" | "light" | "dark" | "charcoal";
-
 export enum CardsType {
   UserCards,
   CollectionCards,
