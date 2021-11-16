@@ -244,7 +244,6 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       <MenuItem onClick={() => handleChooseTheme('device-theme')}>Device theme</MenuItem>
       <MenuItem onClick={() => handleChooseTheme('light')}>Light</MenuItem>
       <MenuItem onClick={() => handleChooseTheme('dark')}>Dark</MenuItem>
-      <MenuItem onClick={() => handleChooseTheme('charcoal')}>Charcoal (dark)</MenuItem>
     </Paper>
     </Menu>
   )

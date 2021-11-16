@@ -21,7 +21,7 @@ export function useThemeUpdate() {
     return useContext(ThemeUpdateContext)
 }
 
-export type ThemeString = "device-theme" | "light" | "dark" | "charcoal";
+export type ThemeString = "device-theme" | "light" | "dark";
 
 interface Props {
   children: JSX.Element;
@@ -35,37 +35,23 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
     ) as [ThemeString, Function];
 
     const theme = React.useMemo(() => {
-      switch (themeString) {
-        case "light":
-          return createTheme({
-            palette: {
-              mode: "light",
-            },
-          });
-        case "dark":
-          return createTheme({
-            palette: {
-              mode: "dark",
-            },
-          });
-        case "charcoal":
-          return createTheme({
-            palette: {
-              mode: "dark",
-              background: {
-                default: "#242729",
-                paper: "#323638",
+      if ( themeString === "dark" || 
+          ( themeString === "device-theme" && prefersDarkMode )) {
+            return createTheme({
+              palette: {
+                mode: "dark",
+                background: {
+                  default: "#242729",
+                  paper: "#323638",
+                },
               },
-            },
-          });
-        default:
-          //devide-theme
-          return createTheme({
-            palette: {
-              mode: prefersDarkMode ? "dark" : "light",
-            },
-          });
-      }
+            });
+        }
+        return createTheme({
+          palette: {
+            mode: "light",
+          },
+        });
     }, [prefersDarkMode, themeString]);
 
     return (
