@@ -4,6 +4,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import Check from '@mui/icons-material/Check';
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -28,7 +29,7 @@ import {
 } from "@mui/material";
 import Logo from "components/Logo";
 import { Brightness3, ExitToApp, Settings } from "@mui/icons-material";
-import { ThemeString } from "contexts/ThemeContext";
+import { ThemeString, useTheme } from "contexts/ThemeContext";
 import { useThemeUpdate } from "contexts/ThemeContext";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { CARDS_ACTIONS } from "Constants";
@@ -121,6 +122,7 @@ interface Props {
 const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const logoRef = useRef<HTMLDivElement>(null);
   const accountRef = useRef<HTMLButtonElement | null>(null);
+  const themeString = useTheme()
   const setThemeString = useThemeUpdate() as Function;
 
   const classes = useStyles();
@@ -250,16 +252,43 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       classes={{ list: classes.list }}
     >
       <Paper variant="outlined">
-        <MenuItem onClick={ handleThemeBackBtn }>
-          <ArrowBack sx={{ mr: '0.7rem' }} />
-          Back
+        <MenuItem onClick={handleThemeBackBtn}>
+          <ListItemIcon>
+            <ArrowBack />
+          </ListItemIcon>
+          <ListItemText>Back</ListItemText>
         </MenuItem>
-        <Divider style={{ margin: 0}} />
+
+        <Divider style={{ margin: 0 }} />
+
         <MenuItem onClick={() => handleChooseTheme("device-theme")}>
-          Device theme
+          {themeString === "device-theme" && (
+            <ListItemIcon>
+              <Check />
+            </ListItemIcon>
+          )}
+          <ListItemText inset={themeString !== "device-theme"}>
+            Device theme
+          </ListItemText>
         </MenuItem>
-        <MenuItem onClick={() => handleChooseTheme("light")}>Light</MenuItem>
-        <MenuItem onClick={() => handleChooseTheme("dark")}>Dark</MenuItem>
+
+        <MenuItem onClick={() => handleChooseTheme("light")}>
+          {themeString === "light" && (
+            <ListItemIcon>
+              <Check />
+            </ListItemIcon>
+          )}
+          <ListItemText inset={themeString !== "light"}>Light</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={() => handleChooseTheme("dark")}>
+          {themeString === "dark" && (
+            <ListItemIcon>
+              <Check />
+            </ListItemIcon>
+          )}
+          <ListItemText inset={themeString !== "dark"}>Dark</ListItemText>
+        </MenuItem>
       </Paper>
     </Menu>
   );
