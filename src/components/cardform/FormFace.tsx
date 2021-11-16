@@ -5,7 +5,7 @@ import Quill from "../utilities/Quill";
 import MathField from "../utilities/MathField";
 import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
-import { Button } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import { ButtonGroup } from "@mui/material";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -46,7 +46,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   };
 
   return (
-    <div className={"card-form__step"} ref={ref}>
+    <Paper className={"card-form__step"} ref={ref}>
       <h1 style={{ marginTop: 0 }}>
         {face.charAt(0) + face.toLowerCase().slice(1)}
       </h1>
@@ -135,7 +135,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
           next
         </Button>
       </ButtonGroup>
-    </div>
+    </Paper>
   );
 };
 
