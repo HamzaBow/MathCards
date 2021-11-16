@@ -24,8 +24,6 @@ const labelStyle = {
     marginRight: "auto",
     marginLeft: "auto",
     marginBottom: "1rem",
-
-    color: "rgba(0, 0, 0, 0.7)",
 }
 export interface TagOption {
   id: string;
