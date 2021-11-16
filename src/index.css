@@ -104,14 +104,6 @@ body {
   padding: 2rem;
 }
 
-
-label {
-  padding: 0 10px;
-}
-fieldset {
-  border-color: black;
-}
-
 .container .front,
 .container .back {
   -webkit-backface-visibility: hidden;
