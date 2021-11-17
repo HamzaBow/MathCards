@@ -261,7 +261,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
 
         <Divider />
 
-        <MenuItem onClick={() => handleChooseTheme("device-theme")}>
+        <MenuItem onClick={() => handleChooseTheme("device-theme")} selected={themeString === "device-theme"}>
           {themeString === "device-theme" && (
             <ListItemIcon>
               <Check />
@@ -272,7 +272,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           </ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={() => handleChooseTheme("light")}>
+        <MenuItem onClick={() => handleChooseTheme("light")} selected={themeString === "light"}>
           {themeString === "light" && (
             <ListItemIcon>
               <Check />
@@ -281,7 +281,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           <ListItemText inset={themeString !== "light"}>Light</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={() => handleChooseTheme("dark")}>
+        <MenuItem onClick={() => handleChooseTheme("dark")} selected={themeString === "dark"}>
           {themeString === "dark" && (
             <ListItemIcon>
               <Check />
