@@ -15,7 +15,6 @@ const labelStyle = {
     marginLeft: "auto",
     marginBottom: "1rem",
 
-    color: "rgba(0, 0, 0, 0.7)",
 }
 interface Props {
   difficultyLevels: DifficultyLevelsInterface;

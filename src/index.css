@@ -36,13 +36,6 @@ body {
   cursor: pointer;
 }
 
-.btn-more {
-  padding: 0.4rem;
-  padding-bottom: 0.3rem;
-  visibility: hidden;
-  color:gray;
-}
-
 .container-item:hover .btn-more {
   visibility: visible !important;
 }
@@ -104,14 +97,6 @@ body {
   padding: 2rem;
 }
 
-
-label {
-  padding: 0 10px;
-}
-fieldset {
-  border-color: black;
-}
-
 .container .front,
 .container .back {
   -webkit-backface-visibility: hidden;
@@ -135,8 +120,8 @@ fieldset {
   font-size: 1rem;
   border-radius: 10px;
   padding: 1.5rem 3rem;
-  background-color: white;
-  color: rgb(53, 80, 80);
+  /* background-color: white;
+  color: rgb(53, 80, 80); */
 
   display: flex;
   flex-direction: column;
@@ -146,7 +131,7 @@ fieldset {
   top: 50%;
   left: 50%;
   max-height: 80%;
-
+  transform: translate( 100vw, -50% );
   transition: transform 0.2s ease-in-out, 
               visibility 0.2s ease-in-out, 
               opacity 0.2s ease-in-out;

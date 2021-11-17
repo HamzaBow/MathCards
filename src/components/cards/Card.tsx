@@ -1,31 +1,35 @@
-import React, { useState } from 'react'
-import { StaticMathField } from "react-mathquill"
-import { CARDS_ACTIONS } from '../../Constants';
-import { MdMoreHoriz } from "react-icons/md"
-import { useHistory } from 'react-router';
-import Button from '@mui/material/Button';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import { BiEditAlt } from 'react-icons/bi'
-import { AiOutlineDelete } from 'react-icons/ai'
-import { CgPlayListAdd } from 'react-icons/cg'
-import SaveToPrompt from './SaveToPrompt';
-import { CardInterface } from '../cardform/CardForm'
-import { fetchDeleteCard } from 'api/cardAPI';
+import React, { useState } from "react";
+import { StaticMathField } from "react-mathquill";
+import { CARDS_ACTIONS } from "../../Constants";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useHistory } from "react-router";
+import Button from "@mui/material/Button";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import { BiEditAlt } from "react-icons/bi";
+import { AiOutlineDelete } from "react-icons/ai";
+import { CgPlayListAdd } from "react-icons/cg";
+import SaveToPrompt from "./SaveToPrompt";
+import { CardInterface } from "../cardform/CardForm";
+import { fetchDeleteCard } from "api/cardAPI";
 interface Props {
   card: CardInterface;
   cardsDispatch: Function;
-  size?: 'medium' | 'small' | 'large';
-  layout?: 'fixed-size' | 'hug-content';
+  size?: "medium" | "small" | "large";
+  layout?: "fixed-size" | "hug-content";
   dimentions?: number[];
   flippable?: boolean;
 }
 
-const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions*/ flippable }) => {
+const Card: React.FC<Props> = ({
+  card,
+  cardsDispatch,
+  /* size, layout, dimentions*/ flippable,
+}) => {
   const history = useHistory();
 
   const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
@@ -67,7 +71,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
   //   height = dimentions.height;
   // }
 
-  // // TODO: 
+  // // TODO:
   // const containerItemStyle = {
   //   width,
   //   height,
@@ -75,8 +79,8 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
 
   // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
   const displayMainCard = (id: string) => {
-    history.push(`/maincard/${card._id}`)
-  }
+    history.push(`/maincard/${card._id}`);
+  };
 
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLElement>(null);
@@ -86,7 +90,10 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
     setOpen((prevOpen) => !prevOpen);
   };
   const handleClose = (event: MouseEvent | TouchEvent): void => {
-    if (anchorRef?.current && anchorRef?.current?.contains?.(event.target as Node)) {
+    if (
+      anchorRef?.current &&
+      anchorRef?.current?.contains?.(event.target as Node)
+    ) {
       return;
     }
 
@@ -106,12 +113,15 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
       return;
     }
     setOpen(false);
-    fetchDeleteCard(card._id)
-    cardsDispatch({ type: CARDS_ACTIONS.REMOVE_CARD, payload: { id: card._id } })
-  }
+    fetchDeleteCard(card._id);
+    cardsDispatch({
+      type: CARDS_ACTIONS.REMOVE_CARD,
+      payload: { id: card._id },
+    });
+  };
 
   function handleListKeyDown(event: any) {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
     }
@@ -129,9 +139,7 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
 
   const saveToHandle = () => {
     setSaveToPromptOpen(true);
-  }
-
-
+  };
 
   return (
     <div
@@ -139,91 +147,135 @@ const Card: React.FC<Props> = ({ card, cardsDispatch,/* size, layout, dimentions
       // style={containerItemStyle}
     >
       <Paper elevation={3}>
-      <div className="card">
-        <div>
-          {/* @ts-ignore: No idea what this error is */}
-          <Button
-            className='btn-more'
-            ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-            style={{ float: "right", width: "0.2rem" }}
-          >
-            <MdMoreHoriz style={{ width: "5rem", height: "2rem" }} />
-          </Button>
-          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-              >
-                <Paper variant="outlined">
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+        <div className="card">
+          <div>
+            {/* @ts-ignore: No idea what this error is */}
+            <Button
+              className="btn-more"
+              ref={anchorRef}
+              aria-controls={open ? "menu-list-grow" : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+              style={{ float: "right", width: "0.2rem" }}
+              sx={{
+                padding: 0,
+                width: 0,
+                minWidth: 0.15,
+                backgroundColor: "text.main",
+                float: "right",
+                visibility: "hidden",
+                "&:hover": {
+                  backgroundColor: "text.disabled",
+                },
+              }}
+            >
+              <MoreHorizIcon sx={{ color: "text.secondary" }} />
+            </Button>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === "bottom" ? "center top" : "center bottom",
+                  }}
+                >
+                  <Paper variant="outlined">
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="menu-list-grow"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem onClick={handleEdit}>
+                          <BiEditAlt style={{ marginRight: "0.7rem" }} />
+                          Edit
+                        </MenuItem>
 
-                      <MenuItem onClick={handleEdit}>
-                        <BiEditAlt style={{ marginRight: '0.7rem' }} />
-                        Edit
-                      </MenuItem>
+                        <MenuItem onClick={handleDelete}>
+                          <AiOutlineDelete style={{ marginRight: "0.7rem" }} />
+                          Delete
+                        </MenuItem>
 
-                      <MenuItem onClick={handleDelete}>
-                        <AiOutlineDelete style={{ marginRight: '0.7rem' }} />
-                        Delete
-                      </MenuItem>
+                        <MenuItem onClick={saveToHandle} ref={saveRef}>
+                          <CgPlayListAdd style={{ marginRight: "0.7rem" }} />
+                          Save to ...
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
 
-                      <MenuItem onClick={saveToHandle} ref={saveRef}>
-                        <CgPlayListAdd style={{ marginRight: '0.7rem' }} />
-                        Save to ...
-                      </MenuItem>
-                    </MenuList>
+            <SaveToPrompt
+              cardId={card._id}
+              saveToPromptOpen={saveToPromptOpen}
+              setSaveToPromptOpen={setSaveToPromptOpen}
+              saveRef={saveRef.current}
+            />
+          </div>
+          <div className="front" onClick={() => displayMainCard(card._id)}>
+            {card.front.map((field, key) => {
+              if (field.type === "MATH") {
+                return (
+                  <StaticMathField key={key} style={{ fontSize: "2rem" }}>
+                    {field.latex}
+                  </StaticMathField>
+                );
+              }
+              if (field.type === "TEXT") {
+                return (
+                  <div
+                    key={key}
+                    dangerouslySetInnerHTML={{
+                      __html: field.htmlContent || "",
+                    }}
+                  ></div>
+                );
+              }
+              return <></>;
+            })}
+          </div>
 
-
-
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-
-          <SaveToPrompt cardId={card._id} saveToPromptOpen={saveToPromptOpen} setSaveToPromptOpen={setSaveToPromptOpen} saveRef={saveRef.current} />
-        </div>
-        <div className="front" onClick={() => displayMainCard(card._id)} >
-          {card.front.map((field, key) => {
-            if (field.type === 'MATH') {
-              return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
+          {(() => {
+            if (flippable) {
+              return (
+                <div className="face back">
+                  {card.back.map((field, key) => {
+                    if (field.type === "MATH") {
+                      return (
+                        <StaticMathField key={key} style={{ fontSize: "2rem" }}>
+                          {field.latex}
+                        </StaticMathField>
+                      );
+                    }
+                    if (field.type === "TEXT") {
+                      return (
+                        <div
+                          key={key}
+                          dangerouslySetInnerHTML={{
+                            __html: field.htmlContent || "",
+                          }}
+                        ></div>
+                      );
+                    }
+                    return <></>;
+                  })}
+                </div>
+              );
             }
-            if (field.type === 'TEXT') {
-              return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
-            }
-            return <></>
-          })
-          }
+          })()}
         </div>
-
-        {(() => {
-          if (flippable) {
-            return (
-              <div className="face back">
-                {card.back.map((field, key) => {
-                  if (field.type === 'MATH') {
-                    return <StaticMathField key={key} style={{ fontSize: "2rem" }}>{field.latex}</StaticMathField>
-                  }
-                  if (field.type === 'TEXT') {
-                    return <div key={key} dangerouslySetInnerHTML={{ __html: field.htmlContent || '' }}></div>
-                  }
-                  return <></>
-                })
-                }
-              </div>
-            );
-          }
-        })()}
-
-      </div>
       </Paper>
     </div>
   );
-}
+};
 
-export default Card
+export default Card;
