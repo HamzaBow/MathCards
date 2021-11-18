@@ -5,7 +5,7 @@ import Quill from "../utilities/Quill";
 import MathField from "../utilities/MathField";
 import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
 
-import { Button, Paper } from "@mui/material";
+import { Button, Paper, Tooltip } from "@mui/material";
 import { ButtonGroup } from "@mui/material";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -47,27 +47,34 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   return (
     <Paper className={"card-form__step"} ref={ref}>
       <div>
+      <Tooltip title="Front face of the card" placement="top">
       <h1 style={{ marginTop: 0, textAlign: "center" }}>
         {face.charAt(0).toUpperCase() + face.toLowerCase().slice(1)}
       </h1>
+      </Tooltip>
       <div className="card-form__face__prompt-buttons-container">
         <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addTextQuill}
-            startIcon={<Add />}
-          >
+          <Tooltip title="Add a text field to this card" enterDelay={800} placement="top">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addTextQuill}
+              startIcon={<Add />}
+            >
             Text
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addMathQuill}
-            startIcon={<Add />}
-          >
-            Math
-          </Button>
+            </Button>
+          </Tooltip>
+
+          <Tooltip title="Add a math field to this card" enterDelay={800} placement="top">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addMathQuill}
+              startIcon={<Add />}
+            >
+              Math
+            </Button>
+          </Tooltip>
         </div>
       </div>
       </div>
