@@ -114,54 +114,51 @@ function App() {
         <CssBaseline />
         <Header cardsDispatch={cardsDispatch} />
         <Subheader />
+        <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} setCollectionId={setCollectionId} />
 
-        <Route exact path="/">
-          {currentUser ? (
-            <>
-              <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} />
-            </>
-          ) : (
-            <Redirect to="/login" />
-          )}
-        </Route>
+        <div id="displayCardRoutes">
+          <Route exact path="/">
+            {!currentUser &&
+              <Redirect to="/login" />
+            }
+          </Route>
 
-        <Route exact path="/collection/:id">
-          {/* { setCardsType(CardsType.CollectionCards)} */}
-          {currentUser ? (
-            <>
-              <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} setCollectionId={setCollectionId} />
-            </>
-          ) : (
-            <Redirect to="/login" />
-          )}
-        </Route>
+          <Route exact path="/collection/:id">
+            {/* { setCardsType(CardsType.CollectionCards)} */}
+            {currentUser ? (
+              <>
+              </>
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
 
-        <Route path="/maincard/:id">
-          <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType}/>
-          <Maincard cards={cards} />{" "}
-          {/* --------------------------------------------  Maincard */}
-        </Route>
+          <Route path="/maincard/:id">
+            <Maincard cards={cards} />{" "}
+            {/* --------------------------------------------  Maincard */}
+          </Route>
 
-        <Route path="/cardform/new">
-          <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType}/>
-          <CardForm operationType="create" cardsDispatch={cardsDispatch} />
-        </Route>
+          <Route path="/cardform/new">
+            <CardForm operationType="create" cardsDispatch={cardsDispatch} />
+          </Route>
 
-        <Route path="/cardform/edit/:id">
-          <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType}/>
-          <CardForm
-            operationType="edit"
-            cards={cards}
-            cardsDispatch={cardsDispatch}
-          />{" "}
-          {/* ----  CardForm */}
-        </Route>
+          <Route path="/cardform/edit/:id">
+            <CardForm
+              operationType="edit"
+              cards={cards}
+              cardsDispatch={cardsDispatch}
+            />{" "}
+            {/* ----  CardForm */}
+          </Route>
+        </div>
 
-        <Route path="/signup" component={Signup} />
+        <div id="authRoutes">
+          <Route path="/signup" component={Signup} />
 
-        <Route path="/login" component={Login} />
+          <Route path="/login" component={Login} />
 
-        <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+        </div>
       </div>
     </Router>
   );
