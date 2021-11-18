@@ -205,13 +205,14 @@ export default function Signup() {
                     className={classes.continueWithGoogle}
                     startIcon={<FcGoogle size={30} />}
                     size="large"
+                    sx={{ position: "relative", left: "50%", transform: "translateX(-50%)"}}
                   >
                     Continue With Google
                   </Button>
                   <Typography
                     component="h2"
                     variant="h6"
-                    style={{ textAlign: "center", margin: "1.2rem 0 0.6rem" }}
+                    sx={{ textAlign: "center" }}
                   >
                     OR
                   </Typography>
