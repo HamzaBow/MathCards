@@ -108,17 +108,32 @@ function App() {
   }, [ user._id, cardsType, collectionId, user ]);
 
   // *********************************************************************
+
+  function CardsDisplay(){
+    return (
+      <>
+        <Subheader />
+        <Main
+          cards={cards}
+          cardsDispatch={cardsDispatch}
+          setCardsType={setCardsType}
+          setCollectionId={setCollectionId}
+        />
+      </>
+    );
+  }
+
   return (
     <Router>
       <div className="App">
         <CssBaseline />
         <Header cardsDispatch={cardsDispatch} />
-        <Subheader />
-        <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} setCollectionId={setCollectionId} />
 
         <div id="displayCardRoutes">
           <Route exact path="/">
-            {!currentUser &&
+            {currentUser ?
+              <CardsDisplay />
+              :
               <Redirect to="/login" />
             }
           </Route>
@@ -126,8 +141,7 @@ function App() {
           <Route exact path="/collection/:id">
             {/* { setCardsType(CardsType.CollectionCards)} */}
             {currentUser ? (
-              <>
-              </>
+              <CardsDisplay />
             ) : (
               <Redirect to="/login" />
             )}
@@ -139,10 +153,12 @@ function App() {
           </Route>
 
           <Route path="/cardform/new">
+            <CardsDisplay />
             <CardForm operationType="create" cardsDispatch={cardsDispatch} />
           </Route>
 
           <Route path="/cardform/edit/:id">
+            <CardsDisplay />
             <CardForm
               operationType="edit"
               cards={cards}

@@ -11,7 +11,8 @@ const Subheader = () => {
   const pathName = window.location.pathname
 
   useEffect(() => {
-    console.log("subheader useEffect")
+    // @ts-ignore
+    if(user.collections.length === 0) { return ; }
     if (pathName.startsWith("/collection/")) {
       const collectionId = pathName.slice(12)
       // @ts-ignore
@@ -22,7 +23,8 @@ const Subheader = () => {
     } else {
       setCollectionTitle("")
     }
-  }, [pathName])
+    // @ts-ignore
+  }, [pathName, user._id])
 
   return (
     <div id="subheader">
