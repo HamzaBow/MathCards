@@ -175,24 +175,6 @@ export default function Login() {
                 </Alert>
               </div>
             )}
-            <Button
-              type="button"
-              disabled={loading}
-              variant="outlined"
-              onClick={handleContinueWithGoogle}
-              className={classes.continueWithGoogle}
-              startIcon={<FcGoogle size={30} />}
-              size="large"
-            >
-              Continue With Google
-            </Button>
-            <Typography
-              component="h2"
-              variant="h6"
-              style={{ textAlign: "center", margin: "1.2rem 0 0.6rem" }}
-            >
-              OR
-            </Typography>
             <Formik
               validateOnChange={true}
               initialValues={{ email: "", password: "" }}
@@ -207,6 +189,24 @@ export default function Login() {
                 handleSubmit,
               }) => (
                 <Form className={classes.form} noValidate>
+                <Button
+                  type="button"
+                  disabled={ isSubmitting || loading }
+                  variant="outlined"
+                  onClick={handleContinueWithGoogle}
+                  className={classes.continueWithGoogle}
+                  startIcon={<FcGoogle size={30} />}
+                  size="large"
+                >
+                  Continue With Google
+                </Button>
+                <Typography
+                  component="h2"
+                  variant="h6"
+                  style={{ textAlign: "center", margin: "1.2rem 0 0.6rem" }}
+                >
+                  OR
+                </Typography>
                   <CustomTextField
                     name="email"
                     type="email"
@@ -219,7 +219,7 @@ export default function Login() {
                   />
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={ isSubmitting || loading }
                     fullWidth
                     variant="contained"
                     color="primary"
