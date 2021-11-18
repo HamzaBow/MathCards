@@ -21,6 +21,7 @@ import Logo from  "../Logo";
 
 import * as yup from "yup";
 import { fetchCreateUser } from "api/userAPI";
+import { LoadingButton } from "@mui/lab";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -218,9 +219,11 @@ export default function Login() {
                     type="password"
                     label="Password"
                   />
-                  <Button
+                  <LoadingButton
                     type="submit"
-                    disabled={ isSubmitting || loading }
+                    loading={ isSubmitting }
+                    loadingPosition="end"
+                    disabled={ loading }
                     fullWidth
                     variant="contained"
                     color="primary"
@@ -228,7 +231,7 @@ export default function Login() {
                     size="large"
                   >
                     Sign in
-                  </Button>
+                  </LoadingButton>
                   <Grid container>
                     <Grid item xs>
                       <Link to="/forgot-password">
