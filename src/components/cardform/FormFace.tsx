@@ -48,7 +48,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     <Paper className={"card-form__step"} ref={ref}>
       <div>
       <h1 style={{ marginTop: 0, textAlign: "center" }}>
-        {face.charAt(0) + face.toLowerCase().slice(1)}
+        {face.charAt(0).toUpperCase() + face.toLowerCase().slice(1)}
       </h1>
       <div className="card-form__face__prompt-buttons-container">
         <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
