@@ -111,11 +111,11 @@ function App() {
     <Router>
       <div className="App">
         <CssBaseline />
+        <Header cardsDispatch={cardsDispatch} />
 
         <Route exact path="/">
           {currentUser ? (
             <>
-              <Header cardsDispatch={cardsDispatch} />
               <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} />
             </>
           ) : (
@@ -127,7 +127,6 @@ function App() {
           {/* { setCardsType(CardsType.CollectionCards)} */}
           {currentUser ? (
             <>
-              <Header cardsDispatch={cardsDispatch} />
               <Main cards={cards} cardsDispatch={cardsDispatch} setCardsType={setCardsType} setCollectionId={setCollectionId} />
             </>
           ) : (
