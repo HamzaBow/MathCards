@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   createTheme,
@@ -7,6 +7,7 @@ import {
   StyledEngineProvider,
 } from "@mui/material/styles";
 import useLocalStorage from "hooks/useLocalStorage";
+import { GlobalStyles } from '@mui/material';
 
 
 declare module '@mui/styles/defaultTheme' {
@@ -32,6 +33,7 @@ interface Props {
 }
 const ThemeProvider: React.FC<Props> = ({children}) => {
 
+    const [mathQuillCursorColor, setMathQuillCursorColor] = useState("")
     const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
     const [themeString, setThemeString] = useLocalStorage(
       "themeString",
@@ -41,6 +43,7 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
     const theme = React.useMemo(() => {
       if ( themeString === "dark" || 
           ( themeString === "device-theme" && prefersDarkMode )) {
+            setMathQuillCursorColor("white")
             return createTheme({
               palette: {
                 mode: "dark",
@@ -51,6 +54,7 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
               },
             });
         }
+        setMathQuillCursorColor("black")
         return createTheme({
           palette: {
             mode: "light",
@@ -63,6 +67,11 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
         <MuiThemeProvider theme={theme}>
           <ThemeStringContext.Provider value={ themeString }>
             <ThemeUpdateContext.Provider value={setThemeString}>
+              <GlobalStyles styles={{
+                ".mq-editable-field .mq-cursor": {
+                  borderLeftColor: `${mathQuillCursorColor} !important`
+                }
+              }} />
               {children}
             </ThemeUpdateContext.Provider>
           </ThemeStringContext.Provider>
