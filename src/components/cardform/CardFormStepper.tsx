@@ -7,6 +7,7 @@ import StepLabel from '@mui/material/StepLabel';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    marginBottom: theme.spacing(1),
   },
   backButton: {
     marginRight: theme.spacing(1),
