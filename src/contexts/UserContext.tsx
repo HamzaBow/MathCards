@@ -7,12 +7,12 @@ import { useAuth } from './AuthContext'
 const UserContext = React.createContext({})
 const UserUpdateContext = React.createContext({})
 
-export function useUser() {
-  return useContext(UserContext)
+export function useUser(): User {
+  return useContext(UserContext) as User
 }
 
-export function useUserUpdate() {
-  return useContext(UserUpdateContext)
+export function useUserUpdate(): React.Dispatch<UserReducerAction> {
+  return useContext(UserUpdateContext) as React.Dispatch<UserReducerAction>
 }
 
 interface Props {
