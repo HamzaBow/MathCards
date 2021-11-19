@@ -61,7 +61,6 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
       ownerId: user._id,
       title: newCollectionTitle,
     });
-    // @ts-ignore: expression should be callable, ???
     userDispatch({
       type: UserActions.AddCollection,
       payload: { newCollection: collection },

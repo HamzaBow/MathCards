@@ -169,7 +169,6 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
 
   const handleSignOut = () => {
     handleMenuClose();
-    // @ts-ignore
     userDispatch({ type: UserActions.ResetUser });
     cardsDispatch({ type: CARDS_ACTIONS.RESET_CARDS });
     logout();

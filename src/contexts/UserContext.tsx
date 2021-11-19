@@ -37,7 +37,7 @@ export enum UserActions {
 
 interface UserReducerAction {
   type: UserActions;
-  payload: any;
+  payload?: any;
 }
 
 export function useUser(): User {
