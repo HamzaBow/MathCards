@@ -4,7 +4,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Check from '@mui/icons-material/Check';
+import Check from "@mui/icons-material/Check";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -34,7 +34,7 @@ import { useThemeUpdate } from "contexts/ThemeContext";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { CARDS_ACTIONS } from "Constants";
 import { Action } from "App";
-import ArrowBack from '@mui/icons-material/ArrowBack';
+import ArrowBack from "@mui/icons-material/ArrowBack";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -122,7 +122,7 @@ interface Props {
 const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const logoRef = useRef<HTMLDivElement>(null);
   const accountRef = useRef<HTMLButtonElement | null>(null);
-  const themeString = useTheme()
+  const themeString = useTheme();
   const setThemeString = useThemeUpdate() as Function;
 
   const classes = useStyles();
@@ -200,7 +200,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           </Typography>
         </Box>
 
-        <Divider sx={{ mt: "8px", mb: "8px"}} />
+        <Divider sx={{ mt: "8px", mb: "8px" }} />
 
         <MenuItem onClick={handleMenuClose}>
           <ListItemIcon>
@@ -238,7 +238,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const handleThemeBackBtn = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(accountRef.current);
     setThemeAnchorEl(null);
-  }
+  };
   const themeMenu = (
     <Menu
       anchorEl={themeAnchorEl}
@@ -260,7 +260,10 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
 
         <Divider />
 
-        <MenuItem onClick={() => handleChooseTheme("device-theme")} selected={themeString === "device-theme"}>
+        <MenuItem
+          onClick={() => handleChooseTheme("device-theme")}
+          selected={themeString === "device-theme"}
+        >
           {themeString === "device-theme" && (
             <ListItemIcon>
               <Check />
@@ -271,7 +274,10 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           </ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={() => handleChooseTheme("light")} selected={themeString === "light"}>
+        <MenuItem
+          onClick={() => handleChooseTheme("light")}
+          selected={themeString === "light"}
+        >
           {themeString === "light" && (
             <ListItemIcon>
               <Check />
@@ -280,7 +286,10 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           <ListItemText inset={themeString !== "light"}>Light</ListItemText>
         </MenuItem>
 
-        <MenuItem onClick={() => handleChooseTheme("dark")} selected={themeString === "dark"}>
+        <MenuItem
+          onClick={() => handleChooseTheme("dark")}
+          selected={themeString === "dark"}
+        >
           {themeString === "dark" && (
             <ListItemIcon>
               <Check />
