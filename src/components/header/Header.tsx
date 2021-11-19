@@ -25,6 +25,7 @@ import {
   ListItemIcon,
   ListItemText,
   Paper,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import Logo from "components/Logo";
@@ -377,6 +378,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
     <div className={classes.grow}>
       <AppBar position="static" color="inherit">
         <Toolbar>
+          <Tooltip title="Sidebar Navigation" enterDelay={1000}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -389,6 +391,9 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           >
             <MenuIcon />
           </IconButton>
+          </Tooltip>
+
+          <Tooltip title="MathCards Home" enterDelay={1000}>
           <div ref={logoRef} style={{ transition: "width 500ms" }}>
             <IconButton
               style={{ borderRadius: "0.3rem", paddingLeft: "0.3rem" }}
@@ -400,6 +405,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               <Logo />
             </IconButton>
           </div>
+          </Tooltip>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -417,6 +423,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <Tooltip title="Create a new card">
             <IconButton
               aria-label="create a new card"
               color="inherit"
@@ -427,6 +434,9 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
             >
               <AddCircleIcon />
             </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Notifications">
             <IconButton
               aria-label="show 2 new notifications"
               color="inherit"
@@ -436,6 +446,9 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Account and Settings">
             <IconButton
               ref={accountRef}
               edge="end"
@@ -455,6 +468,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
                 <AccountCircle />
               )}
             </IconButton>
+            </Tooltip>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
