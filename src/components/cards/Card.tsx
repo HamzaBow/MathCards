@@ -16,7 +16,7 @@ import { CgPlayListAdd } from "react-icons/cg";
 import SaveToPrompt from "./SaveToPrompt";
 import { CardInterface } from "../cardform/CardForm";
 import { fetchDeleteCard } from "api/cardAPI";
-import { makeStyles } from "@mui/styles";
+import makeStyles from "@mui/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -24,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     "&:hover": {
-      cursor: "pointer"
+      cursor: "pointer",
     },
     "&:hover $buttonMore": {
-      visibility: "visible"
-  }},
+      visibility: "visible",
+    },
+  },
   buttonMore: {
     padding: 0,
     minWidth: "40px",
@@ -40,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
   moreIcon: {
     color: theme.palette.text.secondary,
-  }
-}))
+  },
+}));
 
 interface Props {
   card: CardInterface;
@@ -57,7 +58,7 @@ const Card: React.FC<Props> = ({
   cardsDispatch,
   /* size, layout, dimentions*/ flippable,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const history = useHistory();
 
@@ -170,7 +171,6 @@ const Card: React.FC<Props> = ({
     setSaveToPromptOpen(true);
   };
 
-
   return (
     <div
       className={classes.cardContainer}
@@ -187,7 +187,7 @@ const Card: React.FC<Props> = ({
               aria-haspopup="true"
               onClick={handleToggle}
             >
-              <MoreHorizIcon className={ classes.moreIcon } />
+              <MoreHorizIcon className={classes.moreIcon} />
             </Button>
             <Popper
               open={open}
