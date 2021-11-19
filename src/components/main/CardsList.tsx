@@ -14,12 +14,12 @@ const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
   //       White background (for white theme) all the way to the left & right edges of the viewport.
   return (
     <>
-    <Subheader />
-    <div className="container" >
-      {cards.map((card, key) => (
-        <Card key={key} card={card} cardsDispatch={cardsDispatch} />
-      ))}
-    </div>
+      <Subheader />
+      <div className="container">
+        {cards.map((card, key) => (
+          <Card key={key} card={card} cardsDispatch={cardsDispatch} />
+        ))}
+      </div>
     </>
   );
 };

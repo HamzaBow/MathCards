@@ -20,7 +20,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CardInterface } from "components/cardform/CardForm";
 import { fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";
 import { useUser } from "contexts/UserContext";
-import Subheader from "components/Subheader";
 
 export enum CardsType {
   UserCards,
