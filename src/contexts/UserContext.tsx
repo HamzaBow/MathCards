@@ -7,14 +7,6 @@ import { useAuth } from './AuthContext'
 const UserContext = React.createContext({})
 const UserUpdateContext = React.createContext({})
 
-export function useUser(): User {
-  return useContext(UserContext) as User
-}
-
-export function useUserUpdate(): React.Dispatch<UserReducerAction> {
-  return useContext(UserUpdateContext) as React.Dispatch<UserReducerAction>
-}
-
 interface Props {
   children: JSX.Element;
 }
@@ -46,6 +38,14 @@ export enum UserActions {
 interface UserReducerAction {
   type: UserActions;
   payload: any;
+}
+
+export function useUser(): User {
+  return useContext(UserContext) as User
+}
+
+export function useUserUpdate(): React.Dispatch<UserReducerAction> {
+  return useContext(UserUpdateContext) as React.Dispatch<UserReducerAction>
 }
 
 const UserProvider : React.FC<Props> = ({children}) => {
