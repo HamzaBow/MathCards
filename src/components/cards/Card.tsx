@@ -16,6 +16,33 @@ import { CgPlayListAdd } from "react-icons/cg";
 import SaveToPrompt from "./SaveToPrompt";
 import { CardInterface } from "../cardform/CardForm";
 import { fetchDeleteCard } from "api/cardAPI";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  cardContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    "&:hover": {
+      cursor: "pointer"
+    },
+    "&:hover $buttonMore": {
+      visibility: "visible"
+  }},
+  buttonMore: {
+    padding: 0,
+    minWidth: "40px",
+    float: "right",
+    visibility: "hidden",
+    "&:hover": {
+      backgroundColor: theme.palette.mode === "dark" ? "#5a5a5a" : "#eee",
+    },
+  },
+  moreIcon: {
+    color: theme.palette.text.secondary,
+  }
+}))
+
 interface Props {
   card: CardInterface;
   cardsDispatch: Function;
@@ -30,6 +57,8 @@ const Card: React.FC<Props> = ({
   cardsDispatch,
   /* size, layout, dimentions*/ flippable,
 }) => {
+  const classes = useStyles()
+
   const history = useHistory();
 
   const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
@@ -141,34 +170,24 @@ const Card: React.FC<Props> = ({
     setSaveToPromptOpen(true);
   };
 
+
   return (
     <div
-      className="container-item"
+      className={classes.cardContainer}
       // style={containerItemStyle}
     >
       <Paper elevation={3}>
         <div className="card">
           <div>
             <Button
-              className="btn-more"
+              className={classes.buttonMore}
+              id="btn-more"
               ref={anchorRef}
               aria-controls={open ? "menu-list-grow" : undefined}
               aria-haspopup="true"
               onClick={handleToggle}
-              style={{ float: "right", width: "0.2rem" }}
-              sx={{
-                padding: 0,
-                width: 0,
-                minWidth: 0.15,
-                backgroundColor: "text.main",
-                float: "right",
-                visibility: "hidden",
-                "&:hover": {
-                  backgroundColor: "text.disabled",
-                },
-              }}
             >
-              <MoreHorizIcon sx={{ color: "text.secondary" }} />
+              <MoreHorizIcon className={ classes.moreIcon } />
             </Button>
             <Popper
               open={open}

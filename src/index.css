@@ -23,28 +23,6 @@ body {
   gap: 1rem;
 }
 
-.container-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 0.3rem;
-
-}
-
-.container-item:hover {
-  cursor: pointer;
-}
-
-.container-item:hover .btn-more {
-  visibility: visible !important;
-}
-
-
-.btn-more:hover {
-  /* background-color: hsl(0, 0%, 85%); */
-}
-
 #opened-card {
   text-align: center;
   background-color: transparent;
