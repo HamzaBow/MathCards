@@ -112,7 +112,6 @@ function App() {
   function CardsDisplay(){
     return (
       <>
-        <Subheader />
         <Main
           cards={cards}
           cardsDispatch={cardsDispatch}
