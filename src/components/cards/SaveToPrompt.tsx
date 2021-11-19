@@ -73,6 +73,7 @@ const SaveToPrompt: React.FC<Props> = ({
       anchorEl={saveRef}
       role={undefined}
       placement="right"
+      style={{ zIndex: 1 }}
       transition
       disablePortal
     >
