@@ -83,7 +83,7 @@ const Card: React.FC<Props> = ({
   };
 
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef<HTMLElement>(null);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
   const saveRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -149,7 +149,6 @@ const Card: React.FC<Props> = ({
       <Paper elevation={3}>
         <div className="card">
           <div>
-            {/* @ts-ignore: No idea what this error is */}
             <Button
               className="btn-more"
               ref={anchorRef}
