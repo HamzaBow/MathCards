@@ -58,7 +58,6 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     //saving the new collection to the server
 
     const collection = await fetchCreateCollection({
-      // @ts-ignore: _id should exist inside user, ????
       ownerId: user._id,
       title: newCollectionTitle,
     });
@@ -118,13 +117,11 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {/* @ts-ignore: _id should exist inside user, ???? */}
               {user.collections.map((collection: Collection, key: number) => (
                 <ListItem
                 key={key}
                 button
                 className={classes.nested}
-                /* @ts-ignore: _id should exist inside user, ???? */
                   onClick={handleCollectionClick(collection._id)}
                 >
                   <ListItemIcon>

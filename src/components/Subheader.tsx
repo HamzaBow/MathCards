@@ -11,11 +11,9 @@ const Subheader = () => {
   const pathName = window.location.pathname
 
   useLayoutEffect(() => {
-    // @ts-ignore
     if(user.collections.length === 0) { return ; }
     if (pathName.startsWith("/collection/")) {
       const collectionId = pathName.slice(12)
-      // @ts-ignore
       const currentCollection = user.collections.filter(
         (collection: Collection) => collection._id === collectionId
       )?.[0];
@@ -23,7 +21,6 @@ const Subheader = () => {
     } else {
       setCollectionTitle("")
     }
-    // @ts-ignore
   }, [pathName, user._id])
 
   return (

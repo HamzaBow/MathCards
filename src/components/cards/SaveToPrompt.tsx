@@ -62,7 +62,6 @@ const SaveToPrompt: React.FC<Props> = ({cardId, saveToPromptOpen, setSaveToPromp
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={saveToPromptOpen} id="menu-list-grow" > {/* onKeyDown={handleListKeyDown}> */}
-                  {/* @ts-ignore  */}
                   {user.collections.map((collection: Collection) => (
                     <CollectionItem key={collection._id} collectionId={collection._id} cardId={cardId} title={collection.title} setSaveToPromptOpen={setSaveToPromptOpen}  />
                   ))}

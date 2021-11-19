@@ -102,7 +102,6 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
 
       setFinished(true);
       const { front, back } = frontNBackFields
-      // @ts-ignore 
       const cardData = { ownerId: user._id ,front, back, difficultyLevels, tags  };
       if (operationType === "create") {
         const card = await fetchCreateCard(cardData)

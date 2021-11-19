@@ -67,27 +67,21 @@ function App() {
 
   const user = useUser()
   // *********************************************************************
-  // @ts-ignore
   const [cardsType, setCardsType] = useState(CardsType.UserCards)
   const [collectionId, setCollectionId] = useState("")
 
   useEffect(() => {
-    // @ts-ignore
     if(user._id === "") return
     const getCards = async () => {
-      // @ts-ignore
       let cardsFromServer
       if (cardsType === CardsType.UserCards) {
-      // @ts-ignore
         cardsFromServer = await fetchCardsForUser(user._id);
       }
       if (cardsType === CardsType.CollectionCards) {
-        // @ts-ignore
         if (user.collections.length !== 0) {
           if ( collectionId === ""){
             throw new Error("collection id must be specified")
           }
-          // @ts-ignore
           const cardsIds = user?.collections?.filter((col: Collection) => col._id === collectionId)?.[0]?.cardsIds
           if (cardsIds === undefined){
             throw new Error("collection doesn't exist")
@@ -103,7 +97,6 @@ function App() {
       });
     };
     getCards();
-    // @ts-ignore
   }, [ user._id, cardsType, collectionId, user ]);
 
   // *********************************************************************
