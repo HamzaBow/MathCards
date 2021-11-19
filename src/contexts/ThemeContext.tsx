@@ -70,6 +70,9 @@ const ThemeProvider: React.FC<Props> = ({children}) => {
               <GlobalStyles styles={{
                 ".mq-editable-field .mq-cursor": {
                   borderLeftColor: `${mathQuillCursorColor} !important`
+                },
+                ".MuiDrawer-paper": {
+                  backgroundImage: 'none !important',
                 }
               }} />
               {children}
