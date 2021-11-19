@@ -111,6 +111,7 @@ function App() {
   function CardsDisplay(){
     return (
       <>
+        <Header cardsDispatch={cardsDispatch} />
         <Main
           cards={cards}
           cardsDispatch={cardsDispatch}
@@ -125,7 +126,6 @@ function App() {
     <Router>
       <div className="App">
         <CssBaseline />
-        <Header cardsDispatch={cardsDispatch} />
 
         <div id="displayCardRoutes">
           <Route exact path="/">
