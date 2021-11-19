@@ -19,7 +19,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
 import { fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";
-import { useUser } from "contexts/UserContext";
+import { Collection, useUser } from "contexts/UserContext";
 
 export enum CardsType {
   UserCards,
@@ -88,7 +88,7 @@ function App() {
             throw new Error("collection id must be specified")
           }
           // @ts-ignore
-          const cardsIds = user?.collections?.filter((col) => col._id === collectionId)?.[0]?.cardsIds
+          const cardsIds = user?.collections?.filter((col: Collection) => col._id === collectionId)?.[0]?.cardsIds
           if (cardsIds === undefined){
             throw new Error("collection doesn't exist")
           }
