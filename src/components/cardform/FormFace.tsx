@@ -3,7 +3,7 @@ import React from "react";
 import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
 import MathField from "../utilities/MathField";
-import { CARD_FORM_ACTIONS, FIELD_TYPE } from "../../Constants";
+import { CARD_FORM_ACTIONS } from "../../Constants";
 
 import { Button, Paper, Tooltip } from "@mui/material";
 import { ButtonGroup } from "@mui/material";
@@ -13,6 +13,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { FrontNBackFields } from "./CardForm";
 import { Add } from "@mui/icons-material";
+import { FieldType } from "./CardForm";
 
 addStyles();
 
@@ -80,7 +81,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
       </div>
       <div className="fields-container">
         {frontNBackFields[face].map((field, key) => {
-          if (field.type === FIELD_TYPE.MATH) {
+          if (field.type === FieldType.Math) {
             return (
               <MathField
                 key={key}
@@ -92,7 +93,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
             );
           }
 
-          if (field.type === FIELD_TYPE.TEXT) {
+          if (field.type === FieldType.Text) {
             return (
               <Quill
                 key={key}
@@ -104,8 +105,8 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
             );
           }
           if (
-            field.type !== FIELD_TYPE.MATH &&
-            field.type !== FIELD_TYPE.TEXT
+            field.type !== FieldType.Math  &&
+            field.type !== FieldType.Text
           ) {
             throw new TypeError(
               "type of the field should be either text or math"

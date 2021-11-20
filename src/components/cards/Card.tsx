@@ -14,7 +14,7 @@ import { BiEditAlt } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CgPlayListAdd } from "react-icons/cg";
 import SaveToPrompt from "./SaveToPrompt";
-import { CardInterface } from "../cardform/CardForm";
+import { CardInterface, FieldType } from "../cardform/CardForm";
 import { fetchDeleteCard } from "api/cardAPI";
 import makeStyles from "@mui/styles/makeStyles";
 
@@ -241,14 +241,14 @@ const Card: React.FC<Props> = ({
           </div>
           <div className="front" onClick={() => displayMainCard(card._id)}>
             {card.front.map((field, key) => {
-              if (field.type === "MATH") {
+              if (field.type === FieldType.Math) {
                 return (
                   <StaticMathField key={key} style={{ fontSize: "2rem" }}>
                     {field.latex}
                   </StaticMathField>
                 );
               }
-              if (field.type === "TEXT") {
+              if (field.type === FieldType.Text) {
                 return (
                   <div
                     key={key}
@@ -267,14 +267,14 @@ const Card: React.FC<Props> = ({
               return (
                 <div className="face back">
                   {card.back.map((field, key) => {
-                    if (field.type === "MATH") {
+                    if (field.type === FieldType.Math) {
                       return (
                         <StaticMathField key={key} style={{ fontSize: "2rem" }}>
                           {field.latex}
                         </StaticMathField>
                       );
                     }
-                    if (field.type === "TEXT") {
+                    if (field.type === FieldType.Text) {
                       return (
                         <div
                           key={key}

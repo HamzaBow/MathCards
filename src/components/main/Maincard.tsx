@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { HiLightBulb } from "react-icons/hi";
 import Overlay from "../utilities/Overlay";
 import { useParams } from "react-router-dom";
-import { CardInterface } from '../cardform/CardForm'
+import { CardInterface, FieldType } from '../cardform/CardForm'
 import { Paper } from "@mui/material";
 addStyles();
 
@@ -91,14 +91,14 @@ const Maincard: React.FC<Props> = ({ cards }) => {
         <div ref={divToRotate} className="card">
           <Paper ref={frontRef} className="front">
             {chosenCard?.front.map((field, key) => {
-              if (field.type === "MATH") {
+              if (field.type === FieldType.Math) {
                 return (
                   <StaticMathField key={key} style={{ fontSize: "2rem" }}>
                     {field.latex}
                   </StaticMathField>
                 );
               }
-              if (field.type === "TEXT") {
+              if (field.type === FieldType.Text) {
                 return (
                   <div
                     key={key}
@@ -115,14 +115,14 @@ const Maincard: React.FC<Props> = ({ cards }) => {
           <Paper ref={backRef} className="back">
             <HiLightBulb style={cardIconStyle} />
             {chosenCard?.back.map((field, key) => {
-              if (field.type === "MATH") {
+              if (field.type === FieldType.Math) {
                 return (
                   <StaticMathField key={key} style={{ fontSize: "2rem" }}>
                     {field.latex}
                   </StaticMathField>
                 );
               }
-              if (field.type === "TEXT") {
+              if (field.type === FieldType.Text) {
                 return (
                   <div
                     key={key}
