@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useUser } from "contexts/UserContext";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Collection } from "contexts/UserContext"
 
 const Subheader = () => {
@@ -10,7 +10,7 @@ const Subheader = () => {
 
   const pathName = window.location.pathname
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if(user.collections.length === 0) { return ; }
     if (pathName.startsWith("/collection/")) {
       const collectionId = pathName.slice(12)
