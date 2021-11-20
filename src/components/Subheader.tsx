@@ -8,10 +8,10 @@ const Subheader = () => {
   const user = useUser()
   const [collectionTitle, setCollectionTitle] = useState("")
 
-  const pathName = window.location.pathname
 
   useEffect(() => {
     if(user.collections.length === 0) { return ; }
+    const pathName = window.location.pathname
     if (pathName.startsWith("/collection/")) {
       const collectionId = pathName.slice(12)
       const currentCollection = user.collections.filter(
@@ -21,7 +21,7 @@ const Subheader = () => {
     } else {
       setCollectionTitle("")
     }
-  }, [pathName, user._id])
+  }, [user._id, user.collections])
 
   return (
     <div id="subheader">
