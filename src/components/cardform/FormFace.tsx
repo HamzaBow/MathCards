@@ -30,6 +30,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   ref
 ) => {
   face = face ?? "front";
+  const capitalizedFace = face.charAt(0).toUpperCase() + face.toLowerCase().slice(1)
 
   const addTextQuill = () => {
     fieldsDispatch({
@@ -48,9 +49,9 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   return (
     <Paper className={"card-form__step"} ref={ref}>
       <div>
-      <Tooltip title="Front face of the card" placement="top">
+      <Tooltip title={`${capitalizedFace} face of the card`} placement="top">
       <h1 style={{ marginTop: 0, textAlign: "center" }}>
-        {face.charAt(0).toUpperCase() + face.toLowerCase().slice(1)}
+        {capitalizedFace}
       </h1>
       </Tooltip>
       <div className="card-form__face__prompt-buttons-container">
