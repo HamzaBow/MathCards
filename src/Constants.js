@@ -17,8 +17,3 @@ export const CARD_FORM_ACTIONS = {
   UPDATE_HTML_CONTENT: "UPDATE_HTML_CONTENT",
   SET_FIELDS: "SET_FIELDS",
 }
-
-export const FIELD_TYPE = {
-  MATH: "MATH",
-  TEXT: "TEXT",
-}
