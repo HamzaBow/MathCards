@@ -30,7 +30,8 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   ref
 ) => {
   face = face ?? "front";
-  const capitalizedFace = face.charAt(0).toUpperCase() + face.toLowerCase().slice(1)
+  const capitalizedFace =
+    face.charAt(0).toUpperCase() + face.toLowerCase().slice(1);
 
   const addTextQuill = () => {
     fieldsDispatch({
@@ -49,36 +50,44 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   return (
     <Paper className={"card-form__step"} ref={ref}>
       <div>
-      <Tooltip title={`${capitalizedFace} face of the card`} placement="top">
-      <h1 style={{ marginTop: 0, textAlign: "center" }}>
-        {capitalizedFace}
-      </h1>
-      </Tooltip>
-      <div className="card-form__face__prompt-buttons-container">
-        <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-          <Tooltip title="Add a text field to this card" enterDelay={800} placement="top">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={addTextQuill}
-              startIcon={<Add />}
+        <Tooltip title={`${capitalizedFace} face of the card`} placement="top">
+          <h1 style={{ marginTop: 0, textAlign: "center" }}>
+            {capitalizedFace}
+          </h1>
+        </Tooltip>
+        <div className="card-form__face__prompt-buttons-container">
+          <div style={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
+            <Tooltip
+              title="Add a text field to this card"
+              enterDelay={800}
+              placement="top"
             >
-            Text
-            </Button>
-          </Tooltip>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={addTextQuill}
+                startIcon={<Add />}
+              >
+                Text
+              </Button>
+            </Tooltip>
 
-          <Tooltip title="Add a math field to this card" enterDelay={800} placement="top">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={addMathQuill}
-              startIcon={<Add />}
+            <Tooltip
+              title="Add a math field to this card"
+              enterDelay={800}
+              placement="top"
             >
-              Math
-            </Button>
-          </Tooltip>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={addMathQuill}
+                startIcon={<Add />}
+              >
+                Math
+              </Button>
+            </Tooltip>
+          </div>
         </div>
-      </div>
       </div>
       <div className="fields-container">
         {frontNBackFields[face].map((field, key) => {
@@ -105,10 +114,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
               />
             );
           }
-          if (
-            field.type !== FieldType.Math  &&
-            field.type !== FieldType.Text
-          ) {
+          if (field.type !== FieldType.Math && field.type !== FieldType.Text) {
             throw new TypeError(
               "type of the field should be either text or math"
             );
@@ -116,7 +122,6 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
           return <></>;
         })}
       </div>
-
 
       <ButtonGroup>
         {prev ? (
