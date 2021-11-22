@@ -442,7 +442,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               color="inherit"
               size="large"
             >
-              <Badge badgeContent={2} color="error">
+              <Badge badgeContent={2} color="error" sx={{ zIndex: "0" }}>
                 <NotificationsIcon />
               </Badge>
             </IconButton>
