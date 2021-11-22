@@ -335,7 +335,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
             color="inherit"
             size="large"
           >
-            <Badge badgeContent={11} color="secondary">
+            <Badge badgeContent={2} color="error">
               <NotificationsIcon />
             </Badge>
           </IconButton>
