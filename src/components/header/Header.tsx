@@ -379,32 +379,32 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       <AppBar position="static" color="inherit">
         <Toolbar>
           <Tooltip title="Sidebar Navigation" enterDelay={1000}>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            onClick={() => {
-              setDisplaySidebar((prev) => !prev);
-            }}
-            size="large"
-          >
-            <MenuIcon />
-          </IconButton>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+              onClick={() => {
+                setDisplaySidebar((prev) => !prev);
+              }}
+              size="large"
+            >
+              <MenuIcon />
+            </IconButton>
           </Tooltip>
 
           <Tooltip title="MathCards Home" enterDelay={1000}>
-          <div ref={logoRef} style={{ transition: "width 500ms" }}>
-            <IconButton
-              style={{ borderRadius: "0.3rem", paddingLeft: "0.3rem" }}
-              size="small"
-              onClick={() => {
-                history.push("/");
-              }}
-            >
-              <Logo />
-            </IconButton>
-          </div>
+            <div ref={logoRef} style={{ transition: "width 500ms" }}>
+              <IconButton
+                style={{ borderRadius: "0.3rem", paddingLeft: "0.3rem" }}
+                size="small"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
+                <Logo />
+              </IconButton>
+            </div>
           </Tooltip>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -424,50 +424,50 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Tooltip title="Create a new card">
-            <IconButton
-              aria-label="create a new card"
-              color="inherit"
-              onClick={() => {
-                history.push("/cardform/new");
-              }}
-              size="large"
-            >
-              <AddCircleIcon />
-            </IconButton>
+              <IconButton
+                aria-label="create a new card"
+                color="inherit"
+                onClick={() => {
+                  history.push("/cardform/new");
+                }}
+                size="large"
+              >
+                <AddCircleIcon />
+              </IconButton>
             </Tooltip>
 
             <Tooltip title="Notifications">
-            <IconButton
-              aria-label="show 2 new notifications"
-              color="inherit"
-              size="large"
-            >
-              <Badge badgeContent={2} color="error" sx={{ zIndex: "0" }}>
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+              <IconButton
+                aria-label="show 2 new notifications"
+                color="inherit"
+                size="large"
+              >
+                <Badge badgeContent={2} color="error" sx={{ zIndex: "0" }}>
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
             </Tooltip>
 
             <Tooltip title="Account and Settings">
-            <IconButton
-              ref={accountRef}
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-              size="large"
-            >
-              {currentUser?.photoURL ? (
-                <Avatar
-                  alt={currentUser?.displayName && currentUser?.email}
-                  src={currentUser?.photoURL}
-                />
-              ) : (
-                <AccountCircle />
-              )}
-            </IconButton>
+              <IconButton
+                ref={accountRef}
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+                size="large"
+              >
+                {currentUser?.photoURL ? (
+                  <Avatar
+                    alt={currentUser?.displayName && currentUser?.email}
+                    src={currentUser?.photoURL}
+                  />
+                ) : (
+                  <AccountCircle />
+                )}
+              </IconButton>
             </Tooltip>
           </div>
           <div className={classes.sectionMobile}>
