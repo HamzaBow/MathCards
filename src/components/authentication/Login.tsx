@@ -120,7 +120,11 @@ export default function Login() {
       await login(data.email, data.password);
       history.push("/");
     } catch (err) {
-      setError((err as Error).message);
+      if(err instanceof Error) {
+        setError((err as Error).message);
+      } else {
+        setError("Failed to sign in")
+      }
     }
     setSubmitting(false);
   }
@@ -134,7 +138,11 @@ export default function Login() {
       // TODO: what if `signIn..` succeeds and `fetchCreateUser` fails, FIX IT
       history.push("/");
     } catch (err) {
-      setError((err as Error).message);
+      if(err instanceof Error) {
+        setError((err as Error).message);
+      } else {
+        setError("Failed to continue with Google")
+      }
     }
     setLoading(false);
   }

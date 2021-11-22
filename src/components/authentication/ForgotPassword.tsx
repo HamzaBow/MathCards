@@ -109,7 +109,11 @@ export default function ForgotPassword() {
       await resetPassword(data.email);
       setMessage('Check your email for further instructions')
     } catch (err) {
-      setError((err as Error).message);
+      if(err instanceof Error) {
+        setError((err as Error).message);
+      } else {
+        setError("Failed to reset password")
+      }
     }
     setSubmitting(false);
   }
