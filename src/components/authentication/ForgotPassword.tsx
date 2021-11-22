@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+import { LoadingButton } from "@mui/lab";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import { Link as UiLink } from "@mui/material/";
@@ -163,16 +163,17 @@ export default function ForgotPassword() {
                     type="email"
                     label="Email Address"
                   />
-                  <Button
+                  <LoadingButton
                     type="submit"
-                    disabled={isSubmitting}
+                    loading={isSubmitting}
+                    loadingPosition="end"
                     fullWidth
                     variant="contained"
                     color="primary"
                     className={classes.submit}
                   >
                     Reset Password
-                  </Button>
+                  </LoadingButton>
                   <Grid container>
                     <Grid item xs>
                       <Link to="/login">
