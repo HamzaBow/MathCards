@@ -128,8 +128,7 @@ export default function Signup() {
       await fetchCreateUser(signupResult.user.uid)
       history.push("/");
     } catch (err) {
-      setError("Failed to create an account");
-      console.error(err);
+      setError((err as Error).message);
     }
     setSubmitting(false);
   }
@@ -142,8 +141,7 @@ export default function Signup() {
       await fetchCreateUser(signInWithGoogleAuthResult.user.uid)
       history.push("/");
     } catch (err) {
-      setError("Failed to sign in with Google");
-      console.error(err);
+      setError((err as Error).message);
     }
     setLoading(false);
   }
