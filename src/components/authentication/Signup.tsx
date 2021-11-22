@@ -8,17 +8,17 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import Container from "@mui/material/Container";
 import { Redirect, useHistory, Link } from "react-router-dom";
 
 import { useAuth } from "contexts/AuthContext";
 import { Formik, Form, useField, FieldHookConfig } from "formik";
-import { Alert } from '@mui/material';
+import { Alert } from "@mui/material";
 
 import { FcGoogle } from "react-icons/fc";
 
-import Logo from  "../Logo";
+import Logo from "../Logo";
 
 import * as yup from "yup";
 import { fetchCreateUser } from "api/userAPI";
@@ -76,9 +76,14 @@ type CustomTextFieldProps = {
   type: string;
   label: string;
   autoFocus?: boolean;
- } & FieldHookConfig<{}>
+} & FieldHookConfig<{}>;
 
-const CustomTextField: React.FC<CustomTextFieldProps> = ({ type, label, autoFocus, ...props }) => {
+const CustomTextField: React.FC<CustomTextFieldProps> = ({
+  type,
+  label,
+  autoFocus,
+  ...props
+}) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
   return (
@@ -119,19 +124,22 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   const { signup, currentUser, signInWithGoogleAuth } = useAuth();
-  async function handleSubmit(data: any, { setSubmitting }: {setSubmitting: Function} ) {
+  async function handleSubmit(
+    data: any,
+    { setSubmitting }: { setSubmitting: Function }
+  ) {
     // e.preventDefault()
     try {
       setError("");
       setSubmitting(true);
       const signupResult = await signup(data.email, data.password);
-      await fetchCreateUser(signupResult.user.uid)
+      await fetchCreateUser(signupResult.user.uid);
       history.push("/");
     } catch (err) {
-      if(err instanceof Error) {
+      if (err instanceof Error) {
         setError((err as Error).message);
       } else {
-        setError("Failed to sign up")
+        setError("Failed to sign up");
       }
     }
     setSubmitting(false);
@@ -142,13 +150,13 @@ export default function Signup() {
       setError("");
       setLoading(true);
       const signInWithGoogleAuthResult = await signInWithGoogleAuth();
-      await fetchCreateUser(signInWithGoogleAuthResult.user.uid)
+      await fetchCreateUser(signInWithGoogleAuthResult.user.uid);
       history.push("/");
     } catch (err) {
-      if(err instanceof Error) {
+      if (err instanceof Error) {
         setError((err as Error).message);
       } else {
-        setError("Failed to continue with Google")
+        setError("Failed to continue with Google");
       }
     }
     setLoading(false);
@@ -196,22 +204,21 @@ export default function Signup() {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({
-                isSubmitting,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-              }) => (
+              {({ isSubmitting, handleChange, handleBlur, handleSubmit }) => (
                 <Form className={classes.form} noValidate>
                   <Button
                     type="button"
-                    disabled={ isSubmitting || loading }
+                    disabled={isSubmitting || loading}
                     variant="outlined"
                     onClick={handleContinueWithGoogle}
                     className={classes.continueWithGoogle}
                     startIcon={<FcGoogle size={30} />}
                     size="large"
-                    sx={{ position: "relative", left: "50%", transform: "translateX(-50%)"}}
+                    sx={{
+                      position: "relative",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
                   >
                     Continue With Google
                   </Button>
@@ -239,9 +246,9 @@ export default function Signup() {
                   />
                   <LoadingButton
                     type="submit"
-                    loading={ isSubmitting }
+                    loading={isSubmitting}
                     loadingPosition="end"
-                    disabled={ loading }
+                    disabled={loading}
                     fullWidth
                     variant="contained"
                     color="primary"

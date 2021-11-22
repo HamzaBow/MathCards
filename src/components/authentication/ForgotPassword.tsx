@@ -8,13 +8,13 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import Container from "@mui/material/Container";
 import { Redirect, Link } from "react-router-dom";
 
 import { useAuth } from "contexts/AuthContext";
 import { Formik, Form, useField, FieldHookConfig } from "formik";
-import { Alert } from '@mui/material';
+import { Alert } from "@mui/material";
 
 import Logo from "../Logo";
 
@@ -69,9 +69,14 @@ type CustomTextFieldProps = {
   type: string;
   label: string;
   autoFocus?: boolean;
- } & FieldHookConfig<{}>
+} & FieldHookConfig<{}>;
 
-const CustomTextField: React.FC<CustomTextFieldProps> = ({ type, label, autoFocus, ...props }) => {
+const CustomTextField: React.FC<CustomTextFieldProps> = ({
+  type,
+  label,
+  autoFocus,
+  ...props
+}) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
   return (
@@ -97,22 +102,25 @@ export default function ForgotPassword() {
   const classes = useStyles();
 
   const [error, setError] = useState("");
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
   const { resetPassword, currentUser } = useAuth();
-  async function handleSubmit(data: any, { setSubmitting }: {setSubmitting: Function} ) {
+  async function handleSubmit(
+    data: any,
+    { setSubmitting }: { setSubmitting: Function }
+  ) {
     // e.preventDefault()
     try {
       setError("");
       setMessage("");
       setSubmitting(true);
       await resetPassword(data.email);
-      setMessage('Check your email for further instructions')
+      setMessage("Check your email for further instructions");
     } catch (err) {
-      if(err instanceof Error) {
+      if (err instanceof Error) {
         setError((err as Error).message);
       } else {
-        setError("Failed to reset password")
+        setError("Failed to reset password");
       }
     }
     setSubmitting(false);
@@ -126,11 +134,23 @@ export default function ForgotPassword() {
           <CssBaseline />
           <div className={classes.paper}>
             <Logo />
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginTop: '1rem' }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "0.5rem",
+                marginTop: "1rem",
+              }}
+            >
               <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
               </Avatar>
-              <Typography component="h1" variant="h5" style={{marginRight: '2rem'}}>
+              <Typography
+                component="h1"
+                variant="h5"
+                style={{ marginRight: "2rem" }}
+              >
                 Password Reset
               </Typography>
             </div>
@@ -154,12 +174,7 @@ export default function ForgotPassword() {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({
-                isSubmitting,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-              }) => (
+              {({ isSubmitting, handleChange, handleBlur, handleSubmit }) => (
                 <Form className={classes.form} noValidate>
                   <CustomTextField
                     name="email"
@@ -196,9 +211,9 @@ export default function ForgotPassword() {
                 </Form>
               )}
             </Formik>
-          <Box mt={8}>
-            <Copyright />
-          </Box>
+            <Box mt={8}>
+              <Copyright />
+            </Box>
           </div>
         </Container>
       )}
