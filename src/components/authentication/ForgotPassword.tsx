@@ -155,7 +155,6 @@ export default function ForgotPassword() {
               onSubmit={handleSubmit}
             >
               {({
-                values,
                 isSubmitting,
                 handleChange,
                 handleBlur,

@@ -197,7 +197,6 @@ export default function Signup() {
               onSubmit={handleSubmit}
             >
               {({
-                values,
                 isSubmitting,
                 handleChange,
                 handleBlur,
