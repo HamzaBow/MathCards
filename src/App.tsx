@@ -18,10 +18,11 @@ import { Redirect } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
-import { fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";
+import { fetchAllCards, fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";
 import { Collection, useUser } from "contexts/UserContext";
 
 export enum CardsType {
+  AllCards,
   UserCards,
   CollectionCards,
 }
@@ -67,13 +68,16 @@ function App() {
 
   const user = useUser()
   // *********************************************************************
-  const [cardsType, setCardsType] = useState(CardsType.UserCards)
+  const [cardsType, setCardsType] = useState(CardsType.AllCards)
   const [collectionId, setCollectionId] = useState("")
 
   useEffect(() => {
     if(user._id === "") return
     const getCards = async () => {
       let cardsFromServer
+      if (cardsType === CardsType.AllCards) {
+        cardsFromServer = await fetchAllCards();
+      }
       if (cardsType === CardsType.UserCards) {
         cardsFromServer = await fetchCardsForUser(user._id);
       }

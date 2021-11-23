@@ -39,7 +39,7 @@ const Main : React.FC<Props> = ({ cards, cardsDispatch, setCardsType, setCollect
       }
     } else {
       if (setCardsType !== undefined) {
-      setCardsType(CardsType.UserCards)
+      setCardsType(CardsType.AllCards)
       } else {
         throw new Error("setCardsType function is undefined");
       }
