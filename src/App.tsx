@@ -64,7 +64,7 @@ function App() {
   const [cards, cardsDispatch] = useReducer(cardsReducer, []);
   // --------------------------- END CARDS ---------------------------
 
-  const { currentUser } = useAuth() || { currentUser: undefined };
+  const { currentUser } = useAuth() 
 
   const user = useUser()
   // *********************************************************************

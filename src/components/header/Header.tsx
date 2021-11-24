@@ -351,8 +351,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
           >
             {currentUser?.photoURL ? (
               <Avatar
-                alt={currentUser.displayName}
-                src={currentUser.photoURL}
+                alt={currentUser?.displayName || ""}
+                src={currentUser?.photoURL}
               />
             ) : (
               <AccountCircle />
@@ -461,7 +461,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
               >
                 {currentUser?.photoURL ? (
                   <Avatar
-                    alt={currentUser?.displayName && currentUser?.email}
+                    alt={currentUser?.displayName || ""}
                     src={currentUser?.photoURL}
                   />
                 ) : (

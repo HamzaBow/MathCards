@@ -7,19 +7,34 @@ import {
   sendPasswordResetEmail,
   GoogleAuthProvider,
   signInWithPopup,
+  User,
+  UserCredential,
 } from "@firebase/auth";
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext({});
 
-export function useAuth() {
-  return useContext(AuthContext);
+interface AuthContextInterface {
+  currentUser: User | null;
+  signup: (email: string, password: string) => Promise<UserCredential>;
+  signInWithGoogleAuth: () => Promise<UserCredential>;
+  login: (email: string, password: string) => Promise<UserCredential>;
+  logout: () => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
-const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState();
+export function useAuth() {
+  return useContext(AuthContext) as AuthContextInterface;
+}
+
+interface Props {
+  children: JSX.Element;
+}
+
+const AuthProvider: React.FC<Props> = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  function signup(email, password) {
+  function signup(email: string, password: string) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
@@ -28,7 +43,7 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, provider);
   }
 
-  function login(email, password) {
+  function login(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
@@ -36,7 +51,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   }
 
-  function resetPassword(email) {
+  function resetPassword(email: string) {
     return sendPasswordResetEmail(auth, email);
   }
 
@@ -48,7 +63,7 @@ const AuthProvider = ({ children }) => {
     return unsubscribe;
   });
 
-  const value = {
+  const value: AuthContextInterface = {
     currentUser,
     signup,
     signInWithGoogleAuth,
