@@ -1,11 +1,11 @@
-import { fetchCollectionsForUser } from 'api/collectionAPI'
-import { fetchUserFromAuthId } from 'api/userAPI'
-import { CardInterface } from 'components/cardform/CardForm'
-import React, { useContext, useEffect, useReducer } from 'react'
-import { useAuth } from './AuthContext'
+import { fetchCollectionsForUser } from "api/collectionAPI";
+import { fetchUserFromAuthId } from "api/userAPI";
+import { CardInterface } from "components/cardform/CardForm";
+import React, { useContext, useEffect, useReducer } from "react";
+import { useAuth } from "./AuthContext";
 
-const UserContext = React.createContext({})
-const UserUpdateContext = React.createContext({})
+const UserContext = React.createContext({});
+const UserUpdateContext = React.createContext({});
 
 interface Props {
   children: JSX.Element;
@@ -23,7 +23,7 @@ export interface User {
   _id: string;
   authId: string;
   following: string[];
-  ownedCards: CardInterface[]
+  ownedCards: CardInterface[];
   collections: Collection[];
 }
 
@@ -41,62 +41,78 @@ interface UserReducerAction {
 }
 
 export function useUser(): User {
-  return useContext(UserContext) as User
+  return useContext(UserContext) as User;
 }
 
 export function useUserUpdate(): React.Dispatch<UserReducerAction> {
-  return useContext(UserUpdateContext) as React.Dispatch<UserReducerAction>
+  return useContext(UserUpdateContext) as React.Dispatch<UserReducerAction>;
 }
 
-const UserProvider : React.FC<Props> = ({children}) => {
-
-  function userReducer(user: User, action: UserReducerAction ): User {
+const UserProvider: React.FC<Props> = ({ children }) => {
+  function userReducer(user: User, action: UserReducerAction): User {
     switch (action.type) {
       case UserActions.FetchUser:
-        return { ...user, ...action.payload.userFromServer }
+        return { ...user, ...action.payload.userFromServer };
       //---------------------------------
       case UserActions.FetchUserCollections:
-        return { ...user, collections:  action.payload.userCollectionsFromServer}
+        return {
+          ...user,
+          collections: action.payload.userCollectionsFromServer,
+        };
       //---------------------------------
       case UserActions.FetchUserCards:
-        return { ...user, ...action.payload.userCardsFromServer }
+        return { ...user, ...action.payload.userCardsFromServer };
       //---------------------------------
       case UserActions.AddCollection:
-        return { ...user, collections: [...user.collections, action.payload.newCollection]}
+        return {
+          ...user,
+          collections: [...user.collections, action.payload.newCollection],
+        };
       //---------------------------------
       case UserActions.ResetUser:
-        return { _id: "",  authId: "", following: [], ownedCards: [], collections: [] }
+        return {
+          _id: "",
+          authId: "",
+          following: [],
+          ownedCards: [],
+          collections: [],
+        };
       default:
-        return user; 
+        return user;
     }
   }
 
   const [user, userDispatch] = useReducer(userReducer, {
-  _id: "", 
-  authId: "",
-  following: [],
-  ownedCards: [],
-  collections: [] 
-  } ) 
+    _id: "",
+    authId: "",
+    following: [],
+    ownedCards: [],
+    collections: [],
+  });
 
-  const { currentUser } = useAuth()
+  const { currentUser } = useAuth();
   useEffect(() => {
-    if(currentUser) {
+    if (currentUser) {
       // if currentUser doesn't exist (not signed in), don't do anything
       // else fetch data and update state
-          const fetchUser = async () => {
-            if(user._id === "") {
-              // if user state is empty
-              const userFromServer = await fetchUserFromAuthId(currentUser?.uid)
-              userDispatch({type: UserActions.FetchUser, payload: { userFromServer }})
-              const collections = await fetchCollectionsForUser(userFromServer._id)
-              userDispatch({type: UserActions.FetchUserCollections, payload: { userCollectionsFromServer: collections }})
-            }
-      }
-      fetchUser()
+      const fetchUser = async () => {
+        if (user._id === "") {
+          // if user state is empty
+          const userFromServer = await fetchUserFromAuthId(currentUser?.uid);
+          userDispatch({
+            type: UserActions.FetchUser,
+            payload: { userFromServer },
+          });
+          const collections = await fetchCollectionsForUser(userFromServer._id);
+          userDispatch({
+            type: UserActions.FetchUserCollections,
+            payload: { userCollectionsFromServer: collections },
+          });
+        }
+      };
+      fetchUser();
     }
-  }, [currentUser])
-
+  }, [currentUser]);
 
   return (
     <UserContext.Provider value={user}>
@@ -104,8 +120,7 @@ const UserProvider : React.FC<Props> = ({children}) => {
         {children}
       </UserUpdateContext.Provider>
     </UserContext.Provider>
-  )
-
-}
+  );
+};
 
 export default UserProvider;
