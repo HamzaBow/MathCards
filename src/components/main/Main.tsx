@@ -59,7 +59,10 @@ const Main : React.FC<Props> = ({ cards, cardsDispatch, setCardsType, setCollect
         <>
           <CardsList cards={cards} cardsDispatch={cardsDispatch} />
           {/* this is used only for test purposes*/}
-          <button onClick={displaySnackbar}>Hello</button>
+          <button onClick={() => displaySnackbar("success", "This is a success")}>success</button>
+          <button onClick={() => displaySnackbar("info", "This is an info")}>info</button>
+          <button onClick={() => displaySnackbar("warning", "This is a warning")}>warning</button>
+          <button onClick={() => displaySnackbar("error", "This is an error")}>error</button>
         </>
         :
         <Redirect to='/login' />
