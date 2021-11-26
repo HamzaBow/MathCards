@@ -1,5 +1,6 @@
+import Alert, { AlertColor } from '@mui/material/Alert'
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
-import React, { MouseEventHandler, useContext } from 'react'
+import React, { MouseEventHandler, useContext, useState } from 'react'
 export interface State extends SnackbarOrigin {
   open: boolean;
 }
@@ -7,7 +8,7 @@ export interface State extends SnackbarOrigin {
 const SnackbarContext = React.createContext({})
 
 export function useSnackbar() {
-  return useContext(SnackbarContext) as MouseEventHandler<HTMLButtonElement>
+  return useContext(SnackbarContext) as (variant: AlertColor, msg: string) => MouseEventHandler<HTMLButtonElement>
 }
 
 interface Props {
@@ -21,7 +22,12 @@ const SnackbarProvider : React.FC<Props> = ({ children }) => {
   });
   const { vertical, horizontal, open } = state;
 
-  const displaySnackbar = () => {
+  const [message, setMessage] = useState<String>("")
+  const [severity, setSeverity] = useState<AlertColor>("info")
+
+  const displaySnackbar = (variant: AlertColor, msg: string) => {
+    setMessage(msg)
+    setSeverity(variant)
     setState({ ...state, open: true });
   }
   const handleClose = () => {
@@ -33,9 +39,12 @@ const SnackbarProvider : React.FC<Props> = ({ children }) => {
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
-        message="This is a notification"
         key={vertical + horizontal}
-      />
+      >
+        <Alert onClose={handleClose} severity={severity} variant="filled" >
+          {message}
+        </Alert>
+      </Snackbar>
       {children}
     </SnackbarContext.Provider>    
   )
