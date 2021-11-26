@@ -7,6 +7,7 @@ import AuthProvider from "contexts/AuthContext";
 import ThemeProvider from "contexts/ThemeContext";
 import UserProvider from "contexts/UserContext";
 import { StyledEngineProvider } from "@mui/material/styles";
+import SnackbarProvider from "contexts/SnackbarContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider>
           <UserProvider>
+            <SnackbarProvider>
             <App />
+            </SnackbarProvider>
           </UserProvider>
         </ThemeProvider>
       </StyledEngineProvider>
