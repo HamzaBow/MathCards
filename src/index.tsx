@@ -16,7 +16,7 @@ ReactDOM.render(
         <ThemeProvider>
           <UserProvider>
             <SnackbarProvider>
-            <App />
+              <App />
             </SnackbarProvider>
           </UserProvider>
         </ThemeProvider>
