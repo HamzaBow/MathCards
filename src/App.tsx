@@ -1,22 +1,15 @@
 import React, { useEffect, useReducer, useState } from "react";
-
 import Header from "components/header/Header";
 import Main from "components/main/Main";
-
 import Maincard from "components/main/Maincard";
-import CardForm from "components/cardform/CardForm";
-
 import { CARDS_ACTIONS } from "Constants";
 import { useAuth } from "contexts/AuthContext";
 import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
-
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-
 import CssBaseline from "@mui/material/CssBaseline";
-
 import { CardInterface } from "components/cardform/CardForm";
 import {
   fetchAllCards,
