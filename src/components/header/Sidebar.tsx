@@ -177,7 +177,10 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             button
             key="Created Cards"
             onClick={() => {
-              history.push("/my_cards");
+              setDisplaySidebar(prev => !prev)
+              setTimeout(() => {
+                history.push("/my_cards");
+              }, 300)
             }}
           >
             <ListItemIcon>
