@@ -8,14 +8,9 @@ body {
 }
 
 .container {
-  /* border-radius: 1rem; */
   min-width: 100px;
-
   padding: 3rem;
-
-  /* margin-left: 3rem;
-  margin-right: 3rem; */
-  /* padding: 2.5%; */
+  margin-right: 3rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -31,8 +26,6 @@ body {
   width: auto;
   height: auto;
   position: fixed;
-
-  /* CENTER OF THE VIEW PORT */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -59,8 +52,6 @@ body {
 
 #opened-card .front,
 #opened-card .back {
-  /* background-color: white; */
-  /* border-radius: 15px; */
   position: absolute;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -69,7 +60,6 @@ body {
   flex-direction: column;
   justify-content: center;
   box-sizing: content-box;
-  /* box-sizing: border-box; */
   align-items: center;
 
   padding: 2rem;
@@ -84,8 +74,6 @@ body {
 .container .front {
   padding: 50px;
 }
-
-/* #opened-card .back { */
 .back {
   transform: rotateY(180deg);
 }
@@ -98,8 +86,6 @@ body {
   font-size: 1rem;
   border-radius: 10px;
   padding: 1.5rem 3rem;
-  /* background-color: white;
-  color: rgb(53, 80, 80); */
 
   display: flex;
   flex-direction: column;
@@ -139,9 +125,6 @@ body {
 }
 
 /*--------------------------------------------------------------------------------------*/
-
-/* MATH */
-
 .mq-math-mode {
   display: block !important;
 }
@@ -150,38 +133,9 @@ body {
   cursor: pointer;
 }
 
-
-/* IT SHOWS A SCROLL BAR WHEN MATH QUILL IS OVERFLOWN */
-/* .mq-root-block {
-  overflow-x: auto !important; */
-/* } */
-
 .ql-toolbar {
   background-color: #eaecec;
 }
 .ql-editor {
   font-size: 1rem;
 }
-
-
-
-/* ------------------------------------------------------------------------------------- */
-
-
-/* @media (min-width: 200px) {
-  :root {
-    font-size: 0.7rem;
-  }
-}
-
-@media (min-width: 350px) {
-  :root {
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 800px) {
-  :root {
-    font-size: 1.1rem;
-  }
-} */
