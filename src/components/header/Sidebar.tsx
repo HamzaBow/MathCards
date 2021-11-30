@@ -77,6 +77,12 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
       history.push(`/collection/${collecId}`);
     };
   }
+  const handleCreatedCardsClick = () => {
+    setDisplaySidebar((prev) => !prev);
+    setTimeout(() => {
+      history.push("/my_cards");
+    }, 300);
+  };
   return (
     <div>
       <Drawer
@@ -176,12 +182,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
           <ListItem
             button
             key="Created Cards"
-            onClick={() => {
-              setDisplaySidebar(prev => !prev)
-              setTimeout(() => {
-                history.push("/my_cards");
-              }, 300)
-            }}
+            onClick={handleCreatedCardsClick}
           >
             <ListItemIcon>
               <FaHammer size={23} />
