@@ -28,40 +28,54 @@ const Maincard: React.FC<Props> = ({
 
   useEffect(() => {
     // Make card's front and back faces the same size (width and height)
-    if(frontRef?.current && backRef?.current){
-    const frontWidth = window.getComputedStyle(frontRef?.current).getPropertyValue("width")
-    const frontHeight= window.getComputedStyle(frontRef?.current).getPropertyValue("height")
-    const backWidth  = window.getComputedStyle(backRef?.current).getPropertyValue("width")
-    const backHeight = window.getComputedStyle(backRef?.current).getPropertyValue("height")
+    if (frontRef?.current && backRef?.current) {
+      const frontWidth = window
+        .getComputedStyle(frontRef?.current)
+        .getPropertyValue("width");
+      const frontHeight = window
+        .getComputedStyle(frontRef?.current)
+        .getPropertyValue("height");
+      const backWidth = window
+        .getComputedStyle(backRef?.current)
+        .getPropertyValue("width");
+      const backHeight = window
+        .getComputedStyle(backRef?.current)
+        .getPropertyValue("height");
 
-    const maxWidth = Math.max(parseFloat(frontWidth.slice(0, -2)), parseFloat(backWidth.slice(0, -2)))
-    const maxHeight = Math.max(parseFloat(frontHeight.slice(0, -2)), parseFloat(backHeight.slice(0, -2)))
+      const maxWidth = Math.max(
+        parseFloat(frontWidth.slice(0, -2)),
+        parseFloat(backWidth.slice(0, -2))
+      );
+      const maxHeight = Math.max(
+        parseFloat(frontHeight.slice(0, -2)),
+        parseFloat(backHeight.slice(0, -2))
+      );
 
-    frontRef.current.style.width = maxWidth + 'px';
-    backRef.current.style.width = maxWidth + 'px' ;
-    frontRef.current.style.height = maxHeight + 'px' ;
-    backRef.current.style.height = maxHeight + 'px' ;
-  }
-  }, [])
+      frontRef.current.style.width = maxWidth + "px";
+      backRef.current.style.width = maxWidth + "px";
+      frontRef.current.style.height = maxHeight + "px";
+      backRef.current.style.height = maxHeight + "px";
+    }
+  }, []);
 
   useEffect(() => {
-    if(divToRotate?.current){
+    if (divToRotate?.current) {
       if (frontDisplayed) {
         divToRotate.current.style.transform = "rotateY(0deg)";
       } else {
         divToRotate.current.style.transform = "rotateY(180deg)";
       }
     } else {
-      console.error('cant rotate card, check divToRotate');
-    } 
+      console.error("cant rotate card, check divToRotate");
+    }
   }, [frontDisplayed]);
 
   useEffect(() => {
-    document.title = 'Main Card';
+    document.title = "Main Card";
     return () => {
-      document.title = 'MathCards';
-    }
-  })
+      document.title = "MathCards";
+    };
+  });
 
   // TODO: useEffect( ... , []) which is on mount, press <space> flips the card, addEventListener
 
