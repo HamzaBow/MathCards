@@ -128,6 +128,10 @@ function App() {
             {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
           </Route>
 
+          <Route exact path="/my_cards">
+            {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
+          </Route>
+
           <Route path="/maincard/:id">
             <Maincard cards={cards} />{" "}
           </Route>

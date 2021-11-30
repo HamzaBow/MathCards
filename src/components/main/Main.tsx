@@ -37,6 +37,8 @@ const Main : React.FC<Props> = ({ cards, cardsDispatch, setCardsType, setCollect
       } else {
         throw new Error("setCardsType function is undefined");
       }
+    } else if (window.location.pathname.startsWith("/my_cards")) {
+        setCardsType(CardsType.UserCards);
     } else {
       if (setCardsType !== undefined) {
       setCardsType(CardsType.AllCards)

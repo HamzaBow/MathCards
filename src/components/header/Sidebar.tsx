@@ -83,7 +83,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
         anchor="left"
         open={displaySidebar}
         onClose={() => setDisplaySidebar((prev) => !prev)}
-        >
+      >
         <List>
           <ListItem
             button
@@ -118,9 +118,9 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             <List component="div" disablePadding>
               {user.collections.map((collection: Collection, key: number) => (
                 <ListItem
-                key={key}
-                button
-                className={classes.nested}
+                  key={key}
+                  button
+                  className={classes.nested}
                   onClick={handleCollectionClick(collection._id)}
                 >
                   <ListItemIcon>
@@ -173,7 +173,13 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             <ListItemText primary="Bookmarks" />
           </ListItem>
 
-          <ListItem button key="Created Cards">
+          <ListItem
+            button
+            key="Created Cards"
+            onClick={() => {
+              history.push("/my_cards");
+            }}
+          >
             <ListItemIcon>
               <FaHammer size={23} />
             </ListItemIcon>

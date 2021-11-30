@@ -18,6 +18,8 @@ const Subheader = () => {
         (collection: Collection) => collection._id === collectionId
       )?.[0];
       setCollectionTitle(currentCollection.title)
+    } else if (pathName.startsWith("/mycards")) {
+      setCollectionTitle("My Cards")
     } else {
       setCollectionTitle("")
     }
