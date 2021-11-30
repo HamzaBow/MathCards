@@ -56,7 +56,7 @@ const Maincard: React.FC<Props> = ({
       frontRef.current.style.height = maxHeight + "px";
       backRef.current.style.height = maxHeight + "px";
     }
-  }, [cardId]);
+  }, [cardId, mainCardOpen]);
 
   useEffect(() => {
     if (divToRotate?.current) {
