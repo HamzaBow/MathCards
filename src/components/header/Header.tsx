@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    borderWidth: "1px",
+    borderWidth: "3px",
     backgroundColor: theme.palette.background.default,
     borderColor:
       theme.palette.mode === "dark"
@@ -62,6 +62,12 @@ const useStyles = makeStyles((theme) => ({
         : alpha(theme.palette.common.black, 0.25),
     borderStyle: "solid",
     "&:hover": {
+      borderColor:
+        theme.palette.mode === "dark"
+          ? alpha(theme.palette.common.white, 0.5)
+          : alpha(theme.palette.common.black, 0.45),
+    },
+    "&:focus-within": {
       borderColor:
         theme.palette.mode === "dark"
           ? alpha(theme.palette.common.white, 0.5)
@@ -79,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     height: "100%",
     position: "absolute",
     pointerEvents: "none",
@@ -93,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(3)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
