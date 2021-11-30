@@ -18,7 +18,11 @@ import { Redirect } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import { CardInterface } from "components/cardform/CardForm";
-import { fetchAllCards, fetchCardsForUser, fetchCardsFromCardsIds } from "api/cardAPI";
+import {
+  fetchAllCards,
+  fetchCardsForUser,
+  fetchCardsFromCardsIds,
+} from "api/cardAPI";
 import { Collection, useUser } from "contexts/UserContext";
 
 export enum CardsType {
@@ -32,7 +36,6 @@ export interface Action {
   payload?: any;
 }
 function App() {
-
   // ----------------------------- CARDS -----------------------------
 
   function cardsReducer(cards: CardInterface[], action: Action) {
@@ -55,7 +58,7 @@ function App() {
         });
       //---------------------------------
       case CARDS_ACTIONS.RESET_CARDS:
-        return []
+        return [];
       default:
         return cards;
     }
@@ -64,17 +67,17 @@ function App() {
   const [cards, cardsDispatch] = useReducer(cardsReducer, []);
   // --------------------------- END CARDS ---------------------------
 
-  const { currentUser } = useAuth() 
+  const { currentUser } = useAuth();
 
-  const user = useUser()
+  const user = useUser();
   // *********************************************************************
-  const [cardsType, setCardsType] = useState(CardsType.AllCards)
-  const [collectionId, setCollectionId] = useState("")
+  const [cardsType, setCardsType] = useState(CardsType.AllCards);
+  const [collectionId, setCollectionId] = useState("");
 
   useEffect(() => {
-    if(user._id === "") return
+    if (user._id === "") return;
     const getCards = async () => {
-      let cardsFromServer
+      let cardsFromServer;
       if (cardsType === CardsType.AllCards) {
         cardsFromServer = await fetchAllCards();
       }
@@ -83,16 +86,18 @@ function App() {
       }
       if (cardsType === CardsType.CollectionCards) {
         if (user.collections.length !== 0) {
-          if ( collectionId === ""){
-            throw new Error("collection id must be specified")
+          if (collectionId === "") {
+            throw new Error("collection id must be specified");
           }
-          const cardsIds = user?.collections?.filter((col: Collection) => col._id === collectionId)?.[0]?.cardsIds
-          if (cardsIds === undefined){
-            throw new Error("collection doesn't exist")
+          const cardsIds = user?.collections?.filter(
+            (col: Collection) => col._id === collectionId
+          )?.[0]?.cardsIds;
+          if (cardsIds === undefined) {
+            throw new Error("collection doesn't exist");
           }
-          cardsFromServer = await fetchCardsFromCardsIds(cardsIds)
+          cardsFromServer = await fetchCardsFromCardsIds(cardsIds);
         } else {
-          cardsFromServer = []
+          cardsFromServer = [];
         }
       }
       cardsDispatch({
@@ -101,11 +106,11 @@ function App() {
       });
     };
     getCards();
-  }, [ user._id, cardsType, collectionId, user ]);
+  }, [user._id, cardsType, collectionId, user]);
 
   // *********************************************************************
 
-  function CardsDisplay(){
+  function CardsDisplay() {
     return (
       <>
         <Header cardsDispatch={cardsDispatch} />
@@ -126,20 +131,12 @@ function App() {
 
         <div id="displayCardRoutes">
           <Route exact path="/">
-            {currentUser ?
-              <CardsDisplay />
-              :
-              <Redirect to="/login" />
-            }
+            {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
           </Route>
 
           <Route exact path="/collection/:id">
             {/* { setCardsType(CardsType.CollectionCards)} */}
-            {currentUser ? (
-              <CardsDisplay />
-            ) : (
-              <Redirect to="/login" />
-            )}
+            {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/maincard/:id">
