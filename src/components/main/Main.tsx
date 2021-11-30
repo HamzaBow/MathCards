@@ -8,6 +8,9 @@ import { CardInterface } from '../cardform/CardForm'
 import { Action, CardsType } from "App"
 import { useParams } from "react-router-dom";
 
+// this is used only for test purposes
+import { useSnackbar } from "contexts/SnackbarContext"
+
 interface Props {
   cards: CardInterface[];
   cardsDispatch: React.Dispatch<Action>;
@@ -16,6 +19,9 @@ interface Props {
 }
 
 const Main : React.FC<Props> = ({ cards, cardsDispatch, setCardsType, setCollectionId }) => {
+
+  // this is used only for test purposes
+  const displaySnackbar = useSnackbar()
 
   interface RouteParams {
     id: string;
@@ -50,7 +56,14 @@ const Main : React.FC<Props> = ({ cards, cardsDispatch, setCardsType, setCollect
   return (
     <main>
       {currentUser ?
-        <CardsList cards={cards} cardsDispatch={cardsDispatch} />
+        <>
+          <CardsList cards={cards} cardsDispatch={cardsDispatch} />
+          {/* this is used only for test purposes*/}
+          <button onClick={() => displaySnackbar("success", "This is a success")}>success</button>
+          <button onClick={() => displaySnackbar("info", "This is an info")}>info</button>
+          <button onClick={() => displaySnackbar("warning", "This is a warning")}>warning</button>
+          <button onClick={() => displaySnackbar("error", "This is an error")}>error</button>
+        </>
         :
         <Redirect to='/login' />
       }
