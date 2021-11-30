@@ -143,21 +143,6 @@ function App() {
             <Maincard cards={cards} />{" "}
             {/* --------------------------------------------  Maincard */}
           </Route>
-
-          <Route path="/cardform/new">
-            <CardsDisplay />
-            <CardForm operationType="create" cardsDispatch={cardsDispatch} />
-          </Route>
-
-          <Route path="/cardform/edit/:id">
-            <CardsDisplay />
-            <CardForm
-              operationType="edit"
-              cards={cards}
-              cardsDispatch={cardsDispatch}
-            />{" "}
-            {/* ----  CardForm */}
-          </Route>
         </div>
 
         <div id="authRoutes">

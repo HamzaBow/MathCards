@@ -5,15 +5,17 @@ import React, {
   useReducer,
   Dispatch,
 } from "react";
-import { useParams } from "react-router-dom";
 import FormFace from "./FormFace";
 import FormOther from "./formother/FormOther";
 
 import CardFormStepper from "./CardFormStepper";
 import SuccessSnackBar from "./SuccessSnackBar";
-import Overlay from "../utilities/Overlay";
 import { CARD_FORM_ACTIONS } from "../../Constants";
 import { Action } from "App";
+import Backdrop from "@mui/material/Backdrop";
+import ClickAwayListener from "@mui/core/ClickAwayListener";
+import Fade from "@mui/material/Fade";
+import Popper from "@mui/core/Popper";
 
 export enum FieldType {
   Text = "TEXT",
@@ -51,15 +53,20 @@ export type OperationType = "edit" | "create";
 interface Props {
   operationType: OperationType;
   cards?: CardInterface[];
+  cardId?: string;
   cardsDispatch: Dispatch<Action>;
+  cardFormOpen: boolean;
+  setCardFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
-  interface RouteParams {
-    id: string;
-  }
-  const params = useParams<RouteParams>();
-
+const CardForm: React.FC<Props> = ({
+  operationType,
+  cards,
+  cardId,
+  cardsDispatch,
+  cardFormOpen,
+  setCardFormOpen,
+}) => {
   // ******************************************* FIELDS *******************************************
   function newField(id: number, fieldType: FieldType) {
     if (fieldType === FieldType.Text) {
@@ -88,7 +95,7 @@ const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
     let face: Face = "front";
     let otherFace: Face = "back";
 
-    if (action.payload.face === "back") {
+    if (action?.payload?.face === "back") {
       face = "back";
       otherFace = "front";
     }
@@ -164,9 +171,10 @@ const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
   // *************************************** END OF NEW CARD-RELATED STATES ****************************************
 
   useEffect(() => {
+    if (cardFormOpen === false) return;
     if (operationType === "edit") {
       const card: CardInterface = cards?.find(
-        (card: CardInterface) => card?._id === params.id
+        (card: CardInterface) => card?._id === cardId
       ) as CardInterface;
       frontNBackFieldsDispatch({
         type: CARD_FORM_ACTIONS.SET_FIELDS,
@@ -175,7 +183,7 @@ const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
       setDifficultyLevels(card.difficultyLevels);
       setTags(card.tags);
     }
-  }, []);
+  }, [cardId]);
 
   //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
   const [formState, setFormState] = useState({
@@ -251,7 +259,7 @@ const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
         "`front`, `back` or `other` refs are null (or their current property is null)"
       );
     }
-  }, [formState]);
+  }, [formState, cardFormOpen]);
 
   //TODO: use useReducer instead of useState (dispatch instead of two functions)
   function next() {
@@ -276,57 +284,92 @@ const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
     }
   }
 
+  function handleClose() {
+    setCardFormOpen(false);
+    setTimeout(() => {
+      setFormState({
+        front: true,
+        back: false,
+        other: false,
+      });
+      setActiveStep(0);
+      frontNBackFieldsDispatch({ type: CARD_FORM_ACTIONS.RESET_FIELDS });
+      setDifficultyLevels({
+        veryEasy: false,
+        easy: false,
+        medium: false,
+        hard: false,
+        veryHard: false,
+      });
+      setTags([]);
+    }, 300);
+  }
+
   return (
-    <>
-      <Overlay />
-      {!finished ? (
-        <>
-          {/* <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader> */}
-          <FormFace
-            ref={front}
-            face="front"
-            next={next}
-            frontNBackFields={frontNBackFields}
-            fieldsDispatch={frontNBackFieldsDispatch}
-          />
-          <FormFace
-            ref={back}
-            face="back"
-            next={next}
-            prev={prev}
-            frontNBackFields={frontNBackFields}
-            fieldsDispatch={frontNBackFieldsDispatch}
-          />
-          <FormOther
-            operationType={operationType}
-            ref={other}
-            prev={prev}
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
-            setFinished={setFinished}
-            difficultyLevels={difficultyLevels}
-            setDifficultyLevels={setDifficultyLevels}
-            tags={tags}
-            setTags={setTags}
-            frontNBackFields={frontNBackFields}
-            cardsDispatch={cardsDispatch}
-          />
-          <div
-            style={{
-              position: "fixed",
-              bottom: "0",
-              left: "25%",
-              right: "0",
-              width: "50%",
-            }}
-          >
-            <CardFormStepper activeStep={activeStep} />
-          </div>
-        </>
-      ) : (
-        <SuccessSnackBar />
+    <Popper
+      open={cardFormOpen}
+      role={undefined}
+      transition
+      disablePortal
+      style={{ zIndex: 1 }}
+    >
+      {({ TransitionProps }) => (
+        <Fade {...TransitionProps}>
+          <Backdrop open={true}>
+            <ClickAwayListener onClickAway={handleClose}>
+              {!finished ? (
+                <div>
+                  {/* <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader> */}
+                  <FormFace
+                    ref={front}
+                    face="front"
+                    next={next}
+                    frontNBackFields={frontNBackFields}
+                    fieldsDispatch={frontNBackFieldsDispatch}
+                  />
+                  <FormFace
+                    ref={back}
+                    face="back"
+                    next={next}
+                    prev={prev}
+                    frontNBackFields={frontNBackFields}
+                    fieldsDispatch={frontNBackFieldsDispatch}
+                  />
+                  <FormOther
+                    operationType={operationType}
+                    ref={other}
+                    prev={prev}
+                    activeStep={activeStep}
+                    setActiveStep={setActiveStep}
+                    setFinished={setFinished}
+                    difficultyLevels={difficultyLevels}
+                    setDifficultyLevels={setDifficultyLevels}
+                    tags={tags}
+                    setTags={setTags}
+                    frontNBackFields={frontNBackFields}
+                    cardsDispatch={cardsDispatch}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      zIndex: 1,
+                      bottom: "0",
+                      left: "25%",
+                      right: "0",
+                      width: "50%",
+                    }}
+                  >
+                    <CardFormStepper activeStep={activeStep} />
+                  </div>
+                </div>
+              ) : (
+                <SuccessSnackBar />
+              )}
+            </ClickAwayListener>
+          </Backdrop>
+        </Fade>
       )}
-    </>
+    </Popper>
   );
 };
 

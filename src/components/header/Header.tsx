@@ -36,6 +36,7 @@ import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { CARDS_ACTIONS } from "Constants";
 import { Action } from "App";
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import CardForm from "components/cardform/CardForm";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -125,6 +126,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const accountRef = useRef<HTMLButtonElement | null>(null);
   const themeString = useTheme();
   const setThemeString = useThemeUpdate() as Function;
+
+  const [cardFormOpen, setCardFormOpen] = useState(false);
 
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = useState(false);
@@ -317,7 +320,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       <Paper variant="outlined">
         <MenuItem
           onClick={() => {
-            history.push("/cardform/new");
+            setCardFormOpen(true);
           }}
         >
           <IconButton
@@ -428,7 +431,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
                 aria-label="create a new card"
                 color="inherit"
                 onClick={() => {
-                  history.push("/cardform/new");
+                  setCardFormOpen(true);
                 }}
                 size="large"
               >
@@ -490,6 +493,12 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       <Sidebar
         displaySidebar={displaySidebar}
         setDisplaySidebar={setDisplaySidebar}
+      />
+      <CardForm
+        operationType="create"
+        cardsDispatch={cardsDispatch}
+        cardFormOpen={cardFormOpen}
+        setCardFormOpen={setCardFormOpen}
       />
     </div>
   );

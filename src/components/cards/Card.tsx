@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   card: CardInterface;
   cardsDispatch: Function;
+  setCardFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditCardFromId: React.Dispatch<React.SetStateAction<string>>;
   size?: "medium" | "small" | "large";
   layout?: "fixed-size" | "hug-content";
   dimentions?: number[];
@@ -56,6 +58,8 @@ interface Props {
 const Card: React.FC<Props> = ({
   card,
   cardsDispatch,
+  setCardFormOpen,
+  setEditCardFromId,
   /* size, layout, dimentions*/ flippable,
 }) => {
   const classes = useStyles();
@@ -135,7 +139,8 @@ const Card: React.FC<Props> = ({
       return;
     }
     setOpen(false);
-    history.push(`/cardform/edit/${card._id}`);
+    setEditCardFromId(card._id);
+    setCardFormOpen(true);
   };
 
   const handleDelete = (event: React.SyntheticEvent) => {
