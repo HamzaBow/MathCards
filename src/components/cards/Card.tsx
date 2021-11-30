@@ -48,7 +48,7 @@ interface Props {
   card: CardInterface;
   cardsDispatch: Function;
   setCardFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setEditCardFromId: React.Dispatch<React.SetStateAction<string>>;
+  setCardId: React.Dispatch<React.SetStateAction<string>>;
   size?: "medium" | "small" | "large";
   layout?: "fixed-size" | "hug-content";
   dimentions?: number[];
@@ -59,7 +59,7 @@ const Card: React.FC<Props> = ({
   card,
   cardsDispatch,
   setCardFormOpen,
-  setEditCardFromId,
+  setCardId,
   /* size, layout, dimentions*/ flippable,
 }) => {
   const classes = useStyles();
@@ -139,7 +139,7 @@ const Card: React.FC<Props> = ({
       return;
     }
     setOpen(false);
-    setEditCardFromId(card._id);
+    setCardId(card._id);
     setCardFormOpen(true);
   };
 

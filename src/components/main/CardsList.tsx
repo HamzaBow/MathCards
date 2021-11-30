@@ -14,7 +14,8 @@ const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
   // TODO: the container should have no visible style (except probably for margins, etc. ) to make the app style and layout SIMPLER
   //       White background (for white theme) all the way to the left & right edges of the viewport.
   const [cardFormOpen, setCardFormOpen] = useState(false);
-  const [editCardFromId, setEditCardFromId] = useState<string>("");
+  const [cardId, setCardId] = useState<string>(""); // this cardId is going to be used to edit card in cardForm
+                                                    // or open Maincard
   return (
     <>
       <Subheader />
@@ -25,14 +26,14 @@ const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
             card={card}
             cardsDispatch={cardsDispatch}
             setCardFormOpen={setCardFormOpen}
-            setEditCardFromId={setEditCardFromId}
+            setCardId={setCardId}
           />
         ))}
       </div>
       <CardForm
         operationType="edit"
         cards={cards}
-        cardId={editCardFromId}
+        cardId={cardId}
         cardsDispatch={cardsDispatch}
         cardFormOpen={cardFormOpen}
         setCardFormOpen={setCardFormOpen}
