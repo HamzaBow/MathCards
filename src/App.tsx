@@ -116,35 +116,27 @@ function App() {
       </>
     );
   }
-
   return (
     <Router>
       <div className="App">
         <CssBaseline />
-
-        <div id="displayCardRoutes">
           <Route exact path="/">
             {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
           </Route>
 
           <Route exact path="/collection/:id">
-            {/* { setCardsType(CardsType.CollectionCards)} */}
             {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/maincard/:id">
             <Maincard cards={cards} />{" "}
-            {/* --------------------------------------------  Maincard */}
           </Route>
-        </div>
 
-        <div id="authRoutes">
           <Route path="/signup" component={Signup} />
 
           <Route path="/login" component={Login} />
 
           <Route path="/forgot-password" component={ForgotPassword} />
-        </div>
       </div>
     </Router>
   );
