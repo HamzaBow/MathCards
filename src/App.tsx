@@ -132,10 +132,6 @@ function App() {
             {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
           </Route>
 
-          <Route path="/maincard/:id">
-            <Maincard cards={cards} />{" "}
-          </Route>
-
           <Route path="/signup" component={Signup} />
 
           <Route path="/login" component={Login} />

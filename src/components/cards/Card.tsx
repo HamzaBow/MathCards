@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StaticMathField } from "react-mathquill";
 import { CARDS_ACTIONS } from "../../Constants";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { useHistory } from "react-router";
 import Button from "@mui/material/Button";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
@@ -48,7 +47,8 @@ interface Props {
   card: CardInterface;
   cardsDispatch: Function;
   setCardFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setEditCardFromId: React.Dispatch<React.SetStateAction<string>>;
+  setMainCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCardId: React.Dispatch<React.SetStateAction<string>>;
   size?: "medium" | "small" | "large";
   layout?: "fixed-size" | "hug-content";
   dimentions?: number[];
@@ -59,13 +59,11 @@ const Card: React.FC<Props> = ({
   card,
   cardsDispatch,
   setCardFormOpen,
-  setEditCardFromId,
+  setMainCardOpen,
+  setCardId,
   /* size, layout, dimentions*/ flippable,
 }) => {
   const classes = useStyles();
-
-  const history = useHistory();
-
   const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
 
   // ********************* Smart Defaults.**********************
@@ -112,8 +110,9 @@ const Card: React.FC<Props> = ({
   // };
 
   // TODO: the rest of the code is to be refactored, it was copied and pasted from the old Card.js component
-  const displayMainCard = (id: string) => {
-    history.push(`/maincard/${card._id}`);
+  const displayMainCard = () => {
+    setCardId(card._id)
+    setMainCardOpen(true)
   };
 
   const [open, setOpen] = React.useState(false);
@@ -139,7 +138,7 @@ const Card: React.FC<Props> = ({
       return;
     }
     setOpen(false);
-    setEditCardFromId(card._id);
+    setCardId(card._id);
     setCardFormOpen(true);
   };
 
@@ -244,7 +243,7 @@ const Card: React.FC<Props> = ({
               saveRef={saveRef.current}
             />
           </div>
-          <div className="front" onClick={() => displayMainCard(card._id)}>
+          <div className="front" onClick={displayMainCard}>
             {card.front.map((field, key) => {
               if (field.type === FieldType.Math) {
                 return (
