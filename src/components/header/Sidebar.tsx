@@ -74,7 +74,9 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
   ): MouseEventHandler<HTMLDivElement> {
     return () => {
       setDisplaySidebar(false);
-      history.push(`/collection/${collecId}`);
+      setTimeout(() => {
+        history.push(`/collection/${collecId}`);
+      }, 300);
     };
   }
   const handleCreatedCardsClick = () => {
