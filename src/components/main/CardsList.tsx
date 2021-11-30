@@ -4,6 +4,7 @@ import CardForm, { CardInterface } from "components/cardform/CardForm";
 import Subheader from "components/Subheader";
 import { useState } from "react";
 import Card from "../cards/Card";
+import Maincard from "./Maincard";
 
 interface Props {
   cards: CardInterface[];
@@ -16,6 +17,7 @@ const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
   const [cardFormOpen, setCardFormOpen] = useState(false);
   const [cardId, setCardId] = useState<string>(""); // this cardId is going to be used to edit card in cardForm
                                                     // or open Maincard
+  const [mainCardOpen, setMainCardOpen] = useState(false);
   return (
     <>
       <Subheader />
@@ -26,6 +28,7 @@ const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
             card={card}
             cardsDispatch={cardsDispatch}
             setCardFormOpen={setCardFormOpen}
+            setMainCardOpen={setMainCardOpen}
             setCardId={setCardId}
           />
         ))}
@@ -37,6 +40,12 @@ const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
         cardsDispatch={cardsDispatch}
         cardFormOpen={cardFormOpen}
         setCardFormOpen={setCardFormOpen}
+      />
+      <Maincard
+        cards={cards}
+        cardId={cardId}
+        mainCardOpen={mainCardOpen}
+        setMainCardOpen={setMainCardOpen}
       />
     </>
   );
