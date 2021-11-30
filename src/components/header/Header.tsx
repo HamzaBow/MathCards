@@ -36,6 +36,7 @@ import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { CARDS_ACTIONS } from "Constants";
 import { Action } from "App";
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import CardForm from "components/cardform/CardForm";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    borderWidth: "1px",
+    borderWidth: "3px",
     backgroundColor: theme.palette.background.default,
     borderColor:
       theme.palette.mode === "dark"
@@ -61,6 +62,12 @@ const useStyles = makeStyles((theme) => ({
         : alpha(theme.palette.common.black, 0.25),
     borderStyle: "solid",
     "&:hover": {
+      borderColor:
+        theme.palette.mode === "dark"
+          ? alpha(theme.palette.common.white, 0.5)
+          : alpha(theme.palette.common.black, 0.45),
+    },
+    "&:focus-within": {
       borderColor:
         theme.palette.mode === "dark"
           ? alpha(theme.palette.common.white, 0.5)
@@ -78,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1),
     height: "100%",
     position: "absolute",
     pointerEvents: "none",
@@ -92,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(3)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -125,6 +132,8 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
   const accountRef = useRef<HTMLButtonElement | null>(null);
   const themeString = useTheme();
   const setThemeString = useThemeUpdate() as Function;
+
+  const [cardFormOpen, setCardFormOpen] = useState(false);
 
   const classes = useStyles();
   const [displaySidebar, setDisplaySidebar] = useState(false);
@@ -317,7 +326,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       <Paper variant="outlined">
         <MenuItem
           onClick={() => {
-            history.push("/cardform/new");
+            setCardFormOpen(true);
           }}
         >
           <IconButton
@@ -428,7 +437,7 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
                 aria-label="create a new card"
                 color="inherit"
                 onClick={() => {
-                  history.push("/cardform/new");
+                  setCardFormOpen(true);
                 }}
                 size="large"
               >
@@ -490,6 +499,12 @@ const Header: React.FC<Props> = ({ cardsDispatch }) => {
       <Sidebar
         displaySidebar={displaySidebar}
         setDisplaySidebar={setDisplaySidebar}
+      />
+      <CardForm
+        operationType="create"
+        cardsDispatch={cardsDispatch}
+        cardFormOpen={cardFormOpen}
+        setCardFormOpen={setCardFormOpen}
       />
     </div>
   );
