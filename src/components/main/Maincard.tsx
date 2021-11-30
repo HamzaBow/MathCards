@@ -56,7 +56,7 @@ const Maincard: React.FC<Props> = ({
       frontRef.current.style.height = maxHeight + "px";
       backRef.current.style.height = maxHeight + "px";
     }
-  }, []);
+  }, [cardId]);
 
   useEffect(() => {
     if (divToRotate?.current) {
@@ -68,7 +68,7 @@ const Maincard: React.FC<Props> = ({
     } else {
       console.error("cant rotate card, check divToRotate");
     }
-  }, [frontDisplayed]);
+  }, [frontDisplayed, cardId]);
 
   useEffect(() => {
     document.title = "Main Card";
