@@ -226,23 +226,23 @@ const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
       if (formState.front === true) {
         front.current.style.transform = "translate(  -50%, -50% )";
 
-        back.current.style.transform = "translate( 100vw, -50% )";
+        back.current.style.transform = "translate( 150vw, -50% )";
 
-        other.current.style.transform = "translate( 100vw, -50% )";
+        other.current.style.transform = "translate( 150vw, -50% )";
       }
 
       if (formState.back === true) {
-        front.current.style.transform = "translate(  -100vw, -50% )";
+        front.current.style.transform = "translate(  -150vw, -50% )";
 
         back.current.style.transform = "translate(  -50%, -50% )";
 
-        other.current.style.transform = "translate( 100vw, -50% )";
+        other.current.style.transform = "translate( 150vw, -50% )";
       }
 
       if (formState.other === true) {
-        front.current.style.transform = "translate(  -100vw, -50% )";
+        front.current.style.transform = "translate(  -150vw, -50% )";
 
-        back.current.style.transform = "translate(  -100vw,  -50% )";
+        back.current.style.transform = "translate(  -150vw,  -50% )";
 
         other.current.style.transform = "translate(  -50%, -50% )";
       }
