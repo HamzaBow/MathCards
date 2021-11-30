@@ -136,6 +136,9 @@ const CardForm: React.FC<Props> = ({ operationType, cards, cardsDispatch }) => {
       case CARD_FORM_ACTIONS.SET_FIELDS:
         return action.payload.frontNBackFields;
 
+      case CARD_FORM_ACTIONS.RESET_FIELDS:
+        return { front: [], back: [], other: [] };
+
       default:
         return frontNBackFields;
     }
