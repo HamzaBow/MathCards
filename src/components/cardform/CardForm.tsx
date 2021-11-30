@@ -183,7 +183,7 @@ const CardForm: React.FC<Props> = ({
       setDifficultyLevels(card.difficultyLevels);
       setTags(card.tags);
     }
-  }, [cardId]);
+  }, [cardId, cardFormOpen]);
 
   //TODO: what if by mistake two properties are both true !!!, must figure out a better way to do this.
   const [formState, setFormState] = useState({
