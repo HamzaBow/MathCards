@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    borderWidth: "3px",
+    borderWidth: "1px",
     backgroundColor: theme.palette.background.default,
     borderColor:
       theme.palette.mode === "dark"
@@ -62,12 +62,14 @@ const useStyles = makeStyles((theme) => ({
         : alpha(theme.palette.common.black, 0.25),
     borderStyle: "solid",
     "&:hover": {
+      borderWidth: "2px",
       borderColor:
         theme.palette.mode === "dark"
           ? alpha(theme.palette.common.white, 0.5)
           : alpha(theme.palette.common.black, 0.45),
     },
     "&:focus-within": {
+      borderWidth: "3px",
       borderColor:
         theme.palette.mode === "dark"
           ? alpha(theme.palette.common.white, 0.5)
