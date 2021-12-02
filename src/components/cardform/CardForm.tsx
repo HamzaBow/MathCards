@@ -9,7 +9,6 @@ import FormFace from "./FormFace";
 import FormOther from "./formother/FormOther";
 
 import CardFormStepper from "./CardFormStepper";
-import SuccessSnackBar from "./SuccessSnackBar";
 import { CARD_FORM_ACTIONS } from "../../Constants";
 import { Action } from "App";
 import Backdrop from "@mui/material/Backdrop";
