@@ -13,6 +13,7 @@ import { fetchCreateCard, fetchUpdateCardPUT } from "api/cardAPI"
 import { Action } from "App";
 import { CARDS_ACTIONS } from "Constants";
 import { useUser } from "contexts/UserContext";
+import { useSnackbar } from "contexts/SnackbarContext";
 
 interface OtherProps {
   operationType: OperationType;
@@ -52,6 +53,8 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
 
   const user = useUser()
 
+  const displaySnackbar = useSnackbar();
+
   useEffect(() => {
     const getTagOptions = async () => {
       const tagsFromServer = await fetchTagOptions();
@@ -81,6 +84,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { card }})
       }
       handleCloseCardForm();
+      displaySnackbar("success", "Card saved successfully")
       return;
     }
     throw new RangeError(
