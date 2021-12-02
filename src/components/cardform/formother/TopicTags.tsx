@@ -26,8 +26,8 @@ const labelStyle = {
     marginBottom: "1rem",
 }
 export interface TagOption {
-  id: string;
-  tag: string;
+  title: string;
+  count: number;
 }
 
 interface Props {
@@ -49,7 +49,7 @@ const TopicTags : React.FC<Props> = ({ tags, setTags, tagOptions}) => {
           freeSolo
           multiple
           id="tags-outlined"
-          options={tagOptions.map((tagOption) => tagOption.tag)}
+          options={tagOptions.map((tagOption) => tagOption.title)}
           renderTags={(value, getTagProps) =>
             value.map((option, index) => (
               <Chip

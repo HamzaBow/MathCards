@@ -65,14 +65,14 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   }, []);
 
   const fetchTagOptions = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/tagoptions`);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/tags`);
     const data = await res.json();
     return data;
   };
 
   function getNewTags() {
     const newTags = tags.filter(
-      (tag) => !tagOptions.map((tagOption) => tagOption.tag).includes(tag)
+      (tag) => !tagOptions.map((tagOption) => tagOption.title).includes(tag)
     );
     return newTags;
   }
