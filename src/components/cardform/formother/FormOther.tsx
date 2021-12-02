@@ -70,32 +70,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     return data;
   };
 
-  function getNewTags() {
-    const newTags = tags.filter(
-      (tag) => !tagOptions.map((tagOption) => tagOption.title).includes(tag)
-    );
-    return newTags;
-  }
-
-  const saveNewTags = async (newTags: string[]) => {
-    await Promise.all(
-      newTags.map(async (tag) => {
-        await fetch(`${process.env.REACT_APP_API_URL}/tagoptions`, {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ tag: tag }),
-        });
-      })
-    );
-  };
-
-  if (activeStep === 3) {
-  }
-
   const save = async () => {
-    saveNewTags(getNewTags());
 
     if (activeStep !== 3) {
       setSaveDisabled(true);
