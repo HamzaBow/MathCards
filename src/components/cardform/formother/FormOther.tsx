@@ -13,7 +13,6 @@ import { fetchCreateCard, fetchUpdateCardPUT } from "api/cardAPI"
 import { Action } from "App";
 import { CARDS_ACTIONS } from "Constants";
 import { useUser } from "contexts/UserContext";
-import { useParams } from 'react-router-dom'
 
 interface OtherProps {
   operationType: OperationType;
@@ -52,11 +51,6 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
   const [tagOptions, setTagOptions] = useState<TagOption[]>([]);
 
   const user = useUser()
-
-  interface RouteParams {
-    id: string;
-  }
-  const params = useParams<RouteParams>();
 
   useEffect(() => {
     const getTagOptions = async () => {
