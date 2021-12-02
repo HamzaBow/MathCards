@@ -75,7 +75,6 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     if (activeStep !== 3) {
       setSaveDisabled(true);
 
-      setFinished(true);
       const { front, back } = frontNBackFields
       const cardData = { ownerId: user._id ,front, back, difficultyLevels, tags  };
       if (operationType === "create") {
@@ -85,7 +84,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         const card = await fetchUpdateCardPUT(params.id, cardData)
         cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { card }})
       }
-
+      setFinished(true);
       return;
     }
     throw new RangeError(
