@@ -348,6 +348,7 @@ const CardForm: React.FC<Props> = ({
                     setTags={setTags}
                     frontNBackFields={frontNBackFields}
                     cardsDispatch={cardsDispatch}
+                    cardId={cardId}
                   />
                   <div
                     style={{

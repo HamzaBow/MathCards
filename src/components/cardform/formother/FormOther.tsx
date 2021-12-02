@@ -27,6 +27,7 @@ interface OtherProps {
   setTags(tagsToSet: string[]): void;
   frontNBackFields: FrontNBackFields;
   cardsDispatch: Dispatch<Action> 
+  cardId?: string;
 }
 
 const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
@@ -42,6 +43,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     setTags,
     frontNBackFields,
     cardsDispatch,
+    cardId,
   },
   ref
 ) => {
@@ -81,7 +83,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         const card = await fetchCreateCard(cardData)
         cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card }})
       } else {
-        const card = await fetchUpdateCardPUT(params.id, cardData)
+        const card = await fetchUpdateCardPUT(cardId as string, cardData)
         cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { card }})
       }
       setFinished(true);
