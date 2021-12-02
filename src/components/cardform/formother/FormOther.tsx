@@ -19,7 +19,6 @@ interface OtherProps {
   prev: Function;
   activeStep: number;
   setActiveStep(step: number | Function): void;
-  setFinished(finished: boolean): void;
   difficultyLevels: DifficultyLevelsInterface;
   setDifficultyLevels(difficultyLevels: DifficultyLevelsInterface): void;
   tags: string[];
@@ -27,6 +26,7 @@ interface OtherProps {
   frontNBackFields: FrontNBackFields;
   cardsDispatch: Dispatch<Action> 
   cardId?: string;
+  handleCloseCardForm: Function
 }
 
 const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
@@ -35,7 +35,6 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     prev,
     activeStep,
     setActiveStep,
-    setFinished,
     difficultyLevels,
     setDifficultyLevels,
     tags,
@@ -43,6 +42,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     frontNBackFields,
     cardsDispatch,
     cardId,
+    handleCloseCardForm,
   },
   ref
 ) => {
@@ -80,7 +80,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         const card = await fetchUpdateCardPUT(cardId as string, cardData)
         cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { card }})
       }
-      setFinished(true);
+      handleCloseCardForm();
       return;
     }
     throw new RangeError(

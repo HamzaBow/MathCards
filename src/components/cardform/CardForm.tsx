@@ -192,8 +192,6 @@ const CardForm: React.FC<Props> = ({
     other: false,
   });
 
-  const [finished, setFinished] = useState(false);
-
   const front = useRef<HTMLDivElement>(null);
   const back = useRef<HTMLDivElement>(null);
   const other = useRef<HTMLDivElement>(null); // other is the last form where the user adds tags and difficulty levels to the new card.
@@ -317,7 +315,6 @@ const CardForm: React.FC<Props> = ({
         <Fade {...TransitionProps}>
           <Backdrop open={true}>
             <ClickAwayListener onClickAway={handleCloseCardForm}>
-              {!finished ? (
                 <div>
                   {/* <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader> */}
                   <FormFace
@@ -341,7 +338,6 @@ const CardForm: React.FC<Props> = ({
                     prev={prev}
                     activeStep={activeStep}
                     setActiveStep={setActiveStep}
-                    setFinished={setFinished}
                     difficultyLevels={difficultyLevels}
                     setDifficultyLevels={setDifficultyLevels}
                     tags={tags}
@@ -349,6 +345,7 @@ const CardForm: React.FC<Props> = ({
                     frontNBackFields={frontNBackFields}
                     cardsDispatch={cardsDispatch}
                     cardId={cardId}
+                    handleCloseCardForm={handleCloseCardForm}
                   />
                   <div
                     style={{
@@ -363,9 +360,6 @@ const CardForm: React.FC<Props> = ({
                     <CardFormStepper activeStep={activeStep} />
                   </div>
                 </div>
-              ) : (
-                <SuccessSnackBar />
-              )}
             </ClickAwayListener>
           </Backdrop>
         </Fade>
