@@ -284,7 +284,7 @@ const CardForm: React.FC<Props> = ({
     }
   }
 
-  function handleClose() {
+  function handleCloseCardForm() {
     setCardFormOpen(false);
     setTimeout(() => {
       setFormState({
@@ -316,7 +316,7 @@ const CardForm: React.FC<Props> = ({
       {({ TransitionProps }) => (
         <Fade {...TransitionProps}>
           <Backdrop open={true}>
-            <ClickAwayListener onClickAway={handleClose}>
+            <ClickAwayListener onClickAway={handleCloseCardForm}>
               {!finished ? (
                 <div>
                   {/* <CardFormHeader > {operationType === "create" ? "New Card" : "Edit Card"}</CardFormHeader> */}
