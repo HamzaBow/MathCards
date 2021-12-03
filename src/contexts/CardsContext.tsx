@@ -7,11 +7,11 @@ const CardsContext        = React.createContext({});
 const CardsUpdateContext  = React.createContext({});
 
 export const useCards = () => {
-  return useContext(CardsContext);
+  return useContext(CardsContext) as CardInterface[];
 };
 
 export const useUpdateCards = () => {
-  return useContext(CardsUpdateContext);
+  return useContext(CardsUpdateContext) as React.Dispatch<Action>;
 };
 
 interface Props {
