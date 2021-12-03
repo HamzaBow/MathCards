@@ -1,7 +1,6 @@
-import React, { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "components/header/Header";
 import Main from "components/main/Main";
-import Maincard from "components/main/Maincard";
 import { CARDS_ACTIONS } from "Constants";
 import { useAuth } from "contexts/AuthContext";
 import Signup from "components/authentication/Signup";
@@ -10,14 +9,13 @@ import ForgotPassword from "components/authentication/ForgotPassword";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
-import { CardInterface } from "components/cardform/CardForm";
 import {
   fetchAllCards,
   fetchCardsForUser,
   fetchCardsFromCardsIds,
 } from "api/cardAPI";
 import { Collection, useUser } from "contexts/UserContext";
-import { useCards, useUpdateCards } from "contexts/CardsContext";
+import { useUpdateCards } from "contexts/CardsContext";
 
 export enum CardsType {
   AllCards,
