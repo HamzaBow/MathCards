@@ -3,7 +3,6 @@ import React, {
   useRef,
   useEffect,
   useReducer,
-  Dispatch,
 } from "react";
 import FormFace from "./FormFace";
 import FormOther from "./formother/FormOther";
@@ -15,7 +14,7 @@ import Backdrop from "@mui/material/Backdrop";
 import ClickAwayListener from "@mui/core/ClickAwayListener";
 import Fade from "@mui/material/Fade";
 import Popper from "@mui/core/Popper";
-import { useCards, useUpdateCards } from "contexts/CardsContext";
+import { useCards } from "contexts/CardsContext";
 
 export enum FieldType {
   Text = "TEXT",
@@ -65,7 +64,6 @@ const CardForm: React.FC<Props> = ({
 }) => {
 
   const cards = useCards();
-  const cardsDispatch = useUpdateCards();
 
   // ******************************************* FIELDS *******************************************
   function newField(id: number, fieldType: FieldType) {
