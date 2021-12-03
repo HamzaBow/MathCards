@@ -16,6 +16,7 @@ import SaveToPrompt from "./SaveToPrompt";
 import { CardInterface, FieldType } from "../cardform/CardForm";
 import { fetchDeleteCard } from "api/cardAPI";
 import makeStyles from "@mui/styles/makeStyles";
+import { useUpdateCards } from "contexts/CardsContext";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -45,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   card: CardInterface;
-  cardsDispatch: Function;
   setCardFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setMainCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setCardId: React.Dispatch<React.SetStateAction<string>>;
@@ -57,12 +57,14 @@ interface Props {
 
 const Card: React.FC<Props> = ({
   card,
-  cardsDispatch,
   setCardFormOpen,
   setMainCardOpen,
   setCardId,
   /* size, layout, dimentions*/ flippable,
 }) => {
+
+  const cardsDispatch = useUpdateCards();
+
   const classes = useStyles();
   const [saveToPromptOpen, setSaveToPromptOpen] = useState(false);
 

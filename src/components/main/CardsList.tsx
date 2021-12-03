@@ -26,7 +26,6 @@ const CardsList: React.FC = () => {
           <Card
             key={key}
             card={card}
-            cardsDispatch={cardsDispatch}
             setCardFormOpen={setCardFormOpen}
             setMainCardOpen={setMainCardOpen}
             setCardId={setCardId}
