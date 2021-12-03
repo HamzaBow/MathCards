@@ -8,6 +8,7 @@ import ThemeProvider from "contexts/ThemeContext";
 import UserProvider from "contexts/UserContext";
 import { StyledEngineProvider } from "@mui/material/styles";
 import SnackbarProvider from "contexts/SnackbarContext";
+import CardsProvider from "contexts/CardsContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,9 +16,11 @@ ReactDOM.render(
       <StyledEngineProvider injectFirst>
         <ThemeProvider>
           <UserProvider>
+            <CardsProvider>
             <SnackbarProvider>
               <App />
             </SnackbarProvider>
+            </CardsProvider>
           </UserProvider>
         </ThemeProvider>
       </StyledEngineProvider>
