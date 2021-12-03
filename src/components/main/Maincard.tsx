@@ -1,23 +1,23 @@
 import { addStyles, StaticMathField } from "react-mathquill";
 import { useState, useEffect, useRef } from "react";
 import { HiLightBulb } from "react-icons/hi";
-import { CardInterface, FieldType } from '../cardform/CardForm'
+import { FieldType } from '../cardform/CardForm'
 import { Backdrop, ClickAwayListener, Fade, Paper, Popper } from "@mui/material";
+import { useCards } from "contexts/CardsContext";
 addStyles();
 
 interface Props {
-  cards: CardInterface[];
   cardId: string;
   mainCardOpen: boolean;
   setMainCardOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Maincard: React.FC<Props> = ({
-  cards,
   cardId,
   mainCardOpen,
   setMainCardOpen,
 }) => {
+  const cards = useCards();
 
   const chosenCard = cards.find((card) => card._id === cardId);
 

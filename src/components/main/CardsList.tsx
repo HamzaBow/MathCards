@@ -37,7 +37,6 @@ const CardsList: React.FC = () => {
         setCardFormOpen={setCardFormOpen}
       />
       <Maincard
-        cards={cards}
         cardId={cardId}
         mainCardOpen={mainCardOpen}
         setMainCardOpen={setMainCardOpen}
