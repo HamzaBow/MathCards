@@ -15,7 +15,7 @@ export const useUpdateCards = () => {
 };
 
 interface Props {
-  chilren: JSX.Element;
+  children: JSX.Element;
 }
 
 const CardsProvider: React.FC<Props> = ({ children }) => {
