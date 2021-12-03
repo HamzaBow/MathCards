@@ -37,39 +37,39 @@ function App() {
   const [cardsType, setCardsType] = useState(CardsType.AllCards);
   const [collectionId, setCollectionId] = useState("");
 
-  useEffect(() => {
-    if (user._id === "") return;
-    const getCards = async () => {
-      let cardsFromServer;
-      if (cardsType === CardsType.AllCards) {
-        cardsFromServer = await fetchAllCards();
-      }
-      if (cardsType === CardsType.UserCards) {
-        cardsFromServer = await fetchCardsForUser(user._id);
-      }
-      if (cardsType === CardsType.CollectionCards) {
-        if (user.collections.length !== 0) {
-          if (collectionId === "") {
-            throw new Error("collection id must be specified");
-          }
-          const cardsIds = user?.collections?.filter(
-            (col: Collection) => col._id === collectionId
-          )?.[0]?.cardsIds;
-          if (cardsIds === undefined) {
-            throw new Error("collection doesn't exist");
-          }
-          cardsFromServer = await fetchCardsFromCardsIds(cardsIds);
-        } else {
-          cardsFromServer = [];
-        }
-      }
-      cardsDispatch({
-        type: CARDS_ACTIONS.FETCH_CARDS,
-        payload: { cards: cardsFromServer },
-      });
-    };
-    getCards();
-  }, [user._id, cardsType, collectionId, user]);
+  // useEffect(() => {
+  //   if (user._id === "") return;
+  //   const getCards = async () => {
+  //     let cardsFromServer;
+  //     if (cardsType === CardsType.AllCards) {
+  //       cardsFromServer = await fetchAllCards();
+  //     }
+  //     if (cardsType === CardsType.UserCards) {
+  //       cardsFromServer = await fetchCardsForUser(user._id);
+  //     }
+  //     if (cardsType === CardsType.CollectionCards) {
+  //       if (user.collections.length !== 0) {
+  //         if (collectionId === "") {
+  //           throw new Error("collection id must be specified");
+  //         }
+  //         const cardsIds = user?.collections?.filter(
+  //           (col: Collection) => col._id === collectionId
+  //         )?.[0]?.cardsIds;
+  //         if (cardsIds === undefined) {
+  //           throw new Error("collection doesn't exist");
+  //         }
+  //         cardsFromServer = await fetchCardsFromCardsIds(cardsIds);
+  //       } else {
+  //         cardsFromServer = [];
+  //       }
+  //     }
+  //     cardsDispatch({
+  //       type: CARDS_ACTIONS.FETCH_CARDS,
+  //       payload: { cards: cardsFromServer },
+  //     });
+  //   };
+  //   getCards();
+  // }, [user._id, cardsType, collectionId, user]);
 
   // *********************************************************************
 
