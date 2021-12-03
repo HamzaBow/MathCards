@@ -344,7 +344,6 @@ const CardForm: React.FC<Props> = ({
                     tags={tags}
                     setTags={setTags}
                     frontNBackFields={frontNBackFields}
-                    cardsDispatch={cardsDispatch}
                     cardId={cardId}
                     handleCloseCardForm={handleCloseCardForm}
                   />

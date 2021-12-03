@@ -14,6 +14,7 @@ import { Action } from "App";
 import { CARDS_ACTIONS } from "Constants";
 import { useUser } from "contexts/UserContext";
 import { useSnackbar } from "contexts/SnackbarContext";
+import { useUpdateCards } from "contexts/CardsContext";
 
 interface OtherProps {
   operationType: OperationType;
@@ -25,7 +26,6 @@ interface OtherProps {
   tags: string[];
   setTags(tagsToSet: string[]): void;
   frontNBackFields: FrontNBackFields;
-  cardsDispatch: Dispatch<Action> 
   cardId?: string;
   handleCloseCardForm: Function
 }
@@ -41,12 +41,14 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     tags,
     setTags,
     frontNBackFields,
-    cardsDispatch,
     cardId,
     handleCloseCardForm,
   },
   ref
 ) => {
+
+  const cardsDispatch = useUpdateCards();
+
   const [saveDisabled, setSaveDisabled] = useState(false);
 
   const [tagOptions, setTagOptions] = useState<TagOption[]>([]);
