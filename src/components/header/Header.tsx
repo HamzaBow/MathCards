@@ -37,6 +37,7 @@ import { CARDS_ACTIONS } from "Constants";
 import { Action } from "App";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import CardForm from "components/cardform/CardForm";
+import { useUpdateCards } from "contexts/CardsContext";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -125,11 +126,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  cardsDispatch: React.Dispatch<Action>;
-}
+const Header: React.FC = () => {
 
-const Header: React.FC<Props> = ({ cardsDispatch }) => {
+  const cardsDispatch = useUpdateCards();
+
   const logoRef = useRef<HTMLDivElement>(null);
   const accountRef = useRef<HTMLButtonElement | null>(null);
   const themeString = useTheme();

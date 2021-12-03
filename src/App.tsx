@@ -106,7 +106,7 @@ function App() {
   function CardsDisplay() {
     return (
       <>
-        <Header cardsDispatch={cardsDispatch} />
+        <Header />
         <Main
           cards={cards}
           cardsDispatch={cardsDispatch}
