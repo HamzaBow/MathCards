@@ -37,7 +37,6 @@ const CardsList: React.FC<Props> = ({ cards, cardsDispatch }) => {
         operationType="edit"
         cards={cards}
         cardId={cardId}
-        cardsDispatch={cardsDispatch}
         cardFormOpen={cardFormOpen}
         setCardFormOpen={setCardFormOpen}
       />
