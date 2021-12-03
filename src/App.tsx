@@ -108,8 +108,6 @@ function App() {
       <>
         <Header />
         <Main
-          cards={cards}
-          cardsDispatch={cardsDispatch}
           setCardsType={setCardsType}
           setCollectionId={setCollectionId}
         />

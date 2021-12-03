@@ -7,15 +7,17 @@ import { CardInterface } from '../cardform/CardForm'
 
 import { Action, CardsType } from "App"
 import { useParams } from "react-router-dom";
+import { useCards, useUpdateCards } from "contexts/CardsContext";
 
 interface Props {
-  cards: CardInterface[];
-  cardsDispatch: React.Dispatch<Action>;
   setCardsType: Function;
   setCollectionId?: Function;
 }
 
-const Main : React.FC<Props> = ({ cards, cardsDispatch, setCardsType, setCollectionId }) => {
+const Main : React.FC<Props> = ({ setCardsType, setCollectionId }) => {
+
+  const cards = useCards()
+  const cardsDispatch = useUpdateCards();
 
   interface RouteParams {
     id: string;
