@@ -2,12 +2,8 @@ import React, { useEffect } from "react";
 import CardsList from "./CardsList";
 import { Redirect } from "react-router";
 import { useAuth } from "../../contexts/AuthContext";
-
-import { CardInterface } from '../cardform/CardForm'
-
-import { Action, CardsType } from "App"
+import { CardsType } from "App"
 import { useParams } from "react-router-dom";
-import { useCards, useUpdateCards } from "contexts/CardsContext";
 
 interface Props {
   setCardsType: Function;
@@ -15,9 +11,6 @@ interface Props {
 }
 
 const Main : React.FC<Props> = ({ setCardsType, setCollectionId }) => {
-
-  const cards = useCards()
-  const cardsDispatch = useUpdateCards();
 
   interface RouteParams {
     id: string;
