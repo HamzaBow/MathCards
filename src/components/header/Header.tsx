@@ -504,7 +504,6 @@ const Header: React.FC = () => {
       />
       <CardForm
         operationType="create"
-        cardsDispatch={cardsDispatch}
         cardFormOpen={cardFormOpen}
         setCardFormOpen={setCardFormOpen}
       />

@@ -15,6 +15,7 @@ import Backdrop from "@mui/material/Backdrop";
 import ClickAwayListener from "@mui/core/ClickAwayListener";
 import Fade from "@mui/material/Fade";
 import Popper from "@mui/core/Popper";
+import { useUpdateCards } from "contexts/CardsContext";
 
 export enum FieldType {
   Text = "TEXT",
@@ -53,7 +54,6 @@ interface Props {
   operationType: OperationType;
   cards?: CardInterface[];
   cardId?: string;
-  cardsDispatch: Dispatch<Action>;
   cardFormOpen: boolean;
   setCardFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -62,10 +62,12 @@ const CardForm: React.FC<Props> = ({
   operationType,
   cards,
   cardId,
-  cardsDispatch,
   cardFormOpen,
   setCardFormOpen,
 }) => {
+
+  const cardsDispatch = useUpdateCards();
+
   // ******************************************* FIELDS *******************************************
   function newField(id: number, fieldType: FieldType) {
     if (fieldType === FieldType.Text) {
