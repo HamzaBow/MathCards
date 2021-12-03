@@ -55,7 +55,7 @@ const Main : React.FC<Props> = ({ setCardsType, setCollectionId }) => {
     <main>
       {currentUser ?
         <>
-          <CardsList cards={cards} cardsDispatch={cardsDispatch} />
+          <CardsList />
         </>
         :
         <Redirect to='/login' />

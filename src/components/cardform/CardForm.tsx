@@ -15,7 +15,7 @@ import Backdrop from "@mui/material/Backdrop";
 import ClickAwayListener from "@mui/core/ClickAwayListener";
 import Fade from "@mui/material/Fade";
 import Popper from "@mui/core/Popper";
-import { useUpdateCards } from "contexts/CardsContext";
+import { useCards, useUpdateCards } from "contexts/CardsContext";
 
 export enum FieldType {
   Text = "TEXT",
@@ -52,7 +52,6 @@ export interface CardInterface {
 export type OperationType = "edit" | "create";
 interface Props {
   operationType: OperationType;
-  cards?: CardInterface[];
   cardId?: string;
   cardFormOpen: boolean;
   setCardFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -60,12 +59,12 @@ interface Props {
 
 const CardForm: React.FC<Props> = ({
   operationType,
-  cards,
   cardId,
   cardFormOpen,
   setCardFormOpen,
 }) => {
 
+  const cards = useCards();
   const cardsDispatch = useUpdateCards();
 
   // ******************************************* FIELDS *******************************************

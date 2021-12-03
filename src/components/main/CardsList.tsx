@@ -34,7 +34,6 @@ const CardsList: React.FC = () => {
       </div>
       <CardForm
         operationType="edit"
-        cards={cards}
         cardId={cardId}
         cardFormOpen={cardFormOpen}
         setCardFormOpen={setCardFormOpen}
