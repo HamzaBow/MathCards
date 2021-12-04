@@ -1,21 +1,9 @@
-import { useEffect, useState } from "react";
-import Header from "components/header/Header";
-import Main from "components/main/Main";
-import { CARDS_ACTIONS } from "Constants";
-import { useAuth } from "contexts/AuthContext";
+import { useState } from "react";
 import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
-import {
-  fetchAllCards,
-  fetchCardsForUser,
-  fetchCardsFromCardsIds,
-} from "api/cardAPI";
-import { Collection, useUser } from "contexts/UserContext";
-import { useUpdateCards } from "contexts/CardsContext";
 import Home from "pages/home"
 import CollectionView from "pages/collection";
 import UserCardsView from "pages/user-cards";
@@ -31,62 +19,8 @@ export interface Action {
   payload?: any;
 }
 function App() {
-  const cardsDispatch = useUpdateCards();
-
-  const { currentUser } = useAuth();
-
-  const user = useUser();
-  // *********************************************************************
   const [cardsType, setCardsType] = useState(CardsType.AllCards);
   const [collectionId, setCollectionId] = useState("");
-
-  // useEffect(() => {
-  //   if (user._id === "") return;
-  //   const getCards = async () => {
-  //     let cardsFromServer;
-  //     if (cardsType === CardsType.AllCards) {
-  //       cardsFromServer = await fetchAllCards();
-  //     }
-  //     if (cardsType === CardsType.UserCards) {
-  //       cardsFromServer = await fetchCardsForUser(user._id);
-  //     }
-  //     if (cardsType === CardsType.CollectionCards) {
-  //       if (user.collections.length !== 0) {
-  //         if (collectionId === "") {
-  //           throw new Error("collection id must be specified");
-  //         }
-  //         const cardsIds = user?.collections?.filter(
-  //           (col: Collection) => col._id === collectionId
-  //         )?.[0]?.cardsIds;
-  //         if (cardsIds === undefined) {
-  //           throw new Error("collection doesn't exist");
-  //         }
-  //         cardsFromServer = await fetchCardsFromCardsIds(cardsIds);
-  //       } else {
-  //         cardsFromServer = [];
-  //       }
-  //     }
-  //     cardsDispatch({
-  //       type: CARDS_ACTIONS.FETCH_CARDS,
-  //       payload: { cards: cardsFromServer },
-  //     });
-  //   };
-  //   getCards();
-  // }, [user._id, cardsType, collectionId, user]);
-
-  // *********************************************************************
-
-  function CardsDisplay() {
-    return (
-      <>
-        <Header />
-        <Main
-          setCardsType={setCardsType}
-          setCollectionId={setCollectionId}
-        />
-      </>
-    );
-  }
   return (
     <Router>
       <div className="App">
