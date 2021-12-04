@@ -1,3 +1,7 @@
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import { CardsType } from "App";
 import Header from "components/header/Header";
 import Main from "components/main/Main";
@@ -33,16 +37,20 @@ const Home: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
     });
   }, [data]);
 
-
   return (
     <>
       {currentUser ? (
         <>
           <Header />
           {loading ? (
-            <h3>loading</h3>
+            <LinearProgress />
           ) : error ? (
-            <h3>error</h3>
+            <Box sx={{display: "grid", placeItems: "center", height: "70vh"}}>
+              <Alert variant="filled" severity="error" sx={{display: "inline-flex"}}>
+                <AlertTitle>Sorry!</AlertTitle>
+                Data couldn't be fetched from the server.
+              </Alert>
+            </Box>
           ) : (
             <>
               <Main
