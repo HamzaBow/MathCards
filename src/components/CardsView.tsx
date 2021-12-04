@@ -4,22 +4,22 @@ import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import { CardsType } from "App";
+import { useAuth } from "contexts/AuthContext";
 import React from "react";
 import { Redirect } from "react-router";
 import Header from "./header/Header";
 import Main from "./main/Main";
 
 interface Props {
-  currentUser: User | null;
   loading: boolean;
   error: Error | undefined;
 }
 
 const CardsView: React.FC<Props> = ({
-  currentUser,
   loading,
   error,
 }) => {
+  const { currentUser } = useAuth();
   return (
     <>
       {currentUser ? (

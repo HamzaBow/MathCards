@@ -13,7 +13,6 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
-  const { currentUser } = useAuth();
   const cardsDispatch = useUpdateCards();
   const user = useUser();
 
@@ -33,7 +32,6 @@ const Home: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
 
   return (
     <CardsView
-      currentUser={currentUser}
       loading={loading}
       error={error}
     />
