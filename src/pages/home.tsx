@@ -1,13 +1,11 @@
 import CardsView from "components/CardsView";
 import { CARDS_ACTIONS } from "Constants";
 import { useUpdateCards } from "contexts/CardsContext";
-import { useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 
 const Home: React.FC = () => {
   const cardsDispatch = useUpdateCards();
-  const user = useUser();
 
   const { loading, error, data } = useFetch(
     `${process.env.REACT_APP_API_URL}/cards`,
