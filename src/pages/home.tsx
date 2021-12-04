@@ -36,8 +36,6 @@ const Home: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
       currentUser={currentUser}
       loading={loading}
       error={error}
-      setCardsType={setCardsType}
-      setCollectionId={setCollectionId}
     />
   );
 };

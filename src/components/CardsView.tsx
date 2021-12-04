@@ -13,16 +13,12 @@ interface Props {
   currentUser: User | null;
   loading: boolean;
   error: Error | undefined;
-  setCardsType: React.Dispatch<React.SetStateAction<CardsType>>;
-  setCollectionId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CardsView: React.FC<Props> = ({
   currentUser,
   loading,
   error,
-  setCardsType,
-  setCollectionId,
 }) => {
   return (
     <>
