@@ -32,7 +32,13 @@ const UserCardsView: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
   }, [data]);
 
   return (
-    <CardsView currentUser={currentUser} loading={loading} error={error} setCardsType={setCardsType} setCollectionId={setCollectionId} />
+    <CardsView
+      currentUser={currentUser}
+      loading={loading}
+      error={error}
+      setCardsType={setCardsType}
+      setCollectionId={setCollectionId}
+    />
   );
 };
 
