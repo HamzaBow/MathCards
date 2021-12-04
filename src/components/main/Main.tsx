@@ -32,7 +32,7 @@ const Main : React.FC<Props> = ({ setCardsType, setCollectionId }) => {
       } else {
         throw new Error("setCardsType function is undefined");
       }
-    } else if (window.location.pathname.startsWith("/my_cards")) {
+    } else if (window.location.pathname.startsWith("/user_cards")) {
         setCardsType(CardsType.UserCards);
     } else {
       if (setCardsType !== undefined) {

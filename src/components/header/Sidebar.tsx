@@ -82,7 +82,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
   const handleCreatedCardsClick = () => {
     setDisplaySidebar((prev) => !prev);
     setTimeout(() => {
-      history.push("/my_cards");
+      history.push("/user_cards");
     }, 300);
   };
   return (
