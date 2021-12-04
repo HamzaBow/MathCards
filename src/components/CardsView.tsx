@@ -32,16 +32,7 @@ const CardsView: React.FC<Props> = ({
           {loading ? (
             <LinearProgress />
           ) : error ? (
-            <Box sx={{ display: "grid", placeItems: "center", height: "70vh" }}>
-              <Alert
-                variant="filled"
-                severity="error"
-                sx={{ display: "inline-flex" }}
-              >
-                <AlertTitle>Sorry!</AlertTitle>
-                Data couldn't be fetched from the server.
-              </Alert>
-            </Box>
+            <FetchError />
           ) : (
             <>
               <Main />
@@ -54,5 +45,20 @@ const CardsView: React.FC<Props> = ({
     </>
   );
 };
+
+function FetchError() {
+  return (
+    <Box sx={{ display: "grid", placeItems: "center", height: "70vh" }}>
+      <Alert
+        variant="filled"
+        severity="error"
+        sx={{ display: "inline-flex" }}
+      >
+        <AlertTitle>Sorry!</AlertTitle>
+        Data couldn't be fetched from the server.
+      </Alert>
+    </Box>
+  );
+}
 
 export default CardsView;
