@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Home from "pages/home"
 import CollectionView from "pages/collection";
 import UserCardsView from "pages/user-cards";
+import PrivateRoute from "components/utilities/PrivateRoute";
 
 export interface Action {
   type: string;
@@ -16,17 +17,17 @@ function App() {
     <Router>
       <div className="App">
         <CssBaseline />
-          <Route exact path="/">
+          <PrivateRoute exact path="/">
             <Home />
-          </Route>
+          </PrivateRoute>
 
-          <Route exact path="/collection/:id">
+          <PrivateRoute exact path="/collection/:id">
             <CollectionView />
-          </Route>
+          </PrivateRoute>
 
-          <Route exact path="/user_cards">
+          <PrivateRoute exact path="/user_cards">
             <UserCardsView />
-          </Route>
+          </PrivateRoute>
 
           <Route path="/signup" component={Signup} />
 

@@ -17,24 +17,17 @@ const CardsView: React.FC<Props> = ({
   loading,
   error,
 }) => {
-  const { currentUser } = useAuth();
   return (
     <>
-      {currentUser ? (
-        <>
-          <Header />
-          {loading ? (
-            <LinearProgress />
-          ) : error ? (
-            <FetchError />
-          ) : (
-            <>
-              <Main />
-            </>
-          )}
-        </>
+      <Header />
+      {loading ? (
+        <LinearProgress />
+      ) : error ? (
+        <FetchError />
       ) : (
-        <Redirect to="/login" />
+        <>
+          <Main />
+        </>
       )}
     </>
   );
