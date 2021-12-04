@@ -1,17 +1,14 @@
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
-import LinearProgress from "@mui/material/LinearProgress";
 import { CardsType } from "App";
-import Header from "components/header/Header";
-import Main from "components/main/Main";
+import CardsView from "components/CardsView";
 import { CARDS_ACTIONS } from "Constants";
 import { useAuth } from "contexts/AuthContext";
 import { useUpdateCards } from "contexts/CardsContext";
 import { useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
-import { Redirect } from "react-router";
 
 interface Props {
   setCardsType: React.Dispatch<React.SetStateAction<CardsType>>;
@@ -38,32 +35,7 @@ const Home: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
   }, [data]);
 
   return (
-    <>
-      {currentUser ? (
-        <>
-          <Header />
-          {loading ? (
-            <LinearProgress />
-          ) : error ? (
-            <Box sx={{display: "grid", placeItems: "center", height: "70vh"}}>
-              <Alert variant="filled" severity="error" sx={{display: "inline-flex"}}>
-                <AlertTitle>Sorry!</AlertTitle>
-                Data couldn't be fetched from the server.
-              </Alert>
-            </Box>
-          ) : (
-            <>
-              <Main
-                setCardsType={setCardsType}
-                setCollectionId={setCollectionId}
-              />
-            </>
-          )}
-        </>
-      ) : (
-        <Redirect to="/login" />
-      )}
-    </>
+    <CardsView currentUser={currentUser} loading={loading} error={error} setCardsType={setCardsType} setCollectionId={setCollectionId} />
   );
 };
 
