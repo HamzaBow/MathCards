@@ -26,15 +26,15 @@ function App() {
       <div className="App">
         <CssBaseline />
           <Route exact path="/">
-            <Home setCardsType={setCardsType} setCollectionId={setCollectionId} />
+            <Home />
           </Route>
 
           <Route exact path="/collection/:id">
-            <CollectionView setCardsType={setCardsType} setCollectionId={setCollectionId} />
+            <CollectionView />
           </Route>
 
           <Route exact path="/user_cards">
-            <UserCardsView setCardsType={setCardsType} setCollectionId={setCollectionId} />
+            <UserCardsView />
           </Route>
 
           <Route path="/signup" component={Signup} />

@@ -1,19 +1,12 @@
-import { CardsType } from "App";
 import CardsView from "components/CardsView";
 import { CARDS_ACTIONS } from "Constants";
-import { useAuth } from "contexts/AuthContext";
 import { useUpdateCards } from "contexts/CardsContext";
 import { Collection, useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 
-interface Props {
-  setCardsType: React.Dispatch<React.SetStateAction<CardsType>>;
-  setCollectionId: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const CollectionView: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
+const CollectionView: React.FC = () => {
   const cardsDispatch = useUpdateCards();
   const user = useUser();
 

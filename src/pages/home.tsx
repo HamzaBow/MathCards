@@ -7,12 +7,7 @@ import { useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 
-interface Props {
-  setCardsType: React.Dispatch<React.SetStateAction<CardsType>>;
-  setCollectionId: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const Home: React.FC<Props> = ({ setCardsType, setCollectionId }) => {
+const Home: React.FC = () => {
   const cardsDispatch = useUpdateCards();
   const user = useUser();
 
