@@ -1,12 +1,14 @@
-import Signup from "components/authentication/Signup";
-import Login from "components/authentication/Login";
-import ForgotPassword from "components/authentication/ForgotPassword";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import PrivateRoute from "components/utilities/PrivateRoute";
 import CssBaseline from "@mui/material/CssBaseline";
+
 import Home from "pages/home"
 import CollectionView from "pages/collection";
 import UserCardsView from "pages/user-cards";
-import PrivateRoute from "components/utilities/PrivateRoute";
+
+import Signup from "components/authentication/Signup";
+import Login from "components/authentication/Login";
+import ForgotPassword from "components/authentication/ForgotPassword";
 
 export interface Action {
   type: string;
@@ -17,6 +19,7 @@ function App() {
     <Router>
       <div className="App">
         <CssBaseline />
+
           <PrivateRoute exact path="/">
             <Home />
           </PrivateRoute>
