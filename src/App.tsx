@@ -17,6 +17,7 @@ import {
 import { Collection, useUser } from "contexts/UserContext";
 import { useUpdateCards } from "contexts/CardsContext";
 import Home from "pages/home"
+import CollectionView from "pages/collection";
 
 export enum CardsType {
   AllCards,
@@ -94,7 +95,7 @@ function App() {
           </Route>
 
           <Route exact path="/collection/:id">
-            {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
+            <CollectionView setCardsType={setCardsType} setCollectionId={setCollectionId} />
           </Route>
 
           <Route exact path="/my_cards">
