@@ -19,8 +19,6 @@ export interface Action {
   payload?: any;
 }
 function App() {
-  const [cardsType, setCardsType] = useState(CardsType.AllCards);
-  const [collectionId, setCollectionId] = useState("");
   return (
     <Router>
       <div className="App">
