@@ -205,18 +205,6 @@ const CardForm: React.FC<Props> = ({
     }
   }, []);
 
-  useEffect(() => {
-    if (operationType === "create") {
-      document.title = "New Card";
-    }
-    if (operationType === "edit") {
-      document.title = "Edit Card";
-    }
-    return () => {
-      document.title = "MathCards";
-    };
-  }, [operationType]);
-
   //TODO: FIXME: refactor the inside of this useEffect hook (probably requires refactoring the whole page)
   useEffect(() => {
     if (

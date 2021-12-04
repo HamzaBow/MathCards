@@ -70,13 +70,6 @@ const Maincard: React.FC<Props> = ({
     }
   }, [frontDisplayed, cardId]);
 
-  useEffect(() => {
-    document.title = "Main Card";
-    return () => {
-      document.title = "MathCards";
-    };
-  });
-
   // TODO: useEffect( ... , []) which is on mount, press <space> flips the card, addEventListener
 
   // const mainCardStyle = {
