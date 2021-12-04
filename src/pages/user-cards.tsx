@@ -5,7 +5,7 @@ import { useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 
-const UserCardsView: React.FC = () => {
+const UserCardsViewInner: React.FC = () => {
   const cardsDispatch = useUpdateCards();
   const user = useUser();
 
@@ -30,5 +30,10 @@ const UserCardsView: React.FC = () => {
     />
   );
 };
+
+const UserCardsView: React.FC = () => {
+  const user = useUser();
+  return <>{user._id !== "" && <UserCardsViewInner />}</>;
+}
 
 export default UserCardsView;
