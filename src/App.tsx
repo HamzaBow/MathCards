@@ -16,6 +16,7 @@ import {
 } from "api/cardAPI";
 import { Collection, useUser } from "contexts/UserContext";
 import { useUpdateCards } from "contexts/CardsContext";
+import Home from "pages/home"
 
 export enum CardsType {
   AllCards,
@@ -89,7 +90,7 @@ function App() {
       <div className="App">
         <CssBaseline />
           <Route exact path="/">
-            {currentUser ? <CardsDisplay /> : <Redirect to="/login" />}
+            <Home setCardsType={setCardsType} setCollectionId={setCollectionId} />
           </Route>
 
           <Route exact path="/collection/:id">
