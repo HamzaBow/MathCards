@@ -6,7 +6,7 @@ import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 
-const CollectionView: React.FC = () => {
+const CollectionViewInner: React.FC = () => {
   const cardsDispatch = useUpdateCards();
   const user = useUser();
 
@@ -43,5 +43,10 @@ const CollectionView: React.FC = () => {
     />
   );
 };
+
+const CollectionView: React.FC = () => {
+  const user = useUser();
+  return <>{user.collections.length !== 0 && <CollectionViewInner />}</>;
+}
 
 export default CollectionView;
