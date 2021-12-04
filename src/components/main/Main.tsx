@@ -3,15 +3,7 @@ import CardsList from "./CardsList";
 import { Redirect } from "react-router";
 import { useAuth } from "../../contexts/AuthContext";
 
-interface Props {
-  setCardsType: Function;
-  setCollectionId?: Function;
-}
-
-const Main : React.FC<Props> = ({ setCardsType, setCollectionId }) => {
-
-
-
+const Main : React.FC = () => {
   const { currentUser } = useAuth() || { currentUser: undefined }
   return (
     <main>

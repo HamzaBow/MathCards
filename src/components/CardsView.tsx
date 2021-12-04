@@ -44,10 +44,7 @@ const CardsView: React.FC<Props> = ({
             </Box>
           ) : (
             <>
-              <Main
-                setCardsType={setCardsType}
-                setCollectionId={setCollectionId}
-              />
+              <Main />
             </>
           )}
         </>
