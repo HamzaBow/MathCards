@@ -1,7 +1,5 @@
-import { CardsType } from "App";
 import CardsView from "components/CardsView";
 import { CARDS_ACTIONS } from "Constants";
-import { useAuth } from "contexts/AuthContext";
 import { useUpdateCards } from "contexts/CardsContext";
 import { useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
