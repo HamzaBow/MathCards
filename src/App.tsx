@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
@@ -7,12 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Home from "pages/home"
 import CollectionView from "pages/collection";
 import UserCardsView from "pages/user-cards";
-
-export enum CardsType {
-  AllCards,
-  UserCards,
-  CollectionCards,
-}
 
 export interface Action {
   type: string;

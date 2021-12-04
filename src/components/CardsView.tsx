@@ -1,9 +1,7 @@
-import { User } from "@firebase/auth";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-import { CardsType } from "App";
 import { useAuth } from "contexts/AuthContext";
 import React from "react";
 import { Redirect } from "react-router";
