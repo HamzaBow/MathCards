@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   );
 
   useEffect(() => {
-    if (data === undefined || user._id === "") return;
+    if (data === undefined) return;
     cardsDispatch({
       type: CARDS_ACTIONS.FETCH_CARDS,
       payload: { cards: data },
