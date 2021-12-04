@@ -3,8 +3,8 @@ import { CardInterface } from "components/cardform/CardForm";
 import { CARDS_ACTIONS } from "Constants";
 import React, { useContext, useReducer } from "react";
 
-const CardsContext        = React.createContext({});
-const CardsUpdateContext  = React.createContext({});
+const CardsContext       = React.createContext({});
+const CardsUpdateContext = React.createContext({});
 
 export const useCards = () => {
   return useContext(CardsContext) as CardInterface[];
