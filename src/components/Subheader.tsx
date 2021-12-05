@@ -9,21 +9,21 @@ const Subheader = () => {
   const [collectionTitle, setCollectionTitle] = useState("")
 
 
-  useEffect(() => {
-    if(user.collections.length === 0) { return ; }
-    const pathName = window.location.pathname
-    if (pathName.startsWith("/collection/")) {
-      const collectionId = pathName.slice(12)
-      const currentCollection = user.collections.filter(
-        (collection: Collection) => collection._id === collectionId
-      )?.[0];
-      setCollectionTitle(currentCollection.title)
-    } else if (pathName.startsWith("/mycards")) {
-      setCollectionTitle("My Cards")
-    } else {
-      setCollectionTitle("")
-    }
-  }, [user._id, user.collections])
+  // useEffect(() => {
+  //   if(user.collections === undefined) { return ; }
+  //   const pathName = window.location.pathname
+  //   if (pathName.startsWith("/collection/")) {
+  //     const collectionId = pathName.slice(12)
+  //     const currentCollection = user.collections.filter(
+  //       (collection: Collection) => collection._id === collectionId
+  //     )?.[0];
+  //     setCollectionTitle(currentCollection.title)
+  //   } else if (pathName.startsWith("/user_cards")) {
+  //     setCollectionTitle("My Cards")
+  //   } else {
+  //     setCollectionTitle("")
+  //   }
+  // }, [user._id, user.collections])
 
   return (
     <div id="subheader">
