@@ -90,7 +90,7 @@ const SaveToPrompt: React.FC<Props> = ({
               <MenuList autoFocusItem={saveToPromptOpen} id="menu-list-grow">
                 {" "}
                 {/* onKeyDown={handleListKeyDown}> */}
-                {user.collections.map((collection: Collection) => (
+                {user.collections?.map((collection: Collection) => (
                   <CollectionItem
                     key={collection._id}
                     collectionId={collection._id}
