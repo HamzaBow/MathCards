@@ -44,9 +44,32 @@ const CollectionViewInner: React.FC = () => {
   );
 };
 
+const EmptyCollectionView: React.FC = () => {
+  const cardsDispatch = useUpdateCards();
+  cardsDispatch({
+    type: CARDS_ACTIONS.RESET_CARDS
+  })
+  return (
+    <CardsView
+      loading={false}
+      error={undefined}
+    />
+  )
+}
+
 const CollectionView: React.FC = () => {
   const user = useUser();
-  return <>{user.collections.length !== 0 && <CollectionViewInner />}</>;
+  return (
+    <>
+      { user.collections !== undefined &&
+         user.collections.length !== 0 ? (
+           <CollectionViewInner />
+         )
+         :
+           <EmptyCollectionView />
+      }
+    </>
+  );
 }
 
 export default CollectionView;
