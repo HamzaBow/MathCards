@@ -124,7 +124,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {user.collections.map((collection: Collection, key: number) => (
+              {user.collections?.map((collection: Collection, key: number) => (
                 <ListItem
                   key={key}
                   button
