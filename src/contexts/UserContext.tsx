@@ -22,9 +22,9 @@ export interface Collection {
 export interface User {
   _id: string;
   authId: string;
-  following: string[];
-  ownedCards: CardInterface[];
-  collections: Collection[];
+  following?: string[];
+  ownedCards?: CardInterface[];
+  collections?: Collection[];
 }
 
 export enum UserActions {
@@ -73,9 +73,9 @@ const UserProvider: React.FC<Props> = ({ children }) => {
         return {
           _id: "",
           authId: "",
-          following: [],
-          ownedCards: [],
-          collections: [],
+          following: undefined,
+          ownedCards: undefined,
+          collections: undefined,
         };
       default:
         return user;
