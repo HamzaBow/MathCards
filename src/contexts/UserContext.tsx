@@ -64,9 +64,10 @@ const UserProvider: React.FC<Props> = ({ children }) => {
         return { ...user, ...action.payload.userCardsFromServer };
       //---------------------------------
       case UserActions.AddCollection:
+        const collections = user.collections === undefined ? [] : user.collections
         return {
           ...user,
-          collections: [...user.collections, action.payload.newCollection],
+          collections,
         };
       //---------------------------------
       case UserActions.ResetUser:
