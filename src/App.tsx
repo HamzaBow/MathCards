@@ -3,7 +3,7 @@ import PrivateRoute from "components/utilities/PrivateRoute";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Home from "pages/home"
-import CollectionView from "pages/collection";
+import CollectionView from "pages/CollectionView";
 import UserCardsView from "pages/user-cards";
 
 import Signup from "components/authentication/Signup";
