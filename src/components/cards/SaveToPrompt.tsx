@@ -8,9 +8,10 @@ import {
 } from "@mui/material";
 import React from "react";
 import { ImSigma } from "react-icons/im";
-import { useUser } from "../../contexts/UserContext";
+import { useUser, useUserUpdate } from "../../contexts/UserContext";
 import { Collection } from "contexts/UserContext";
 import { fetchAddCardToCollection } from "api/collectionAPI";
+import { UserActions } from "contexts/UserContext"
 
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
@@ -28,8 +29,13 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   title,
   setSaveToPromptOpen,
 }) => {
+  const userDispatch = useUserUpdate()
   const handleSaveCardToCollection = (event: any) => {
     fetchAddCardToCollection(collectionId, cardId);
+    userDispatch({
+      type: UserActions.AddCardIdToCollection,
+      payload: { collectionId, cardId },
+    });
     setSaveToPromptOpen(false);
   };
   return (
