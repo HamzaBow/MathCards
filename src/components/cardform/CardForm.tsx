@@ -49,6 +49,16 @@ export interface CardInterface {
   tags: string[];
 }
 export type OperationType = "edit" | "create";
+
+export enum CardFormActions {
+  AddTextQuill,
+  AddMathQuill,
+  UpdateLatex,
+  UpdateHtmlContent,
+  SetFields,
+  ResetFields,
+}
+
 interface Props {
   operationType: OperationType;
   cardId?: string;
