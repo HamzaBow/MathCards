@@ -4,7 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import Home from "pages/home"
 import CollectionView from "pages/CollectionView";
-import UserCardsView from "pages/user-cards";
+import UserCardsView from "pages/UserCardsView";
 
 import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
