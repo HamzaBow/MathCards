@@ -93,24 +93,21 @@ const UserProvider: React.FC<Props> = ({ children }) => {
 
   const { currentUser } = useAuth();
   useEffect(() => {
-    if (currentUser) {
-      const fetchUser = async () => {
-        if (user._id === "") {
-          // if user state is empty
-          const userFromServer = await fetchUserFromAuthId(currentUser?.uid);
-          userDispatch({
-            type: UserActions.FetchUser,
-            payload: { userFromServer },
-          });
-          const collections = await fetchCollectionsForUser(userFromServer._id);
-          userDispatch({
-            type: UserActions.FetchUserCollections,
-            payload: { userCollectionsFromServer: collections },
-          });
-        }
-      };
-      fetchUser();
+    if (!currentUser) return
+    const fetchUser = async () => {
+      if (user._id !== "") return
+      const userFromServer = await fetchUserFromAuthId(currentUser?.uid);
+      userDispatch({
+        type: UserActions.FetchUser,
+        payload: { userFromServer },
+      });
+      const collections = await fetchCollectionsForUser(userFromServer._id);
+      userDispatch({
+        type: UserActions.FetchUserCollections,
+        payload: { userCollectionsFromServer: collections },
+      });
     }
+    fetchUser();
   }, [currentUser]);
 
   return (
