@@ -94,8 +94,6 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   const { currentUser } = useAuth();
   useEffect(() => {
     if (currentUser) {
-      // if currentUser doesn't exist (not signed in), don't do anything
-      // else fetch data and update state
       const fetchUser = async () => {
         if (user._id === "") {
           // if user state is empty
