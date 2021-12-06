@@ -67,7 +67,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
         const collections = user.collections === undefined ? [] : user.collections
         return {
           ...user,
-          collections,
+          collections: [...collections, action.payload.newCollection],
         };
       //---------------------------------
       case UserActions.ResetUser:
