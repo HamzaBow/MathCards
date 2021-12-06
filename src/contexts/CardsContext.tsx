@@ -14,6 +14,14 @@ export const useUpdateCards = () => {
   return useContext(CardsUpdateContext) as React.Dispatch<Action>;
 };
 
+export enum CardsActions {
+  FetchCards,
+  NewCard,
+  RemoveCard,
+  UpdateCard,
+  ResetCard,
+}
+
 interface Props {
   children: JSX.Element;
 }
@@ -21,16 +29,16 @@ interface Props {
 const CardsProvider: React.FC<Props> = ({ children }) => {
   function cardsReducer(cards: CardInterface[], action: Action) {
     switch (action.type) {
-      case CARDS_ACTIONS.FETCH_CARDS:
+      case CardsActions.FetchCards:
         return action.payload.cards;
       //---------------------------------
-      case CARDS_ACTIONS.NEW_CARD:
+      case CardsActions.NewCard:
         return [...cards, action.payload.card];
       //---------------------------------
-      case CARDS_ACTIONS.REMOVE_CARD:
+      case CardsActions.RemoveCard:
         return cards.filter((card) => card._id !== action.payload.id);
       //---------------------------------
-      case CARDS_ACTIONS.UPDATE_CARD:
+      case CardsActions.UpdateCard:
         return cards.map((card) => {
           if (card._id === action.payload.card._id) {
             return action.payload.card;
@@ -38,7 +46,7 @@ const CardsProvider: React.FC<Props> = ({ children }) => {
           return card;
         });
       //---------------------------------
-      case CARDS_ACTIONS.RESET_CARDS:
+      case CardsActions.ResetCard:
         return [];
       default:
         return cards;
