@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StaticMathField } from "react-mathquill";
-import { CARDS_ACTIONS } from "../../Constants";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Button from "@mui/material/Button";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
@@ -16,7 +15,7 @@ import SaveToPrompt from "./SaveToPrompt";
 import { CardInterface, FieldType } from "../cardform/CardForm";
 import { fetchDeleteCard } from "api/cardAPI";
 import makeStyles from "@mui/styles/makeStyles";
-import { useUpdateCards } from "contexts/CardsContext";
+import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -151,7 +150,7 @@ const Card: React.FC<Props> = ({
     setOpen(false);
     fetchDeleteCard(card._id);
     cardsDispatch({
-      type: CARDS_ACTIONS.REMOVE_CARD,
+      type: CardsActions.RemoveCard,
       payload: { id: card._id },
     });
   };
