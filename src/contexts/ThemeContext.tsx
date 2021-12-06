@@ -6,7 +6,7 @@ import {
   Theme,
   StyledEngineProvider,
 } from "@mui/material/styles";
-import useLocalStorage from "hooks/useLocalStorage";
+import { useLocalStorage } from "hooks/useStorage";
 import { GlobalStyles } from "@mui/material";
 
 declare module "@mui/styles/defaultTheme" {
