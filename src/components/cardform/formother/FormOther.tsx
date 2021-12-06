@@ -14,7 +14,7 @@ import { Action } from "App";
 import { CARDS_ACTIONS } from "Constants";
 import { useUser } from "contexts/UserContext";
 import { useSnackbar } from "contexts/SnackbarContext";
-import { useUpdateCards } from "contexts/CardsContext";
+import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 
 interface OtherProps {
   operationType: OperationType;
@@ -80,10 +80,10 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
       const cardData = { ownerId: user._id ,front, back, difficultyLevels, tags  };
       if (operationType === "create") {
         const card = await fetchCreateCard(cardData)
-        cardsDispatch({type: CARDS_ACTIONS.NEW_CARD, payload: { card }})
+        cardsDispatch({type: CardsActions.NewCard, payload: { card }})
       } else {
         const card = await fetchUpdateCardPUT(cardId as string, cardData)
-        cardsDispatch({type: CARDS_ACTIONS.UPDATE_CARD, payload: { card }})
+        cardsDispatch({type: CardsActions.UpdateCard, payload: { card }})
       }
       handleCloseCardForm();
       displaySnackbar("success", "Card saved successfully")
