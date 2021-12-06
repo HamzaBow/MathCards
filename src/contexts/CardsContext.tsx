@@ -1,4 +1,3 @@
-import { Action } from "App";
 import { CardInterface } from "components/cardform/CardForm";
 import { CARDS_ACTIONS } from "Constants";
 import React, { useContext, useReducer } from "react";
@@ -20,6 +19,11 @@ export enum CardsActions {
   RemoveCard,
   UpdateCard,
   ResetCard,
+}
+
+export interface Action {
+  type: CardsActions;
+  payload?: any;
 }
 
 interface Props {
