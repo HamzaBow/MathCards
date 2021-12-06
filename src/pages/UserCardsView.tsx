@@ -1,6 +1,5 @@
 import CardsView from "components/CardsView";
-import { CARDS_ACTIONS } from "Constants";
-import { useUpdateCards } from "contexts/CardsContext";
+import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 import { useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
@@ -18,7 +17,7 @@ const UserCardsViewInner: React.FC = () => {
   useEffect(() => {
     if (data === undefined || user._id === "") return;
     cardsDispatch({
-      type: CARDS_ACTIONS.FETCH_CARDS,
+      type: CardsActions.FetchCards,
       payload: { cards: data },
     });
   }, [data]);
