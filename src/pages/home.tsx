@@ -1,6 +1,5 @@
 import CardsView from "components/CardsView";
-import { CARDS_ACTIONS } from "Constants";
-import { useUpdateCards } from "contexts/CardsContext";
+import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 
@@ -16,7 +15,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (data === undefined) return;
     cardsDispatch({
-      type: CARDS_ACTIONS.FETCH_CARDS,
+      type: CardsActions.FetchCards,
       payload: { cards: data },
     });
   }, [data]);

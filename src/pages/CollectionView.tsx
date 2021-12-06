@@ -3,8 +3,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/system/Box";
 import CardsView from "components/CardsView";
 import Header from "components/header/Header";
-import { CARDS_ACTIONS } from "Constants";
-import { useUpdateCards } from "contexts/CardsContext";
+import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 import { Collection, useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
@@ -31,7 +30,7 @@ const CollectionViewInner: React.FC<Props> = ({ cardsIds }) => {
   useEffect(() => {
     if (data === undefined) return;
     cardsDispatch({
-      type: CARDS_ACTIONS.FETCH_CARDS,
+      type: CardsActions.FetchCards,
       payload: { cards: data },
     });
   }, [data]);
@@ -50,7 +49,7 @@ const CollectionViewInner: React.FC<Props> = ({ cardsIds }) => {
 const EmptyCollectionView: React.FC = () => {
   const cardsDispatch = useUpdateCards();
   cardsDispatch({
-    type: CARDS_ACTIONS.RESET_CARDS
+    type: CardsActions.ResetCard
   })
   return (
     <>
