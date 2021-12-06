@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch } from "react";
+import React, { useState, useEffect } from "react";
 
 import DifficultyLevels from "./DifficultyLevels";
 
@@ -10,8 +10,6 @@ import TopicTags from "./TopicTags";
 import { OperationType, DifficultyLevelsInterface, FrontNBackFields } from '../CardForm'
 import { TagOption } from './TopicTags'
 import { fetchCreateCard, fetchUpdateCardPUT } from "api/cardAPI"
-import { Action } from "App";
-import { CARDS_ACTIONS } from "Constants";
 import { useUser } from "contexts/UserContext";
 import { useSnackbar } from "contexts/SnackbarContext";
 import { CardsActions, useUpdateCards } from "contexts/CardsContext";
