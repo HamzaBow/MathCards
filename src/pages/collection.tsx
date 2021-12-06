@@ -1,4 +1,8 @@
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Box from "@mui/system/Box";
 import CardsView from "components/CardsView";
+import Header from "components/header/Header";
 import { CARDS_ACTIONS } from "Constants";
 import { useUpdateCards } from "contexts/CardsContext";
 import { Collection, useUser } from "contexts/UserContext";
@@ -50,10 +54,19 @@ const EmptyCollectionView: React.FC = () => {
     type: CARDS_ACTIONS.RESET_CARDS
   })
   return (
-    <CardsView
-      loading={false}
-      error={undefined}
-    />
+    <>
+      <Header />
+      <Box sx={{ display: "grid", placeItems: "center", height: "70vh" }}>
+        <Alert
+          variant="filled"
+          severity="info"
+          sx={{ display: "inline-flex" }}
+        >
+          <AlertTitle>Collection is empty</AlertTitle>
+          This collection doesn't contain any cards
+        </Alert>
+      </Box>
+    </>
   )
 }
 
