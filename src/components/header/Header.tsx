@@ -33,11 +33,9 @@ import { Brightness3, ExitToApp, Settings } from "@mui/icons-material";
 import { ThemeString, useTheme } from "contexts/ThemeContext";
 import { useThemeUpdate } from "contexts/ThemeContext";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
-import { CARDS_ACTIONS } from "Constants";
-import { Action } from "App";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import CardForm from "components/cardform/CardForm";
-import { useUpdateCards } from "contexts/CardsContext";
+import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -182,7 +180,7 @@ const Header: React.FC = () => {
   const handleSignOut = () => {
     handleMenuClose();
     userDispatch({ type: UserActions.ResetUser });
-    cardsDispatch({ type: CARDS_ACTIONS.RESET_CARDS });
+    cardsDispatch({ type: CardsActions.ResetCard});
     logout();
     // TODO: the two expressions above have to happen together or not happen at all
   };
