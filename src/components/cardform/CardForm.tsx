@@ -8,8 +8,6 @@ import FormFace from "./FormFace";
 import FormOther from "./formother/FormOther";
 
 import CardFormStepper from "./CardFormStepper";
-import { CARD_FORM_ACTIONS } from "../../Constants";
-import { Action } from "App";
 import Backdrop from "@mui/material/Backdrop";
 import ClickAwayListener from "@mui/core/ClickAwayListener";
 import Fade from "@mui/material/Fade";
@@ -93,6 +91,10 @@ const CardForm: React.FC<Props> = ({
       };
     }
   }
+  interface Action {
+    type: CardFormActions;
+    payload?: any;
+  }
 
   function frontNBackFieldsReducer(
     frontNBackFields: FrontNBackFields,
@@ -109,7 +111,7 @@ const CardForm: React.FC<Props> = ({
     }
 
     switch (action.type) {
-      case CARD_FORM_ACTIONS.ADD_TEXT_QUILL:
+      case CardFormActions.AddTextQuill:
         return {
           [otherFace]: frontNBackFields[otherFace],
           [face]: [
@@ -118,7 +120,7 @@ const CardForm: React.FC<Props> = ({
           ],
         };
 
-      case CARD_FORM_ACTIONS.ADD_MATH_QUILL:
+      case CardFormActions.AddMathQuill:
         return {
           [otherFace]: frontNBackFields[otherFace],
           [face]: [
@@ -127,7 +129,7 @@ const CardForm: React.FC<Props> = ({
           ],
         };
 
-      case CARD_FORM_ACTIONS.UPDATE_LATEX:
+      case CardFormActions.UpdateLatex:
         return {
           [otherFace]: [...frontNBackFields[otherFace]],
           [face]: frontNBackFields[face].map((field) => {
@@ -138,7 +140,7 @@ const CardForm: React.FC<Props> = ({
           }),
         };
 
-      case CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT:
+      case CardFormActions.UpdateHtmlContent:
         return {
           [otherFace]: frontNBackFields[otherFace],
           [face]: frontNBackFields[face].map((field) => {
@@ -148,10 +150,10 @@ const CardForm: React.FC<Props> = ({
             return field;
           }),
         };
-      case CARD_FORM_ACTIONS.SET_FIELDS:
+      case CardFormActions.SetFields:
         return action.payload.frontNBackFields;
 
-      case CARD_FORM_ACTIONS.RESET_FIELDS:
+      case CardFormActions.ResetFields:
         return { front: [], back: [] };
 
       default:
@@ -185,7 +187,7 @@ const CardForm: React.FC<Props> = ({
         (card: CardInterface) => card?._id === cardId
       ) as CardInterface;
       frontNBackFieldsDispatch({
-        type: CARD_FORM_ACTIONS.SET_FIELDS,
+        type: CardFormActions.SetFields,
         payload: { frontNBackFields: { front: card?.front, back: card?.back } },
       });
       setDifficultyLevels(card.difficultyLevels);
@@ -287,7 +289,7 @@ const CardForm: React.FC<Props> = ({
         other: false,
       });
       setActiveStep(0);
-      frontNBackFieldsDispatch({ type: CARD_FORM_ACTIONS.RESET_FIELDS });
+      frontNBackFieldsDispatch({ type: CardFormActions.ResetFields });
       setDifficultyLevels({
         veryEasy: false,
         easy: false,

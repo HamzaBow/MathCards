@@ -1,7 +1,7 @@
 import ReactQuill from "react-quill";
 import React from "react";
 import "react-quill/dist/quill.snow.css";
-import { CARD_FORM_ACTIONS } from "../../Constants";
+import { CardFormActions } from "components/cardform/CardForm";
 
 interface Props {
   id: string | number;
@@ -39,7 +39,7 @@ const Quill: React.FC<Props> = ({ id, htmlContent, fieldsDispatch, face }) => {
         value={htmlContent}
         onChange={(htmlText) => {
           fieldsDispatch({
-            type: CARD_FORM_ACTIONS.UPDATE_HTML_CONTENT,
+            type: CardFormActions.UpdateHtmlContent,
             payload: { id: id, htmlContent: htmlText, face: face },
           });
         }}

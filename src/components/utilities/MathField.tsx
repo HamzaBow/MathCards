@@ -1,6 +1,6 @@
 // import { useState, useEffect } from "react";
+import { CardFormActions } from "components/cardform/CardForm";
 import { addStyles, EditableMathField } from "react-mathquill";
-import { CARD_FORM_ACTIONS } from "../../Constants"
 
 // inserts the required css to the <head> block.
 // you can skip this, if you want to do that by yourself.
@@ -31,7 +31,7 @@ const MathField: React.FC<Props> = ({ id, latex, fieldsDispatch, face }) => {
         latex={latex}
         onChange={(mathField) => {
           // setLatex(mathField.latex());
-          fieldsDispatch({ type: CARD_FORM_ACTIONS.UPDATE_LATEX, payload: { id: id, latex: mathField.latex(), face: face }})
+          fieldsDispatch({ type: CardFormActions.UpdateLatex, payload: { id: id, latex: mathField.latex(), face: face }})
         }}
       />
     </div>

@@ -3,7 +3,6 @@ import React from "react";
 import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
 import MathField from "../utilities/MathField";
-import { CARD_FORM_ACTIONS } from "../../Constants";
 
 import { Button, Paper, Tooltip } from "@mui/material";
 import { ButtonGroup } from "@mui/material";
@@ -11,7 +10,7 @@ import { ButtonGroup } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { FrontNBackFields } from "./CardForm";
+import { CardFormActions, FrontNBackFields } from "./CardForm";
 import { Add } from "@mui/icons-material";
 import { FieldType } from "./CardForm";
 
@@ -35,14 +34,14 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
 
   const addTextQuill = () => {
     fieldsDispatch({
-      type: CARD_FORM_ACTIONS.ADD_TEXT_QUILL,
+      type: CardFormActions.AddTextQuill,
       payload: { id: Date.now(), face: face },
     });
   };
 
   const addMathQuill = () => {
     fieldsDispatch({
-      type: CARD_FORM_ACTIONS.ADD_MATH_QUILL,
+      type: CardFormActions.AddMathQuill,
       payload: { id: Date.now(), face: face },
     });
   };
