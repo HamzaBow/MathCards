@@ -86,9 +86,9 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   const [user, userDispatch] = useReducer(userReducer, {
     _id: "",
     authId: "",
-    following: [],
-    ownedCards: [],
-    collections: [],
+    following: undefined,
+    ownedCards: undefined,
+    collections: undefined,
   });
 
   const { currentUser } = useAuth();
