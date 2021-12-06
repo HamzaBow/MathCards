@@ -10,10 +10,6 @@ import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
 
-export interface Action {
-  type: string;
-  payload?: any;
-}
 function App() {
   return (
     <Router>
