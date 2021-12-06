@@ -10,24 +10,20 @@ import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 
-const CollectionViewInner: React.FC = () => {
+
+interface Props {
+  cardsIds: string[];
+}
+
+const CollectionViewInner: React.FC<Props> = ({ cardsIds }) => {
   const cardsDispatch = useUpdateCards();
-  const user = useUser();
 
   interface RouteParams {
     id: string;
   }
   const params = useParams<RouteParams>();
-  const cardsIds = user?.collections?.filter(
-    (col: Collection) => col._id === params.id)?.[0]?.cardsIds;
-  if (cardsIds === undefined) {
-    throw new Error("collection doesn't exist");
-  }
-  if (cardsIds.length === 0) {
-    throw new Error("collection is empty");
-  }
   const { loading, error, data } = useFetch(
-    `${process.env.REACT_APP_API_URL}/cards?cardsids=${cardsIds.join(',')}`,
+    `${process.env.REACT_APP_API_URL}/cards?cardsids=${cardsIds?.join(',')}`,
     {},
     [params.id]
   );
@@ -41,10 +37,13 @@ const CollectionViewInner: React.FC = () => {
   }, [data]);
 
   return (
-    <CardsView
-      loading={loading}
-      error={error}
-    />
+    <>
+      {data instanceof Array && data.length === 0 ? (
+        <EmptyCollectionView />
+      ) : (
+        <CardsView loading={loading} error={error} />
+      )}
+    </>
   );
 };
 
@@ -72,15 +71,24 @@ const EmptyCollectionView: React.FC = () => {
 
 const CollectionView: React.FC = () => {
   const user = useUser();
+  interface RouteParams {
+    id: string;
+  }
+  const params = useParams<RouteParams>();
+  const collections = user?.collections?.filter(
+    (col: Collection) => col._id === params.id)
+
   return (
     <>
-      { user.collections !== undefined &&
-         user.collections.length !== 0 ? (
-           <CollectionViewInner />
-         )
-         :
-           <EmptyCollectionView />
-      }
+      {user.collections !== undefined &&
+      collections !== undefined &&
+      collections.length === 1 &&
+      collections[0].cardsIds !== undefined &&
+      collections[0].cardsIds.length > 0 ? (
+        <CollectionViewInner cardsIds={collections[0].cardsIds as string[]} />
+      ) : (
+        <EmptyCollectionView />
+      )}
     </>
   );
 }
