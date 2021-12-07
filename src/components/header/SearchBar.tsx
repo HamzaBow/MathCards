@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha } from "@mui/material/styles";
@@ -83,7 +83,7 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
   ) as [string, Function];
 
   useEffect(() => {
-    setSearchQuery(searchParams.get("q"));
+    setSearchQuery(searchParams.get("q") || "");
   }, []);
 
   function handleSearbarFocus() {
@@ -102,16 +102,20 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
     setSearchQuery(e.target.value);
   }
 
-  const firstRenderRef = useRef(true)
-
   useDebounce(
     () => {
-      if(firstRenderRef.current){
-        firstRenderRef.current = false
-        if (pathname !== "/search") return
-      }
       searchParams.set("q", searchQuery);
-      history.push(`/search?${searchParams.toString()}`);
+      if (
+        searchQuery !== null &&
+        `${pathname}${search}` !== `/search?${searchParams.toString()}`
+      ) {
+        if (
+          searchQuery !== "" ||
+          (searchQuery === "" && pathname === "/search")
+        ) {
+          history.push(`/search?${searchParams.toString()}`);
+        }
+      }
     },
     1000,
     [searchQuery]
