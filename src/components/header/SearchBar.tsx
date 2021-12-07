@@ -82,8 +82,8 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
   ) as [string, Function];
 
   useEffect(() => {
-    setSearchQuery(searchParams.get("q"))
-  }, [])
+    setSearchQuery(searchParams.get("q"));
+  }, []);
 
   function handleSearbarFocus() {
     if (window.innerWidth < 600 && logoRef?.current?.style) {
@@ -99,7 +99,7 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     await setSearchQuery(e.target.value);
-    searchParams.set("q", e.target.value)
+    searchParams.set("q", e.target.value);
     history.push(`/search?${searchParams.toString()}`);
   }
   return (
