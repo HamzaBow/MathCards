@@ -20,9 +20,9 @@ function App() {
             <Home />
           </PrivateRoute>
 
-          <Route exact path="/search">
+          <PrivateRoute exact path="/search">
             <Home />
-          </Route>
+          </PrivateRoute>
 
           <PrivateRoute exact path="/collection/:id">
             <CollectionView />
