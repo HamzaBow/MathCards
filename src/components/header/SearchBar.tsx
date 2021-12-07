@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSessionStorage } from "hooks/useStorage";
+import useDebounce from "hooks/useDebounce";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -95,13 +96,27 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
       logoRef.current.style.width = "100%";
     }
   }
-  async function handleSearchChange(
+  function handleSearchChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    await setSearchQuery(e.target.value);
-    searchParams.set("q", e.target.value);
-    history.push(`/search?${searchParams.toString()}`);
+    setSearchQuery(e.target.value);
   }
+
+  const firstRenderRef = useRef(true)
+
+  useDebounce(
+    () => {
+      if(firstRenderRef.current){
+        firstRenderRef.current = false
+        if (pathname !== "/search") return
+      }
+      searchParams.set("q", searchQuery);
+      history.push(`/search?${searchParams.toString()}`);
+    },
+    1000,
+    [searchQuery]
+  );
+
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
