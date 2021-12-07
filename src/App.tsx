@@ -9,6 +9,7 @@ import UserCardsView from "pages/UserCardsView";
 import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
+import CardsSearchView from "pages/CardsSearchView";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           </PrivateRoute>
 
           <PrivateRoute exact path="/search">
-            <Home />
+            <CardsSearchView />
           </PrivateRoute>
 
           <PrivateRoute exact path="/collection/:id">
