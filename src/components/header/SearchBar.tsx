@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { alpha } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
+import { useSessionStorage } from "hooks/useStorage";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
       width: "40ch",
     },
   },
-}))
+}));
 
 interface Props {
   logoRef: React.RefObject<HTMLDivElement>;
@@ -72,6 +73,18 @@ interface Props {
 const SearchBar: React.FC<Props> = ({ logoRef }) => {
   const classes = useStyles();
   const history = useHistory();
+  const { search, pathname } = useLocation();
+  const searchParams = new window.URLSearchParams(search);
+
+  const [searchQuery, setSearchQuery] = useSessionStorage(
+    "search-query",
+    searchParams.get("q") || ""
+  ) as [string, Function];
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get("q"))
+  }, [])
+
   function handleSearbarFocus() {
     if (window.innerWidth < 600 && logoRef?.current?.style) {
       logoRef.current.style.width = "0px";
@@ -81,6 +94,13 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
     if (logoRef?.current?.style) {
       logoRef.current.style.width = "100%";
     }
+  }
+  async function handleSearchChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    await setSearchQuery(e.target.value);
+    searchParams.set("q", e.target.value)
+    history.push(`/search?${searchParams.toString()}`);
   }
   return (
     <div className={classes.search}>
@@ -96,12 +116,12 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
         inputProps={{ "aria-label": "search" }}
         onFocus={handleSearbarFocus}
         onBlur={handleSearbarBlur}
-        onChange={() => {
-          history.push("/search?q=query");
-        }}
+        value={searchQuery}
+        onChange={handleSearchChange}
+        autoFocus={pathname === "/search"}
       />
     </div>
   );
-}
+};
 
-export default SearchBar
+export default SearchBar;
