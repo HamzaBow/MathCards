@@ -6,25 +6,18 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ArrowBack from "@mui/icons-material/ArrowBack";
-import { List as ListIcon, Star, Feedback, Help } from "@mui/icons-material/";
-import { AiFillHeart } from "react-icons/ai";
+import { List as ListIcon,  Feedback, Help } from "@mui/icons-material/";
 import { ImSigma } from "react-icons/im";
 import { Collapse } from "@mui/material";
-import { ExpandLess, ExpandMore, Bookmark, Add } from "@mui/icons-material";
+import { ExpandLess, ExpandMore, Add } from "@mui/icons-material";
 import makeStyles from "@mui/styles/makeStyles";
 import { FaHammer } from "react-icons/fa";
 import VerticalSplitIcon from "@mui/icons-material/VerticalSplit";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import { Collection } from "contexts/UserContext";
+import { Collection, useUser } from "contexts/UserContext";
 import Logo from "../Logo";
-import {
-  useUser,
-  useUserUpdate,
-  UserActions,
-} from "../../contexts/UserContext";
-import { TextField, Button } from "@mui/material";
-import { fetchCreateCollection } from "api/collectionAPI";
 import { useHistory } from "react-router-dom";
+import NewCollectionForm from "./NewCollectionForm";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,26 +41,12 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
   const history = useHistory();
 
   const user = useUser();
-  const userDispatch = useUserUpdate();
 
   const [collectionsOpen, setCollectionsOpen] = useState(false);
 
   const [creatingNewCollection, setCreatingNewCollection] = useState(false);
-  const [newCollectionTitle, setNewCollectionTitle] = useState("");
-  const saveNewCollection = async () => {
-    //saving the new collection to the server
 
-    const collection = await fetchCreateCollection({
-      ownerId: user._id,
-      title: newCollectionTitle,
-    });
-    userDispatch({
-      type: UserActions.AddCollection,
-      payload: { newCollection: collection },
-    });
-    setNewCollectionTitle("");
-    setCreatingNewCollection(false);
-  };
+
 
   function handleCollectionClick(
     collecId: string
@@ -139,17 +118,9 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
               ))}
 
               {creatingNewCollection ? (
-                <ListItem style={{ display: "flex", justifyContent: "center" }}>
-                  <TextField
-                    placeholder="Collection name"
-                    value={newCollectionTitle}
-                    onChange={(e) => setNewCollectionTitle(e.target.value)}
-                  />
-                  <Button onClick={saveNewCollection}>Save</Button>
-                  <Button onClick={() => setCreatingNewCollection(false)}>
-                    Cancel
-                  </Button>
-                </ListItem>
+                <NewCollectionForm
+                  setCreatingNewCollection={setCreatingNewCollection}
+                />
               ) : (
                 <ListItem
                   button
@@ -174,13 +145,6 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             <ListItemText primary="Topics" />
           </ListItem>
 
-          <ListItem button key="Bookmarks">
-            <ListItemIcon>
-              <Bookmark />
-            </ListItemIcon>
-            <ListItemText primary="Bookmarks" />
-          </ListItem>
-
           <ListItem
             button
             key="Created Cards"
@@ -190,20 +154,6 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
               <FaHammer size={23} />
             </ListItemIcon>
             <ListItemText primary="Created Cards" />
-          </ListItem>
-
-          <ListItem button key="Liked">
-            <ListItemIcon>
-              <AiFillHeart size={23} style={{ paddingLeft: "0.1rem" }} />
-            </ListItemIcon>
-            <ListItemText primary="Liked" />
-          </ListItem>
-
-          <ListItem button key="Starred">
-            <ListItemIcon>
-              <Star />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
           </ListItem>
 
           <Divider />
