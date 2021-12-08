@@ -41,11 +41,13 @@ const NewCollectionForm: React.FC<Props> = ({
   };
 
   useEventListener("keydown", (e: KeyboardEvent)  => {
-    if (
-      e.key === "Enter" &&
-      collectionTitleRef.current === document.activeElement
-    ) {
+    if (collectionTitleRef.current !== document.activeElement) return
+    if (e.key === "Enter") {
       saveNewCollection();
+    }
+    if (e.ctrlKey && e.key === "g"){
+      e.preventDefault();
+      setCreatingNewCollection(false)
     }
   })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
