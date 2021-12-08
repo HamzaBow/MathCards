@@ -1,6 +1,7 @@
 
 import { HiLightBulb } from "react-icons/hi";
 import { FieldType } from '../cardform/CardForm'
+import useEventListener from "hooks/useEventListener";
 import { StaticMathField } from "react-mathquill";
 import { useCards } from "contexts/CardsContext";
 
@@ -80,6 +81,12 @@ const MaincardCore: React.FC<Props> = ({
 
   const chosenCard = cards.find((card) => card._id === cardId);
 
+  useEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      console.log("escape");
+      handleClose(e)
+    }
+  });
   return (
     <ClickAwayListener onClickAway={(e) => {handleClose(e)}}>
       <div
