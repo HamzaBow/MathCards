@@ -28,6 +28,13 @@ const useStyles = makeStyles((theme) => ({
     "&:hover $buttonMore": {
       visibility: "visible",
     },
+    "&:focus": {
+      outline: "none",
+      boxShadow:
+        theme.palette.mode === "dark"
+          ? "0 0 7px lightgray"
+          : "0 0 10px 5px darkgray",
+    },
   },
   buttonMore: {
     padding: 0,
