@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { StaticMathField } from "react-mathquill";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Button from "@mui/material/Button";
@@ -16,6 +16,7 @@ import { CardInterface, FieldType } from "../cardform/CardForm";
 import { fetchDeleteCard } from "api/cardAPI";
 import makeStyles from "@mui/styles/makeStyles";
 import { CardsActions, useUpdateCards } from "contexts/CardsContext";
+import useEventListener from "hooks/useEventListener";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -182,9 +183,18 @@ const Card: React.FC<Props> = ({
   const saveToHandle = () => {
     setSaveToPromptOpen(true);
   };
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useEventListener("keydown", (e: KeyboardEvent) => {
+    if ((e.key === " ") || (e.key === "Enter")) {
+      if (cardRef.current !== document.activeElement) return;
+      displayMainCard();
+    }
+  })
 
   return (
     <div
+      ref={cardRef}
       className={classes.cardContainer}
       tabIndex={0}
       // style={containerItemStyle}

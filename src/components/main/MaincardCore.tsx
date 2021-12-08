@@ -92,6 +92,9 @@ const MaincardCore: React.FC<Props> = ({
       e.preventDefault();
     }
   });
+
+  frontRef?.current?.focus();
+
   return (
     <ClickAwayListener onClickAway={(e) => {handleClose(e)}}>
       <div
