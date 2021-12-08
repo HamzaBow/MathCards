@@ -88,6 +88,9 @@ const MaincardCore: React.FC<Props> = ({
     if ((e.key === " ") || (e.key === "Enter")) {
       setFrontDisplayed((displayed) => !displayed);
     }
+    if (e.key === "Tab"){
+      e.preventDefault();
+    }
   });
   return (
     <ClickAwayListener onClickAway={(e) => {handleClose(e)}}>
