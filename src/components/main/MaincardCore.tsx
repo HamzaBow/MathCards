@@ -86,6 +86,9 @@ const MaincardCore: React.FC<Props> = ({
       console.log("escape");
       handleClose(e)
     }
+    if ((e.key === " ") || (e.key === "Enter")) {
+      setFrontDisplayed((displayed) => !displayed);
+    }
   });
   return (
     <ClickAwayListener onClickAway={(e) => {handleClose(e)}}>
