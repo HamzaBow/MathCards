@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import ListItem from "@mui/material/ListItem";
 import TextField from "@mui/material/TextField";
@@ -40,15 +40,25 @@ const NewCollectionForm: React.FC<Props> = ({
     setCreatingNewCollection(false);
   };
 
+  useEventListener("keydown", (e: KeyboardEvent)  => {
+    if (
+      e.key === "Enter" &&
+      collectionTitleRef.current === document.activeElement
+    ) {
+      saveNewCollection();
+    }
+  })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewCollectionTitle(e.target.value)
     if (e.target.value.trim() !== "") {
       setErrorText("")
     }
   }
+  const collectionTitleRef = useRef<HTMLInputElement>(null)
   return (
     <ListItem style={{ display: "flex", justifyContent: "center" }}>
       <TextField
+        inputRef={collectionTitleRef}
         placeholder="Collection title"
         value={newCollectionTitle}
         onChange={handleChange}
