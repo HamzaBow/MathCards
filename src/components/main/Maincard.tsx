@@ -27,7 +27,6 @@ const Maincard: React.FC<Props> = ({
   // };
   const [frontDisplayed, setFrontDisplayed] = useState(true);
   function handleClose(e: MouseEvent | TouchEvent | KeyboardEvent) {
-    console.log('set mainCardOpen to false')
     setMainCardOpen(false)
     setTimeout(() => {
       setFrontDisplayed(true)

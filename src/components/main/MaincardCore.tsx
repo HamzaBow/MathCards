@@ -83,7 +83,6 @@ const MaincardCore: React.FC<Props> = ({
 
   useEventListener("keydown", (e: KeyboardEvent) => {
     if (e.key === "Escape") {
-      console.log("escape");
       handleClose(e)
     }
     if ((e.key === " ") || (e.key === "Enter")) {
