@@ -179,6 +179,7 @@ const Card: React.FC<Props> = ({
   return (
     <div
       className={classes.cardContainer}
+      tabIndex={0}
       // style={containerItemStyle}
     >
       <Paper elevation={3}>
