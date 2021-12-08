@@ -8,7 +8,7 @@ export interface State extends SnackbarOrigin {
 const SnackbarContext = React.createContext({})
 
 export function useSnackbar() {
-  return useContext(SnackbarContext) as (variant: AlertColor, msg: string) => MouseEventHandler<HTMLButtonElement>
+  return useContext(SnackbarContext) as  (variant: AlertColor, msg: string, duration?: number | null | undefined) => void
 }
 
 interface Props {
@@ -24,12 +24,18 @@ const SnackbarProvider : React.FC<Props> = ({ children }) => {
 
   const [message, setMessage] = useState<String>("")
   const [severity, setSeverity] = useState<AlertColor>("info")
+  const [duration, setDuration] = useState<number | null | undefined>(null);
 
-  const displaySnackbar = (variant: AlertColor, msg: string) => {
-    setMessage(msg)
-    setSeverity(variant)
+  const displaySnackbar = (
+    variant: AlertColor,
+    msg: string,
+    duration: number | null | undefined = null
+  ) => {
+    setMessage(msg);
+    setSeverity(variant);
+    setDuration(duration);
     setState({ ...state, open: true });
-  }
+  };
   const handleClose = () => {
     setState({ ...state, open: false });
   };
@@ -40,6 +46,7 @@ const SnackbarProvider : React.FC<Props> = ({ children }) => {
         open={open}
         onClose={handleClose}
         key={vertical + horizontal}
+        autoHideDuration={duration}
       >
         <Alert onClose={handleClose} severity={severity} variant="filled" >
           {message}
