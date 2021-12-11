@@ -190,6 +190,23 @@ const Card: React.FC<Props> = ({
     if ((!e.ctrlKey) && ((e.key === " ") || (e.key === "Enter"))) {
       displayMainCard();
     }
+    if (e.ctrlKey && e.key === "m") {
+      handleToggle()
+    }
+    // if (e.key === "ContextMenu") {
+    //   window.oncontextmenu = () => false;
+    //   e.preventDefault();
+    //   handleToggle();
+    // }
+    // if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key) ){
+    //   if (["ArrowDown", "ArrowRight"].includes(e.key)){
+        // console.log("arrow")
+        // const x = window.dispatchEvent(
+        // cardRef.current?.dispatchEvent(
+          // new KeyboardEvent("keydown", { key: "Tabulation" })
+        // );
+        // console.log('x', x)
+    // }
   })
 
   return (
