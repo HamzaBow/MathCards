@@ -187,7 +187,7 @@ const Card: React.FC<Props> = ({
 
   useEventListener("keydown", (e: KeyboardEvent) => {
     if (cardRef.current !== document.activeElement) return;
-    if ((e.key === " ") || (e.key === "Enter")) {
+    if ((!e.ctrlKey) && ((e.key === " ") || (e.key === "Enter"))) {
       displayMainCard();
     }
   })
