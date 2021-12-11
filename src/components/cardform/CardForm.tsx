@@ -318,6 +318,7 @@ const CardForm: React.FC<Props> = ({
                   <FormFace
                     ref={front}
                     face="front"
+                    activeStep={activeStep}
                     next={next}
                     frontNBackFields={frontNBackFields}
                     fieldsDispatch={frontNBackFieldsDispatch}
@@ -325,6 +326,7 @@ const CardForm: React.FC<Props> = ({
                   <FormFace
                     ref={back}
                     face="back"
+                    activeStep={activeStep}
                     next={next}
                     prev={prev}
                     frontNBackFields={frontNBackFields}

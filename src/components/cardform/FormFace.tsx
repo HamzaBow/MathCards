@@ -13,11 +13,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { CardFormActions, FrontNBackFields } from "./CardForm";
 import { Add } from "@mui/icons-material";
 import { FieldType } from "./CardForm";
+import useEventListener from "hooks/useEventListener";
 
 addStyles();
 
 interface OtherProps {
   face: "front" | "back";
+  activeStep: number
   next: Function;
   prev?: Function;
   frontNBackFields: FrontNBackFields;
@@ -25,7 +27,7 @@ interface OtherProps {
 }
 
 const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
-  { face, next, prev, frontNBackFields, fieldsDispatch },
+  { face, activeStep, next, prev, frontNBackFields, fieldsDispatch },
   ref
 ) => {
   face = face ?? "front";
@@ -45,6 +47,20 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
       payload: { id: Date.now(), face: face },
     });
   };
+
+  useEventListener("keydown", (e: KeyboardEvent) => {
+    if (
+      (activeStep === 1 && face === "front") ||
+      (activeStep === 0 && face === "back")
+    )
+      return;
+    if (e.ctrlKey && e.key === "m") {
+      addMathQuill()
+    }
+    if (e.ctrlKey && e.key === "e") {
+      addTextQuill()
+    }
+  });
 
   return (
     <Paper className={"card-form__step"} ref={ref}>
