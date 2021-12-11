@@ -198,7 +198,7 @@ const Card: React.FC<Props> = ({
     if ((!e.ctrlKey) && ((e.key === " ") || (e.key === "Enter"))) {
       displayMainCard();
     }
-    if (e.ctrlKey && e.key === "m") {
+    if (e.key === "m") {
       handleToggle()
     }
     // if (e.key === "ContextMenu") {
