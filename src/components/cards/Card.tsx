@@ -186,7 +186,15 @@ const Card: React.FC<Props> = ({
   const cardRef = useRef<HTMLDivElement>(null)
 
   useEventListener("keydown", (e: KeyboardEvent) => {
+    if (cardRef.current?.contains(document.activeElement)){
+      if (e.key === "Escape") {
+        setOpen(false);
+        cardRef.current.focus();
+      }
+    }
+
     if (cardRef.current !== document.activeElement) return;
+
     if ((!e.ctrlKey) && ((e.key === " ") || (e.key === "Enter"))) {
       displayMainCard();
     }
