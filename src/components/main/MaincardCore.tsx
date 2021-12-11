@@ -93,14 +93,17 @@ const MaincardCore: React.FC<Props> = ({
     }
   });
 
-  frontRef?.current?.focus();
+  const openedCardRef = useRef<HTMLDivElement>(null)
+  openedCardRef.current?.focus()
 
   return (
     <ClickAwayListener onClickAway={(e) => {handleClose(e)}}>
       <div
+        ref={openedCardRef}
         id="opened-card"
         className="container-item"
         // style={mainCardStyle}
+        tabIndex={-1}
         onClick={() => {
           // setFrontIsShown((shown) => !shown);
           setFrontDisplayed((displayed) => !displayed);
