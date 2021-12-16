@@ -25,7 +25,7 @@ const MathField: React.FC<Props> = ({ id, latex, fieldsDispatch, face }) => {
   };
 
   return (
-    <div style={{ margin: "0.5rem" }}>
+    <div style={{ margin: "0.5rem" }} >
       <EditableMathField
         style={mathFieldStyle}
         latex={latex}
