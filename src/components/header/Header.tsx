@@ -168,7 +168,7 @@ const Header: React.FC = () => {
           <ListItemText primary="Theme" />
         </MenuItem>
 
-        <MenuItem onClick={handleThemeMenuOpen}>
+        <MenuItem>
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
