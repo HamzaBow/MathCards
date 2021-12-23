@@ -283,6 +283,7 @@ const Header: React.FC = () => {
           </IconButton>
           <p>New card</p>
         </MenuItem>
+        {/*
         <MenuItem>
           <IconButton
             aria-label="show 11 new notifications"
@@ -295,6 +296,7 @@ const Header: React.FC = () => {
           </IconButton>
           <p>Notifications</p>
         </MenuItem>
+        */}
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
             aria-label="account of current user"
@@ -366,6 +368,7 @@ const Header: React.FC = () => {
               </IconButton>
             </Tooltip>
 
+            {/*
             <Tooltip title="Notifications">
               <IconButton
                 aria-label="show 2 new notifications"
@@ -377,6 +380,7 @@ const Header: React.FC = () => {
                 </Badge>
               </IconButton>
             </Tooltip>
+            */}
 
             <Tooltip title="Account and Settings">
               <IconButton
