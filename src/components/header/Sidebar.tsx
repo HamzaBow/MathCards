@@ -136,6 +136,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             </List>
           </Collapse>
 
+          {/*
           <Divider />
 
           <ListItem button key="Topics">
@@ -144,6 +145,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             </ListItemIcon>
             <ListItemText primary="Topics" />
           </ListItem>
+          */}
 
           <ListItem
             button
@@ -156,6 +158,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             <ListItemText primary="Created Cards" />
           </ListItem>
 
+          {/*
           <Divider />
 
           <ListItem button key="Following">
@@ -187,6 +190,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             </ListItemIcon>
             <ListItemText primary="Feedback" />
           </ListItem>
+          */}
         </List>
       </Drawer>
     </div>
