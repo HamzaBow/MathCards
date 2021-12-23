@@ -153,6 +153,7 @@ const Header: React.FC = () => {
 
         <Divider sx={{ mt: "8px", mb: "8px" }} />
 
+        {/*
         <MenuItem onClick={handleMenuClose}>
           <ListItemIcon>
             <AccountCircle />
@@ -161,6 +162,7 @@ const Header: React.FC = () => {
             <ListItemText primary="Profile" />
           </Box>
         </MenuItem>
+        */}
         <MenuItem onClick={handleThemeMenuOpen}>
           <ListItemIcon>
             <Brightness3 />
@@ -168,12 +170,14 @@ const Header: React.FC = () => {
           <ListItemText primary="Theme" />
         </MenuItem>
 
+        {/*
         <MenuItem>
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
           <ListItemText primary="Settings" />
         </MenuItem>
+        */}
 
         <Divider />
 
