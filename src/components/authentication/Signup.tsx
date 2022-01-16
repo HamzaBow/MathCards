@@ -124,6 +124,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   const { signup, currentUser, signInWithGoogleAuth } = useAuth();
+
   async function handleSubmit(
     data: any,
     { setSubmitting }: { setSubmitting: Function }
@@ -134,6 +135,7 @@ export default function Signup() {
       setSubmitting(true);
       const signupResult = await signup(data.email, data.password);
       await fetchCreateUser(signupResult.user.uid);
+
       history.push("/");
     } catch (err) {
       if (err instanceof Error) {
