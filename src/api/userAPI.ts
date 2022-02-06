@@ -27,7 +27,6 @@ export const fetchCreateUser = async (authId: string) => {
   //authId is the id given by auth service provider
   validateString(authId, 'authId')
   const user = await fetchUserFromAuthId(authId)
-  console.log('user from authId', user)
   if (user !== null) {
     return
   }

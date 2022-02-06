@@ -119,6 +119,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const { login, currentUser, signInWithGoogleAuth } = useAuth();
+
   async function handleSubmit(
     data: any,
     { setSubmitting }: { setSubmitting: Function }
