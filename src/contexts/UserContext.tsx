@@ -1,5 +1,5 @@
 import { fetchCollectionsForUser } from "api/collectionAPI";
-import { fetchUserFromAuthId } from "api/userAPI";
+import { fetchCreateUser, fetchUserFromAuthId } from "api/userAPI";
 import { CardInterface } from "components/cardform/CardForm";
 import React, { useContext, useEffect, useReducer } from "react";
 import { useAuth } from "./AuthContext";
@@ -109,16 +109,47 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   });
 
   const { currentUser } = useAuth();
+
   useEffect(() => {
     if (!currentUser) return
     const fetchUser = async () => {
       if (user._id !== "") return
       const userFromServer = await fetchUserFromAuthId(currentUser?.uid);
-      userDispatch({
-        type: UserActions.FetchUser,
-        payload: { userFromServer },
-      });
-      const collections = await fetchCollectionsForUser(userFromServer._id);
+
+
+
+      if (!userFromServer) {
+        // const createdUser = await fetchCreateUser(currentUser.uid);
+        // console.log('createdUser', createdUser)
+
+        // const userFromServer = {
+        //   _id: createdUser._id,
+        //   authId: createdUser.authId
+        // }
+
+        // console.log('userFromServer :>> ', userFromServer);
+
+        // userDispatch({ 
+        //   type: UserActions.FetchUser, 
+        //   payload: userFromServer,
+        // })
+        // console.log('user after dispatch',user)
+      }
+      // if (user){
+      // }
+
+
+
+      // userDispatch({
+      //   type: UserActions.FetchUser,
+      //   payload: { userFromServer },
+      // });
+      let collections = null
+      try {
+        collections = await fetchCollectionsForUser(userFromServer._id);
+      } catch(err) {
+        console.log(err)
+      }
       userDispatch({
         type: UserActions.FetchUserCollections,
         payload: { userCollectionsFromServer: collections },
@@ -127,6 +158,8 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     fetchUser();
   }, [currentUser]);
 
+  useEffect(() => {
+  }, [user])
   return (
     <UserContext.Provider value={user}>
       <UserUpdateContext.Provider value={userDispatch}>

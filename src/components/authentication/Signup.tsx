@@ -23,6 +23,7 @@ import Logo from "../Logo";
 import * as yup from "yup";
 import { fetchCreateUser } from "api/userAPI";
 import { LoadingButton } from "@mui/lab";
+import { UserActions, useUserUpdate } from "contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -124,6 +125,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   const { signup, currentUser, signInWithGoogleAuth } = useAuth();
+  const userDispatch = useUserUpdate();
 
   async function handleSubmit(
     data: any,
@@ -134,7 +136,18 @@ export default function Signup() {
       setError("");
       setSubmitting(true);
       const signupResult = await signup(data.email, data.password);
-      await fetchCreateUser(signupResult.user.uid);
+      const user = await fetchCreateUser(signupResult.user.uid);
+      if (user){
+        const userFromServer = {
+          _id: user._id,
+          authId: user.authId
+        }
+        userDispatch({
+          type: UserActions.FetchUser,
+          // payload: userFromServer,
+          payload: { userFromServer }
+        })
+      }
 
       history.push("/");
     } catch (err) {
