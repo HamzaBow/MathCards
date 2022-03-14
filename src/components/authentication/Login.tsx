@@ -20,8 +20,10 @@ import { FcGoogle } from "react-icons/fc";
 import Logo from "../Logo";
 
 import * as yup from "yup";
-import { fetchCreateUser } from "api/userAPI";
+import { fetchCreateUser, fetchUserFromAuthId } from "api/userAPI";
 import { LoadingButton } from "@mui/lab";
+import { UserActions, useUserUpdate } from "contexts/UserContext";
+import { fetchCollectionsForUser } from "api/collectionAPI";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -119,6 +121,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const { login, currentUser, signInWithGoogleAuth } = useAuth();
+  const userDispatch = useUserUpdate();
 
   async function handleSubmit(
     data: any,
@@ -128,7 +131,23 @@ export default function Login() {
     try {
       setError("");
       setSubmitting(true);
-      await login(data.email, data.password);
+      const loginResult = await login(data.email, data.password);
+      const user = await fetchUserFromAuthId(loginResult.user.uid)
+      if (user){
+
+        const collections = await fetchCollectionsForUser(user._id);
+        const userFromServer = {
+          _id: user._id,
+          authId: user.authId,
+          collections,
+        }
+        userDispatch({
+          type: UserActions.FetchUser,
+          // payload: userFromServer,
+          payload: { userFromServer }
+        })
+      }
+
       history.push("/");
     } catch (err) {
       if (err instanceof Error) {
