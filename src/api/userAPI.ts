@@ -18,9 +18,16 @@ export const fetchUser = async (userId: string) => {
 
 export const fetchUserFromAuthId = async (authId: string) => {
   validateString(authId, 'authId')
-  return await fetchGetData({
-    url: `${baseUrl}?authId=${authId}`,
-  });
+  let user;
+  try {
+    user = await fetchGetData({
+      url: `${baseUrl}?authId=${authId}`,
+    });
+    return user;
+  } catch (e) {
+    return false;
+  }
+
 };
 
 export const fetchCreateUser = async (authId: string) => {
