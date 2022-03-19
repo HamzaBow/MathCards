@@ -26,6 +26,9 @@ export function init(method: Method, data?: any): RequestInit {
 export const fetchGetData = async (fetchParams: FetchParams) => {
   const { url, initParams } = fetchParams;
   const res = await fetch(url, initParams);
+  if (!res.ok) {
+    throw new Error();
+  }
   const data = await res.json();
   return data;
 };
