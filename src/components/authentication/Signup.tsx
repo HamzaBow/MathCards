@@ -135,20 +135,7 @@ export default function Signup() {
     try {
       setError("");
       setSubmitting(true);
-      const signupResult = await signup(data.email, data.password);
-      const user = await fetchCreateUser(signupResult.user.uid);
-      if (user){
-        const userFromServer = {
-          _id: user._id,
-          authId: user.authId
-        }
-        userDispatch({
-          type: UserActions.FetchUser,
-          // payload: userFromServer,
-          payload: { userFromServer }
-        })
-      }
-
+      await signup(data.email, data.password);
       history.push("/");
     } catch (err) {
       if (err instanceof Error) {
@@ -164,8 +151,7 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      const signInWithGoogleAuthResult = await signInWithGoogleAuth();
-      await fetchCreateUser(signInWithGoogleAuthResult.user.uid);
+      await signInWithGoogleAuth();
       history.push("/");
     } catch (err) {
       if (err instanceof Error) {

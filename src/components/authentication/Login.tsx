@@ -131,23 +131,7 @@ export default function Login() {
     try {
       setError("");
       setSubmitting(true);
-      const loginResult = await login(data.email, data.password);
-      const user = await fetchUserFromAuthId(loginResult.user.uid)
-      if (user){
-
-        // const collections = await fetchCollectionsForUser(user._id);
-        const userFromServer = {
-          _id: user._id,
-          authId: user.authId,
-          // collections,
-        }
-        userDispatch({
-          type: UserActions.FetchUser,
-          // payload: userFromServer,
-          payload: { userFromServer }
-        })
-      }
-
+      await login(data.email, data.password);
       history.push("/");
     } catch (err) {
       if (err instanceof Error) {
@@ -163,8 +147,7 @@ export default function Login() {
     try {
       setError("");
       setLoading(true);
-      const signInWithGoogleAuthResult = await signInWithGoogleAuth();
-      await fetchCreateUser(signInWithGoogleAuthResult.user.uid);
+      await signInWithGoogleAuth();
       // TODO: what if `signIn..` succeeds and `fetchCreateUser` fails, FIX IT
       history.push("/");
     } catch (err) {
