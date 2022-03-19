@@ -111,40 +111,28 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (!currentUser) return
     const fetchUser = async () => {
-      if (user._id !== "") return
-      const userFromServer = await fetchUserFromAuthId(currentUser?.uid);
+      if (!currentUser) return;
+      // if (user._id !== "") return
 
-
-
-      if (!userFromServer) {
-        // const createdUser = await fetchCreateUser(currentUser.uid);
-        // console.log('createdUser', createdUser)
-
-        // const userFromServer = {
-        //   _id: createdUser._id,
-        //   authId: createdUser.authId
-        // }
-
-        // console.log('userFromServer :>> ', userFromServer);
-
-        // userDispatch({ 
-        //   type: UserActions.FetchUser, 
-        //   payload: userFromServer,
-        // })
-        // console.log('user after dispatch',user)
+      // check if there is a user with same uid (auth id)
+      let user_ = await fetchUserFromAuthId(currentUser?.uid)
+      if (!user_) {
+        user_ = await fetchCreateUser(currentUser.uid);
       }
-      // if (user){
-      // }
+      
+      const userFromServer = {
+        _id: user_._id,
+        authId: user_.authId,
+        // collections,
+      }
+      userDispatch({
+        type: UserActions.FetchUser,
+        // payload: userFromServer,
+        payload: { userFromServer }
+      })
 
-
-
-      // userDispatch({
-      //   type: UserActions.FetchUser,
-      //   payload: { userFromServer },
-      // });
-      let collections = null
+      let collections = [] 
       try {
         collections = await fetchCollectionsForUser(userFromServer._id);
       } catch(err) {
