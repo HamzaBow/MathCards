@@ -135,11 +135,11 @@ export default function Login() {
       const user = await fetchUserFromAuthId(loginResult.user.uid)
       if (user){
 
-        const collections = await fetchCollectionsForUser(user._id);
+        // const collections = await fetchCollectionsForUser(user._id);
         const userFromServer = {
           _id: user._id,
           authId: user.authId,
-          collections,
+          // collections,
         }
         userDispatch({
           type: UserActions.FetchUser,
