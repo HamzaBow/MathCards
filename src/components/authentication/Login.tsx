@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-<<<<<<< Updated upstream
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-=======
->>>>>>> Stashed changes
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import { Link as UiLink } from "@mui/material/";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import Container from "@mui/material/Container";
@@ -26,11 +20,8 @@ import { fetchCreateUser, fetchUserFromAuthId } from "api/userAPI";
 import { LoadingButton } from "@mui/lab";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { fetchCollectionsForUser } from "api/collectionAPI";
-<<<<<<< Updated upstream
-=======
-import PadlockIcon from "./PadlockIcon";
 import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
->>>>>>> Stashed changes
+import PadlockIcon from "./PadlockIcon";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,13 +34,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(3),
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    // backgroundColor: theme.palette.secondary.main,
-    backgroundColor: "white",
-    color: "darkblue",
-    border: "2.5px solid darkblue",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -165,9 +149,7 @@ export default function Login() {
                 marginTop: "1rem",
               }}
             >
-              <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
-              </Avatar>
+              <PadlockIcon />
               <Typography
                 component="h1"
                 variant="h5"
