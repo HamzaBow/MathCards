@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+<<<<<<< Updated upstream
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+=======
+>>>>>>> Stashed changes
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import { Link as UiLink } from "@mui/material/";
@@ -15,7 +18,6 @@ import { Redirect, useHistory, Link } from "react-router-dom";
 import { useAuth } from "contexts/AuthContext";
 import { Formik, Form, useField, FieldHookConfig } from "formik";
 import { Alert } from "@mui/material";
-import { FcGoogle } from "react-icons/fc";
 
 import Logo from "../Logo";
 
@@ -24,6 +26,11 @@ import { fetchCreateUser, fetchUserFromAuthId } from "api/userAPI";
 import { LoadingButton } from "@mui/lab";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
 import { fetchCollectionsForUser } from "api/collectionAPI";
+<<<<<<< Updated upstream
+=======
+import PadlockIcon from "./PadlockIcon";
+import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
+>>>>>>> Stashed changes
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,9 +57,6 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 1),
-  },
-  continueWithGoogle: {
-    margin: theme.spacing(3, 0, 2),
   },
   alert: {
     width: "100%",
@@ -143,22 +147,6 @@ export default function Login() {
     setSubmitting(false);
   }
 
-  async function handleContinueWithGoogle() {
-    try {
-      setError("");
-      setLoading(true);
-      await signInWithGoogleAuth();
-      // TODO: what if `signIn..` succeeds and `fetchCreateUser` fails, FIX IT
-      history.push("/");
-    } catch (err) {
-      if (err instanceof Error) {
-        setError((err as Error).message);
-      } else {
-        setError("Failed to continue with Google");
-      }
-    }
-    setLoading(false);
-  }
   return (
     <>
       {currentUser ? (
@@ -203,22 +191,12 @@ export default function Login() {
             >
               {({ isSubmitting, handleChange, handleBlur, handleSubmit }) => (
                 <Form className={classes.form} noValidate>
-                  <Button
-                    type="button"
-                    disabled={isSubmitting || loading}
-                    variant="outlined"
-                    onClick={handleContinueWithGoogle}
-                    className={classes.continueWithGoogle}
-                    startIcon={<FcGoogle size={30} />}
-                    size="large"
-                    sx={{
-                      position: "relative",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                    }}
-                  >
-                    Continue With Google
-                  </Button>
+                  <ContinueWithGoogleBtn
+                    isSubmitting={isSubmitting}
+                    loading={loading}
+                    setError={setError}
+                    setLoading={setLoading}
+                  />
                   <Typography
                     component="h2"
                     variant="h6"
