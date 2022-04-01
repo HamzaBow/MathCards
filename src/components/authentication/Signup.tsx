@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import { Link as UiLink } from "@mui/material/";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -10,7 +9,7 @@ import Container from "@mui/material/Container";
 import { Redirect, useHistory, Link } from "react-router-dom";
 
 import { useAuth } from "contexts/AuthContext";
-import { Formik, Form, useField, FieldHookConfig } from "formik";
+import { Formik, Form } from "formik";
 import { Alert } from "@mui/material";
 
 
@@ -20,6 +19,7 @@ import * as yup from "yup";
 import { LoadingButton } from "@mui/lab";
 import PadlockIcon from "./PadlockIcon";
 import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
+import CustomTextField from "./CustomTextField";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -58,35 +58,6 @@ function Copyright() {
     </Typography>
   );
 }
-
-type CustomTextFieldProps = {
-  type: string;
-  label: string;
-  autoFocus?: boolean;
-} & FieldHookConfig<{}>;
-
-const CustomTextField: React.FC<CustomTextFieldProps> = ({
-  type,
-  label,
-  autoFocus,
-  ...props
-}) => {
-  const [field, meta] = useField(props);
-  const errorText = meta.error && meta.touched ? meta.error : "";
-  return (
-    <TextField
-      {...field}
-      type={type}
-      label={label}
-      autoFocus={autoFocus}
-      variant="outlined"
-      margin="normal"
-      fullWidth
-      helperText={errorText}
-      error={!!errorText}
-    />
-  );
-};
 
 const validationSchema = yup.object({
   email: yup.string().email().required(),
