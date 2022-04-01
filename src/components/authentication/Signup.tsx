@@ -17,9 +17,7 @@ import { Alert } from "@mui/material";
 import Logo from "../Logo";
 
 import * as yup from "yup";
-import { fetchCreateUser } from "api/userAPI";
 import { LoadingButton } from "@mui/lab";
-import { UserActions, useUserUpdate } from "contexts/UserContext";
 import PadlockIcon from "./PadlockIcon";
 import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
 
@@ -113,7 +111,6 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   const { signup, currentUser } = useAuth();
-  const userDispatch = useUserUpdate();
 
   async function handleSubmit(
     data: any,
@@ -227,12 +224,6 @@ export default function Signup() {
                         </UiLink>
                       </Link>
                     </Grid>
-                    {/* <Grid item>
-                      <Link to="/signup">
-                        <UiLink href="/signup" variant="body2">
-                        </UiLink>
-                      </Link>
-                    </Grid> */}
                   </Grid>
                 </Form>
               )}

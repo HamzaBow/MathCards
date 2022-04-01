@@ -16,10 +16,7 @@ import { Alert } from "@mui/material";
 import Logo from "../Logo";
 
 import * as yup from "yup";
-import { fetchCreateUser, fetchUserFromAuthId } from "api/userAPI";
 import { LoadingButton } from "@mui/lab";
-import { UserActions, useUserUpdate } from "contexts/UserContext";
-import { fetchCollectionsForUser } from "api/collectionAPI";
 import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
 import PadlockIcon from "./PadlockIcon";
 
@@ -108,8 +105,7 @@ export default function Login() {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
 
-  const { login, currentUser, signInWithGoogleAuth } = useAuth();
-  const userDispatch = useUserUpdate();
+  const { login, currentUser } = useAuth();
 
   async function handleSubmit(
     data: any,
