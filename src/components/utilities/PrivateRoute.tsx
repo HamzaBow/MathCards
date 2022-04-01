@@ -12,11 +12,13 @@ const PrivateRoute: React.FC<Props> = ({ children, ...rest}) => {
     <Route
       {...rest}
       render={() =>{
-        return currentUser ? (
-          children
-        ) : (
-          <Redirect to="/login" />
-        );
+        if (!currentUser) {
+          return <Redirect to="/login" />;
+        }
+        if (currentUser && !currentUser.emailVerified) {
+          return <Redirect to="/email-not-verified" />;
+        }
+        return children;
       }}
     >
 

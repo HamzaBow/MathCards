@@ -140,7 +140,7 @@ export default function Signup() {
       setError("");
       setSubmitting(true);
       await signup(data.email, data.password);
-      history.push("/");
+      history.push("/email-not-verified");
     } catch (err) {
       if (err instanceof Error) {
         setError((err as Error).message);
@@ -156,7 +156,8 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await signInWithGoogleAuth();
+      const o = await signInWithGoogleAuth();
+      console.log('o:', o)
       history.push("/");
     } catch (err) {
       if (err instanceof Error) {

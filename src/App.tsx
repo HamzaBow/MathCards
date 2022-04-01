@@ -10,6 +10,7 @@ import Signup from "components/authentication/Signup";
 import Login from "components/authentication/Login";
 import ForgotPassword from "components/authentication/ForgotPassword";
 import CardsSearchView from "pages/CardsSearchView";
+import EmailNotVerifiedPage from "components/authentication/EmailNotVerifiedPage";
 
 function App() {
   return (
@@ -33,11 +34,17 @@ function App() {
             <UserCardsView />
           </PrivateRoute>
 
+          {/* <PrivateRoute exact path="/email-not-verified">
+            <EmailNotVerifiedPage />
+          </PrivateRoute> */}
+
           <Route path="/signup" component={Signup} />
 
           <Route path="/login" component={Login} />
 
           <Route path="/forgot-password" component={ForgotPassword} />
+
+          <Route path="/email-not-verified" component={EmailNotVerifiedPage} />
       </div>
     </Router>
   );
