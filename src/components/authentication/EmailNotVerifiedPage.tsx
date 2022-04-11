@@ -13,6 +13,9 @@ const EmailNotVerifiedPage = () => {
     if (currentUser?.emailVerified) {
       history.push("/");
     }
+    if (!currentUser) {
+      history.push("/login")
+    }
   }, [currentUser?.emailVerified]);
   return (
     <Box sx={{ display: "grid", placeItems: "center", height: "70vh" }}>
