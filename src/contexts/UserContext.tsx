@@ -113,6 +113,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       if (!currentUser) return;
+      if (!currentUser.emailVerified) return
       // if (user._id !== "") return
 
       // check if there is a user with same uid (auth id)
