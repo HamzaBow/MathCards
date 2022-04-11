@@ -81,7 +81,7 @@ export default function Signup() {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
 
-  const { signup, currentUser } = useAuth();
+  const { signup, currentUser, sendEmailVerif } = useAuth();
 
   async function handleSubmit(
     data: any,
@@ -92,6 +92,7 @@ export default function Signup() {
       setError("");
       setSubmitting(true);
       await signup(data.email, data.password);
+      const emailVerifData = await sendEmailVerif(currentUser)
       history.push("/email-not-verified");
     } catch (err) {
       if (err instanceof Error) {

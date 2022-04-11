@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { auth } from "services/firebase";
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
@@ -16,6 +17,7 @@ const AuthContext = React.createContext({});
 interface AuthContextInterface {
   currentUser: User | null;
   signup: (email: string, password: string) => Promise<UserCredential>;
+  sendEmailVerif: (currentUser: User | null) => Promise<void>;
   signInWithGoogleAuth: () => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
@@ -36,6 +38,10 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 
   function signup(email: string, password: string) {
     return createUserWithEmailAndPassword(auth, email, password);
+  }
+
+  function sendEmailVerif(){
+    return sendEmailVerification(auth.currentUser as User);
   }
 
   function signInWithGoogleAuth() {
@@ -66,6 +72,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
   const value: AuthContextInterface = {
     currentUser,
     signup,
+    sendEmailVerif,
     signInWithGoogleAuth,
     login,
     logout,
