@@ -147,8 +147,6 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     fetchUser();
   }, [currentUser]);
 
-  useEffect(() => {
-  }, [user])
   return (
     <UserContext.Provider value={user}>
       <UserUpdateContext.Provider value={userDispatch}>
