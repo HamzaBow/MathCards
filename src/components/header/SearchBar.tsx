@@ -117,7 +117,7 @@ const SearchBar: React.FC<Props> = ({ logoRef }) => {
         }
       }
     },
-    1000,
+    500,
     [searchQuery]
   );
 
