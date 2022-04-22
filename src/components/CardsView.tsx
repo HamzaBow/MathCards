@@ -2,9 +2,7 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useAuth } from "contexts/AuthContext";
 import React from "react";
-import { Redirect } from "react-router";
 import Header from "./header/Header";
 import Main from "./main/Main";
 
