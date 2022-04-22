@@ -57,6 +57,9 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
     return createTheme({
       palette: {
         mode: "light",
+        background: {
+            default: "#eaeaea"
+        }
       },
     });
   }, [prefersDarkMode, themeString]);
