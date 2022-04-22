@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import React from "react";
 import Header from "./header/Header";
+import CardsSkeleton from "./main/CardsSkeleton";
 import Main from "./main/Main";
 
 interface Props {
@@ -19,7 +20,10 @@ const CardsView: React.FC<Props> = ({
     <>
       <Header />
       {loading ? (
-        <LinearProgress />
+        <>
+          <LinearProgress />
+          <CardsSkeleton />
+        </>
       ) : error ? (
         <FetchError />
       ) : (

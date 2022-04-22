@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import CardsView, { FetchError } from "components/CardsView";
 import Header from "components/header/Header";
+import CardsSkeleton from "components/main/CardsSkeleton";
 import Main from "components/main/Main";
 import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 import useFetch from "hooks/useFetch";
@@ -33,7 +34,10 @@ const Home: React.FC = () => {
     <>
       <Header />
       {loading ? (
-        <LinearProgress />
+        <>
+          <LinearProgress />
+          <CardsSkeleton />
+        </>
       ) : error ? (
         <FetchError />
       ) : data?.length === 0 ? (
@@ -44,7 +48,7 @@ const Home: React.FC = () => {
             alignItems: "center",
             flexDirection: "column",
             gap: "1rem",
-            height: "50vh"
+            height: "50vh",
           }}
         >
           <Typography variant="h5" component="h2" textAlign="center">
