@@ -31,7 +31,7 @@ const CardsView: React.FC<Props> = ({
   );
 };
 
-function FetchError() {
+export function FetchError() {
   return (
     <Box sx={{ display: "grid", placeItems: "center", height: "70vh" }}>
       <Alert
