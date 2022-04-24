@@ -1,3 +1,4 @@
+import { APP_NAME } from "Constants";
 import { ImSigma } from "react-icons/im";
 
 export const logoStyle = {
@@ -40,7 +41,7 @@ const Logo = () => {
         <span style={sigmaContainerStyle}>
           <ImSigma style={SigmaIconStyle} />
         </span>
-        <h6 style={headingStyle}>MathCards</h6>
+        <h6 style={headingStyle}>{APP_NAME}</h6>
       </div>
     </div>
   );

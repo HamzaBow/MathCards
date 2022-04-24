@@ -19,6 +19,7 @@ import { LoadingButton } from "@mui/lab";
 import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
 import PadlockIcon from "./PadlockIcon";
 import CustomTextField from "./CustomTextField";
+import { APP_NAME } from "Constants";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,7 +51,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <UiLink color="inherit" href="https://www.mathcards.com/">
-        MathCards
+        {APP_NAME}
       </UiLink>{" "}
       {new Date().getFullYear()}
       {"."}

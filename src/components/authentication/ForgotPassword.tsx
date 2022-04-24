@@ -19,6 +19,7 @@ import { Alert } from "@mui/material";
 import Logo from "../Logo";
 
 import * as yup from "yup";
+import { APP_NAME } from "Constants";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -57,7 +58,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <UiLink color="inherit" href="https://www.mathcards.com/">
-        MathCards
+        {APP_NAME}
       </UiLink>{" "}
       {new Date().getFullYear()}
       {"."}

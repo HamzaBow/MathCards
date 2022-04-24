@@ -34,6 +34,7 @@ import ArrowBack from "@mui/icons-material/ArrowBack";
 import CardForm from "components/cardform/CardForm";
 import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 import SearchBar from "./SearchBar";
+import { APP_NAME } from "Constants";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -339,7 +340,7 @@ const Header: React.FC = () => {
             </IconButton>
           </Tooltip>
 
-          <Tooltip title="MathCards Home" enterDelay={1000}>
+          <Tooltip title={`${APP_NAME} Home`} enterDelay={1000}>
             <div ref={logoRef} style={{ transition: "width 500ms" }}>
               <IconButton
                 style={{ borderRadius: "0.3rem", paddingLeft: "0.3rem" }}
