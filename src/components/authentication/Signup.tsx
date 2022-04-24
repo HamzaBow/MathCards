@@ -14,13 +14,13 @@ import { Alert } from "@mui/material";
 
 
 import Logo from "../Logo";
+import { Copyright } from "components/Footer";
 
 import * as yup from "yup";
 import { LoadingButton } from "@mui/lab";
 import PadlockIcon from "./PadlockIcon";
 import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
 import CustomTextField from "./CustomTextField";
-import { APP_NAME } from "Constants";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,19 +46,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <UiLink color="inherit" href="https://www.mathcards.com/">
-        {APP_NAME}
-      </UiLink>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const validationSchema = yup.object({
   email: yup.string().email().required(),

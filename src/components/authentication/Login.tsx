@@ -13,13 +13,13 @@ import { Formik, Form} from "formik";
 import { Alert } from "@mui/material";
 
 import Logo from "../Logo";
+import { Copyright } from "components/Footer";
 
 import * as yup from "yup";
 import { LoadingButton } from "@mui/lab";
 import ContinueWithGoogleBtn from "./ContinueWithGoogleBtn";
 import PadlockIcon from "./PadlockIcon";
 import CustomTextField from "./CustomTextField";
-import { APP_NAME } from "Constants";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,18 +46,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <UiLink color="inherit" href="https://www.mathcards.com/">
-        {APP_NAME}
-      </UiLink>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const validationSchema = yup.object({
   email: yup.string().email().required(),

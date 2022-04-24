@@ -17,9 +17,9 @@ import { Formik, Form, useField, FieldHookConfig } from "formik";
 import { Alert } from "@mui/material";
 
 import Logo from "../Logo";
+import { Copyright } from "components/Footer";
 
 import * as yup from "yup";
-import { APP_NAME } from "Constants";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,18 +53,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <UiLink color="inherit" href="https://www.mathcards.com/">
-        {APP_NAME}
-      </UiLink>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 type CustomTextFieldProps = {
   type: string;
