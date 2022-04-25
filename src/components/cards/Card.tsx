@@ -17,6 +17,7 @@ import { fetchDeleteCard } from "api/cardAPI";
 import makeStyles from "@mui/styles/makeStyles";
 import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 import useEventListener from "hooks/useEventListener";
+import { useAuth } from "contexts/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -216,6 +217,7 @@ const Card: React.FC<Props> = ({
         // console.log('x', x)
     // }
   })
+  const { currentUser } = useAuth();
 
   return (
     <div
@@ -226,7 +228,8 @@ const Card: React.FC<Props> = ({
     >
       <Paper elevation={3}>
         <div className="card">
-          <div>
+          { currentUser?.emailVerified &&
+            <div>
             <Button
               className={classes.buttonMore}
               id="btn-more"
@@ -286,7 +289,8 @@ const Card: React.FC<Props> = ({
               setSaveToPromptOpen={setSaveToPromptOpen}
               saveRef={saveRef.current}
             />
-          </div>
+            </div>
+          }
           <div className="front" onClick={displayMainCard}>
             {card.front.map((field, key) => {
               if (field.type === FieldType.Math) {
