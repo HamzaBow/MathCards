@@ -18,17 +18,20 @@ function App() {
       <div className="App">
         <CssBaseline />
 
-          <PrivateRoute exact path="/">
+          <Route path="/" component={Home} exact/>
+          {/* <PrivateRoute exact path="/">
             <Home />
-          </PrivateRoute>
+          </PrivateRoute> */}
 
-          <PrivateRoute exact path="/search">
+          <Route path="/search" component={CardsSearchView} />
+          {/* <PrivateRoute exact path="/search">
             <CardsSearchView />
-          </PrivateRoute>
+          </PrivateRoute> */}
 
-          <PrivateRoute exact path="/collection/:id">
+          <Route path="/collection/:id" component={CollectionView} />
+          {/* <PrivateRoute exact path="/collection/:id">
             <CollectionView />
-          </PrivateRoute>
+          </PrivateRoute> */}
 
           <PrivateRoute exact path="/user_cards">
             <UserCardsView />
