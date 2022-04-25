@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     "&:hover": {
       cursor: "pointer",
+      boxShadow:
+        theme.palette.mode === "dark"
+          ? "0 0 3px lightgray"
+          : "0 0 5px 2px darkgray",
     },
     "&:hover $buttonMore": {
       visibility: "visible",
