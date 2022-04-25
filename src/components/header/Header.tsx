@@ -19,6 +19,7 @@ import { useAuth } from "contexts/AuthContext";
 import {
   Avatar,
   Box,
+  Button,
   ListItemIcon,
   ListItemText,
   Paper,
@@ -325,20 +326,22 @@ const Header: React.FC = () => {
     <div className={classes.grow}>
       <AppBar position="static" color="inherit">
         <Toolbar>
-          <Tooltip title="Sidebar Navigation" enterDelay={1000}>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => {
-                setDisplaySidebar((prev) => !prev);
-              }}
-              size="large"
-            >
-              <MenuIcon />
-            </IconButton>
-          </Tooltip>
+          {currentUser?.emailVerified && (
+            <Tooltip title="Sidebar Navigation" enterDelay={1000}>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="open drawer"
+                onClick={() => {
+                  setDisplaySidebar((prev) => !prev);
+                }}
+                size="large"
+              >
+                <MenuIcon />
+              </IconButton>
+            </Tooltip>
+          )}
 
           <Tooltip title={`${APP_NAME} Home`} enterDelay={1000}>
             <div ref={logoRef} style={{ transition: "width 500ms" }}>
@@ -353,24 +356,28 @@ const Header: React.FC = () => {
               </IconButton>
             </div>
           </Tooltip>
-          <SearchBar logoRef={logoRef} />
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <Tooltip title="Create a new card">
-              <IconButton
-                aria-label="create a new card"
-                color="inherit"
-                onClick={() => {
-                  setCardFormOpen(true);
-                }}
-                size="large"
-              >
-                <AddCircleIcon />
-              </IconButton>
-            </Tooltip>
 
-            {/*
-            <Tooltip title="Notifications">
+          <SearchBar logoRef={logoRef} />
+
+          <div className={classes.grow} />
+
+          {currentUser?.emailVerified ? (
+            <>
+              <div className={classes.sectionDesktop}>
+                <Tooltip title="Create a new card">
+                  <IconButton
+                    aria-label="create a new card"
+                    color="inherit"
+                    onClick={() => {
+                      setCardFormOpen(true);
+                    }}
+                    size="large"
+                  >
+                    <AddCircleIcon />
+                  </IconButton>
+                </Tooltip>
+
+                {/* <Tooltip title="Notifications">
               <IconButton
                 aria-label="show 2 new notifications"
                 color="inherit"
@@ -383,40 +390,52 @@ const Header: React.FC = () => {
             </Tooltip>
             */}
 
-            <Tooltip title="Account and Settings">
-              <IconButton
-                ref={accountRef}
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-                size="large"
-              >
-                {currentUser?.photoURL ? (
-                  <Avatar
-                    alt={currentUser?.displayName || ""}
-                    src={currentUser?.photoURL}
-                  />
-                ) : (
-                  <AccountCircle />
-                )}
-              </IconButton>
-            </Tooltip>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-              size="large"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+                <Tooltip title="Account and Settings">
+                  <IconButton
+                    ref={accountRef}
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                    size="large"
+                  >
+                    {currentUser?.photoURL ? (
+                      <Avatar
+                        alt={currentUser?.displayName || ""}
+                        src={currentUser?.photoURL}
+                      />
+                    ) : (
+                      <AccountCircle />
+                    )}
+                  </IconButton>
+                </Tooltip>
+              </div>
+
+              <div className={classes.sectionMobile}>
+                <IconButton
+                  aria-label="show more"
+                  aria-controls={mobileMenuId}
+                  aria-haspopup="true"
+                  onClick={handleMobileMenuOpen}
+                  color="inherit"
+                  size="large"
+                >
+                  <MoreIcon />
+                </IconButton>
+              </div>
+            </>
+          ) : (
+            <>
+              <Button variant="outlined" sx={{ mr: 1, whiteSpace: "nowrap" }}>
+                Log in
+              </Button>
+              <Button variant="contained" sx={{ whiteSpace: "nowrap" }}>
+                Sign up
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
