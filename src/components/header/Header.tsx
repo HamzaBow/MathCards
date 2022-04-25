@@ -435,7 +435,11 @@ const Header: React.FC = () => {
               >
                 Log in
               </Button>
-              <Button variant="contained" sx={{ whiteSpace: "nowrap" }}>
+              <Button
+                variant="contained"
+                sx={{ whiteSpace: "nowrap" }}
+                onClick={() => history.push("/signup")}
+              >
                 Sign up
               </Button>
             </>
