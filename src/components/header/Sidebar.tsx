@@ -136,6 +136,8 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
             </List>
           </Collapse>
 
+          <Divider />
+
           {/*
           <Divider />
 
