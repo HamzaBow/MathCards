@@ -1,1 +1,1 @@
-export const APP_NAME = "Mathnotes";
+export const APP_NAME = "Mathnote";
