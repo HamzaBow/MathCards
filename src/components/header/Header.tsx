@@ -73,6 +73,7 @@ const Header: React.FC = () => {
 
   const logoRef = useRef<HTMLDivElement>(null);
   const accountRef = useRef<HTMLButtonElement | null>(null);
+  const moreButtonRef = useRef<HTMLButtonElement | null>(null);
   const themeString = useTheme();
   const setThemeString = useThemeUpdate() as Function;
 
@@ -107,7 +108,8 @@ const Header: React.FC = () => {
   };
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreMenuAnchorEl(event.currentTarget);
+    // setMobileMoreMenuAnchorEl(event.currentTarget);
+    setMobileMoreMenuAnchorEl(moreButtonRef.current);
   };
   const handleThemeMenuOpen = () => {
     setThemeAnchorEl(anchorEl);
@@ -416,6 +418,7 @@ const Header: React.FC = () => {
 
               <div className={classes.sectionMobile}>
                 <IconButton
+                  ref={moreButtonRef}
                   aria-label="show more"
                   aria-controls={mobileMenuId}
                   aria-haspopup="true"
