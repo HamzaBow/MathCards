@@ -82,7 +82,7 @@ const Header: React.FC = () => {
   const [displaySidebar, setDisplaySidebar] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [themeAnchorEl, setThemeAnchorEl] = useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+  const [mobileMoreMenuAnchorEl, setMobileMoreMenuAnchorEl] =
     useState<null | HTMLElement>(null);
 
   const history = useHistory();
@@ -90,14 +90,14 @@ const Header: React.FC = () => {
 
   const isMenuOpen = Boolean(anchorEl);
   const isThemeMenuOpen = Boolean(themeAnchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreMenuAnchorEl);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+    setMobileMoreMenuAnchorEl(null);
   };
 
   const handleMenuClose = () => {
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
   };
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+    setMobileMoreMenuAnchorEl(event.currentTarget);
   };
   const handleThemeMenuOpen = () => {
     setThemeAnchorEl(anchorEl);
@@ -261,7 +261,7 @@ const Header: React.FC = () => {
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      anchorEl={mobileMoreMenuAnchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
@@ -274,7 +274,7 @@ const Header: React.FC = () => {
         <MenuItem
           onClick={() => {
             setCardFormOpen(true);
-            setMobileMoreAnchorEl(null)
+            setMobileMoreMenuAnchorEl(null)
           }}
         >
           <IconButton
