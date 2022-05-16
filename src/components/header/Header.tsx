@@ -107,7 +107,7 @@ const Header: React.FC = () => {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMobileMoreMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     // setMobileMoreMenuAnchorEl(event.currentTarget);
     setMobileMoreMenuAnchorEl(moreButtonRef.current);
   };
@@ -422,7 +422,7 @@ const Header: React.FC = () => {
                   aria-label="show more"
                   aria-controls={mobileMenuId}
                   aria-haspopup="true"
-                  onClick={handleMobileMenuOpen}
+                  onClick={handleMobileMoreMenuOpen}
                   color="inherit"
                   size="large"
                 >
