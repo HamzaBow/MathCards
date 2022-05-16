@@ -93,17 +93,22 @@ const Header: React.FC = () => {
   const isThemeMenuOpen = Boolean(themeAnchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreMenuAnchorEl);
 
+  const [isMobileLayout, setIsMobileLayout] = useState(false)
+
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(accountButtonRef.current);
+    setIsMobileLayout(false)
   };
 
   const handleProfileMenuFromMobileOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreMenuAnchorEl(null);
     setAnchorEl(moreButtonRef.current);
+    setIsMobileLayout(true)
   };
 
   const handleMobileMenuClose = () => {
     setMobileMoreMenuAnchorEl(null);
+    setIsMobileLayout(true)
   };
 
   const handleMenuClose = () => {
@@ -115,9 +120,10 @@ const Header: React.FC = () => {
   const handleMobileMoreMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     // setMobileMoreMenuAnchorEl(event.currentTarget);
     setMobileMoreMenuAnchorEl(moreButtonRef.current);
+    setIsMobileLayout(true)
   };
   const handleThemeMenuOpen = () => {
-    setThemeAnchorEl(anchorEl);
+    setThemeAnchorEl(isMobileLayout ? moreButtonRef.current : accountButtonRef.current);
     setAnchorEl(null);
   };
   const handleChooseTheme = (selectedTheme: ThemeString) => {
@@ -200,7 +206,7 @@ const Header: React.FC = () => {
     </Menu>
   );
   const handleThemeBackBtn = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(accountButtonRef.current);
+    setAnchorEl(isMobileLayout ? moreButtonRef.current : accountButtonRef.current);
     setThemeAnchorEl(null);
   };
   const themeMenu = (
