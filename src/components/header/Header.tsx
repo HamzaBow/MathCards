@@ -97,6 +97,11 @@ const Header: React.FC = () => {
     setAnchorEl(accountButtonRef.current);
   };
 
+  const handleProfileMenuFromMobileOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setMobileMoreMenuAnchorEl(null);
+    setAnchorEl(moreButtonRef.current);
+  };
+
   const handleMobileMenuClose = () => {
     setMobileMoreMenuAnchorEl(null);
   };
@@ -302,7 +307,7 @@ const Header: React.FC = () => {
           <p>Notifications</p>
         </MenuItem>
         */}
-        <MenuItem onClick={handleProfileMenuOpen}>
+        <MenuItem onClick={handleProfileMenuFromMobileOpen}>
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"
