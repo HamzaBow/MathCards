@@ -72,7 +72,7 @@ const Header: React.FC = () => {
   const cardsDispatch = useUpdateCards();
 
   const logoRef = useRef<HTMLDivElement>(null);
-  const accountRef = useRef<HTMLButtonElement | null>(null);
+  const accountButtonRef = useRef<HTMLButtonElement | null>(null);
   const moreButtonRef = useRef<HTMLButtonElement | null>(null);
   const themeString = useTheme();
   const setThemeString = useThemeUpdate() as Function;
@@ -94,7 +94,7 @@ const Header: React.FC = () => {
   const isMobileMenuOpen = Boolean(mobileMoreMenuAnchorEl);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(accountRef.current);
+    setAnchorEl(accountButtonRef.current);
   };
 
   const handleMobileMenuClose = () => {
@@ -195,7 +195,7 @@ const Header: React.FC = () => {
     </Menu>
   );
   const handleThemeBackBtn = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(accountRef.current);
+    setAnchorEl(accountButtonRef.current);
     setThemeAnchorEl(null);
   };
   const themeMenu = (
@@ -395,7 +395,7 @@ const Header: React.FC = () => {
 
                 <Tooltip title="Account and Settings">
                   <IconButton
-                    ref={accountRef}
+                    ref={accountButtonRef}
                     edge="end"
                     aria-label="account of current user"
                     aria-controls={menuId}
