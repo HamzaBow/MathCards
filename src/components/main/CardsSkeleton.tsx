@@ -9,7 +9,7 @@ const CardsSkeleton = () => {
     <main>
       <div className="container">
         {/* length is the number card skeletons to display */}
-        {Array.from({length: 5}, () => 0).map(() => (
+        {Array.from({length: 15}, () => 0).map(() => (
           <Skeleton
             variant="rectangular"
             width={edgeSize()}
