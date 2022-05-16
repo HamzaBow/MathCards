@@ -274,6 +274,7 @@ const Header: React.FC = () => {
         <MenuItem
           onClick={() => {
             setCardFormOpen(true);
+            setMobileMoreAnchorEl(null)
           }}
         >
           <IconButton
