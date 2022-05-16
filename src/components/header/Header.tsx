@@ -93,7 +93,7 @@ const Header: React.FC = () => {
   const isMobileMenuOpen = Boolean(mobileMoreMenuAnchorEl);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(accountRef.current);
   };
 
   const handleMobileMenuClose = () => {
