@@ -467,9 +467,9 @@ const Header: React.FC = () => {
         <Toolbar>
           {currentUser?.emailVerified && sidebarToggleButton}
           {headerLogo}
+          <div className={classes.grow} />
           <SearchBar logoRef={logoRef} />
 
-          <div className={classes.grow} />
 
           {currentUser?.emailVerified
             ? authedHeaderRightSection
