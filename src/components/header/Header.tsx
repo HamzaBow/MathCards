@@ -28,7 +28,7 @@ import {
 } from "@mui/material";
 import Logo from "components/Logo";
 // import { Settings } from "@mui/icons-material";
-import { Brightness3, ExitToApp,  } from "@mui/icons-material";
+import { Brightness3, ExitToApp } from "@mui/icons-material";
 import { ThemeString, useTheme } from "contexts/ThemeContext";
 import { useThemeUpdate } from "contexts/ThemeContext";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header: React.FC = () => {
-
   const cardsDispatch = useUpdateCards();
 
   const logoRef = useRef<HTMLDivElement>(null);
@@ -94,22 +93,24 @@ const Header: React.FC = () => {
   const isThemeMenuOpen = Boolean(themeAnchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreMenuAnchorEl);
 
-  const [isMobileLayout, setIsMobileLayout] = useState(false)
+  const [isMobileLayout, setIsMobileLayout] = useState(false);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(accountButtonRef.current);
-    setIsMobileLayout(false)
+    setIsMobileLayout(false);
   };
 
-  const handleProfileMenuFromMobileOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleProfileMenuFromMobileOpen = (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
     setMobileMoreMenuAnchorEl(null);
     setAnchorEl(moreButtonRef.current);
-    setIsMobileLayout(true)
+    setIsMobileLayout(true);
   };
 
   const handleMobileMenuClose = () => {
     setMobileMoreMenuAnchorEl(null);
-    setIsMobileLayout(true)
+    setIsMobileLayout(true);
   };
 
   const handleMenuClose = () => {
@@ -121,10 +122,12 @@ const Header: React.FC = () => {
   const handleMobileMoreMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     // setMobileMoreMenuAnchorEl(event.currentTarget);
     setMobileMoreMenuAnchorEl(moreButtonRef.current);
-    setIsMobileLayout(true)
+    setIsMobileLayout(true);
   };
   const handleThemeMenuOpen = () => {
-    setThemeAnchorEl(isMobileLayout ? moreButtonRef.current : accountButtonRef.current);
+    setThemeAnchorEl(
+      isMobileLayout ? moreButtonRef.current : accountButtonRef.current
+    );
     setAnchorEl(null);
   };
   const handleChooseTheme = (selectedTheme: ThemeString) => {
@@ -137,7 +140,7 @@ const Header: React.FC = () => {
   const handleSignOut = () => {
     handleMenuClose();
     userDispatch({ type: UserActions.ResetUser });
-    cardsDispatch({ type: CardsActions.ResetCard});
+    cardsDispatch({ type: CardsActions.ResetCard });
     logout();
     // TODO: the two expressions above have to happen together or not happen at all
   };
@@ -208,7 +211,9 @@ const Header: React.FC = () => {
   );
 
   const handleThemeBackBtn = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(isMobileLayout ? moreButtonRef.current : accountButtonRef.current);
+    setAnchorEl(
+      isMobileLayout ? moreButtonRef.current : accountButtonRef.current
+    );
     setThemeAnchorEl(null);
   };
   const themeMenu = (
@@ -289,7 +294,7 @@ const Header: React.FC = () => {
         <MenuItem
           onClick={() => {
             setCardFormOpen(true);
-            setMobileMoreMenuAnchorEl(null)
+            setMobileMoreMenuAnchorEl(null);
           }}
         >
           <IconButton
