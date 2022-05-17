@@ -4,13 +4,13 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Check from "@mui/icons-material/Check";
-import Badge from "@mui/material/Badge";
+// import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+// import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Sidebar from "./Sidebar";
 import { useHistory } from "react-router-dom";
@@ -27,7 +27,8 @@ import {
   Typography,
 } from "@mui/material";
 import Logo from "components/Logo";
-import { Brightness3, ExitToApp, Settings } from "@mui/icons-material";
+// import { Settings } from "@mui/icons-material";
+import { Brightness3, ExitToApp,  } from "@mui/icons-material";
 import { ThemeString, useTheme } from "contexts/ThemeContext";
 import { useThemeUpdate } from "contexts/ThemeContext";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
