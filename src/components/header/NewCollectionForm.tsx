@@ -9,24 +9,23 @@ import {
   UserActions,
 } from "../../contexts/UserContext";
 import { fetchCreateCollection } from "api/collectionAPI";
+import { ButtonGroup } from "@mui/material";
 
 interface Props {
   setCreatingNewCollection: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const NewCollectionForm: React.FC<Props> = ({
-  setCreatingNewCollection,
-}) => {
+const NewCollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
   const [newCollectionTitle, setNewCollectionTitle] = useState("");
-  const [errorText, setErrorText] = useState("")
+  const [errorText, setErrorText] = useState("");
 
   const user = useUser();
   const userDispatch = useUserUpdate();
 
   const saveNewCollection = async () => {
     if (newCollectionTitle.trim() === "") {
-      setErrorText("Collection title cannot be empty.")
-      return
+      setErrorText("Collection title cannot be empty.");
+      return;
     }
     const collection = await fetchCreateCollection({
       ownerId: user._id,
@@ -40,37 +39,54 @@ const NewCollectionForm: React.FC<Props> = ({
     setCreatingNewCollection(false);
   };
 
-  useEventListener("keydown", (e: KeyboardEvent)  => {
-    if (collectionTitleRef.current !== document.activeElement) return
+  useEventListener("keydown", (e: KeyboardEvent) => {
+    if (collectionTitleRef.current !== document.activeElement) return;
     if (e.key === "Enter") {
       saveNewCollection();
     }
-    if (e.ctrlKey && e.key === "g"){
+    if (e.ctrlKey && e.key === "g") {
       e.preventDefault();
-      setCreatingNewCollection(false)
+      setCreatingNewCollection(false);
     }
-  })
+  });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewCollectionTitle(e.target.value)
+    setNewCollectionTitle(e.target.value);
     if (e.target.value.trim() !== "") {
-      setErrorText("")
+      setErrorText("");
     }
-  }
-  const collectionTitleRef = useRef<HTMLInputElement>(null)
+  };
+  const collectionTitleRef = useRef<HTMLInputElement>(null);
   return (
-    <ListItem style={{ display: "flex", justifyContent: "center" }}>
-      <TextField
-        inputRef={collectionTitleRef}
-        placeholder="Collection title"
-        value={newCollectionTitle}
-        onChange={handleChange}
-        autoFocus
-        helperText={errorText}
-        error={!!errorText}
-      />
-      <Button onClick={saveNewCollection}>Save</Button>
-      <Button onClick={() => setCreatingNewCollection(false)}>Cancel</Button>
-    </ListItem>
+    <div
+      style={{
+        borderStyle: "solid",
+        borderWidth: "0.5px",
+        borderRadius: "5px",
+        borderColor: "gray",
+        marginLeft: "5px",
+        marginRight: "5px",
+      }}
+    >
+      <ListItem style={{ display: "flex", justifyContent: "center" }}>
+        <TextField
+          inputRef={collectionTitleRef}
+          placeholder="Collection title"
+          value={newCollectionTitle}
+          onChange={handleChange}
+          autoFocus
+          helperText={errorText}
+          error={!!errorText}
+        />
+      </ListItem>
+      <ListItem style={{ display: "flex", justifyContent: "center" }}>
+        <ButtonGroup>
+          <Button onClick={saveNewCollection}>Save</Button>
+          <Button onClick={() => setCreatingNewCollection(false)}>
+            Cancel
+          </Button>
+        </ButtonGroup>
+      </ListItem>
+    </div>
   );
 };
 
