@@ -274,7 +274,7 @@ const Header: React.FC = () => {
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
-  const renderMobileMenu = (
+  const MobileMenu = (
     <Menu
       anchorEl={mobileMoreMenuAnchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -463,7 +463,7 @@ const Header: React.FC = () => {
           )}
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
+      {MobileMenu}
       {DesktopMenu}
       {themeMenu}
       <Sidebar
