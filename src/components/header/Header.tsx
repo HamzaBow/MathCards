@@ -143,7 +143,7 @@ const Header: React.FC = () => {
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
+  const DesktopMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
@@ -206,6 +206,7 @@ const Header: React.FC = () => {
       </Paper>
     </Menu>
   );
+
   const handleThemeBackBtn = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(isMobileLayout ? moreButtonRef.current : accountButtonRef.current);
     setThemeAnchorEl(null);
@@ -463,7 +464,7 @@ const Header: React.FC = () => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {DesktopMenu}
       {themeMenu}
       <Sidebar
         displaySidebar={displaySidebar}
