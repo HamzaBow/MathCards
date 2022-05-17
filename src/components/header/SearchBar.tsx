@@ -42,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
       left: "50%",
       transform: "translateX(-50%)",
     },
+    transition: theme.transitions.create("width"),
+    [theme.breakpoints.down("sm")]: {
+      "&:not(:focus-within)":{
+        width: "4.5ch",
+      }
+    },
   },
   searchIcon: {
     padding: theme.spacing(0, 1),
