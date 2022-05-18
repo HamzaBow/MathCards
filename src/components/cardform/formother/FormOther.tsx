@@ -139,7 +139,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
           onClick={() => save()}
           disabled={saveDisabled}
         >
-          {operationType === "create" ? "save" : "save changes"}
+          {operationType === "create" ? "Save" : "Save changes"}
         </Button>
       </ButtonGroup>
     </Paper>

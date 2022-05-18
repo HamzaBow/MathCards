@@ -30,7 +30,7 @@ export const DifficultyLevels : React.FC<Props> = ({ difficultyLevels, setDiffic
         <FormControlLabel
           // value="veryEasy"
           control={<Checkbox color="primary"  checked={difficultyLevels.veryEasy} onChange={(event) => { setDifficultyLevels({...difficultyLevels, veryEasy: event.target.checked }) } } />}
-          label="Very Easy"
+          label="Very easy"
           labelPlacement="bottom"
         />
         <FormControlLabel
@@ -54,7 +54,7 @@ export const DifficultyLevels : React.FC<Props> = ({ difficultyLevels, setDiffic
         <FormControlLabel
           // value="veryHard"
           control={<Checkbox color="primary"  checked={difficultyLevels.veryHard} onChange={(event) => { setDifficultyLevels({...difficultyLevels, veryHard: event.target.checked }) } } />}
-          label="Very Hard"
+          label="Very hard"
           labelPlacement="bottom"
         />
       </FormGroup>

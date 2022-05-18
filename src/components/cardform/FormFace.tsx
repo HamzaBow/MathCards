@@ -161,7 +161,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
           style={{ alignSelf: "end" }}
           onClick={() => next()}
         >
-          next
+          Next
         </Button>
       </ButtonGroup>
     </Paper>

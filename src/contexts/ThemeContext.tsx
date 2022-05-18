@@ -7,7 +7,7 @@ import {
   StyledEngineProvider,
 } from "@mui/material/styles";
 import { useLocalStorage } from "hooks/useStorage";
-import { GlobalStyles } from "@mui/material";
+import { GlobalStyles, ThemeOptions } from "@mui/material";
 
 declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -36,6 +36,13 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
     "themeString",
     "device-theme"
   ) as [ThemeString, Function];
+  const otherThemeSettings: ThemeOptions = {
+    typography: {
+      button: {
+        textTransform: "none"
+      }
+    },
+  }
 
   const theme = React.useMemo(() => {
     if (
@@ -44,6 +51,7 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
     ) {
       setMathQuillCursorColor("white");
       return createTheme({
+        ...otherThemeSettings,
         palette: {
           mode: "dark",
           background: {
@@ -55,6 +63,7 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
     }
     setMathQuillCursorColor("black");
     return createTheme({
+      ...otherThemeSettings,
       palette: {
         mode: "light",
         background: {

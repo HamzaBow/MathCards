@@ -57,7 +57,7 @@ const ContinueWithGoogleBtn: React.FC<Props> = ({
         transform: "translateX(-50%)",
       }}
     >
-      Continue With Google
+      Continue with Google
     </Button>
   );
 };

@@ -179,7 +179,7 @@ export default function ForgotPassword() {
                     color="primary"
                     className={classes.submit}
                   >
-                    Reset Password
+                    Reset password
                   </LoadingButton>
                   <Grid container>
                     <Grid item xs>

@@ -174,7 +174,7 @@ export default function Signup() {
                     className={classes.submit}
                     size="large"
                   >
-                    Sign Up
+                    Sign up
                   </LoadingButton>
                   <Grid container>
                     <Grid item xs>
