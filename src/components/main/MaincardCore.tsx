@@ -114,7 +114,7 @@ const MaincardCore: React.FC<Props> = ({
             {chosenCard?.front.map((field, key) => {
               if (field.type === FieldType.Math) {
                 return (
-                  <StaticMathField key={key} style={{ fontSize: "2rem" }}>
+                  <StaticMathField key={key} style={{ fontSize: "18pt" }}>
                     {field.latex}
                   </StaticMathField>
                 );
@@ -138,7 +138,7 @@ const MaincardCore: React.FC<Props> = ({
             {chosenCard?.back.map((field, key) => {
               if (field.type === FieldType.Math) {
                 return (
-                  <StaticMathField key={key} style={{ fontSize: "2rem" }}>
+                  <StaticMathField key={key} style={{ fontSize: "18pt" }}>
                     {field.latex}
                   </StaticMathField>
                 );

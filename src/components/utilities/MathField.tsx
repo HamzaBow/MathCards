@@ -18,7 +18,7 @@ const MathField: React.FC<Props> = ({ id, latex, fieldsDispatch, face }) => {
 
   // latexString = latexString ?? "";
   const mathFieldStyle = {
-    fontSize: "1.5rem",
+    fontSize: "1.25rem",
     width: "30rem",
     padding: "0.4rem 1rem",
     maxWidth: "40rem",

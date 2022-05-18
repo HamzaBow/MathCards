@@ -299,7 +299,7 @@ const Card: React.FC<Props> = ({
             {card.front.map((field, key) => {
               if (field.type === FieldType.Math) {
                 return (
-                  <StaticMathField key={key} style={{ fontSize: "2rem" }}>
+                  <StaticMathField key={key} style={{ fontSize: "18pt" }}>
                     {field.latex}
                   </StaticMathField>
                 );
