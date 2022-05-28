@@ -30,12 +30,12 @@ export const fetchUserFromAuthId = async (authId: string) => {
 
 };
 
-export const fetchCreateUser = async (authId: string) => {
+export const fetchCreateUser = async (authId: string, idToken: string) => {
   //authId is the id given by auth service provider
   validateString(authId, 'authId')
   return await fetchGetData({
     url         : baseUrl,
-    initParams  : init("POST", { authId }),
+    initParams  : init("POST", { authId, idToken }),
   });
 };
 

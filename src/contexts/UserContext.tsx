@@ -118,8 +118,9 @@ const UserProvider: React.FC<Props> = ({ children }) => {
 
       // check if there is a user with same uid (auth id)
       let user_ = await fetchUserFromAuthId(currentUser?.uid)
+      const idToken = await currentUser.getIdToken(true);
       if (!user_) {
-        user_ = await fetchCreateUser(currentUser.uid);
+        user_ = await fetchCreateUser(currentUser.uid, idToken );
       }
       
       const userFromServer = {
