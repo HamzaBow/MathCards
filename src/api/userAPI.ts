@@ -33,10 +33,16 @@ export const fetchUserFromAuthId = async (authId: string) => {
 export const fetchCreateUser = async (authId: string, idToken: string) => {
   //authId is the id given by auth service provider
   validateString(authId, 'authId')
-  return await fetchGetData({
-    url         : baseUrl,
-    initParams  : init("POST", { authId, idToken }),
+  const res = await fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "Bearer " + idToken,
+    },
+    body: JSON.stringify({ authId: authId }),
   });
+  const data = await res.json();
+  return data;
 };
 
 export const fetchUpdateUserPUT = async (userId: string, userData: UserData) => {
