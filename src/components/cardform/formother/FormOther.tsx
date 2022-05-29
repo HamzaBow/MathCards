@@ -85,11 +85,11 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         const card = await fetchCreateCard(cardData, idToken)
         cardsDispatch({type: CardsActions.NewCard, payload: { card }})
       } else {
-        const tokenId = await currentUser?.getIdToken(true)
-        if (typeof tokenId === "undefined") {
-          throw new Error("tokenId cannot be undefined")
+        const idToken = await currentUser?.getIdToken(true)
+        if (typeof idToken === "undefined") {
+          throw new Error("idToken cannot be undefined")
         }
-        const card = await fetchUpdateCardPUT(cardId as string, cardData, tokenId)
+        const card = await fetchUpdateCardPUT(cardId as string, cardData, idToken)
         cardsDispatch({type: CardsActions.UpdateCard, payload: { card }})
       }
       handleCloseCardForm();
