@@ -58,10 +58,14 @@ export const fetchUpdateCardPUT = async (cardId: string, cardData: CardData, idT
   return data;
 };
 
-export const fetchDeleteCard = async (cardId: string) => {
-  validateString(cardId, 'cardId')
-  return await fetchGetData({
-    url         : `${baseUrl}/${cardId}`,
-    initParams  : init("DELETE"),
+export const fetchDeleteCard = async (cardId: string, idToken: string) => {
+  const res = await fetch(`${baseUrl}/${cardId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "Bearer " + idToken,
+    }
   });
+  const data = await res.json();
+  return data;
 };

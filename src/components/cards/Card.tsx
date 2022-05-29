@@ -156,12 +156,17 @@ const Card: React.FC<Props> = ({
     setCardFormOpen(true);
   };
 
-  const handleDelete = (event: React.SyntheticEvent) => {
+  const { currentUser } = useAuth();
+  const handleDelete = async (event: React.SyntheticEvent) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as Node)) {
       return;
     }
     setOpen(false);
-    fetchDeleteCard(card._id);
+    const idToken = await currentUser?.getIdToken(true);
+    if (typeof idToken === "undefined") {
+      throw new Error("idToken cannot be undefined")
+    }
+    fetchDeleteCard(card._id, idToken);
     cardsDispatch({
       type: CardsActions.RemoveCard,
       payload: { id: card._id },
@@ -221,7 +226,6 @@ const Card: React.FC<Props> = ({
         // console.log('x', x)
     // }
   })
-  const { currentUser } = useAuth();
 
   return (
     <div
