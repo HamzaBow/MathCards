@@ -9,9 +9,9 @@ import FormOther from "./formother/FormOther";
 
 import CardFormStepper from "./CardFormStepper";
 import Backdrop from "@mui/material/Backdrop";
-import ClickAwayListener from "@mui/core/ClickAwayListener";
+import ClickAwayListener from "@mui/base/ClickAwayListener";
 import Fade from "@mui/material/Fade";
-import Popper from "@mui/core/Popper";
+import Popper from "@mui/material/Popper";
 import { useCards } from "contexts/CardsContext";
 
 export enum FieldType {
