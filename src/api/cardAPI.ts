@@ -58,17 +58,6 @@ export const fetchUpdateCardPUT = async (cardId: string, cardData: CardData, idT
   return data;
 };
 
-export const fetchUpdateCardPATCH = async (
-  cardId        : string,
-  cardPatchData : CardPatchData
-) => {
-  validateString(cardId, 'cardId')
-  return await fetchGetData({
-    url         : `${baseUrl}/${cardId}`,
-    initParams  : init("PUT", cardPatchData),
-  });
-};
-
 export const fetchDeleteCard = async (cardId: string) => {
   validateString(cardId, 'cardId')
   return await fetchGetData({
