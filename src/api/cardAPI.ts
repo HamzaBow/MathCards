@@ -44,12 +44,18 @@ export const fetchCreateCard = async (cardData: CardData, idToken: string) => {
 
 };
 
-export const fetchUpdateCardPUT = async (cardId: string, cardData: CardData) => {
+export const fetchUpdateCardPUT = async (cardId: string, cardData: CardData, idToken: string) => {
   validateString(cardId, 'cardId')
-  return await fetchGetData({
-    url         : `${baseUrl}/${cardId}`,
-    initParams  : init("PUT", cardData),
+  const res = await fetch(`${baseUrl}/${cardId}`, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "Bearer " + idToken,
+    },
+    body: JSON.stringify(cardData),
   });
+  const data = await res.json();
+  return data;
 };
 
 export const fetchUpdateCardPATCH = async (
