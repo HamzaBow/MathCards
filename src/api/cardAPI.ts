@@ -30,11 +30,18 @@ export const fetchCard = async (cardId: string) => {
   });
 };
 
-export const fetchCreateCard = async (cardData: CardData) => {
-  return await fetchGetData({
-    url         : baseUrl,
-    initParams  : init("POST", cardData),
+export const fetchCreateCard = async (cardData: CardData, idToken: string) => {
+  const res = await fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "Bearer " + idToken,
+    },
+    body: JSON.stringify(cardData),
   });
+  const data = await res.json();
+  return data;
+
 };
 
 export const fetchUpdateCardPUT = async (cardId: string, cardData: CardData) => {

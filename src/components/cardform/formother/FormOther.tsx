@@ -13,6 +13,7 @@ import { fetchCreateCard, fetchUpdateCardPUT } from "api/cardAPI"
 import { useUser } from "contexts/UserContext";
 import { useSnackbar } from "contexts/SnackbarContext";
 import { CardsActions, useUpdateCards } from "contexts/CardsContext";
+import { useAuth } from "contexts/AuthContext";
 
 interface OtherProps {
   operationType: OperationType;
@@ -68,7 +69,7 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
     const data = await res.json();
     return data;
   };
-
+  const { currentUser } = useAuth();
   const save = async () => {
 
     if (activeStep !== 3) {
@@ -76,8 +77,12 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
 
       const { front, back } = frontNBackFields
       const cardData = { ownerId: user._id ,front, back, difficultyLevels, tags  };
+      const idToken = await currentUser?.getIdToken(true);
+      if (typeof idToken === "undefined") {
+        throw new Error(`idToken cannot be undefined`);
+      }
       if (operationType === "create") {
-        const card = await fetchCreateCard(cardData)
+        const card = await fetchCreateCard(cardData, idToken)
         cardsDispatch({type: CardsActions.NewCard, payload: { card }})
       } else {
         const card = await fetchUpdateCardPUT(cardId as string, cardData)
