@@ -53,7 +53,7 @@ const SnackbarProvider : React.FC<Props> = ({ children }) => {
         </Alert>
       </Snackbar>
       {children}
-    </SnackbarContext.Provider>    
+    </SnackbarContext.Provider>
   )
 }
 

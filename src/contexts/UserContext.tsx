@@ -122,7 +122,6 @@ const UserProvider: React.FC<Props> = ({ children }) => {
       if (!user_) {
         user_ = await fetchCreateUser(currentUser.uid, idToken );
       }
-      
       const userFromServer = {
         _id: user_._id,
         authId: user_.authId,
@@ -134,7 +133,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
         payload: { userFromServer }
       })
 
-      let collections = [] 
+      let collections = []
       try {
         collections = await fetchCollectionsForUser(userFromServer._id);
       } catch(err) {

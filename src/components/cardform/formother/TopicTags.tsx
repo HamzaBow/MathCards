@@ -71,7 +71,6 @@ const TopicTags : React.FC<Props> = ({ tags, setTags, tagOptions}) => {
 
 
           value={tags}
-          
           onChange={(event, value: string[]) => { setTags(value)}}
         />
       </div>

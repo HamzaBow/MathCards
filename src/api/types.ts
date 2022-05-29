@@ -4,7 +4,7 @@ export interface CardData {
   ownerId: string;
   front: Field[];
   back: Field[];
-  difficultyLevels: DifficultyLevelsInterface; 
+  difficultyLevels: DifficultyLevelsInterface;
   tags: string[];
 }
 
@@ -12,7 +12,7 @@ export interface CardPatchData {
   ownerId?: string;
   front?: Field[];
   back?: Field[];
-  difficultyLevels?: DifficultyLevelsInterface; 
+  difficultyLevels?: DifficultyLevelsInterface;
   tags?: string[];
 }
 
