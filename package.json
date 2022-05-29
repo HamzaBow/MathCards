@@ -38,7 +38,8 @@
     "eject": "react-scripts eject",
     "server": "json-server --watch db.json --port 5000",
     "lint": "eslint src --color",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "prettier src --check"
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +60,6 @@
     ]
   },
   "devDependencies": {
-    "husky": "^8.0.1",
-    "prettier": "^2.6.2"
+    "husky": "^8.0.1"
   }
 }
