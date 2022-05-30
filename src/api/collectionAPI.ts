@@ -23,11 +23,17 @@ export const fetchCollection = async (collectionId: string) => {
   });
 };
 
-export const fetchCreateCollection = async (collectionData: CollectionData) => {
-  return await fetchGetData({
-    url         : baseUrl,
-    initParams  : init("POST", collectionData),
+export const fetchCreateCollection = async (collectionData: CollectionData, idToken: string) => {
+  const res = await fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "Bearer " + idToken,
+    },
+    body: JSON.stringify(collectionData),
   });
+  const data = await res.json();
+  return data;
 };
 
 export const fetchUpdateCollectionPUT = async (collectionId: string, collectionData: CollectionData) => {

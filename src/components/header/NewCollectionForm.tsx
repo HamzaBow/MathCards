@@ -10,6 +10,7 @@ import {
 } from "../../contexts/UserContext";
 import { fetchCreateCollection } from "api/collectionAPI";
 import { ButtonGroup } from "@mui/material";
+import { useAuth } from "contexts/AuthContext";
 
 interface Props {
   setCreatingNewCollection: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +21,7 @@ const NewCollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
   const [errorText, setErrorText] = useState("");
 
   const user = useUser();
+  const { currentUser } = useAuth();
   const userDispatch = useUserUpdate();
 
   const saveNewCollection = async () => {
@@ -27,10 +29,14 @@ const NewCollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
       setErrorText("Collection title cannot be empty.");
       return;
     }
+    const idToken = await currentUser?.getIdToken(true);
+    if (typeof idToken === "undefined") {
+      throw new Error("idToken cannot be undefined")
+    }
     const collection = await fetchCreateCollection({
       ownerId: user._id,
       title: newCollectionTitle,
-    });
+    }, idToken);
     userDispatch({
       type: UserActions.AddCollection,
       payload: { newCollection: collection },
