@@ -79,11 +79,18 @@ export const fetchAddCardToCollection = async (collectionId: string, cardId: str
   return data;
 }
 
-export const fetchDeleteCardFromCollection = async (collectionId: string, cardId: string) => {
+export const fetchDeleteCardFromCollection = async (collectionId: string, cardId: string, idToken: string) => {
   validateString(collectionId, 'collectionId')
   validateString(cardId, 'cardId')
-  return await fetchGetData({
-    url         : `${baseUrl}/${collectionId}/cards`,
-    initParams  : init("DELETE", { cardId }),
+
+  const res = await fetch(`${baseUrl}/${collectionId}/cards`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "Bearer " + idToken,
+    },
+    body: JSON.stringify({ cardId }),
   });
+  const data = await res.json();
+  return data;
 }
