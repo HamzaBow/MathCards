@@ -12,6 +12,7 @@ import { useUser, useUserUpdate } from "../../contexts/UserContext";
 import { Collection } from "contexts/UserContext";
 import { fetchAddCardToCollection } from "api/collectionAPI";
 import { UserActions } from "contexts/UserContext"
+import { useAuth } from "contexts/AuthContext";
 
 // ***********************************************************************************************************************
 // ***********************************************************************************************************************
@@ -30,8 +31,15 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   setSaveToPromptOpen,
 }) => {
   const userDispatch = useUserUpdate()
-  const handleSaveCardToCollection = (event: any) => {
-    fetchAddCardToCollection(collectionId, cardId);
+
+  const { currentUser } = useAuth();
+
+  const handleSaveCardToCollection = async (event: any) => {
+    const idToken = await currentUser?.getIdToken();
+    if (typeof idToken === "undefined") {
+      throw new Error("idToken cannot be undefined")
+    }
+    fetchAddCardToCollection(collectionId, cardId, idToken);
     userDispatch({
       type: UserActions.AddCardIdToCollection,
       payload: { collectionId, cardId },
