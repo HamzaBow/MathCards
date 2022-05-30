@@ -36,12 +36,18 @@ export const fetchCreateCollection = async (collectionData: CollectionData, idTo
   return data;
 };
 
-export const fetchUpdateCollectionPUT = async (collectionId: string, collectionData: CollectionData) => {
+export const fetchUpdateCollectionPUT = async (collectionId: string, collectionData: CollectionData, idToken: string) => {
   validateString(collectionId, 'collectionId')
-  return await fetchGetData({
-    url         : `${baseUrl}/${collectionId}`,
-    initParams  : init("PUT", collectionData),
+  const res = await fetch(`${baseUrl}/${collectionId}`, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+      authorization: "Bearer " + idToken,
+    },
+    body: JSON.stringify(collectionData),
   });
+  const data = await res.json();
+  return data;
 };
 
 export const fetchUpdateCollectionPATCH = async (collectionId: string, collectionPatchData: CollectionPatchData) => {
