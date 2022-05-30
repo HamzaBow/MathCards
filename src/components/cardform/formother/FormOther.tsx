@@ -85,9 +85,6 @@ const FormOther: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
         const card = await fetchCreateCard(cardData, idToken)
         cardsDispatch({type: CardsActions.NewCard, payload: { card }})
       } else {
-        if (typeof idToken === "undefined") {
-          throw new Error("idToken cannot be undefined")
-        }
         const card = await fetchUpdateCardPUT(cardId as string, cardData, idToken)
         cardsDispatch({type: CardsActions.UpdateCard, payload: { card }})
       }
