@@ -13,7 +13,7 @@ export function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <UiLink color="inherit" href="https://www.mathcards.com/">
+      <UiLink color="inherit" href="https://mathnote.org/">
         {APP_NAME}
       </UiLink>{" "}
       {new Date().getFullYear()}
