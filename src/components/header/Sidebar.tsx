@@ -8,7 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import { List as ListIcon,  Feedback, Help } from "@mui/icons-material/";
 import { ImSigma } from "react-icons/im";
-import { Collapse } from "@mui/material";
+import { Collapse, Tooltip } from "@mui/material";
 import { ExpandLess, ExpandMore, Add } from "@mui/icons-material";
 import makeStyles from "@mui/styles/makeStyles";
 import { FaHammer } from "react-icons/fa";
@@ -122,6 +122,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   setCreatingNewCollection={setCreatingNewCollection}
                 />
               ) : (
+                <Tooltip title={`Create new collection.`} placement="top">
                 <ListItem
                   button
                   className={classes.nested}
@@ -132,6 +133,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                     <Add />
                   </ListItemIcon>
                 </ListItem>
+                </Tooltip>
               )}
             </List>
           </Collapse>
