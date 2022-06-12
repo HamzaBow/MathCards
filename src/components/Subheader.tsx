@@ -1,11 +1,12 @@
 import { Box, Typography } from "@mui/material";
-import { useUser } from "contexts/UserContext";
-import React, { useEffect, useState } from "react";
-import { Collection } from "contexts/UserContext"
+// import { useUser } from "contexts/UserContext";
+import { useState } from "react";
+// import { useEffect } from "react";
+// import { Collection } from "contexts/UserContext"
 
 const Subheader = () => {
 
-  const user = useUser()
+  // const user = useUser()
   const [collectionTitle, setCollectionTitle] = useState("")
 
 
