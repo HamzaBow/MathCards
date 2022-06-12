@@ -1,7 +1,8 @@
 import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import CardsView, { FetchError } from "components/CardsView";
+import { FetchError } from "components/CardsView";
+// import CardsView  from "components/CardsView";
 import Header from "components/header/Header";
 import CardsSkeleton from "components/main/CardsSkeleton";
 import Main from "components/main/Main";
