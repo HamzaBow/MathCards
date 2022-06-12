@@ -1,5 +1,5 @@
 import { CollectionData, CollectionPatchData } from "./types";
-import { fetchGetData, init, validateString } from "api/utils";
+import { fetchGetData, validateString } from "api/utils";
 
 const baseUrl = `${process.env.REACT_APP_API_URL}/collections`;
 

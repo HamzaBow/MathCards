@@ -1,5 +1,5 @@
-import { fetchGetData, init, validateArray, validateString } from "api/utils";
-import { CardData, CardPatchData } from "api/types"
+import { fetchGetData, validateArray, validateString } from "api/utils";
+import { CardData } from "api/types"
 
 const baseUrl = `${process.env.REACT_APP_API_URL}/cards`;
 
