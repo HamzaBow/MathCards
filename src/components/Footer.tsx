@@ -2,12 +2,12 @@ import Typography from "@mui/material/Typography";
 import { Link as UiLink } from "@mui/material/";
 import { APP_NAME } from "Constants";
 
-const footerStyle = {
-    // textAlign: 'center',
-    backgroundColor: "gray",
-    paddingTop: "30px",
-    paddingBottom: "30px",
-}
+// const footerStyle = {
+//     textAlign: 'center',
+//     backgroundColor: "gray",
+//     paddingTop: "30px",
+//     paddingBottom: "30px",
+// }
 
 export function Copyright() {
   return (
