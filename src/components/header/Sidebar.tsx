@@ -42,7 +42,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
   const user = useUser();
 
-  const [collectionsOpen, setCollectionsOpen] = useState(false);
+  const [collectionsOpen, setCollectionsOpen] = useState(true);
 
   const [creatingNewCollection, setCreatingNewCollection] = useState(false);
 
