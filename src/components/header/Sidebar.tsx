@@ -117,10 +117,9 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
 
-                    <IconButton size="small">
-                      <MoreVert />
-                    </IconButton>
-
+                  <IconButton size="small">
+                    <MoreVert />
+                  </IconButton>
                 </ListItem>
               ))}
 
@@ -130,16 +129,16 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                 />
               ) : (
                 <Tooltip title={`Create new collection.`} placement="top">
-                <ListItem
-                  button
-                  className={classes.nested}
-                  style={{ display: "flex", justifyContent: "center" }}
-                  onClick={() => setCreatingNewCollection(true)}
-                >
-                  <ListItemIcon>
-                    <Add />
-                  </ListItemIcon>
-                </ListItem>
+                  <ListItem
+                    button
+                    className={classes.nested}
+                    style={{ display: "flex", justifyContent: "center" }}
+                    onClick={() => setCreatingNewCollection(true)}
+                  >
+                    <ListItemIcon>
+                      <Add />
+                    </ListItemIcon>
+                  </ListItem>
                 </Tooltip>
               )}
             </List>
