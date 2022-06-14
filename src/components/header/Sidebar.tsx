@@ -9,7 +9,7 @@ import ArrowBack from "@mui/icons-material/ArrowBack";
 import { List as ListIcon } from "@mui/icons-material/";
 // import { Feedback, Help } from "@mui/icons-material/";
 import { ImSigma } from "react-icons/im";
-import { Collapse, Tooltip } from "@mui/material";
+import { Collapse, IconButton, Tooltip } from "@mui/material";
 import { ExpandLess, ExpandMore, Add } from "@mui/icons-material";
 import makeStyles from "@mui/styles/makeStyles";
 import { FaHammer } from "react-icons/fa";
@@ -19,6 +19,7 @@ import { Collection, useUser } from "contexts/UserContext";
 import Logo from "../Logo";
 import { useHistory } from "react-router-dom";
 import NewCollectionForm from "./NewCollectionForm";
+import MoreVert from "@mui/icons-material/MoreVert";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -115,6 +116,11 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                     <ImSigma />
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
+
+                    <IconButton size="small">
+                      <MoreVert />
+                    </IconButton>
+
                 </ListItem>
               ))}
 
