@@ -5,15 +5,18 @@ import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui
 
 interface Props {
   open: boolean;
-  anchorRef: React.RefObject<HTMLElement>;
-  handleClose: (event: MouseEvent | TouchEvent) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  anchorEl: HTMLElement | null;
 }
 
-const CustomMenu: React.FC<Props> = ({ open, anchorRef, handleClose }) => {
+const CustomMenu: React.FC<Props> = ({ open, setOpen, anchorEl }) => {
+  const handleClose = () => {
+    setOpen(false)
+  }
   return (
     <Popper
       open={open}
-      anchorEl={anchorRef.current}
+      anchorEl={anchorEl}
       sx={{ zIndex: "1" }}
       role={undefined}
       transition

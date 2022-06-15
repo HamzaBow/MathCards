@@ -69,19 +69,14 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     }, 300);
   };
 
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleColMoreBtn = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.stopPropagation();
-      setOpen(true);
+    event.stopPropagation();
+    setAnchorEl(event.target as HTMLElement);
+    setOpen(true);
   }
   const handleClose = (event: MouseEvent | TouchEvent): void => {
-    if (
-      anchorRef?.current &&
-      anchorRef?.current?.contains?.(event.target as Node)
-    ) {
-      return;
-    }
     setOpen(false);
   };
 
@@ -136,15 +131,15 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
 
-                  <IconButton ref={anchorRef} size="small" onClick={handleColMoreBtn}>
+                  <IconButton size="small" onClick={handleColMoreBtn}>
                     <MoreVert />
                   </IconButton>
                 </ListItem>
               ))}
               <CustomMenu
+                anchorEl={anchorEl}
                 open={open}
-                anchorRef={anchorRef}
-                handleClose={handleClose}
+                setOpen={setOpen}
               />
 
               {creatingNewCollection ? (
