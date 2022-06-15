@@ -20,7 +20,7 @@ import Logo from "../Logo";
 import { useHistory } from "react-router-dom";
 import NewCollectionForm from "./NewCollectionForm";
 import MoreVert from "@mui/icons-material/MoreVert";
-import CustomMenu from "components/CustomMenu";
+import ColMoreMenu from "components/ColMoreMenu";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -133,7 +133,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </IconButton>
                 </ListItem>
               ))}
-              <CustomMenu
+              <ColMoreMenu
                 anchorEl={anchorEl}
                 open={open}
                 setOpen={setOpen}

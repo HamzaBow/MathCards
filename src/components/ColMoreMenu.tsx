@@ -9,7 +9,7 @@ interface Props {
   anchorEl: HTMLElement | null;
 }
 
-const CustomMenu: React.FC<Props> = ({ open, setOpen, anchorEl }) => {
+const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl }) => {
   const handleClose = () => {
     setOpen(false)
   }
@@ -57,4 +57,4 @@ const CustomMenu: React.FC<Props> = ({ open, setOpen, anchorEl }) => {
   );
 };
 
-export default CustomMenu;
+export default ColMoreMenu;
