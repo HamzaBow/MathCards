@@ -136,7 +136,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
 
-                  <IconButton size="small" onClick={handleColMoreBtn}>
+                  <IconButton ref={anchorRef} size="small" onClick={handleColMoreBtn}>
                     <MoreVert />
                   </IconButton>
                 </ListItem>
