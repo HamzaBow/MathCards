@@ -2,6 +2,7 @@ import React from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
+import { UserActions, useUserUpdate } from "contexts/UserContext";
 
 interface Props {
   collectionId: string | null;
@@ -14,6 +15,18 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionId })
   const handleClose = () => {
     setOpen(false)
   }
+
+  const userDispatch = useUserUpdate();
+  const handleDelete = () => {
+    userDispatch({
+      type: UserActions.DeleteCollection,
+      payload: {
+        collectionId,
+      }
+    })
+    setOpen(false);
+  }
+
   return (
     <Popper
       open={open}
@@ -38,14 +51,13 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionId })
                 id="menu-list-grow"
                 // onKeyDown={handleListKeyDown}
               >
-                {/* <MenuItem onClick={handleEdit}> */}
                 <MenuItem>
+                {/* <MenuItem onClick={handleEdit}> */}
                   <BiEditAlt style={{ marginRight: "0.7rem" }} />
                   Edit
                 </MenuItem>
 
-                {/* <MenuItem onClick={handleDelete}> */}
-                <MenuItem>
+                <MenuItem onClick={handleDelete}>
                   <AiOutlineDelete style={{ marginRight: "0.7rem" }} />
                   Delete
                 </MenuItem>
