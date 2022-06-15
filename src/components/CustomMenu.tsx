@@ -14,6 +14,7 @@ const CustomMenu: React.FC<Props> = ({ open, anchorRef, handleClose }) => {
     <Popper
       open={open}
       anchorEl={anchorRef.current}
+      sx={{ zIndex: "1" }}
       role={undefined}
       transition
       disablePortal
