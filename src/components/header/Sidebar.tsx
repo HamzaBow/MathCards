@@ -76,9 +76,6 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     setAnchorEl(event.target as HTMLElement);
     setOpen(true);
   }
-  const handleClose = (event: MouseEvent | TouchEvent): void => {
-    setOpen(false);
-  };
 
   return (
     <div>
