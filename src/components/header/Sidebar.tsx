@@ -20,6 +20,7 @@ import Logo from "../Logo";
 import { useHistory } from "react-router-dom";
 import NewCollectionForm from "./NewCollectionForm";
 import MoreVert from "@mui/icons-material/MoreVert";
+import CustomMenu from "components/CustomMenu";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +49,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
   const [creatingNewCollection, setCreatingNewCollection] = useState(false);
 
+  const [open, setOpen] = React.useState(false);
 
 
   function handleCollectionClick(
@@ -66,6 +68,23 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
       history.push("/user_cards");
     }, 300);
   };
+
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
+
+  const handleColMoreBtn = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.stopPropagation();
+      setOpen(true);
+  }
+  const handleClose = (event: MouseEvent | TouchEvent): void => {
+    if (
+      anchorRef?.current &&
+      anchorRef?.current?.contains?.(event.target as Node)
+    ) {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <div>
       <Drawer
@@ -117,11 +136,12 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
 
-                  <IconButton size="small">
+                  <IconButton size="small" onClick={handleColMoreBtn}>
                     <MoreVert />
                   </IconButton>
                 </ListItem>
               ))}
+              <CustomMenu open={open} anchorRef={anchorRef} handleClose={handleClose} />
 
               {creatingNewCollection ? (
                 <NewCollectionForm
