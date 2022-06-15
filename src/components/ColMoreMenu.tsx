@@ -4,12 +4,13 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
 
 interface Props {
+  collectionId: string | null;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   anchorEl: HTMLElement | null;
 }
 
-const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl }) => {
+const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionId }) => {
   const handleClose = () => {
     setOpen(false)
   }

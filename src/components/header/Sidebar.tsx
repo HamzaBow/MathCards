@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -70,12 +70,21 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
   };
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [collectionId, setCollectionId] = useState<string|null>(null);
 
-  const handleColMoreBtn = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleColMoreBtn = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    collectionId: string
+  ) => {
     event.stopPropagation();
     setAnchorEl(event.target as HTMLElement);
     setOpen(true);
-  }
+    setCollectionId(collectionId)
+  };
+
+  useEffect(() => {
+    console.log('collectionId :>> ', collectionId);
+  }, [collectionId])
 
   return (
     <div>
@@ -128,12 +137,13 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
 
-                  <IconButton size="small" onClick={handleColMoreBtn}>
+                  <IconButton size="small" onClick={(event) => handleColMoreBtn(event, collection._id)}>
                     <MoreVert />
                   </IconButton>
                 </ListItem>
               ))}
               <ColMoreMenu
+                collectionId={collectionId}
                 anchorEl={anchorEl}
                 open={open}
                 setOpen={setOpen}
