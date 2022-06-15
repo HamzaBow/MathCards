@@ -141,7 +141,11 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </IconButton>
                 </ListItem>
               ))}
-              <CustomMenu open={open} anchorRef={anchorRef} handleClose={handleClose} />
+              <CustomMenu
+                open={open}
+                anchorRef={anchorRef}
+                handleClose={handleClose}
+              />
 
               {creatingNewCollection ? (
                 <NewCollectionForm
