@@ -22,6 +22,7 @@ import CollectionForm from "./CollectionForm";
 import MoreVert from "@mui/icons-material/MoreVert";
 import ColMoreMenu from "components/ColMoreMenu";
 
+export type CollectionOpType = "CREATE" | "UPDATE";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -147,6 +148,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
               {creatingNewCollection ? (
                 <CollectionForm
+                  operationType="CREATE"
                   setCreatingNewCollection={setCreatingNewCollection}
                 />
               ) : (

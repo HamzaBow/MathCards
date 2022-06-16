@@ -11,12 +11,14 @@ import {
 import { fetchCreateCollection } from "api/collectionAPI";
 import { ButtonGroup } from "@mui/material";
 import { useAuth } from "contexts/AuthContext";
+import { CollectionOpType } from "./Sidebar";
 
 interface Props {
+  operationType: CollectionOpType;
   setCreatingNewCollection: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
+const CollectionForm: React.FC<Props> = ({ operationType, setCreatingNewCollection }) => {
   const [newCollectionTitle, setNewCollectionTitle] = useState("");
   const [errorText, setErrorText] = useState("");
 
@@ -24,7 +26,7 @@ const CollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
   const { currentUser } = useAuth();
   const userDispatch = useUserUpdate();
 
-  const saveNewCollection = async () => {
+  const handleConfirm = async () => {
     if (newCollectionTitle.trim() === "") {
       setErrorText("Collection title cannot be empty.");
       return;
@@ -33,22 +35,36 @@ const CollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
     if (typeof idToken === "undefined") {
       throw new Error("idToken cannot be undefined")
     }
-    const collection = await fetchCreateCollection({
-      ownerId: user._id,
-      title: newCollectionTitle,
-    }, idToken);
-    userDispatch({
-      type: UserActions.AddCollection,
-      payload: { newCollection: collection },
-    });
+
+    if (operationType === "CREATE") {
+      const collection = await fetchCreateCollection({
+        ownerId: user._id,
+        title: newCollectionTitle,
+      }, idToken);
+      userDispatch({
+        type: UserActions.AddCollection,
+        payload: { newCollection: collection },
+      });
+    }
+
+    if (operationType === "UPDATE") {
+      const collection = await fetchCreateCollection({
+        ownerId: user._id,
+        title: newCollectionTitle,
+      }, idToken);
+      userDispatch({
+        type: UserActions.AddCollection,
+        payload: { newCollection: collection },
+      });
+    }
     setNewCollectionTitle("");
     setCreatingNewCollection(false);
-  };
+  }
 
   useEventListener("keydown", (e: KeyboardEvent) => {
     if (collectionTitleRef.current !== document.activeElement) return;
     if (e.key === "Enter") {
-      saveNewCollection();
+      handleConfirm();
     }
     if (e.ctrlKey && e.key === "g") {
       e.preventDefault();
@@ -86,7 +102,7 @@ const CollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
       </ListItem>
       <ListItem style={{ display: "flex", justifyContent: "center" }}>
         <ButtonGroup>
-          <Button onClick={saveNewCollection}>Save</Button>
+          <Button onClick={handleConfirm}>{operationType === "CREATE" ? "Save" : "Save Changes"}</Button>
           <Button onClick={() => setCreatingNewCollection(false)}>
             Cancel
           </Button>
