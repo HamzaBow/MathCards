@@ -82,10 +82,6 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     setCollectionId(collectionId)
   };
 
-  useEffect(() => {
-    console.log('collectionId :>> ', collectionId);
-  }, [collectionId])
-
   return (
     <div>
       <Drawer
