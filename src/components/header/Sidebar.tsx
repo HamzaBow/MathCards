@@ -72,16 +72,29 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [collectionId, setCollectionId] = useState<string|null>(null);
+  const [collectionTitle, setCollectionTitle] = useState<string>("");
 
   const handleColMoreBtn = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    collectionId: string
+    collectionId: string,
+    colTitle: string
   ) => {
     event.stopPropagation();
     setAnchorEl(event.target as HTMLElement);
     setOpen(true);
     setCollectionId(collectionId)
+    setCollectionTitle(colTitle)
   };
+
+  const [colFormOpType, setColFormOpType] = useState<CollectionOpType>("CREATE")
+  const [formColTitle, setFormColTitle] = useState<string>("")
+
+  const handleEdit = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, title: string) => {
+    setOpen(false)
+    setCollectionFormOpen(true);
+    setColFormOpType("UPDATE");
+    setFormColTitle(title)
+  }
 
   return (
     <div>
@@ -134,22 +147,26 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
 
-                  <IconButton size="small" onClick={(event) => handleColMoreBtn(event, collection._id)}>
+                  <IconButton size="small" onClick={(event) => handleColMoreBtn(event, collection._id, collection.title)}>
                     <MoreVert />
                   </IconButton>
                 </ListItem>
               ))}
               <ColMoreMenu
                 collectionId={collectionId}
+                collectionTitle={collectionTitle}
                 anchorEl={anchorEl}
                 open={open}
                 setOpen={setOpen}
+                handleEdit={handleEdit}
               />
 
               {collectionFormOpen ? (
                 <CollectionForm
-                  operationType="CREATE"
+                  operationType={colFormOpType}
                   setCollectionFormOpen={setCollectionFormOpen}
+                  formColTitle={formColTitle}
+                  setFormColTitle={setFormColTitle}
                 />
               ) : (
                 <Tooltip title={`Create new collection.`} placement="top">

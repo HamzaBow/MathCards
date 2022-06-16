@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
@@ -9,12 +9,14 @@ import { useSnackbar } from "contexts/SnackbarContext";
 
 interface Props {
   collectionId: string | null;
+  collectionTitle: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   anchorEl: HTMLElement | null;
+  handleEdit: Function;
 }
 
-const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionId }) => {
+const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionTitle, collectionId, handleEdit }) => {
   const handleClose = () => {
     setOpen(false)
   }
@@ -70,8 +72,7 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionId })
                 id="menu-list-grow"
                 // onKeyDown={handleListKeyDown}
               >
-                <MenuItem>
-                {/* <MenuItem onClick={handleEdit}> */}
+                <MenuItem onClick={(event) => handleEdit(event, collectionTitle )}>
                   <BiEditAlt style={{ marginRight: "0.7rem" }} />
                   Edit
                 </MenuItem>

@@ -16,10 +16,16 @@ import { CollectionOpType } from "./Sidebar";
 interface Props {
   operationType: CollectionOpType;
   setCollectionFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  formColTitle: string;
+  setFormColTitle: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CollectionForm: React.FC<Props> = ({ operationType, setCollectionFormOpen }) => {
-  const [newCollectionTitle, setNewCollectionTitle] = useState("");
+const CollectionForm: React.FC<Props> = ({
+  operationType,
+  setCollectionFormOpen,
+  formColTitle,
+  setFormColTitle,
+}) => {
   const [errorText, setErrorText] = useState("");
 
   const user = useUser();
@@ -27,20 +33,23 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCollectionFormOpen 
   const userDispatch = useUserUpdate();
 
   const handleConfirm = async () => {
-    if (newCollectionTitle.trim() === "") {
+    if (formColTitle.trim() === "") {
       setErrorText("Collection title cannot be empty.");
       return;
     }
     const idToken = await currentUser?.getIdToken(true);
     if (typeof idToken === "undefined") {
-      throw new Error("idToken cannot be undefined")
+      throw new Error("idToken cannot be undefined");
     }
 
     if (operationType === "CREATE") {
-      const collection = await fetchCreateCollection({
-        ownerId: user._id,
-        title: newCollectionTitle,
-      }, idToken);
+      const collection = await fetchCreateCollection(
+        {
+          ownerId: user._id,
+          title: formColTitle,
+        },
+        idToken
+      );
       userDispatch({
         type: UserActions.AddCollection,
         payload: { newCollection: collection },
@@ -48,18 +57,21 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCollectionFormOpen 
     }
 
     if (operationType === "UPDATE") {
-      const collection = await fetchCreateCollection({
-        ownerId: user._id,
-        title: newCollectionTitle,
-      }, idToken);
+      const collection = await fetchCreateCollection(
+        {
+          ownerId: user._id,
+          title: formColTitle,
+        },
+        idToken
+      );
       userDispatch({
         type: UserActions.AddCollection,
         payload: { newCollection: collection },
       });
     }
-    setNewCollectionTitle("");
+    setFormColTitle("");
     setCollectionFormOpen(false);
-  }
+  };
 
   useEventListener("keydown", (e: KeyboardEvent) => {
     if (collectionTitleRef.current !== document.activeElement) return;
@@ -72,7 +84,7 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCollectionFormOpen 
     }
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewCollectionTitle(e.target.value);
+    setFormColTitle(e.target.value);
     if (e.target.value.trim() !== "") {
       setErrorText("");
     }
@@ -93,7 +105,7 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCollectionFormOpen 
         <TextField
           inputRef={collectionTitleRef}
           placeholder="Collection title"
-          value={newCollectionTitle}
+          value={formColTitle}
           onChange={handleChange}
           autoFocus
           helperText={errorText}
@@ -102,10 +114,10 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCollectionFormOpen 
       </ListItem>
       <ListItem style={{ display: "flex", justifyContent: "center" }}>
         <ButtonGroup>
-          <Button onClick={handleConfirm}>{operationType === "CREATE" ? "Save" : "Save Changes"}</Button>
-          <Button onClick={() => setCollectionFormOpen(false)}>
-            Cancel
+          <Button onClick={handleConfirm}>
+            {operationType === "CREATE" ? "Save" : "Save Changes"}
           </Button>
+          <Button onClick={() => setCollectionFormOpen(false)}>Cancel</Button>
         </ButtonGroup>
       </ListItem>
     </div>
