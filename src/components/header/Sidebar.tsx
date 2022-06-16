@@ -18,7 +18,7 @@ import { FaHammer } from "react-icons/fa";
 import { Collection, useUser } from "contexts/UserContext";
 import Logo from "../Logo";
 import { useHistory } from "react-router-dom";
-import NewCollectionForm from "./NewCollectionForm";
+import CollectionForm from "./CollectionForm";
 import MoreVert from "@mui/icons-material/MoreVert";
 import ColMoreMenu from "components/ColMoreMenu";
 
@@ -150,7 +150,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
               />
 
               {creatingNewCollection ? (
-                <NewCollectionForm
+                <CollectionForm
                   setCreatingNewCollection={setCreatingNewCollection}
                 />
               ) : (

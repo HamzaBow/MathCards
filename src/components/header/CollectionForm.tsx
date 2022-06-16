@@ -16,7 +16,7 @@ interface Props {
   setCreatingNewCollection: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const NewCollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
+const CollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
   const [newCollectionTitle, setNewCollectionTitle] = useState("");
   const [errorText, setErrorText] = useState("");
 
@@ -96,4 +96,4 @@ const NewCollectionForm: React.FC<Props> = ({ setCreatingNewCollection }) => {
   );
 };
 
-export default NewCollectionForm;
+export default CollectionForm;
