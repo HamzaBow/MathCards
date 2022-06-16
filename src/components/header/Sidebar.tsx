@@ -48,7 +48,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
   const [collectionsOpen, setCollectionsOpen] = useState(true);
 
-  const [creatingNewCollection, setCreatingNewCollection] = useState(false);
+  const [collectionFormOpen, setCollectionFormOpen] = useState(false);
 
   const [open, setOpen] = React.useState(false);
 
@@ -146,10 +146,10 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                 setOpen={setOpen}
               />
 
-              {creatingNewCollection ? (
+              {collectionFormOpen ? (
                 <CollectionForm
                   operationType="CREATE"
-                  setCreatingNewCollection={setCreatingNewCollection}
+                  setCollectionFormOpen={setCollectionFormOpen}
                 />
               ) : (
                 <Tooltip title={`Create new collection.`} placement="top">
@@ -157,7 +157,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                     button
                     className={classes.nested}
                     style={{ display: "flex", justifyContent: "center" }}
-                    onClick={() => setCreatingNewCollection(true)}
+                    onClick={() => setCollectionFormOpen(true)}
                   >
                     <ListItemIcon>
                       <Add />

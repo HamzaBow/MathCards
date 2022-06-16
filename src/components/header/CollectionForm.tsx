@@ -15,10 +15,10 @@ import { CollectionOpType } from "./Sidebar";
 
 interface Props {
   operationType: CollectionOpType;
-  setCreatingNewCollection: React.Dispatch<React.SetStateAction<boolean>>;
+  setCollectionFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CollectionForm: React.FC<Props> = ({ operationType, setCreatingNewCollection }) => {
+const CollectionForm: React.FC<Props> = ({ operationType, setCollectionFormOpen }) => {
   const [newCollectionTitle, setNewCollectionTitle] = useState("");
   const [errorText, setErrorText] = useState("");
 
@@ -58,7 +58,7 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCreatingNewCollecti
       });
     }
     setNewCollectionTitle("");
-    setCreatingNewCollection(false);
+    setCollectionFormOpen(false);
   }
 
   useEventListener("keydown", (e: KeyboardEvent) => {
@@ -68,7 +68,7 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCreatingNewCollecti
     }
     if (e.ctrlKey && e.key === "g") {
       e.preventDefault();
-      setCreatingNewCollection(false);
+      setCollectionFormOpen(false);
     }
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +103,7 @@ const CollectionForm: React.FC<Props> = ({ operationType, setCreatingNewCollecti
       <ListItem style={{ display: "flex", justifyContent: "center" }}>
         <ButtonGroup>
           <Button onClick={handleConfirm}>{operationType === "CREATE" ? "Save" : "Save Changes"}</Button>
-          <Button onClick={() => setCreatingNewCollection(false)}>
+          <Button onClick={() => setCollectionFormOpen(false)}>
             Cancel
           </Button>
         </ButtonGroup>
