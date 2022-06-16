@@ -66,15 +66,13 @@ export const fetchUpdateCollectionPATCH = async (collectionId: string, collectio
 
 export const fetchDeleteCollection = async (collectionId: string, idToken: string) => {
   validateString(collectionId, 'collectionId')
-  const res = await fetch(`${baseUrl}/${collectionId}`, {
+  return fetch(`${baseUrl}/${collectionId}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
       authorization: "Bearer " + idToken,
     }
   });
-  const data = await res.json();
-  return data;
 };
 
 //******************************************************************************

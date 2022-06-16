@@ -3,6 +3,9 @@ import { BiEditAlt } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
 import { UserActions, useUserUpdate } from "contexts/UserContext";
+import { fetchDeleteCollection } from "api/collectionAPI";
+import { useAuth } from "contexts/AuthContext";
+import { useSnackbar } from "contexts/SnackbarContext";
 
 interface Props {
   collectionId: string | null;
@@ -17,13 +20,29 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionId })
   }
 
   const userDispatch = useUserUpdate();
-  const handleDelete = () => {
+  const { currentUser } = useAuth();
+  const displaySnackBar = useSnackbar();
+  const handleDelete = async () => {
+
+    const idToken = await currentUser?.getIdToken(true);
+    if (typeof idToken === "undefined") {
+      throw new Error(`idToken cannot be undefined`);
+    }
+    if (!collectionId) {
+      throw new Error(`cannot delete collection, collectionId cannot be ${collectionId}`)
+    }
+    const res = await fetchDeleteCollection(collectionId, idToken);
+    if (!res.ok) {
+      displaySnackBar("error", "Couldn't delete card. Some error happened!");
+      return;
+    }
     userDispatch({
       type: UserActions.DeleteCollection,
       payload: {
         collectionId,
       }
     })
+    displaySnackBar("success", "Collection deleted successfully");
     setOpen(false);
   }
 
