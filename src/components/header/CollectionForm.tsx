@@ -136,7 +136,6 @@ const CollectionForm: React.FC<Props> = ({
             variant="outlined"
             onClick={handleConfirm}
             loading={loading}
-            disabled={loading}
             loadingPosition="end"
             fullWidth
           >
