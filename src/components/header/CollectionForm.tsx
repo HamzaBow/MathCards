@@ -8,7 +8,7 @@ import {
   useUserUpdate,
   UserActions,
 } from "../../contexts/UserContext";
-import { fetchCreateCollection } from "api/collectionAPI";
+import { fetchCreateCollection, fetchUpdateCollectionPATCH } from "api/collectionAPI";
 import { ButtonGroup } from "@mui/material";
 import { useAuth } from "contexts/AuthContext";
 import { CollectionOpType } from "./Sidebar";
@@ -17,6 +17,7 @@ interface Props {
   operationType: CollectionOpType;
   setCollectionFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
   formColTitle: string;
+  collectionId: string | null;
   setFormColTitle: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -24,6 +25,7 @@ const CollectionForm: React.FC<Props> = ({
   operationType,
   setCollectionFormOpen,
   formColTitle,
+  collectionId,
   setFormColTitle,
 }) => {
   const [errorText, setErrorText] = useState("");
@@ -56,8 +58,14 @@ const CollectionForm: React.FC<Props> = ({
       });
     }
 
+
     if (operationType === "UPDATE") {
-      const collection = await fetchCreateCollection(
+      if (!collectionId) {
+        console.error("collectionId cannot be null or undefined, cannot update collection")
+        return
+      }
+      const collection = await fetchUpdateCollectionPATCH(
+        collectionId,
         {
           ownerId: user._id,
           title: formColTitle,
@@ -65,8 +73,8 @@ const CollectionForm: React.FC<Props> = ({
         idToken
       );
       userDispatch({
-        type: UserActions.AddCollection,
-        payload: { newCollection: collection },
+        type: UserActions.UpdateCollection,
+        payload: { collectionId, collectionTitle: formColTitle, },
       });
     }
     setFormColTitle("");

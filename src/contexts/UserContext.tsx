@@ -32,6 +32,7 @@ export enum UserActions {
   FetchUserCards,
   FetchUserCollections,
   AddCollection,
+  UpdateCollection,
   DeleteCollection,
   AddCardIdToCollection,
   ResetUser,
@@ -70,6 +71,23 @@ const UserProvider: React.FC<Props> = ({ children }) => {
         return {
           ...user,
           collections: [...collections, action.payload.newCollection],
+        };
+      //---------------------------------
+      case UserActions.UpdateCollection:
+        const colls = user.collections === undefined ? [] : user.collections
+        const col = colls.filter((col) => col._id === action.payload.collectionId)?.[0]
+        if (!col) {
+          console.error("Collection ID not found, can't update collection.")
+          return user
+        }
+        colls.forEach((col) => {
+          if (col._id === action.payload.collectionId) {
+            col.title = action.payload.collectionTitle
+          }
+        });
+        return {
+          ...user,
+          collections: colls,
         };
       //---------------------------------
       case UserActions.DeleteCollection:

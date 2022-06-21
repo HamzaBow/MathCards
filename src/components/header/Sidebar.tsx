@@ -95,6 +95,11 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     setColFormOpType("UPDATE");
     setFormColTitle(title)
   }
+  const handleNewCollection = () => {
+    setCollectionId(null);
+    setColFormOpType('CREATE')
+    setCollectionFormOpen(true);
+  }
 
   return (
     <div>
@@ -164,6 +169,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
               {collectionFormOpen ? (
                 <CollectionForm
                   operationType={colFormOpType}
+                  collectionId={collectionId}
                   setCollectionFormOpen={setCollectionFormOpen}
                   formColTitle={formColTitle}
                   setFormColTitle={setFormColTitle}
@@ -174,7 +180,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                     button
                     className={classes.nested}
                     style={{ display: "flex", justifyContent: "center" }}
-                    onClick={() => setCollectionFormOpen(true)}
+                    onClick={handleNewCollection}
                   >
                     <ListItemIcon>
                       <Add />
