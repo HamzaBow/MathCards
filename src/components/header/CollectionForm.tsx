@@ -12,6 +12,7 @@ import { fetchCreateCollection, fetchUpdateCollectionPATCH } from "api/collectio
 import { ButtonGroup } from "@mui/material";
 import { useAuth } from "contexts/AuthContext";
 import { CollectionOpType } from "./Sidebar";
+import { useSnackbar } from "contexts/SnackbarContext";
 
 interface Props {
   operationType: CollectionOpType;
@@ -33,6 +34,8 @@ const CollectionForm: React.FC<Props> = ({
   const user = useUser();
   const { currentUser } = useAuth();
   const userDispatch = useUserUpdate();
+
+  const displaySnackbar = useSnackbar()
 
   const handleConfirm = async () => {
     if (formColTitle.trim() === "") {
@@ -56,6 +59,7 @@ const CollectionForm: React.FC<Props> = ({
         type: UserActions.AddCollection,
         payload: { newCollection: collection },
       });
+      displaySnackbar("success", "Collection Created");
     }
 
 
