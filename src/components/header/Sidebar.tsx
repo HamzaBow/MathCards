@@ -149,23 +149,37 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
 
           <Collapse in={collectionsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {user.collections?.map((collection: Collection, key: number) => (
-                <ListItem
-                  key={key}
-                  button
-                  className={classes.collectionItem}
-                  onClick={handleCollectionClick(collection._id)}
-                >
-                  <ListItemIcon>
-                    <ImSigma />
-                  </ListItemIcon>
-                  <ListItemText primary={collection.title} />
+              {user.collections?.map((collection: Collection, key: number) => {
+                if (collectionFormOpen && colFormOpType === "UPDATE" && collectionId === collection._id) {
+                  return (
+                    <CollectionForm
+                      operationType={colFormOpType}
+                      collectionId={collectionId}
+                      setCollectionFormOpen={setCollectionFormOpen}
+                      formColTitle={formColTitle}
+                      setFormColTitle={setFormColTitle}
+                    />
+                  )
+                }
+                return (
+                  <ListItem
+                    key={key}
+                    button
+                    className={classes.collectionItem}
+                    onClick={handleCollectionClick(collection._id)}
+                  >
+                    <ListItemIcon>
+                      <ImSigma />
+                    </ListItemIcon>
+                    <ListItemText primary={collection.title} />
 
-                  <IconButton className={classes.buttonMore} size="small" onClick={(event) => handleColMoreBtn(event, collection._id, collection.title)}>
-                    <MoreVert />
-                  </IconButton>
-                </ListItem>
-              ))}
+                    <IconButton className={classes.buttonMore} size="small" onClick={(event) => handleColMoreBtn(event, collection._id, collection.title)}>
+                      <MoreVert />
+                    </IconButton>
+                  </ListItem>
+                )
+                })
+              }
               <ColMoreMenu
                 collectionId={collectionId}
                 collectionTitle={collectionTitle}
@@ -175,7 +189,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                 handleEdit={handleEdit}
               />
 
-              {collectionFormOpen ? (
+              {collectionFormOpen && colFormOpType === "CREATE" ? (
                 <CollectionForm
                   operationType={colFormOpType}
                   collectionId={collectionId}
