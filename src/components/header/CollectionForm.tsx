@@ -13,6 +13,7 @@ import { ButtonGroup } from "@mui/material";
 import { useAuth } from "contexts/AuthContext";
 import { CollectionOpType } from "./Sidebar";
 import { useSnackbar } from "contexts/SnackbarContext";
+import { LoadingButton } from "@mui/lab";
 
 interface Props {
   operationType: CollectionOpType;
@@ -30,6 +31,7 @@ const CollectionForm: React.FC<Props> = ({
   setFormColTitle,
 }) => {
   const [errorText, setErrorText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const user = useUser();
   const { currentUser } = useAuth();
@@ -42,8 +44,10 @@ const CollectionForm: React.FC<Props> = ({
       setErrorText("Collection title cannot be empty.");
       return;
     }
+    setLoading(true)
     const idToken = await currentUser?.getIdToken(true);
     if (typeof idToken === "undefined") {
+      setLoading(false);
       throw new Error("idToken cannot be undefined");
     }
 
@@ -83,6 +87,7 @@ const CollectionForm: React.FC<Props> = ({
       displaySnackbar("success", "Collection Updated");
     }
     setFormColTitle("");
+    setLoading(false)
     setCollectionFormOpen(false);
   };
 
@@ -127,10 +132,17 @@ const CollectionForm: React.FC<Props> = ({
       </ListItem>
       <ListItem style={{ display: "flex", justifyContent: "center" }}>
         <ButtonGroup>
-          <Button onClick={handleConfirm}>
+          <LoadingButton
+            variant="outlined"
+            onClick={handleConfirm}
+            loading={loading}
+            disabled={loading}
+            loadingPosition="end"
+            fullWidth
+          >
             {operationType === "CREATE" ? "Save" : "Save Changes"}
-          </Button>
-          <Button onClick={() => setCollectionFormOpen(false)}>Cancel</Button>
+          </LoadingButton>
+          <Button onClick={() => setCollectionFormOpen(false)} disabled={loading} sx={{ px: 3 }}>Cancel</Button>
         </ButtonGroup>
       </ListItem>
     </div>
