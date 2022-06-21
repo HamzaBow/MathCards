@@ -252,6 +252,7 @@ const Card: React.FC<Props> = ({
               open={open}
               anchorEl={anchorRef.current}
               role={undefined}
+              sx={{ zIndex: 1 }}
               transition
               disablePortal
             >
