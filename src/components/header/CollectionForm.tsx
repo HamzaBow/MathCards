@@ -80,6 +80,7 @@ const CollectionForm: React.FC<Props> = ({
         type: UserActions.UpdateCollection,
         payload: { collectionId, collectionTitle: formColTitle, },
       });
+      displaySnackbar("success", "Collection Updated");
     }
     setFormColTitle("");
     setCollectionFormOpen(false);
