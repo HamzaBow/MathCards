@@ -31,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
   },
   nested: {
     paddingLeft: theme.spacing(4),
+  },
+  collectionItem: {
+    paddingLeft: theme.spacing(4),
+    "&:hover $buttonMore": {
+      visibility: "visible"
+    }
+  },
+  buttonMore: {
+    visibility: "hidden",
   }
 }));
 
@@ -144,7 +153,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                 <ListItem
                   key={key}
                   button
-                  className={classes.nested}
+                  className={classes.collectionItem}
                   onClick={handleCollectionClick(collection._id)}
                 >
                   <ListItemIcon>
@@ -152,7 +161,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   </ListItemIcon>
                   <ListItemText primary={collection.title} />
 
-                  <IconButton size="small" onClick={(event) => handleColMoreBtn(event, collection._id, collection.title)}>
+                  <IconButton className={classes.buttonMore} size="small" onClick={(event) => handleColMoreBtn(event, collection._id, collection.title)}>
                     <MoreVert />
                   </IconButton>
                 </ListItem>
