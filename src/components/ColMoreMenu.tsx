@@ -23,7 +23,7 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionTitle
 
   const userDispatch = useUserUpdate();
   const { currentUser } = useAuth();
-  const displaySnackBar = useSnackbar();
+  const displaySnackbar = useSnackbar();
   const handleDelete = async () => {
 
     const idToken = await currentUser?.getIdToken(true);
@@ -35,7 +35,7 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionTitle
     }
     const res = await fetchDeleteCollection(collectionId, idToken);
     if (!res.ok) {
-      displaySnackBar("error", "Couldn't delete card. Some error happened!");
+      displaySnackbar("error", "Couldn't delete card. Some error happened!");
       return;
     }
     userDispatch({
@@ -44,7 +44,7 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionTitle
         collectionId,
       }
     })
-    displaySnackBar("success", "Collection deleted successfully");
+    displaySnackbar("success", "Collection deleted successfully");
     setOpen(false);
   }
 
