@@ -64,7 +64,7 @@ const CollectionForm: React.FC<Props> = ({
         console.error("collectionId cannot be null or undefined, cannot update collection")
         return
       }
-      const collection = await fetchUpdateCollectionPATCH(
+      await fetchUpdateCollectionPATCH(
         collectionId,
         {
           ownerId: user._id,
