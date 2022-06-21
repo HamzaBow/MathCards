@@ -44,7 +44,7 @@ const ColMoreMenu: React.FC<Props> = ({ open, setOpen, anchorEl, collectionTitle
         collectionId,
       }
     })
-    displaySnackbar("success", "Collection deleted successfully");
+    displaySnackbar("success", "Collection Deleted");
     setOpen(false);
   }
 
