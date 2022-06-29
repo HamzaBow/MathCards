@@ -4,7 +4,7 @@ import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
 import MathField from "../utilities/MathField";
 
-import { Button, Paper, Tooltip } from "@mui/material";
+import { Button, cardActionAreaClasses, Paper, Tooltip } from "@mui/material";
 import { ButtonGroup } from "@mui/material";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -14,6 +14,7 @@ import { CardFormActions, FrontNBackFields } from "./CardForm";
 import { Add } from "@mui/icons-material";
 import { FieldType } from "./CardForm";
 import useEventListener from "hooks/useEventListener";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 addStyles();
 
@@ -61,6 +62,40 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
       addTextQuill()
     }
   });
+  const dragEnd = (result:any) => {
+    const { destination, source, draggableId } = result;
+    if (
+      !destination ||
+      (destination.droppableId === source.droppableId &&
+        destination.index === source.index)
+    ) {
+      return;
+    }
+    const newItems = [...frontNBackFields[face]];
+    const item = newItems.find((i) => i.id.toString() === draggableId)
+    newItems.splice(source.index, 1)
+    // @ts-ignore
+    newItems.splice(destination.index, 0, item)
+    fieldsDispatch({
+      type: CardFormActions.SetFields,
+      payload: {
+        frontNBackFields: {
+          front: face === "front" ? newItems : frontNBackFields.front,
+          back: face === "back" ? newItems : frontNBackFields.back,
+        },
+      },
+    });
+    // setItems(newItems)
+  }
+  const handleDelQuill = (id: number) => {
+    fieldsDispatch({
+      type: CardFormActions.DelQuill,
+      payload: {
+        face,
+        id
+      }
+    })
+  }
 
   return (
     <Paper className={"card-form__step"} ref={ref}>
@@ -104,39 +139,72 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
           </div>
         </div>
       </div>
-      <div className="fields-container">
-        {frontNBackFields[face].map((field, key) => {
-          if (field.type === FieldType.Math) {
-            return (
-              <MathField
-                key={key}
-                id={field.id}
-                latex={field.latex || ""}
-                fieldsDispatch={fieldsDispatch}
-                face={face}
-              />
-            );
-          }
+      <DragDropContext onDragEnd={dragEnd}>
+        <Droppable droppableId="1">
+          {(provided) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="fields-container"
+            >
+              {frontNBackFields[face].map((field, key) => {
+                    if (field.type === FieldType.Math) {
+                      return (
+                        <Draggable key={field.id} draggableId={field.id.toString()} index={key}>
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                            >
+                              <p {...provided.dragHandleProps}>handle</p>
+                              <MathField
+                                key={key}
+                                id={field.id}
+                                latex={field.latex || ""}
+                                fieldsDispatch={fieldsDispatch}
+                                face={face}
+                              />
+                              <Button onClick={() => handleDelQuill(field.id)}>delete</Button>
+                            </div>
+                          )}
+                        </Draggable>
+                      );
+                    }
 
-          if (field.type === FieldType.Text) {
-            return (
-              <Quill
-                key={key}
-                id={field.id}
-                htmlContent={field.htmlContent || ""}
-                fieldsDispatch={fieldsDispatch}
-                face={face}
-              />
-            );
-          }
-          if (field.type !== FieldType.Math && field.type !== FieldType.Text) {
-            throw new TypeError(
-              "type of the field should be either text or math"
-            );
-          }
-          return <></>;
-        })}
-      </div>
+                    if (field.type === FieldType.Text) {
+                      return (
+                        <Draggable key={field.id} draggableId={field.id.toString()} index={key}>
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                            >
+                              <p {...provided.dragHandleProps}>handle</p>
+                              <Quill
+                                key={key}
+                                id={field.id}
+                                htmlContent={field.htmlContent || ""}
+                                fieldsDispatch={fieldsDispatch}
+                                face={face}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      );
+                    }
+                    if (field.type !== FieldType.Math && field.type !== FieldType.Text) {
+                      throw new TypeError(
+                        "type of the field should be either text or math"
+                      );
+                    }
+                    return <></>;
+                  })
+                }
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
 
       <ButtonGroup>
         {prev ? (

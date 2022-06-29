@@ -53,6 +53,7 @@ export enum CardFormActions {
   AddMathQuill,
   UpdateLatex,
   UpdateHtmlContent,
+  DelQuill,
   SetFields,
   ResetFields,
 }
@@ -150,6 +151,11 @@ const CardForm: React.FC<Props> = ({
             return field;
           }),
         };
+      case CardFormActions.DelQuill:
+        return {
+          [otherFace]: frontNBackFields[otherFace],
+          [face]: frontNBackFields[face].filter((field) => field.id !== action.payload.id)
+        }
       case CardFormActions.SetFields:
         return action.payload.frontNBackFields;
 
