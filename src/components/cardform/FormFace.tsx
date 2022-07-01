@@ -187,6 +187,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 fieldsDispatch={fieldsDispatch}
                                 face={face}
                               />
+                              <Button onClick={() => handleDelQuill(field.id)}>delete</Button>
                             </div>
                           )}
                         </Draggable>
