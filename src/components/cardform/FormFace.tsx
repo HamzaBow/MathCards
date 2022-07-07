@@ -159,7 +159,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               {...provided.draggableProps}
                               className="draggable-son"
                             >
-                              <Tooltip title="Drag to reorder" placement="left" >
+                              <Tooltip title="Drag to reorder" placement="left" enterDelay={800} >
                                 <IconButton {...provided.dragHandleProps}>
                                   <DragHandleIcon />
                                 </IconButton>
@@ -171,7 +171,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 fieldsDispatch={fieldsDispatch}
                                 face={face}
                               />
-                              <Tooltip title="Delete field" placement="right" >
+                              <Tooltip title="Delete field" placement="right" enterDelay={800} >
                                 <IconButton onClick={() => handleDelQuill(field.id)} >
                                   <DeleteIcon />
                                 </IconButton>
@@ -191,7 +191,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               {...provided.draggableProps}
                               className="draggable-son"
                             >
-                              <Tooltip title="Drag to reorder" placement="left" >
+                              <Tooltip title="Drag to reorder" placement="left" enterDelay={800} >
                                 <IconButton {...provided.dragHandleProps}>
                                   <DragHandleIcon />
                                 </IconButton>
@@ -203,7 +203,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 fieldsDispatch={fieldsDispatch}
                                 face={face}
                               />
-                              <Tooltip title="Delete field" placement="right" >
+                              <Tooltip title="Delete field" placement="right" enterDelay={800} >
                                 <IconButton onClick={() => handleDelQuill(field.id)} >
                                   <DeleteIcon />
                                 </IconButton>
