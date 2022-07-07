@@ -1,6 +1,12 @@
 import { APP_NAME } from "Constants";
 import { ImSigma } from "react-icons/im";
+import makeStyles from "@mui/styles/makeStyles";
 
+const useStyles = makeStyles((theme) => ({
+  logoName: {
+    color: theme.palette.mode === "dark" ? "#fff" : "rgba(0, 0, 0, 0.8)"
+  }
+}));
 export const logoStyle = {
   display: "inline-flex",
   justifyContent: "center",
@@ -35,13 +41,14 @@ export const headingStyle: any = {
   margin: "0 0.5rem 0",
 };
 const Logo = () => {
+  const classes = useStyles();
   return (
     <div>
       <div style={logoStyle}>
         <span style={sigmaContainerStyle}>
           <ImSigma style={SigmaIconStyle} />
         </span>
-        <h6 style={headingStyle}>{APP_NAME}</h6>
+        <h6 className={classes.logoName} style={headingStyle}>{APP_NAME}</h6>
       </div>
     </div>
   );
