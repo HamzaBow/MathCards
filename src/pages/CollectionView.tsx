@@ -1,3 +1,4 @@
+import { Breadcrumbs, Link, Typography } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/system/Box";
@@ -8,6 +9,7 @@ import { Collection, useUser } from "contexts/UserContext";
 import useFetch from "hooks/useFetch";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
 
 
 interface Props {
@@ -39,22 +41,36 @@ const CollectionViewInner: React.FC<Props> = ({ title, cardsIds }) => {
   return (
     <>
       {data instanceof Array && data.length === 0 ? (
-        <EmptyCollectionView />
+        <EmptyCollectionView collectionTitle={title} />
       ) : (
         <CollectionCardsView collectionTitle={title} loading={loading} error={error} />
       )}
     </>
   );
 };
-
-const EmptyCollectionView: React.FC = () => {
+interface EmptyColProps {
+  collectionTitle: string;
+}
+const EmptyCollectionView: React.FC<EmptyColProps> = ({ collectionTitle }) => {
   const cardsDispatch = useUpdateCards();
   cardsDispatch({
     type: CardsActions.ResetCard
   })
+
+  const BC = (
+    <Breadcrumbs aria-label="breadcrumb" sx={{ mt: 3, ml: 5 }}>
+      {/* <Link underline="hover" color="inherit"> */}
+        <Link component={RouterLink} underline="hover" color="inherit" to="/">
+          Collections
+        </Link>
+      {/* </Link> */}
+      <Typography color="text.primary">{collectionTitle}</Typography>
+    </Breadcrumbs>
+  )
   return (
     <>
       <Header />
+      {BC}
       <Box sx={{ display: "grid", placeItems: "center", height: "70vh" }}>
         <Alert
           variant="filled"
@@ -87,7 +103,7 @@ const CollectionView: React.FC = () => {
       collections[0].cardsIds.length > 0 ? (
         <CollectionViewInner title={collections[0].title} cardsIds={collections[0].cardsIds as string[]} />
       ) : (
-        <EmptyCollectionView />
+        <EmptyCollectionView collectionTitle={collections?.[0]?.title || ""}/>
       )}
     </>
   );
