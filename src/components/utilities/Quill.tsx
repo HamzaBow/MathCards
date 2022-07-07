@@ -2,7 +2,13 @@ import ReactQuill from "react-quill";
 import React from "react";
 import "react-quill/dist/quill.snow.css";
 import { CardFormActions } from "components/cardform/CardForm";
+import { makeStyles } from "@mui/styles";
 
+const useStyles = makeStyles((theme) => ({
+  textQuill: {
+    backgroundColor: theme.palette.mode === "light" ? theme.palette.grey[50] : theme.palette.background.default
+  }
+}))
 interface Props {
   id: string | number;
   htmlContent: string;
@@ -17,11 +23,7 @@ const Quill: React.FC<Props> = ({ id, htmlContent, fieldsDispatch, face }) => {
     margin: "0.5rem",
   };
 
-  const quillStyle: any = {
-    maxHeight: "15rem",
-    overflowY: "auto",
-  };
-
+  const classes = useStyles();
   return (
     <div style={quillContainerStyle}>
       <ReactQuill
@@ -35,7 +37,7 @@ const Quill: React.FC<Props> = ({ id, htmlContent, fieldsDispatch, face }) => {
           ],
         }}
         theme="snow"
-        style={quillStyle}
+        className={classes.textQuill}
         value={htmlContent}
         onChange={(htmlText) => {
           fieldsDispatch({

@@ -1,6 +1,13 @@
 // import { useState, useEffect } from "react";
 import { CardFormActions } from "components/cardform/CardForm";
 import { addStyles, EditableMathField } from "react-mathquill";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  mathQuill: {
+    backgroundColor: theme.palette.mode === "light" ? theme.palette.grey[100] : theme.palette.background.default
+  }
+}))
 
 // inserts the required css to the <head> block.
 // you can skip this, if you want to do that by yourself.
@@ -13,6 +20,7 @@ interface Props {
 }
 
 const MathField: React.FC<Props> = ({ id, latex, fieldsDispatch, face }) => {
+  const classes = useStyles();
 
   // const [latex, setLatex] = useState("")
 
@@ -28,6 +36,7 @@ const MathField: React.FC<Props> = ({ id, latex, fieldsDispatch, face }) => {
     <div style={{ margin: "0.5rem" }} >
       <EditableMathField
         style={mathFieldStyle}
+        className={classes.mathQuill}
         latex={latex}
         onChange={(mathField) => {
           // setLatex(mathField.latex());
