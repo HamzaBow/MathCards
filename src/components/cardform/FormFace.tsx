@@ -159,9 +159,11 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               {...provided.draggableProps}
                               className="draggable-son"
                             >
-                              <IconButton {...provided.dragHandleProps}>
-                                <DragHandleIcon />
-                              </IconButton>
+                              <Tooltip title="Drag to reorder" placement="left" >
+                                <IconButton {...provided.dragHandleProps}>
+                                  <DragHandleIcon />
+                                </IconButton>
+                              </Tooltip>
                               <MathField
                                 key={key}
                                 id={field.id}
@@ -189,9 +191,11 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               {...provided.draggableProps}
                               className="draggable-son"
                             >
-                              <IconButton {...provided.dragHandleProps}>
-                                <DragHandleIcon />
-                              </IconButton>
+                              <Tooltip title="Drag to reorder" placement="left" >
+                                <IconButton {...provided.dragHandleProps}>
+                                  <DragHandleIcon />
+                                </IconButton>
+                              </Tooltip>
                               <Quill
                                 key={key}
                                 id={field.id}
