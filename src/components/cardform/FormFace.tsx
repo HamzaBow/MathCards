@@ -169,9 +169,11 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 fieldsDispatch={fieldsDispatch}
                                 face={face}
                               />
-                              <IconButton onClick={() => handleDelQuill(field.id)} >
-                                <DeleteIcon />
-                              </IconButton>
+                              <Tooltip title="Delete field" placement="right" >
+                                <IconButton onClick={() => handleDelQuill(field.id)} >
+                                  <DeleteIcon />
+                                </IconButton>
+                              </Tooltip>
                             </div>
                           )}
                         </Draggable>
@@ -197,9 +199,11 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 fieldsDispatch={fieldsDispatch}
                                 face={face}
                               />
-                              <IconButton onClick={() => handleDelQuill(field.id)} >
-                                <DeleteIcon />
-                              </IconButton>
+                              <Tooltip title="Delete field" placement="right" >
+                                <IconButton onClick={() => handleDelQuill(field.id)} >
+                                  <DeleteIcon />
+                                </IconButton>
+                              </Tooltip>
                             </div>
                           )}
                         </Draggable>
