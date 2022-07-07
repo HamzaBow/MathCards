@@ -4,9 +4,10 @@ import { addStyles } from "react-mathquill";
 import Quill from "../utilities/Quill";
 import MathField from "../utilities/MathField";
 
-import { Button, cardActionAreaClasses, Paper, Tooltip } from "@mui/material";
+import { Button, cardActionAreaClasses, IconButton, Paper, Tooltip } from "@mui/material";
 import { ButtonGroup } from "@mui/material";
 import DragHandleIcon from '@mui/icons-material/DragHandle';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -168,7 +169,9 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 fieldsDispatch={fieldsDispatch}
                                 face={face}
                               />
-                              <Button onClick={() => handleDelQuill(field.id)}>delete</Button>
+                              <IconButton onClick={() => handleDelQuill(field.id)} >
+                                <DeleteIcon />
+                              </IconButton>
                             </div>
                           )}
                         </Draggable>
@@ -194,7 +197,9 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 fieldsDispatch={fieldsDispatch}
                                 face={face}
                               />
-                              <Button onClick={() => handleDelQuill(field.id)}>delete</Button>
+                              <IconButton onClick={() => handleDelQuill(field.id)} >
+                                <DeleteIcon />
+                              </IconButton>
                             </div>
                           )}
                         </Draggable>
