@@ -199,18 +199,18 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
                   setFormColTitle={setFormColTitle}
                 />
               ) : (
-                <Tooltip title={`Create new collection.`} placement="top">
-                  <ListItem
-                    button
-                    className={classes.nested}
-                    style={{ display: "flex", justifyContent: "center" }}
-                    onClick={handleNewCollection}
-                  >
+                <ListItem
+                  button
+                  className={classes.nested}
+                  style={{ display: "flex", justifyContent: "center" }}
+                  onClick={handleNewCollection}
+                >
+                  <Tooltip title={`New collection.`} placement="right" enterDelay={800} >
                     <ListItemIcon>
                       <Add />
                     </ListItemIcon>
-                  </ListItem>
-                </Tooltip>
+                  </Tooltip>
+                </ListItem>
               )}
             </List>
           </Collapse>
