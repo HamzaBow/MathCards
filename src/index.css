@@ -145,6 +145,16 @@ body {
   align-items: center;
 }
 
+.btn-icon {
+  visibility: hidden;
+}
+.draggable-son:hover .btn-icon {
+  visibility: visible;
+}
+.draggable-son:focus-within .btn-icon {
+  visibility: visible;
+}
+
 [data-rbd-draggable-id] {
   top: auto !important;
   left: auto !important;

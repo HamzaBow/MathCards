@@ -160,7 +160,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               className="draggable-son"
                             >
                               <Tooltip title="Drag to reorder" placement="left" enterDelay={800} >
-                                <IconButton {...provided.dragHandleProps}>
+                                <IconButton {...provided.dragHandleProps} className="btn-icon" >
                                   <DragHandleIcon />
                                 </IconButton>
                               </Tooltip>
@@ -172,7 +172,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 face={face}
                               />
                               <Tooltip title="Delete field" placement="right" enterDelay={800} >
-                                <IconButton onClick={() => handleDelQuill(field.id)} >
+                                <IconButton onClick={() => handleDelQuill(field.id)} className="btn-icon" >
                                   <DeleteIcon />
                                 </IconButton>
                               </Tooltip>
@@ -192,7 +192,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               className="draggable-son"
                             >
                               <Tooltip title="Drag to reorder" placement="left" enterDelay={800} >
-                                <IconButton {...provided.dragHandleProps}>
+                                <IconButton {...provided.dragHandleProps} className="btn-icon" >
                                   <DragHandleIcon />
                                 </IconButton>
                               </Tooltip>
@@ -204,7 +204,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                                 face={face}
                               />
                               <Tooltip title="Delete field" placement="right" enterDelay={800} >
-                                <IconButton onClick={() => handleDelQuill(field.id)} >
+                                <IconButton onClick={() => handleDelQuill(field.id)} className="btn-icon" >
                                   <DeleteIcon />
                                 </IconButton>
                               </Tooltip>
