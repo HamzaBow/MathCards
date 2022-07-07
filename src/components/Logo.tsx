@@ -4,6 +4,11 @@ import makeStyles from "@mui/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
   logoName: {
+    fontSize: "1.5rem",
+    fontFamily: "Ubuntu",
+    fontWeight: "400",
+    display: "inline",
+    margin: "0 0.5rem 0",
     color: theme.palette.mode === "dark" ? "#fff" : "rgba(0, 0, 0, 0.8)"
   }
 }));
@@ -33,13 +38,6 @@ export const SigmaIconStyle = {
   color: "white",
 };
 
-export const headingStyle: any = {
-  fontSize: "1.5rem",
-  fontFamily: "Ubuntu",
-  fontWeight: "400",
-  display: "inline",
-  margin: "0 0.5rem 0",
-};
 const Logo = () => {
   const classes = useStyles();
   return (
@@ -48,7 +46,7 @@ const Logo = () => {
         <span style={sigmaContainerStyle}>
           <ImSigma style={SigmaIconStyle} />
         </span>
-        <h6 className={classes.logoName} style={headingStyle}>{APP_NAME}</h6>
+        <h6 className={classes.logoName} >{APP_NAME}</h6>
       </div>
     </div>
   );
