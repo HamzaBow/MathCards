@@ -1,7 +1,7 @@
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/system/Box";
-import CardsView from "components/CardsView";
+import { CollectionCardsView } from "components/CardsView";
 import Header from "components/header/Header";
 import { CardsActions, useUpdateCards } from "contexts/CardsContext";
 import { Collection, useUser } from "contexts/UserContext";
@@ -11,10 +11,11 @@ import { useParams } from "react-router";
 
 
 interface Props {
+  title: string;
   cardsIds: string[];
 }
 
-const CollectionViewInner: React.FC<Props> = ({ cardsIds }) => {
+const CollectionViewInner: React.FC<Props> = ({ title, cardsIds }) => {
   const cardsDispatch = useUpdateCards();
 
   interface RouteParams {
@@ -40,7 +41,7 @@ const CollectionViewInner: React.FC<Props> = ({ cardsIds }) => {
       {data instanceof Array && data.length === 0 ? (
         <EmptyCollectionView />
       ) : (
-        <CardsView loading={loading} error={error} />
+        <CollectionCardsView collectionTitle={title} loading={loading} error={error} />
       )}
     </>
   );
@@ -84,7 +85,7 @@ const CollectionView: React.FC = () => {
       collections.length === 1 &&
       collections[0].cardsIds !== undefined &&
       collections[0].cardsIds.length > 0 ? (
-        <CollectionViewInner cardsIds={collections[0].cardsIds as string[]} />
+        <CollectionViewInner title={collections[0].title} cardsIds={collections[0].cardsIds as string[]} />
       ) : (
         <EmptyCollectionView />
       )}
