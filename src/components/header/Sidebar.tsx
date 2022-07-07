@@ -108,6 +108,7 @@ const Sidebar: React.FC<Props> = ({ displaySidebar, setDisplaySidebar }) => {
     setCollectionId(null);
     setColFormOpType('CREATE')
     setCollectionFormOpen(true);
+    setFormColTitle("");
   }
 
   return (
