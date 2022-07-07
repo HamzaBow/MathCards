@@ -155,6 +155,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                             <div
                               ref={provided.innerRef}
                               {...provided.draggableProps}
+                              className="draggable-son"
                             >
                               <p {...provided.dragHandleProps}>handle</p>
                               <MathField
@@ -178,6 +179,7 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                             <div
                               ref={provided.innerRef}
                               {...provided.draggableProps}
+                              className="draggable-son"
                             >
                               <p {...provided.dragHandleProps}>handle</p>
                               <Quill

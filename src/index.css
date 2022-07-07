@@ -139,6 +139,12 @@ body {
 .ql-editor {
   font-size: 1rem;
 }
+.draggable-son {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 [data-rbd-draggable-id] {
   top: auto !important;
   left: auto !important;
