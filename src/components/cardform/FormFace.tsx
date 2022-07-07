@@ -159,9 +159,9 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               {...provided.draggableProps}
                               className="draggable-son"
                             >
-                              <div {...provided.dragHandleProps}>
+                              <IconButton {...provided.dragHandleProps}>
                                 <DragHandleIcon />
-                              </div>
+                              </IconButton>
                               <MathField
                                 key={key}
                                 id={field.id}
@@ -189,9 +189,9 @@ const FormFace: React.ForwardRefRenderFunction<HTMLDivElement, OtherProps> = (
                               {...provided.draggableProps}
                               className="draggable-son"
                             >
-                              <div {...provided.dragHandleProps}>
+                              <IconButton {...provided.dragHandleProps}>
                                 <DragHandleIcon />
-                              </div>
+                              </IconButton>
                               <Quill
                                 key={key}
                                 id={field.id}
