@@ -10,6 +10,14 @@ const useStyles = makeStyles((theme) => ({
     display: "inline",
     margin: "0 0.5rem 0",
     color: theme.palette.mode === "dark" ? "#fff" : "rgba(0, 0, 0, 0.8)"
+  },
+  sigmaContainer: {
+    width: "2rem",
+    height: "2rem",
+    borderRadius: "0.5rem",
+    display: "inline-grid",
+    placeItems: "center",
+    backgroundColor: theme.palette.primary.main,
   }
 }));
 export const logoStyle = {
@@ -22,16 +30,8 @@ export const logoStyle = {
   marginBottom: "0.5rem",
 };
 
-export const sigmaContainerStyle = {
-  width: "2rem",
-  height: "2rem",
-  borderRadius: "0.5rem",
-  display: "inline-grid",
-  placeItems: "center",
-  backgroundColor: "hsl(196, 62%, 62%)",
-};
-
 export const SigmaIconStyle = {
+
   width: "1rem",
   height: "1rem",
   transform: "rotate(-20deg)",
@@ -43,7 +43,7 @@ const Logo = () => {
   return (
     <div>
       <div style={logoStyle}>
-        <span style={sigmaContainerStyle}>
+        <span className={classes.sigmaContainer}>
           <ImSigma style={SigmaIconStyle} />
         </span>
         <h6 className={classes.logoName} >{APP_NAME}</h6>
