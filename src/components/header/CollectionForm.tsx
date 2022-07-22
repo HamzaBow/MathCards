@@ -14,6 +14,16 @@ import { useAuth } from "contexts/AuthContext";
 import { CollectionOpType } from "./Sidebar";
 import { useSnackbar } from "contexts/SnackbarContext";
 import { LoadingButton } from "@mui/lab";
+import makeStyles from "@mui/styles/makeStyles"
+
+const useStyles = makeStyles((theme) => ({
+  colForm: {
+    backgroundColor: theme.palette.mode === "light" ? "#eee" : theme.palette.background.default
+  },
+  textField:{
+    backgroundColor: theme.palette.mode === "light" ? "#fff" : theme.palette.background.paper
+  }
+}))
 
 interface Props {
   operationType: CollectionOpType;
@@ -30,6 +40,7 @@ const CollectionForm: React.FC<Props> = ({
   collectionId,
   setFormColTitle,
 }) => {
+  const classes = useStyles();
   const [errorText, setErrorText] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -118,9 +129,11 @@ const CollectionForm: React.FC<Props> = ({
         marginLeft: "5px",
         marginRight: "5px",
       }}
+      className={classes.colForm}
     >
-      <ListItem style={{ display: "flex", justifyContent: "center" }}>
+      <ListItem style={{ display: "flex", justifyContent: "center" }} sx={{ mt: 1 }}>
         <TextField
+          className={classes.textField}
           inputRef={collectionTitleRef}
           placeholder="Collection title"
           value={formColTitle}
@@ -130,10 +143,10 @@ const CollectionForm: React.FC<Props> = ({
           error={!!errorText}
         />
       </ListItem>
-      <ListItem style={{ display: "flex", justifyContent: "center" }}>
+      <ListItem style={{ display: "flex", justifyContent: "center" }} sx={{ mb: 1 }}>
         <ButtonGroup>
           <LoadingButton
-            variant="outlined"
+            variant="contained"
             onClick={handleConfirm}
             loading={loading}
             loadingPosition="end"
@@ -141,7 +154,7 @@ const CollectionForm: React.FC<Props> = ({
           >
             {operationType === "CREATE" ? "Save" : "Save Changes"}
           </LoadingButton>
-          <Button onClick={() => setCollectionFormOpen(false)} disabled={loading} sx={{ px: 3 }}>Cancel</Button>
+          <Button onClick={() => setCollectionFormOpen(false)} disabled={loading} sx={{ px: 3 }} >Cancel</Button>
         </ButtonGroup>
       </ListItem>
     </div>
