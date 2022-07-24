@@ -1,6 +1,6 @@
 # Math Flashcards
 
-This is the source code of a web app that helps users improve their math skills using flashcards.
+This is the source code of the front-end of a web app that helps users improve their math skills using flashcards and taking notes containing mathematical formulas.
 It provides a large collection flashcards in many areas of math, and for different proficiency levels.
 It also allows users to create their own custom flashcards.
 The app is built using React.js
